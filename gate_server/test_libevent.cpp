@@ -15,7 +15,9 @@
  *
  * =====================================================================================
  */
-
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <netinet/in.h>
 #include <event.h>
 #include <stdio.h>
 #include <iostream>
@@ -23,11 +25,17 @@
 #include <unistd.h>
 #include <fcntl.h>
 
+#include "gateserver.h"
+
 void set_non_block()
 {
-	int flags = fcntl(listen_fd,F_G
+	int flags = fcntl(listen_fd,F_GETFL,0);
 	flags |= O_NONBLOCK;
 	fcntl(listen_fd,F_SETFL,flags);
+}
+
+void on_accept()
+{
 }
 
 int main()
@@ -40,7 +48,7 @@ int main()
 	memset(&listen_addr,0,sizeof(listen_addr));
 	listen_addr.sin_family = AF_INET;
 	listen_addr.sin_addr.s_addr = INADDR_ANY;
-	listen_addr.sin_port = htons(port);
+	listen_addr.sin_port = htons(listen_port);
 	
 	int resue_addr_on = 1;
 	setsockopt(listen_fd,SOL_SOCKET,SO_REUSEADDR,&resue_addr_on,sizeof(resue_addr_on));
@@ -50,7 +58,7 @@ int main()
 
 	set_non_block();
 
-	event_set(&ev_accept,listen_fd,EV_READ|EV_PERSIST,on_accecpt,NULL);
+	event_set(&ev_accept,listen_fd,EV_READ|EV_PERSIST,on_accept,NULL);
 	event_add(&ev_accept,NULL);
 
 	event_dispatch();
