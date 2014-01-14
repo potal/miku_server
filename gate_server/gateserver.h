@@ -6,6 +6,7 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <unistd.h>
+#include <string.h>
 
 #include <iostream>
 #include <string>
@@ -41,9 +42,9 @@ public:
 	~GateServer();
 
 public:
-	bool InitConfig();
+	bool InitServer();
 	bool StartServer();
 	void StopServer();
-}
+};
 
 #endif

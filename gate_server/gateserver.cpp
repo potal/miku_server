@@ -47,10 +47,11 @@ bool GateServer::InitServer()
 		memset(name,0,sizeof(name));
 		memset(value,0,sizeof(value));
 		sscanf(line,"%s %s",name,value);
+		//std::cout<<line<<std::endl;
 		if(strcmp(name,"port") == 0){
 			m_conf.m_server_port = atoi(value);
 		}else if(strcmp(name,"ip") == 0){
-			memcpy(m_conf.m_server_ip,value,strlen(value))
+			memcpy(m_conf.m_server_ip,value,strlen(value));
 		}else if(strcmp(name,"worker_num") == 0){
 			m_conf.m_count_worker_thread = atoi(value);
 		}else if(strcmp(name,"time_out") == 0){
@@ -76,6 +77,13 @@ bool GateServer::StartServer()
 {
 	if(!InitServer())
 		return false;
+	std::cout<<m_conf.m_server_port<<std::endl;
+	std::cout<<m_conf.m_server_ip<<" Len:"<<strlen(m_conf.m_server_ip)<<std::endl;
+	std::cout<<m_conf.m_count_worker_thread<<std::endl;
+	std::cout<<m_conf.m_timeout<<std::endl;
+	std::cout<<m_conf.m_conn_num<<std::endl;
+	std::cout<<m_conf.m_count_user<<std::endl;
+	std::cout<<m_conf.m_file_num<<std::endl;
 	return true;
 }
 
