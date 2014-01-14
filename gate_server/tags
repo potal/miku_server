@@ -1,0 +1,68 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+CHAT_ROOM_H_	chatroom.h	2;"	d
+ChatRoom	chatroom.h	/^	ChatRoom();$/;"	p	class:ChatRoom	access:public	signature:()
+ChatRoom	chatroom.h	/^class ChatRoom$/;"	c
+ChatRoom::ChatRoom	chatroom.h	/^	ChatRoom();$/;"	p	class:ChatRoom	access:public	signature:()
+ChatRoom::m_room_event	chatroom.h	/^	struct event m_room_event;$/;"	m	class:ChatRoom	typeref:struct:ChatRoom::event	access:private
+ChatRoom::m_sock	chatroom.h	/^	int m_sock;$/;"	m	class:ChatRoom	access:private
+ChatRoom::m_user_list	chatroom.h	/^	std::map<ConnectedUser> m_user_list;$/;"	m	class:ChatRoom	access:private
+ChatRoom::~ChatRoom	chatroom.h	/^	~ChatRoom();$/;"	p	class:ChatRoom	access:public	signature:()
+ConfigInfo	gateserver.h	/^struct ConfigInfo$/;"	s
+ConfigInfo::m_conn_num	gateserver.h	/^	int m_conn_num;$/;"	m	struct:ConfigInfo	access:public
+ConfigInfo::m_count_user	gateserver.h	/^	int m_count_user;$/;"	m	struct:ConfigInfo	access:public
+ConfigInfo::m_count_worker_thread	gateserver.h	/^	int m_count_worker_thread;$/;"	m	struct:ConfigInfo	access:public
+ConfigInfo::m_file_num	gateserver.h	/^	int m_file_num;$/;"	m	struct:ConfigInfo	access:public
+ConfigInfo::m_server_ip	gateserver.h	/^	char m_server_ip[MAX_IP_LEN];$/;"	m	struct:ConfigInfo	access:public
+ConfigInfo::m_server_port	gateserver.h	/^	int m_server_port;$/;"	m	struct:ConfigInfo	access:public
+ConfigInfo::m_timeout	gateserver.h	/^	int m_timeout;$/;"	m	struct:ConfigInfo	access:public
+ConnectedUser	chatroom.h	/^struct ConnectedUser$/;"	s
+ConnectedUser::m_user_sock	chatroom.h	/^	int m_user_sock;$/;"	m	struct:ConnectedUser	access:public
+GATE_SERVER_H_	gateserver.h	2;"	d
+GateServer	gateserver.cpp	/^GateServer::GateServer()$/;"	f	class:GateServer	signature:()
+GateServer	gateserver.h	/^	GateServer();$/;"	p	class:GateServer	access:public	signature:()
+GateServer	gateserver.h	/^class GateServer$/;"	c
+GateServer::GateServer	gateserver.cpp	/^GateServer::GateServer()$/;"	f	class:GateServer	signature:()
+GateServer::GateServer	gateserver.h	/^	GateServer();$/;"	p	class:GateServer	access:public	signature:()
+GateServer::InitConfig	gateserver.h	/^	bool InitConfig();$/;"	p	class:GateServer	access:public	signature:()
+GateServer::InitServer	gateserver.cpp	/^bool GateServer::InitServer()$/;"	f	class:GateServer	signature:()
+GateServer::StartServer	gateserver.cpp	/^bool GateServer::StartServer()$/;"	f	class:GateServer	signature:()
+GateServer::StartServer	gateserver.h	/^	bool StartServer();$/;"	p	class:GateServer	access:public	signature:()
+GateServer::StopServer	gateserver.cpp	/^void GateServer::StopServer()$/;"	f	class:GateServer	signature:()
+GateServer::StopServer	gateserver.h	/^	void StopServer();$/;"	p	class:GateServer	access:public	signature:()
+GateServer::m_base	gateserver.h	/^	struct event_base *m_base;$/;"	m	class:GateServer	typeref:struct:GateServer::event_base	access:private
+GateServer::m_conf	gateserver.h	/^	ConfigInfo m_conf;$/;"	m	class:GateServer	access:private
+GateServer::m_listen_event	gateserver.h	/^	struct event m_listen_event;$/;"	m	class:GateServer	typeref:struct:GateServer::event	access:private
+GateServer::~GateServer	gateserver.cpp	/^GateServer::~GateServer()$/;"	f	class:GateServer	signature:()
+GateServer::~GateServer	gateserver.h	/^	~GateServer();$/;"	p	class:GateServer	access:public	signature:()
+InitConfig	gateserver.h	/^	bool InitConfig();$/;"	p	class:GateServer	access:public	signature:()
+InitServer	gateserver.cpp	/^bool GateServer::InitServer()$/;"	f	class:GateServer	signature:()
+MAX_IP_LEN	gateserver.h	/^const int MAX_IP_LEN = 0x21;$/;"	v
+StartServer	gateserver.cpp	/^bool GateServer::StartServer()$/;"	f	class:GateServer	signature:()
+StartServer	gateserver.h	/^	bool StartServer();$/;"	p	class:GateServer	access:public	signature:()
+StopServer	gateserver.cpp	/^void GateServer::StopServer()$/;"	f	class:GateServer	signature:()
+StopServer	gateserver.h	/^	void StopServer();$/;"	p	class:GateServer	access:public	signature:()
+m_base	gateserver.h	/^	struct event_base *m_base;$/;"	m	class:GateServer	typeref:struct:GateServer::event_base	access:private
+m_conf	gateserver.h	/^	ConfigInfo m_conf;$/;"	m	class:GateServer	access:private
+m_conn_num	gateserver.h	/^	int m_conn_num;$/;"	m	struct:ConfigInfo	access:public
+m_count_user	gateserver.h	/^	int m_count_user;$/;"	m	struct:ConfigInfo	access:public
+m_count_worker_thread	gateserver.h	/^	int m_count_worker_thread;$/;"	m	struct:ConfigInfo	access:public
+m_file_num	gateserver.h	/^	int m_file_num;$/;"	m	struct:ConfigInfo	access:public
+m_listen_event	gateserver.h	/^	struct event m_listen_event;$/;"	m	class:GateServer	typeref:struct:GateServer::event	access:private
+m_room_event	chatroom.h	/^	struct event m_room_event;$/;"	m	class:ChatRoom	typeref:struct:ChatRoom::event	access:private
+m_server_ip	gateserver.h	/^	char m_server_ip[MAX_IP_LEN];$/;"	m	struct:ConfigInfo	access:public
+m_server_port	gateserver.h	/^	int m_server_port;$/;"	m	struct:ConfigInfo	access:public
+m_sock	chatroom.h	/^	int m_sock;$/;"	m	class:ChatRoom	access:private
+m_timeout	gateserver.h	/^	int m_timeout;$/;"	m	struct:ConfigInfo	access:public
+m_user_list	chatroom.h	/^	std::map<ConnectedUser> m_user_list;$/;"	m	class:ChatRoom	access:private
+m_user_sock	chatroom.h	/^	int m_user_sock;$/;"	m	struct:ConnectedUser	access:public
+main	test_libevent.cpp	/^int main()$/;"	f	signature:()
+on_accept	test_libevent.cpp	/^void on_accept()$/;"	f	signature:()
+set_non_block	test_libevent.cpp	/^void set_non_block()$/;"	f	signature:()
+~ChatRoom	chatroom.h	/^	~ChatRoom();$/;"	p	class:ChatRoom	access:public	signature:()
+~GateServer	gateserver.cpp	/^GateServer::~GateServer()$/;"	f	class:GateServer	signature:()
+~GateServer	gateserver.h	/^	~GateServer();$/;"	p	class:GateServer	access:public	signature:()
