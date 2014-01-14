@@ -14,8 +14,10 @@
 #include <event.h>
 #include <pthread.h>
 
-const int MAX_IP_LEN = 0x21;
+#include "chatroom.h"
 
+const int MAX_IP_LEN = 0x21;
+#pragma pack(1)
 struct ConfigInfo
 {
 	char m_server_ip[MAX_IP_LEN];
@@ -26,7 +28,7 @@ struct ConfigInfo
 	int m_count_user;
 	int m_file_num;
 };
-
+#pragma pack()
 
 class GateServer
 {
