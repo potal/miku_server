@@ -4,110 +4,187 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-AddRoom	roommanager.cpp	/^bool RoomManager::AddRoom(long room_id_,ChatRoom *chat_room_)$/;"	f	class:RoomManager	signature:(long room_id_,ChatRoom *chat_room_)
-AddRoom	roommanager.h	/^	bool AddRoom(long room_id_,ChatRoom * chat_room_);$/;"	p	class:RoomManager	access:public	signature:(long room_id_,ChatRoom * chat_room_)
-CHAT_ROOM_H_	chatroom.h	2;"	d
-ChatRoom	chatroom.cpp	/^ChatRoom::ChatRoom():m_sock(0),m_room_id(0),m_is_start(false)$/;"	f	class:ChatRoom	signature:()
-ChatRoom	chatroom.h	/^	ChatRoom();$/;"	p	class:ChatRoom	access:public	signature:()
-ChatRoom	chatroom.h	/^class ChatRoom$/;"	c
-ChatRoom::ChatRoom	chatroom.cpp	/^ChatRoom::ChatRoom():m_sock(0),m_room_id(0),m_is_start(false)$/;"	f	class:ChatRoom	signature:()
-ChatRoom::ChatRoom	chatroom.h	/^	ChatRoom();$/;"	p	class:ChatRoom	access:public	signature:()
-ChatRoom::SetRoom	chatroom.cpp	/^bool ChatRoom::SetRoom(ChatRoom* chat_room_)$/;"	f	class:ChatRoom	signature:(ChatRoom* chat_room_)
-ChatRoom::SetRoom	chatroom.h	/^	bool SetRoom(ChatRoom *chat_room_);$/;"	p	class:ChatRoom	access:public	signature:(ChatRoom *chat_room_)
-ChatRoom::Start	chatroom.cpp	/^bool ChatRoom::Start()$/;"	f	class:ChatRoom	signature:()
-ChatRoom::Start	chatroom.h	/^	bool Start();$/;"	p	class:ChatRoom	access:public	signature:()
-ChatRoom::Stop	chatroom.cpp	/^void ChatRoom::Stop()$/;"	f	class:ChatRoom	signature:()
-ChatRoom::Stop	chatroom.h	/^	void Stop();$/;"	p	class:ChatRoom	access:public	signature:()
-ChatRoom::m_is_start	chatroom.h	/^	bool m_is_start;$/;"	m	class:ChatRoom	access:private
-ChatRoom::m_room_event	chatroom.h	/^	struct event m_room_event;$/;"	m	class:ChatRoom	typeref:struct:ChatRoom::event	access:private
-ChatRoom::m_room_id	chatroom.h	/^	long m_room_id;$/;"	m	class:ChatRoom	access:private
-ChatRoom::m_sock	chatroom.h	/^	int m_sock;$/;"	m	class:ChatRoom	access:private
-ChatRoom::m_user_list	chatroom.h	/^	std::map<int,ConnectedUser*> m_user_list;$/;"	m	class:ChatRoom	access:private
-ChatRoom::~ChatRoom	chatroom.cpp	/^ChatRoom::~ChatRoom()$/;"	f	class:ChatRoom	signature:()
-ChatRoom::~ChatRoom	chatroom.h	/^	~ChatRoom();$/;"	p	class:ChatRoom	access:public	signature:()
-ConnectedUser	chatroom.h	/^struct ConnectedUser$/;"	s
-ConnectedUser::m_user_id	chatroom.h	/^	int m_user_id;$/;"	m	struct:ConnectedUser	access:public
-ConnectedUser::m_user_sock	chatroom.h	/^	int m_user_sock;$/;"	m	struct:ConnectedUser	access:public
-DelRoom	roommanager.cpp	/^bool RoomManager::DelRoom(long room_id_)$/;"	f	class:RoomManager	signature:(long room_id_)
-DelRoom	roommanager.h	/^	bool DelRoom(long room_id_);$/;"	p	class:RoomManager	access:public	signature:(long room_id_)
-GATE_SERVER_H_	gateserver.h	2;"	d
-GateServer	gateserver.cpp	/^GateServer::GateServer()$/;"	f	class:GateServer	signature:()
-GateServer	gateserver.h	/^	GateServer();$/;"	p	class:GateServer	access:public	signature:()
-GateServer	gateserver.h	/^class GateServer$/;"	c
-GateServer::GateServer	gateserver.cpp	/^GateServer::GateServer()$/;"	f	class:GateServer	signature:()
-GateServer::GateServer	gateserver.h	/^	GateServer();$/;"	p	class:GateServer	access:public	signature:()
-GateServer::InitServer	gateserver.cpp	/^bool GateServer::InitServer()$/;"	f	class:GateServer	signature:()
-GateServer::InitServer	gateserver.h	/^	bool InitServer();$/;"	p	class:GateServer	access:public	signature:()
-GateServer::StartServer	gateserver.cpp	/^bool GateServer::StartServer()$/;"	f	class:GateServer	signature:()
-GateServer::StartServer	gateserver.h	/^	bool StartServer();$/;"	p	class:GateServer	access:public	signature:()
-GateServer::StopServer	gateserver.cpp	/^void GateServer::StopServer()$/;"	f	class:GateServer	signature:()
-GateServer::StopServer	gateserver.h	/^	void StopServer();$/;"	p	class:GateServer	access:public	signature:()
-GateServer::m_base	gateserver.h	/^	struct event_base *m_base;$/;"	m	class:GateServer	typeref:struct:GateServer::event_base	access:private
-GateServer::m_conn_num	gateserver.h	/^	int m_conn_num;$/;"	m	class:GateServer	access:private
-GateServer::m_count_user	gateserver.h	/^	int m_count_user;$/;"	m	class:GateServer	access:private
-GateServer::m_count_worker_thread	gateserver.h	/^	int m_count_worker_thread;$/;"	m	class:GateServer	access:private
-GateServer::m_file_num	gateserver.h	/^	int m_file_num;$/;"	m	class:GateServer	access:private
-GateServer::m_listen_event	gateserver.h	/^	struct event m_listen_event;$/;"	m	class:GateServer	typeref:struct:GateServer::event	access:private
-GateServer::m_room_manager	gateserver.h	/^	RoomManager m_room_manager;$/;"	m	class:GateServer	access:private
-GateServer::m_server_ip	gateserver.h	/^	std::string m_server_ip;$/;"	m	class:GateServer	access:private
-GateServer::m_server_port	gateserver.h	/^	int m_server_port;$/;"	m	class:GateServer	access:private
-GateServer::m_timeout	gateserver.h	/^	int m_timeout;$/;"	m	class:GateServer	access:private
-GateServer::~GateServer	gateserver.cpp	/^GateServer::~GateServer()$/;"	f	class:GateServer	signature:()
-GateServer::~GateServer	gateserver.h	/^	~GateServer();$/;"	p	class:GateServer	access:public	signature:()
-InitServer	gateserver.cpp	/^bool GateServer::InitServer()$/;"	f	class:GateServer	signature:()
-InitServer	gateserver.h	/^	bool InitServer();$/;"	p	class:GateServer	access:public	signature:()
-ROOM_MANAGER_H_	roommanager.h	2;"	d
-RoomManager	roommanager.cpp	/^RoomManager::RoomManager()$/;"	f	class:RoomManager	signature:()
-RoomManager	roommanager.h	/^	RoomManager();$/;"	p	class:RoomManager	access:public	signature:()
-RoomManager	roommanager.h	/^class RoomManager$/;"	c
-RoomManager::AddRoom	roommanager.cpp	/^bool RoomManager::AddRoom(long room_id_,ChatRoom *chat_room_)$/;"	f	class:RoomManager	signature:(long room_id_,ChatRoom *chat_room_)
-RoomManager::AddRoom	roommanager.h	/^	bool AddRoom(long room_id_,ChatRoom * chat_room_);$/;"	p	class:RoomManager	access:public	signature:(long room_id_,ChatRoom * chat_room_)
-RoomManager::DelRoom	roommanager.cpp	/^bool RoomManager::DelRoom(long room_id_)$/;"	f	class:RoomManager	signature:(long room_id_)
-RoomManager::DelRoom	roommanager.h	/^	bool DelRoom(long room_id_);$/;"	p	class:RoomManager	access:public	signature:(long room_id_)
-RoomManager::RoomManager	roommanager.cpp	/^RoomManager::RoomManager()$/;"	f	class:RoomManager	signature:()
-RoomManager::RoomManager	roommanager.h	/^	RoomManager();$/;"	p	class:RoomManager	access:public	signature:()
-RoomManager::m_list_cond	roommanager.h	/^	pthread_cond_t m_list_cond;$/;"	m	class:RoomManager	access:private
-RoomManager::m_list_mutex	roommanager.h	/^	pthread_mutex_t m_list_mutex;$/;"	m	class:RoomManager	access:private
-RoomManager::m_room_list	roommanager.h	/^	std::map<long,ChatRoom*> m_room_list;$/;"	m	class:RoomManager	access:private
-RoomManager::~RoomManager	roommanager.cpp	/^RoomManager::~RoomManager()$/;"	f	class:RoomManager	signature:()
-RoomManager::~RoomManager	roommanager.h	/^	~RoomManager();$/;"	p	class:RoomManager	access:public	signature:()
+AcceptAction	gate_server.cpp	/^void GateServer::AcceptAction(int sock,short event_flag,void *action_class)$/;"	f	class:GateServer	signature:(int sock,short event_flag,void *action_class)
+AcceptAction	gate_server.h	/^	static void AcceptAction(int sock,short event_flag,void *action_class);$/;"	p	class:GateServer	access:public	signature:(int sock,short event_flag,void *action_class)
+AddRoom	room_manager.cpp	/^bool RoomManager::AddRoom(long room_id,ChatRoom *chat_room)$/;"	f	class:RoomManager	signature:(long room_id,ChatRoom *chat_room)
+AddRoom	room_manager.h	/^	bool AddRoom(long room_id,ChatRoom * chat_room);$/;"	p	class:RoomManager	access:public	signature:(long room_id,ChatRoom * chat_room)
+AddUserInfo	user_list.cpp	/^bool UserInfoList::AddUserInfo(int user_id,UserInfo & user)$/;"	f	class:UserInfoList	signature:(int user_id,UserInfo & user)
+AddUserInfo	user_list.h	/^	bool AddUserInfo(int user_id,UserInfo & user);$/;"	p	class:UserInfoList	access:public	signature:(int user_id,UserInfo & user)
+CHAT_ROOM_H_	chat_room.h	2;"	d
+CONNECTOR_H_	connector.h	2;"	d
+ChatRoom	chat_room.cpp	/^ChatRoom::ChatRoom():m_sock(0),m_room_id(0),m_is_start(false)$/;"	f	class:ChatRoom	signature:()
+ChatRoom	chat_room.h	/^	ChatRoom();$/;"	p	class:ChatRoom	access:public	signature:()
+ChatRoom	chat_room.h	/^class ChatRoom$/;"	c
+ChatRoom::ChatRoom	chat_room.cpp	/^ChatRoom::ChatRoom():m_sock(0),m_room_id(0),m_is_start(false)$/;"	f	class:ChatRoom	signature:()
+ChatRoom::ChatRoom	chat_room.h	/^	ChatRoom();$/;"	p	class:ChatRoom	access:public	signature:()
+ChatRoom::SetRoom	chat_room.cpp	/^bool ChatRoom::SetRoom(ChatRoom* chat_room)$/;"	f	class:ChatRoom	signature:(ChatRoom* chat_room)
+ChatRoom::SetRoom	chat_room.h	/^	bool SetRoom(ChatRoom *chat_room);$/;"	p	class:ChatRoom	access:public	signature:(ChatRoom *chat_room)
+ChatRoom::Start	chat_room.cpp	/^bool ChatRoom::Start()$/;"	f	class:ChatRoom	signature:()
+ChatRoom::Start	chat_room.h	/^	bool Start();$/;"	p	class:ChatRoom	access:public	signature:()
+ChatRoom::Stop	chat_room.cpp	/^void ChatRoom::Stop()$/;"	f	class:ChatRoom	signature:()
+ChatRoom::Stop	chat_room.h	/^	void Stop();$/;"	p	class:ChatRoom	access:public	signature:()
+ChatRoom::m_is_start	chat_room.h	/^	bool m_is_start;$/;"	m	class:ChatRoom	access:private
+ChatRoom::m_room_event	chat_room.h	/^	struct event m_room_event;$/;"	m	class:ChatRoom	typeref:struct:ChatRoom::event	access:private
+ChatRoom::m_room_id	chat_room.h	/^	long m_room_id;$/;"	m	class:ChatRoom	access:private
+ChatRoom::m_sock	chat_room.h	/^	int m_sock;$/;"	m	class:ChatRoom	access:private
+ChatRoom::m_user_list	chat_room.h	/^	UserInfoList m_user_list;$/;"	m	class:ChatRoom	access:private
+ChatRoom::~ChatRoom	chat_room.cpp	/^ChatRoom::~ChatRoom()$/;"	f	class:ChatRoom	signature:()
+ChatRoom::~ChatRoom	chat_room.h	/^	~ChatRoom();$/;"	p	class:ChatRoom	access:public	signature:()
+ConnectServer	connector.cpp	/^bool Connector::ConnectServer()$/;"	f	class:Connector	signature:()
+ConnectServer	connector.h	/^	bool ConnectServer();$/;"	p	class:Connector	access:public	signature:()
+Connector	connector.cpp	/^Connector::Connector()$/;"	f	class:Connector	signature:()
+Connector	connector.h	/^	Connector();$/;"	p	class:Connector	access:public	signature:()
+Connector	connector.h	/^class Connector$/;"	c
+Connector::ConnectServer	connector.cpp	/^bool Connector::ConnectServer()$/;"	f	class:Connector	signature:()
+Connector::ConnectServer	connector.h	/^	bool ConnectServer();$/;"	p	class:Connector	access:public	signature:()
+Connector::Connector	connector.cpp	/^Connector::Connector()$/;"	f	class:Connector	signature:()
+Connector::Connector	connector.h	/^	Connector();$/;"	p	class:Connector	access:public	signature:()
+Connector::Disconnect	connector.h	/^	void Disconnect();$/;"	p	class:Connector	access:public	signature:()
+Connector::InitConnectionInfo	connector.cpp	/^void Connector::InitConnectionInfo(const char *server_ip,const short server_port)$/;"	f	class:Connector	signature:(const char *server_ip,const short server_port)
+Connector::InitConnectionInfo	connector.h	/^	void InitConnectionInfo(const char *server_ip,const short server_port);$/;"	p	class:Connector	access:public	signature:(const char *server_ip,const short server_port)
+Connector::m_server_ip	connector.h	/^	std::string m_server_ip;$/;"	m	class:Connector	access:private
+Connector::m_server_port	connector.h	/^	short m_server_port;$/;"	m	class:Connector	access:private
+Connector::~Connector	connector.cpp	/^Connector::~Connector()$/;"	f	class:Connector	signature:()
+Connector::~Connector	connector.h	/^	virtual ~Connector();$/;"	p	class:Connector	access:public	signature:()
+Connnector::Disconnect	connector.cpp	/^void Connnector::Disconnect()$/;"	f	class:Connnector	signature:()
+DelRoom	room_manager.cpp	/^bool RoomManager::DelRoom(long room_id)$/;"	f	class:RoomManager	signature:(long room_id)
+DelRoom	room_manager.h	/^	bool DelRoom(long room_id);$/;"	p	class:RoomManager	access:public	signature:(long room_id)
+DelUserInfo	user_list.cpp	/^bool UserInfoList::DelUserInfo(int user_id)$/;"	f	class:UserInfoList	signature:(int user_id)
+DelUserInfo	user_list.h	/^	bool DelUserInfo(int user_id);$/;"	p	class:UserInfoList	access:public	signature:(int user_id)
+DeleteAllUser	user_list.cpp	/^void UserInfoList::DeleteAllUser()$/;"	f	class:UserInfoList	signature:()
+DeleteAllUser	user_list.h	/^	void DeleteAllUser();$/;"	p	class:UserInfoList	access:public	signature:()
+Disconnect	connector.cpp	/^void Connnector::Disconnect()$/;"	f	class:Connnector	signature:()
+Disconnect	connector.h	/^	void Disconnect();$/;"	p	class:Connector	access:public	signature:()
+GATE_SERVER_H_	gate_server.h	2;"	d
+GateServer	gate_server.cpp	/^GateServer::GateServer():m_server_port(0)$/;"	f	class:GateServer	signature:()
+GateServer	gate_server.h	/^	GateServer();$/;"	p	class:GateServer	access:public	signature:()
+GateServer	gate_server.h	/^class GateServer$/;"	c
+GateServer::AcceptAction	gate_server.cpp	/^void GateServer::AcceptAction(int sock,short event_flag,void *action_class)$/;"	f	class:GateServer	signature:(int sock,short event_flag,void *action_class)
+GateServer::AcceptAction	gate_server.h	/^	static void AcceptAction(int sock,short event_flag,void *action_class);$/;"	p	class:GateServer	access:public	signature:(int sock,short event_flag,void *action_class)
+GateServer::GateServer	gate_server.cpp	/^GateServer::GateServer():m_server_port(0)$/;"	f	class:GateServer	signature:()
+GateServer::GateServer	gate_server.h	/^	GateServer();$/;"	p	class:GateServer	access:public	signature:()
+GateServer::InitServer	gate_server.cpp	/^bool GateServer::InitServer()$/;"	f	class:GateServer	signature:()
+GateServer::InitServer	gate_server.h	/^	bool InitServer();$/;"	p	class:GateServer	access:public	signature:()
+GateServer::OpenServerSocket	gate_server.cpp	/^bool GateServer::OpenServerSocket()$/;"	f	class:GateServer	signature:()
+GateServer::OpenServerSocket	gate_server.h	/^	bool OpenServerSocket();$/;"	p	class:GateServer	access:public	signature:()
+GateServer::SafeCloseSocket	gate_server.cpp	/^void GateServer::SafeCloseSocket(int sock)$/;"	f	class:GateServer	signature:(int sock)
+GateServer::SafeCloseSocket	gate_server.h	/^	void SafeCloseSocket(int sock);$/;"	p	class:GateServer	access:public	signature:(int sock)
+GateServer::SetNonblock	gate_server.cpp	/^void GateServer::SetNonblock()$/;"	f	class:GateServer	signature:()
+GateServer::SetNonblock	gate_server.h	/^	void SetNonblock();$/;"	p	class:GateServer	access:public	signature:()
+GateServer::StartServer	gate_server.cpp	/^bool GateServer::StartServer()$/;"	f	class:GateServer	signature:()
+GateServer::StartServer	gate_server.h	/^	bool StartServer();$/;"	p	class:GateServer	access:public	signature:()
+GateServer::StopServer	gate_server.cpp	/^void GateServer::StopServer()$/;"	f	class:GateServer	signature:()
+GateServer::StopServer	gate_server.h	/^	void StopServer();$/;"	p	class:GateServer	access:public	signature:()
+GateServer::m_base	gate_server.h	/^	struct event_base *m_base;$/;"	m	class:GateServer	typeref:struct:GateServer::event_base	access:private
+GateServer::m_conn_num	gate_server.h	/^	int m_conn_num;$/;"	m	class:GateServer	access:private
+GateServer::m_count_user	gate_server.h	/^	int m_count_user;$/;"	m	class:GateServer	access:private
+GateServer::m_count_worker_thread	gate_server.h	/^	int m_count_worker_thread;$/;"	m	class:GateServer	access:private
+GateServer::m_file_num	gate_server.h	/^	int m_file_num;$/;"	m	class:GateServer	access:private
+GateServer::m_listen_event	gate_server.h	/^	struct event m_listen_event;$/;"	m	class:GateServer	typeref:struct:GateServer::event	access:private
+GateServer::m_room_manager	gate_server.h	/^	RoomManager m_room_manager;$/;"	m	class:GateServer	access:private
+GateServer::m_server_ip	gate_server.h	/^	std::string m_server_ip;$/;"	m	class:GateServer	access:private
+GateServer::m_server_listen_sock	gate_server.h	/^	int m_server_listen_sock;$/;"	m	class:GateServer	access:private
+GateServer::m_server_port	gate_server.h	/^	int m_server_port;$/;"	m	class:GateServer	access:private
+GateServer::m_timeout	gate_server.h	/^	int m_timeout;$/;"	m	class:GateServer	access:private
+GateServer::~GateServer	gate_server.cpp	/^GateServer::~GateServer()$/;"	f	class:GateServer	signature:()
+GateServer::~GateServer	gate_server.h	/^	~GateServer();$/;"	p	class:GateServer	access:public	signature:()
+GetUserList	user_list.h	/^	inline USERLISTMAP * GetUserList()$/;"	f	class:UserInfoList	access:public	signature:()
+InitConnectionInfo	connector.cpp	/^void Connector::InitConnectionInfo(const char *server_ip,const short server_port)$/;"	f	class:Connector	signature:(const char *server_ip,const short server_port)
+InitConnectionInfo	connector.h	/^	void InitConnectionInfo(const char *server_ip,const short server_port);$/;"	p	class:Connector	access:public	signature:(const char *server_ip,const short server_port)
+InitServer	gate_server.cpp	/^bool GateServer::InitServer()$/;"	f	class:GateServer	signature:()
+InitServer	gate_server.h	/^	bool InitServer();$/;"	p	class:GateServer	access:public	signature:()
+OpenServerSocket	gate_server.cpp	/^bool GateServer::OpenServerSocket()$/;"	f	class:GateServer	signature:()
+OpenServerSocket	gate_server.h	/^	bool OpenServerSocket();$/;"	p	class:GateServer	access:public	signature:()
+ROOM_MANAGER_H_	room_manager.h	2;"	d
+RoomManager	room_manager.cpp	/^RoomManager::RoomManager()$/;"	f	class:RoomManager	signature:()
+RoomManager	room_manager.h	/^	RoomManager();$/;"	p	class:RoomManager	access:public	signature:()
+RoomManager	room_manager.h	/^class RoomManager$/;"	c
+RoomManager::AddRoom	room_manager.cpp	/^bool RoomManager::AddRoom(long room_id,ChatRoom *chat_room)$/;"	f	class:RoomManager	signature:(long room_id,ChatRoom *chat_room)
+RoomManager::AddRoom	room_manager.h	/^	bool AddRoom(long room_id,ChatRoom * chat_room);$/;"	p	class:RoomManager	access:public	signature:(long room_id,ChatRoom * chat_room)
+RoomManager::DelRoom	room_manager.cpp	/^bool RoomManager::DelRoom(long room_id)$/;"	f	class:RoomManager	signature:(long room_id)
+RoomManager::DelRoom	room_manager.h	/^	bool DelRoom(long room_id);$/;"	p	class:RoomManager	access:public	signature:(long room_id)
+RoomManager::RoomManager	room_manager.cpp	/^RoomManager::RoomManager()$/;"	f	class:RoomManager	signature:()
+RoomManager::RoomManager	room_manager.h	/^	RoomManager();$/;"	p	class:RoomManager	access:public	signature:()
+RoomManager::m_list_cond	room_manager.h	/^	pthread_cond_t m_list_cond;$/;"	m	class:RoomManager	access:private
+RoomManager::m_list_mutex	room_manager.h	/^	pthread_mutex_t m_list_mutex;$/;"	m	class:RoomManager	access:private
+RoomManager::m_room_list	room_manager.h	/^	std::map<long,ChatRoom*> m_room_list;$/;"	m	class:RoomManager	access:private
+RoomManager::~RoomManager	room_manager.cpp	/^RoomManager::~RoomManager()$/;"	f	class:RoomManager	signature:()
+RoomManager::~RoomManager	room_manager.h	/^	~RoomManager();$/;"	p	class:RoomManager	access:public	signature:()
 SERVER_TYPES_H_	server_types.h	2;"	d
-SetRoom	chatroom.cpp	/^bool ChatRoom::SetRoom(ChatRoom* chat_room_)$/;"	f	class:ChatRoom	signature:(ChatRoom* chat_room_)
-SetRoom	chatroom.h	/^	bool SetRoom(ChatRoom *chat_room_);$/;"	p	class:ChatRoom	access:public	signature:(ChatRoom *chat_room_)
-Start	chatroom.cpp	/^bool ChatRoom::Start()$/;"	f	class:ChatRoom	signature:()
-Start	chatroom.h	/^	bool Start();$/;"	p	class:ChatRoom	access:public	signature:()
-StartServer	gateserver.cpp	/^bool GateServer::StartServer()$/;"	f	class:GateServer	signature:()
-StartServer	gateserver.h	/^	bool StartServer();$/;"	p	class:GateServer	access:public	signature:()
-Stop	chatroom.cpp	/^void ChatRoom::Stop()$/;"	f	class:ChatRoom	signature:()
-Stop	chatroom.h	/^	void Stop();$/;"	p	class:ChatRoom	access:public	signature:()
-StopServer	gateserver.cpp	/^void GateServer::StopServer()$/;"	f	class:GateServer	signature:()
-StopServer	gateserver.h	/^	void StopServer();$/;"	p	class:GateServer	access:public	signature:()
+SafeCloseSocket	gate_server.cpp	/^void GateServer::SafeCloseSocket(int sock)$/;"	f	class:GateServer	signature:(int sock)
+SafeCloseSocket	gate_server.h	/^	void SafeCloseSocket(int sock);$/;"	p	class:GateServer	access:public	signature:(int sock)
+SetNonblock	gate_server.cpp	/^void GateServer::SetNonblock()$/;"	f	class:GateServer	signature:()
+SetNonblock	gate_server.h	/^	void SetNonblock();$/;"	p	class:GateServer	access:public	signature:()
+SetRoom	chat_room.cpp	/^bool ChatRoom::SetRoom(ChatRoom* chat_room)$/;"	f	class:ChatRoom	signature:(ChatRoom* chat_room)
+SetRoom	chat_room.h	/^	bool SetRoom(ChatRoom *chat_room);$/;"	p	class:ChatRoom	access:public	signature:(ChatRoom *chat_room)
+Start	chat_room.cpp	/^bool ChatRoom::Start()$/;"	f	class:ChatRoom	signature:()
+Start	chat_room.h	/^	bool Start();$/;"	p	class:ChatRoom	access:public	signature:()
+StartServer	gate_server.cpp	/^bool GateServer::StartServer()$/;"	f	class:GateServer	signature:()
+StartServer	gate_server.h	/^	bool StartServer();$/;"	p	class:GateServer	access:public	signature:()
+Stop	chat_room.cpp	/^void ChatRoom::Stop()$/;"	f	class:ChatRoom	signature:()
+Stop	chat_room.h	/^	void Stop();$/;"	p	class:ChatRoom	access:public	signature:()
+StopServer	gate_server.cpp	/^void GateServer::StopServer()$/;"	f	class:GateServer	signature:()
+StopServer	gate_server.h	/^	void StopServer();$/;"	p	class:GateServer	access:public	signature:()
+USERLISTMAP	user_list.h	/^typedef std::map<int,UserInfo*> USERLISTMAP;$/;"	t
+USER_LIST_H_	user_list.h	2;"	d
+UserInfo	user_list.h	/^struct UserInfo$/;"	s
+UserInfo::m_hash_key	user_list.h	/^	long m_hash_key;$/;"	m	struct:UserInfo	access:public
+UserInfo::m_user_id	user_list.h	/^	int m_user_id;$/;"	m	struct:UserInfo	access:public
+UserInfo::m_user_sock	user_list.h	/^	int m_user_sock;$/;"	m	struct:UserInfo	access:public
+UserInfoList	user_list.cpp	/^UserInfoList::UserInfoList()$/;"	f	class:UserInfoList	signature:()
+UserInfoList	user_list.h	/^	UserInfoList();$/;"	p	class:UserInfoList	access:public	signature:()
+UserInfoList	user_list.h	/^class UserInfoList$/;"	c
+UserInfoList::AddUserInfo	user_list.cpp	/^bool UserInfoList::AddUserInfo(int user_id,UserInfo & user)$/;"	f	class:UserInfoList	signature:(int user_id,UserInfo & user)
+UserInfoList::AddUserInfo	user_list.h	/^	bool AddUserInfo(int user_id,UserInfo & user);$/;"	p	class:UserInfoList	access:public	signature:(int user_id,UserInfo & user)
+UserInfoList::DelUserInfo	user_list.cpp	/^bool UserInfoList::DelUserInfo(int user_id)$/;"	f	class:UserInfoList	signature:(int user_id)
+UserInfoList::DelUserInfo	user_list.h	/^	bool DelUserInfo(int user_id);$/;"	p	class:UserInfoList	access:public	signature:(int user_id)
+UserInfoList::DeleteAllUser	user_list.cpp	/^void UserInfoList::DeleteAllUser()$/;"	f	class:UserInfoList	signature:()
+UserInfoList::DeleteAllUser	user_list.h	/^	void DeleteAllUser();$/;"	p	class:UserInfoList	access:public	signature:()
+UserInfoList::GetUserList	user_list.h	/^	inline USERLISTMAP * GetUserList()$/;"	f	class:UserInfoList	access:public	signature:()
+UserInfoList::UserInfoList	user_list.cpp	/^UserInfoList::UserInfoList()$/;"	f	class:UserInfoList	signature:()
+UserInfoList::UserInfoList	user_list.h	/^	UserInfoList();$/;"	p	class:UserInfoList	access:public	signature:()
+UserInfoList::m_list_cond	user_list.h	/^	pthread_cond_t m_list_cond;$/;"	m	class:UserInfoList	access:private
+UserInfoList::m_list_lock	user_list.h	/^	pthread_mutex_t m_list_lock;$/;"	m	class:UserInfoList	access:private
+UserInfoList::m_user_list	user_list.h	/^	USERLISTMAP m_user_list;$/;"	m	class:UserInfoList	access:private
+UserInfoList::~UserInfoList	user_list.cpp	/^UserInfoList::~UserInfoList()$/;"	f	class:UserInfoList	signature:()
+UserInfoList::~UserInfoList	user_list.h	/^	~UserInfoList();$/;"	p	class:UserInfoList	access:public	signature:()
 __int64	server_types.h	/^typedef long long __int64;$/;"	t
 __uint64	server_types.h	/^typedef unsigned long long __uint64;$/;"	t
-m_base	gateserver.h	/^	struct event_base *m_base;$/;"	m	class:GateServer	typeref:struct:GateServer::event_base	access:private
-m_conn_num	gateserver.h	/^	int m_conn_num;$/;"	m	class:GateServer	access:private
-m_count_user	gateserver.h	/^	int m_count_user;$/;"	m	class:GateServer	access:private
-m_count_worker_thread	gateserver.h	/^	int m_count_worker_thread;$/;"	m	class:GateServer	access:private
-m_file_num	gateserver.h	/^	int m_file_num;$/;"	m	class:GateServer	access:private
-m_is_start	chatroom.h	/^	bool m_is_start;$/;"	m	class:ChatRoom	access:private
-m_list_cond	roommanager.h	/^	pthread_cond_t m_list_cond;$/;"	m	class:RoomManager	access:private
-m_list_mutex	roommanager.h	/^	pthread_mutex_t m_list_mutex;$/;"	m	class:RoomManager	access:private
-m_listen_event	gateserver.h	/^	struct event m_listen_event;$/;"	m	class:GateServer	typeref:struct:GateServer::event	access:private
-m_room_event	chatroom.h	/^	struct event m_room_event;$/;"	m	class:ChatRoom	typeref:struct:ChatRoom::event	access:private
-m_room_id	chatroom.h	/^	long m_room_id;$/;"	m	class:ChatRoom	access:private
-m_room_list	roommanager.h	/^	std::map<long,ChatRoom*> m_room_list;$/;"	m	class:RoomManager	access:private
-m_room_manager	gateserver.h	/^	RoomManager m_room_manager;$/;"	m	class:GateServer	access:private
-m_server_ip	gateserver.h	/^	std::string m_server_ip;$/;"	m	class:GateServer	access:private
-m_server_port	gateserver.h	/^	int m_server_port;$/;"	m	class:GateServer	access:private
-m_sock	chatroom.h	/^	int m_sock;$/;"	m	class:ChatRoom	access:private
-m_timeout	gateserver.h	/^	int m_timeout;$/;"	m	class:GateServer	access:private
-m_user_id	chatroom.h	/^	int m_user_id;$/;"	m	struct:ConnectedUser	access:public
-m_user_list	chatroom.h	/^	std::map<int,ConnectedUser*> m_user_list;$/;"	m	class:ChatRoom	access:private
-m_user_sock	chatroom.h	/^	int m_user_sock;$/;"	m	struct:ConnectedUser	access:public
-main	main.cpp	/^int main()$/;"	f	signature:()
-~ChatRoom	chatroom.cpp	/^ChatRoom::~ChatRoom()$/;"	f	class:ChatRoom	signature:()
-~ChatRoom	chatroom.h	/^	~ChatRoom();$/;"	p	class:ChatRoom	access:public	signature:()
-~GateServer	gateserver.cpp	/^GateServer::~GateServer()$/;"	f	class:GateServer	signature:()
-~GateServer	gateserver.h	/^	~GateServer();$/;"	p	class:GateServer	access:public	signature:()
-~RoomManager	roommanager.cpp	/^RoomManager::~RoomManager()$/;"	f	class:RoomManager	signature:()
-~RoomManager	roommanager.h	/^	~RoomManager();$/;"	p	class:RoomManager	access:public	signature:()
+m_base	gate_server.h	/^	struct event_base *m_base;$/;"	m	class:GateServer	typeref:struct:GateServer::event_base	access:private
+m_conn_num	gate_server.h	/^	int m_conn_num;$/;"	m	class:GateServer	access:private
+m_count_user	gate_server.h	/^	int m_count_user;$/;"	m	class:GateServer	access:private
+m_count_worker_thread	gate_server.h	/^	int m_count_worker_thread;$/;"	m	class:GateServer	access:private
+m_file_num	gate_server.h	/^	int m_file_num;$/;"	m	class:GateServer	access:private
+m_hash_key	user_list.h	/^	long m_hash_key;$/;"	m	struct:UserInfo	access:public
+m_is_start	chat_room.h	/^	bool m_is_start;$/;"	m	class:ChatRoom	access:private
+m_list_cond	room_manager.h	/^	pthread_cond_t m_list_cond;$/;"	m	class:RoomManager	access:private
+m_list_cond	user_list.h	/^	pthread_cond_t m_list_cond;$/;"	m	class:UserInfoList	access:private
+m_list_lock	user_list.h	/^	pthread_mutex_t m_list_lock;$/;"	m	class:UserInfoList	access:private
+m_list_mutex	room_manager.h	/^	pthread_mutex_t m_list_mutex;$/;"	m	class:RoomManager	access:private
+m_listen_event	gate_server.h	/^	struct event m_listen_event;$/;"	m	class:GateServer	typeref:struct:GateServer::event	access:private
+m_room_event	chat_room.h	/^	struct event m_room_event;$/;"	m	class:ChatRoom	typeref:struct:ChatRoom::event	access:private
+m_room_id	chat_room.h	/^	long m_room_id;$/;"	m	class:ChatRoom	access:private
+m_room_list	room_manager.h	/^	std::map<long,ChatRoom*> m_room_list;$/;"	m	class:RoomManager	access:private
+m_room_manager	gate_server.h	/^	RoomManager m_room_manager;$/;"	m	class:GateServer	access:private
+m_server_ip	connector.h	/^	std::string m_server_ip;$/;"	m	class:Connector	access:private
+m_server_ip	gate_server.h	/^	std::string m_server_ip;$/;"	m	class:GateServer	access:private
+m_server_listen_sock	gate_server.h	/^	int m_server_listen_sock;$/;"	m	class:GateServer	access:private
+m_server_port	connector.h	/^	short m_server_port;$/;"	m	class:Connector	access:private
+m_server_port	gate_server.h	/^	int m_server_port;$/;"	m	class:GateServer	access:private
+m_sock	chat_room.h	/^	int m_sock;$/;"	m	class:ChatRoom	access:private
+m_timeout	gate_server.h	/^	int m_timeout;$/;"	m	class:GateServer	access:private
+m_user_id	user_list.h	/^	int m_user_id;$/;"	m	struct:UserInfo	access:public
+m_user_list	chat_room.h	/^	UserInfoList m_user_list;$/;"	m	class:ChatRoom	access:private
+m_user_list	user_list.h	/^	USERLISTMAP m_user_list;$/;"	m	class:UserInfoList	access:private
+m_user_sock	user_list.h	/^	int m_user_sock;$/;"	m	struct:UserInfo	access:public
+main	server_main.cpp	/^int main()$/;"	f	signature:()
+~ChatRoom	chat_room.cpp	/^ChatRoom::~ChatRoom()$/;"	f	class:ChatRoom	signature:()
+~ChatRoom	chat_room.h	/^	~ChatRoom();$/;"	p	class:ChatRoom	access:public	signature:()
+~Connector	connector.cpp	/^Connector::~Connector()$/;"	f	class:Connector	signature:()
+~Connector	connector.h	/^	virtual ~Connector();$/;"	p	class:Connector	access:public	signature:()
+~GateServer	gate_server.cpp	/^GateServer::~GateServer()$/;"	f	class:GateServer	signature:()
+~GateServer	gate_server.h	/^	~GateServer();$/;"	p	class:GateServer	access:public	signature:()
+~RoomManager	room_manager.cpp	/^RoomManager::~RoomManager()$/;"	f	class:RoomManager	signature:()
+~RoomManager	room_manager.h	/^	~RoomManager();$/;"	p	class:RoomManager	access:public	signature:()
+~UserInfoList	user_list.cpp	/^UserInfoList::~UserInfoList()$/;"	f	class:UserInfoList	signature:()
+~UserInfoList	user_list.h	/^	~UserInfoList();$/;"	p	class:UserInfoList	access:public	signature:()

@@ -5,12 +5,14 @@
 #include <sys/types.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <sys/ioctl.h>
 #include <unistd.h>
 #include <string.h>
 
 #include <iostream>
 #include <string>
 #include <stdlib.h>
+#include <errno.h>
 
 #include <event.h>
 #include <pthread.h>
@@ -30,9 +32,14 @@ private:
 
 	int m_server_listen_sock;
 
-	RoomManager m_room_manager;
 	struct event_base *m_base;
 	struct event m_listen_event;
+
+	struct event m_test_time_ev;
+	struct timeval m_test_time_val;
+
+	RoomManager m_room_manager;
+
 public:
 	GateServer();
 	~GateServer();
@@ -42,8 +49,12 @@ public:
 	bool StartServer();
 	void SetNonblock();
 	bool OpenServerSocket();
+	void SafeCloseSocket(int sock);
+	static void AcceptAction(int sock,short event_flag,void *action_class);
 	//bool RegisterFunc();
 	void StopServer();
+
+	static void TestTime(int sock,short event_flag,void *argc);
 };
 
 #endif

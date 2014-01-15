@@ -1,17 +1,10 @@
 #ifndef CHAT_ROOM_H_
 #define CHAT_ROOM_H_
 
+#include "user_list.h"
 #include <event.h>
 #include <iostream>
 #include <map>
-
-#pragma pack(1)
-struct ConnectedUser
-{
-	int m_user_id;
-	int m_user_sock;
-};
-#pragma pack()
 
 class ChatRoom
 {
@@ -20,8 +13,8 @@ private:
 	long m_room_id;
 	int m_sock;
 	struct event m_room_event;
-	std::map<int,ConnectedUser*> m_user_list;
 
+	UserInfoList m_user_list;
 public:
 	ChatRoom();
 	~ChatRoom();

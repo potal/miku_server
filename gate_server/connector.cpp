@@ -1,12 +1,12 @@
 /*
  * =====================================================================================
  *
- *       Filename:  chatroom.cpp
+ *       Filename:  connector.cpp
  *
  *    Description:  
  *
  *        Version:  1.0
- *        Created:  01/14/2014 01:49:29 PM
+ *        Created:  01/15/2014 08:32:19 AM
  *       Revision:  none
  *       Compiler:  gcc
  *
@@ -16,28 +16,23 @@
  * =====================================================================================
  */
 
-#include "chat_room.h"
-
-ChatRoom::ChatRoom():m_sock(0),m_room_id(0),m_is_start(false)
+Connector::Connector()
 {
+
 }
 
-ChatRoom::~ChatRoom()
+void Connector::InitConnectionInfo(const char *server_ip,const short server_port)
 {
+	m_server_ip = server_ip;
+	m_server_port = server_port;
 }
 
-bool ChatRoom::Start()
-{
-	m_is_start = true;
-	return m_is_start;
-}
-
-bool ChatRoom::SetRoom(ChatRoom* chat_room)
+bool Connector::ConnectServer()
 {
 	return true;
 }
 
-void ChatRoom::Stop()
+void Connnector::Disconnect()
 {
-	m_is_start = false;
+
 }
