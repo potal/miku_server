@@ -21,13 +21,13 @@
 #include <fstream>
 #include <fcntl.h>
 
-GateServer::GateServer():m_server_port(0)
+GateServer::GateServer():server_port_(0)
 {
 }
 
 GateServer::~GateServer()
 {
-	SafeCloseSocket(m_server_listen_sock);
+	SafeCloseSocket(server_listen_sock_);
 }
 
 bool GateServer::InitServer()
@@ -48,30 +48,30 @@ bool GateServer::InitServer()
 		tmp_ss>>tmp_name_str;
 		if(tmp_name_str == "ip")
 		{
-			tmp_ss>>m_server_ip;
+			tmp_ss>>server_ip_;
 		}
 		else
 		{
 			int tmp_value;
 			tmp_ss>>tmp_value;
 			if(tmp_name_str == "port")
-				m_server_port = tmp_value;
+				server_port_ = tmp_value;
 			else if(tmp_name_str == "worker_num")
-				m_count_worker_thread = tmp_value;
+				count_worker_thread_ = tmp_value;
 			else if(tmp_name_str == "time_out")
-				m_timeout = tmp_value;
+				timeout_ = tmp_value;
 			else if(tmp_name_str ==  "conn_num")
-				m_conn_num = tmp_value;
+				conn_num_ = tmp_value;
 			else if(tmp_name_str == "count_user")
-				m_count_user = tmp_value;
+				count_user_ = tmp_value;
 			else if(tmp_name_str == "file_num")
-				m_file_num = tmp_value;
+				file_num_ = tmp_value;
 		}
 	}
 
-	if(m_server_port == 0)
+	if(server_port_ == 0)
 	{
-		std::cout<<"port:"<<m_server_port<<std::endl;
+		std::cout<<"port:"<<server_port_<<std::endl;
 		return false;
 	}
 	return true;
@@ -84,51 +84,53 @@ bool GateServer::StartServer()
 		std::cout<<"Init server error"<<std::endl;
 		return false;
 	}
-	m_base = event_init();
+	if(!OpenServerSocket())
+	{
+		std::cout<<"Open socket error"<<std::endl;
+		return false;
+	}
+	base_ = event_init();
 	std::cout<<"GateServer::StartServer"<<std::endl;
+//	TestTime();
 
-	m_test_time_val.tv_sec = 10;
-	m_test_time_val.tv_usec = 0;
-	evtimer_set(&m_test_time_ev,TestTime,this);
-	event_add(&m_test_time_ev,&m_test_time_val);
-	event_base_dispatch(m_base);
-//	event_set(&m_listen_event,m_server_listen_sock,EV_READ|EV_PERSIST,AcceptAction,this);
-//	event_base_set(m_base,&m_listen_event);
-//	if(event_add(&m_listen_event,0) < 0)
-//	{
-//		std::cout<<"event_add error"<<std::endl;
-//		return false;
-//	}
-//	event_base_dispatch(m_base);
+	event_set(&listen_event_,server_listen_sock_,EV_READ|EV_PERSIST,AcceptAction,this);
+	event_base_set(base_,&listen_event_);
+	if(event_add(&listen_event_,0) < 0)
+	{
+		std::cout<<"event_add error"<<std::endl;
+		return false;
+	}
+	event_base_dispatch(base_);
 	return true;
 }
 
 void GateServer::SetNonblock()
 {
-	int tmp_flags = fcntl(m_server_listen_sock,F_GETFL,0);
+	int tmp_flags = fcntl(server_listen_sock_,F_GETFL,0);
 	tmp_flags |= O_NONBLOCK;
-	fcntl(m_server_listen_sock,F_SETFL,tmp_flags);
+	fcntl(server_listen_sock_,F_SETFL,tmp_flags);
 }
 
 bool GateServer::OpenServerSocket()
 {
-	m_server_listen_sock = socket(AF_INET,SOCK_STREAM,NULL);
-	if(m_server_listen_sock == -1)
+	server_listen_sock_ = socket(AF_INET,SOCK_STREAM,NULL);
+	if(server_listen_sock_ == -1)
 		return false;
 	struct sockaddr_in tmp_server_addr;
 	memset(&tmp_server_addr,0,sizeof(tmp_server_addr));
 	tmp_server_addr.sin_family = AF_INET;
-	tmp_server_addr.sin_port = htons(m_server_port);
-	tmp_server_addr.sin_addr.s_addr = (m_server_ip == "" ? INADDR_ANY : inet_addr(m_server_ip.c_str()));
+	tmp_server_addr.sin_port = htons(server_port_);
+	server_ip_ = "";
+	tmp_server_addr.sin_addr.s_addr = (server_ip_ == "" ? INADDR_ANY : inet_addr(server_ip_.c_str()));
 	int tmp_resue_addr_on = 1;
 	int tmp_ret_code = 0;
-	setsockopt(m_server_listen_sock,SOL_SOCKET,SO_REUSEADDR,&tmp_resue_addr_on,sizeof(int));	
-	tmp_ret_code = bind(m_server_listen_sock,(struct sockaddr*)&tmp_server_addr,sizeof(tmp_server_addr));
+	setsockopt(server_listen_sock_,SOL_SOCKET,SO_REUSEADDR,&tmp_resue_addr_on,sizeof(int));	
+	tmp_ret_code = bind(server_listen_sock_,(struct sockaddr*)&tmp_server_addr,sizeof(tmp_server_addr));
 	if(tmp_ret_code == -1)
 	{
 		return false;
 	}
-	tmp_ret_code = listen(m_server_listen_sock,1024);
+	tmp_ret_code = listen(server_listen_sock_,1024);
 	if(tmp_ret_code == -1)
 	{
 		return false;
@@ -156,24 +158,20 @@ void GateServer::AcceptAction(int sock,short event_flag,void *action_class)
 	int tmp_client_sock = -1;
 	struct sockaddr_in tmp_client_addr;
 	socklen_t tmp_len = sizeof(struct sockaddr_in);
-	do
+
+	std::cout<<"Call AcceptAction function"<<std::endl;
+
+	tmp_client_sock = accept(sock,(struct sockaddr*)&tmp_client_addr,&tmp_len);
+	if(tmp_client_sock < 0)
 	{
-		tmp_client_sock = accept(sock,(struct sockaddr*)&tmp_client_addr,&tmp_len);
-		if(tmp_client_sock < 0)
-		{
-			if(errno == EINTR)
-				continue;
-			break;
-		}
-		unsigned long tmp_non_blocking = 1;
-		if(ioctl(tmp_client_sock,FIONBIO,&tmp_non_blocking) < 0)
-		{
-			tmp_server->SafeCloseSocket(tmp_client_sock);
-			tmp_client_sock = -1;
-			break;
-		}
-		break;
-	}while(-1);
+		std::cout<<"accept error"<<std::endl;
+	}
+	unsigned long tmp_non_blocking = 1;
+	if(ioctl(tmp_client_sock,FIONBIO,&tmp_non_blocking) < 0)
+	{
+		tmp_server->SafeCloseSocket(tmp_client_sock);
+		tmp_client_sock = -1;
+	}
 
 	if(tmp_client_sock > 0)
 	{
@@ -191,9 +189,18 @@ void GateServer::StopServer()
 
 }
 
-void GateServer::TestTime(int sock,short event_flag,void *argc)
+void GateServer::TestTime()
+{
+	test_time_val_.tv_sec = 10;
+	test_time_val_.tv_usec = 0;
+	evtimer_set(&test_time_ev_,TimeCallback,this);
+	event_add(&test_time_ev_,&test_time_val_);
+	event_base_dispatch(base_);
+}
+
+void GateServer::TimeCallback(int sock,short event_flag,void *argc)
 {
 	GateServer * tmp_server = (GateServer*)argc;
 	std::cout<<"timer wakeup!"<<std::endl;
-	event_add(&(tmp_server->m_test_time_ev),&(tmp_server->m_test_time_val));
+	event_add(&(tmp_server->test_time_ev_),&(tmp_server->test_time_val_));
 }

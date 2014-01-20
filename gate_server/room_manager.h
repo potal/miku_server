@@ -10,9 +10,9 @@
 class RoomManager
 {
 private:
-	std::map<long,ChatRoom*> m_room_list;
-	pthread_mutex_t m_list_mutex;
-	pthread_cond_t m_list_cond;
+	std::map<long,ChatRoom*> room_list_;
+	pthread_mutex_t list_mutex_;
+	pthread_cond_t list_cond_;
 public:
 	RoomManager();
 	~RoomManager();

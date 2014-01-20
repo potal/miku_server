@@ -20,15 +20,15 @@
 
 RoomManager::RoomManager()
 {
-	m_room_list.clear();
-	pthread_mutex_init(&m_list_mutex,NULL);
-	pthread_cond_init(&m_list_cond,NULL);
+	room_list_.clear();
+	pthread_mutex_init(&list_mutex_,NULL);
+	pthread_cond_init(&list_cond_,NULL);
 }
 
 RoomManager::~RoomManager()
 {
 	std::map<long,ChatRoom*>::iterator tmp_iter;
-	for(tmp_iter = m_room_list.begin();tmp_iter != m_room_list.end();tmp_iter++)
+	for(tmp_iter = room_list_.begin();tmp_iter != room_list_.end();tmp_iter++)
 	{
 		ChatRoom *tmp_room = tmp_iter->second;
 		if(NULL != tmp_room)
@@ -37,7 +37,7 @@ RoomManager::~RoomManager()
 			delete tmp_room;
 		}
 	}
-	m_room_list.clear();
+	room_list_.clear();
 }
 
 
@@ -46,7 +46,7 @@ bool RoomManager::AddRoom(long room_id,ChatRoom *chat_room)
 	if(NULL == chat_room)
 		return false;
 
-	if(NULL != m_room_list[room_id])
+	if(NULL != room_list_[room_id])
 	{
 		//the room adding exists,modify room information
 		return true;
@@ -59,19 +59,19 @@ bool RoomManager::AddRoom(long room_id,ChatRoom *chat_room)
 	tmp_room->SetRoom(chat_room);
 	tmp_room->Start();
 
-	m_room_list[room_id] = tmp_room;
+	room_list_[room_id] = tmp_room;
 }
 
 bool RoomManager::DelRoom(long room_id)
 {
-	std::map<long,ChatRoom*>::iterator tmp_iter = m_room_list.find(room_id);
-	if(tmp_iter == m_room_list.end())
+	std::map<long,ChatRoom*>::iterator tmp_iter = room_list_.find(room_id);
+	if(tmp_iter == room_list_.end())
 	{
 		return false;
 	}
 
 	ChatRoom *tmp_room = tmp_iter->second;
 	tmp_room->Stop();
-	m_room_list.erase(tmp_iter);
+	room_list_.erase(tmp_iter);
 	return true;
 }

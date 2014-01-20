@@ -1,0 +1,2189 @@
+cscope 15 $HOME/mmiku/gate_server -q 0000000202 0000011097
+	@chat_room.cpp
+
+19 
+	~"ch©_room.h
+"
+
+21 
+	gCh©Room
+::
+	$Ch©Room
+():
+	`m_sock
+(0),
+	`m_room_id
+(0),
+	$m_is_¡¬t
+(
+çl£
+)
+
+23 
+	}
+}
+
+25 
+	gCh©Room
+::~
+	$Ch©Room
+()
+
+27 
+	}
+}
+
+29 
+boŞ
+ 
+Ch©Room
+::
+	$S¹
+()
+
+31 
+m_is_¡¬t
+ = 
+Œue
+;
+
+32  
+m_is_¡¬t
+;
+
+33 
+	}
+}
+
+35 
+boŞ
+ 
+	gCh©Room
+::
+	$S‘Room
+(
+Ch©Room
+* 
+ch©_room
+)
+
+37  
+Œue
+;
+
+38 
+	}
+}
+
+40 
+	gCh©Room
+::
+	$Stİ
+()
+
+42 
+m_is_¡¬t
+ = 
+çl£
+;
+
+43 
+	}
+}
+
+	@chat_room.h
+
+1 #iâdeà
+CHAT_ROOM_H_
+
+
+2 
+	#CHAT_ROOM_H_
+
+
+	)
+
+4 
+	~"u£r_li¡.h
+"
+
+5 
+	~<ev’t.h
+>
+
+6 
+	~<io¡»am
+>
+
+7 
+	~<m­
+>
+
+9 şas 
+	cCh©Room
+
+
+11 
+	m´iv©e
+:
+
+12 
+boŞ
+ 
+m_is_¡¬t
+;
+
+13 
+	mm_room_id
+;
+
+14 
+	mm_sock
+;
+
+15 
+ev’t
+ 
+	mm_room_ev’t
+;
+
+17 
+U£rInfoLi¡
+ 
+	mm_u£r_li¡
+;
+
+18 
+	mpublic
+:
+
+19 
+Ch©Room
+();
+
+20 ~
+Ch©Room
+();
+
+22 
+boŞ
+ 
+S¹
+();
+
+23 
+boŞ
+ 
+S‘Room
+(
+Ch©Room
+ *
+ch©_room
+);
+
+24 
+Stİ
+();
+
+	@connector.cpp
+
+19 
+	gCÚÃùÜ
+::
+	$CÚÃùÜ
+()
+
+22 
+	}
+}
+
+24 
+CÚÃùÜ
+::
+	$In™CÚÃùiÚInfo
+(cÚ¡ *
+£rv”_
+,cÚ¡ 
+£rv”_pÜt
+)
+
+26 
+m_£rv”_
+ = 
+£rv”_
+;
+
+27 
+m_£rv”_pÜt
+ = 
+£rv”_pÜt
+;
+
+28 
+	}
+}
+
+30 
+boŞ
+ 
+	gCÚÃùÜ
+::
+	$CÚÃùS”v”
+()
+
+32  
+Œue
+;
+
+33 
+	}
+}
+
+35 
+	gCÚÂeùÜ
+::
+	$DiscÚÃù
+()
+
+38 
+	}
+}
+
+	@connector.h
+
+1 #iâdeà
+CONNECTOR_H_
+
+
+2 
+	#CONNECTOR_H_
+
+
+	)
+
+4 şas 
+	cCÚÃùÜ
+
+
+6 
+	m´iv©e
+:
+
+7 
+¡d
+::
+¡ršg
+ 
+m_£rv”_
+;
+
+8 
+	mm_£rv”_pÜt
+;
+
+10 
+	mpublic
+:
+
+11 
+CÚÃùÜ
+();
+
+12 
+	mvœtu®
+ ~
+CÚÃùÜ
+() = 0;
+
+14 
+	mpublic
+:
+
+15 
+In™CÚÃùiÚInfo
+(cÚ¡ *
+£rv”_
+,cÚ¡ 
+£rv”_pÜt
+);
+
+16 
+boŞ
+ 
+CÚÃùS”v”
+();
+
+17 
+DiscÚÃù
+();
+
+	@ds_connector.cpp
+
+1 
+	~"ds_cÚÃùÜ.h
+"
+
+3 
+	gDœeùÜS”v”CÚÃùÜ
+::
+	$DœeùÜS”v”CÚÃùÜ
+()
+
+6 
+	}
+}
+
+8 
+DœeùÜS”v”CÚÃùÜ
+::~
+	$DœeùÜS”v”CÚÃùÜ
+()
+
+11 
+	}
+}
+
+	@ds_connector.h
+
+1 #iâdeà
+DS_CONNECTOR_H_
+
+
+2 
+	#DS_CONNECTOR_H_
+
+
+	)
+
+4 
+	~"cÚÃùÜ.h
+"
+
+6 şas 
+	cDœeùÜS”v”CÚÃùÜ
+ : 
+public
+ 
+CÚÃùÜ
+
+
+8 
+´iv©e
+:
+
+10 
+public
+:
+
+11 
+DœeùÜS”v”CÚÃùÜ
+();
+
+12 ~
+DœeùÜS”v”CÚÃùÜ
+();
+
+	@gate_server.cpp
+
+19 
+	~"g©e_£rv”.h
+"
+
+20 
+	~<s¡»am
+>
+
+21 
+	~<f¡»am
+>
+
+22 
+	~<fú.h
+>
+
+24 
+	gG©eS”v”
+::
+	$G©eS”v”
+():
+	$m_£rv”_pÜt
+(0)
+
+26 
+	}
+}
+
+28 
+G©eS”v”
+::~
+	$G©eS”v”
+()
+
+30 
+	`SaãClo£Sock‘
+(
+m_£rv”_li¡’_sock
+);
+
+31 
+	}
+}
+
+33 
+boŞ
+ 
+	gG©eS”v”
+::
+	$In™S”v”
+()
+
+35 
+¡d
+::
+if¡»am
+ 
+	`tmp_cÚf_fe
+("init.conf");
+
+36 
+¡d
+::
+¡ršg
+ 
+tmp_¡r
+;
+
+37 
+¡d
+::
+	`g‘lše
+(
+tmp_cÚf_fe
+, 
+tmp_¡r
+))
+
+39 ià(
+tmp_cÚf_fe
+.
+	`eof
+())
+
+41 if(
+tmp_¡r
+.
+	`fšd_fœ¡_nÙ_of
+(" #"è=ğtmp_¡r.
+Åos
+)
+
+44 
+¡d
+::
+¡ršg¡»am
+ 
+tmp_ss
+;
+
+45 
+tmp_ss
+<<
+tmp_¡r
+;
+
+47 
+¡d
+::
+¡ršg
+ 
+tmp_Çme_¡r
+;
+
+48 
+tmp_ss
+>>
+tmp_Çme_¡r
+;
+
+49 if(
+tmp_Çme_¡r
+ == "ip")
+
+51 
+tmp_ss
+>>
+m_£rv”_
+;
+
+55 
+tmp_v®ue
+;
+
+56 
+tmp_ss
+>>
+tmp_v®ue
+;
+
+57 if(
+tmp_Çme_¡r
+ == "port")
+
+58 
+m_£rv”_pÜt
+ = 
+tmp_v®ue
+;
+
+59 if(
+tmp_Çme_¡r
+ == "worker_num")
+
+60 
+m_couÁ_wÜk”_th»ad
+ = 
+tmp_v®ue
+;
+
+61 if(
+tmp_Çme_¡r
+ == "time_out")
+
+62 
+m_timeout
+ = 
+tmp_v®ue
+;
+
+63 if(
+tmp_Çme_¡r
+ == "conn_num")
+
+64 
+m_cÚn_num
+ = 
+tmp_v®ue
+;
+
+65 if(
+tmp_Çme_¡r
+ == "count_user")
+
+66 
+m_couÁ_u£r
+ = 
+tmp_v®ue
+;
+
+67 if(
+tmp_Çme_¡r
+ == "file_num")
+
+68 
+m_fe_num
+ = 
+tmp_v®ue
+;
+
+72 if(
+m_£rv”_pÜt
+ == 0)
+
+74 
+¡d
+::
+cout
+<<"pÜt:"<<
+m_£rv”_pÜt
+<<¡d::
+’dl
+;
+
+75  
+çl£
+;
+
+77  
+Œue
+;
+
+78 
+	}
+}
+
+80 
+boŞ
+ 
+	gG©eS”v”
+::
+	$S¹S”v”
+()
+
+82 if(!
+	`In™S”v”
+())
+
+84 
+¡d
+::
+cout
+<<"In™ s”v”ƒ¼Ü"<<¡d::
+’dl
+;
+
+85  
+çl£
+;
+
+87 
+m_ba£
+ = 
+	`ev’t_š™
+();
+
+88 
+¡d
+::
+cout
+<<"G©eS”v”::S¹S”v”"<<¡d::
+’dl
+;
+
+91 
+	`ev’t_£t
+(&
+m_li¡’_ev’t
+,
+m_£rv”_li¡’_sock
+,
+EV_READ
+|
+EV_PERSIST
+,
+Acû±AùiÚ
+,
+this
+);
+
+92 
+	`ev’t_ba£_£t
+(
+m_ba£
+,&
+m_li¡’_ev’t
+);
+
+93 if(
+	`ev’t_add
+(&
+m_li¡’_ev’t
+,0) < 0)
+
+95 
+¡d
+::
+cout
+<<"ev’t_addƒ¼Ü"<<¡d::
+’dl
+;
+
+96  
+çl£
+;
+
+98 
+	`ev’t_ba£_di¥©ch
+(
+m_ba£
+);
+
+99  
+Œue
+;
+
+100 
+	}
+}
+
+102 
+	gG©eS”v”
+::
+	$S‘NÚblock
+()
+
+104 
+tmp_æags
+ = 
+	`fú
+(
+m_£rv”_li¡’_sock
+,
+F_GETFL
+,0);
+
+105 
+tmp_æags
+ |ğ
+O_NONBLOCK
+;
+
+106 
+	`fú
+(
+m_£rv”_li¡’_sock
+,
+F_SETFL
+,
+tmp_æags
+);
+
+107 
+	}
+}
+
+109 
+boŞ
+ 
+	gG©eS”v”
+::
+	$O³nS”v”Sock‘
+()
+
+111 
+m_£rv”_li¡’_sock
+ = 
+	`sock‘
+(
+AF_INET
+,
+SOCK_STREAM
+,
+NULL
+);
+
+112 if(
+m_£rv”_li¡’_sock
+ == -1)
+
+113  
+çl£
+;
+
+114 
+sockaddr_š
+ 
+tmp_£rv”_addr
+;
+
+115 
+	`mem£t
+(&
+tmp_£rv”_addr
+,0,(tmp_server_addr));
+
+116 
+tmp_£rv”_addr
+.
+sš_çmy
+ = 
+AF_INET
+;
+
+117 
+tmp_£rv”_addr
+.
+sš_pÜt
+ = 
+	`htÚs
+(
+m_£rv”_pÜt
+);
+
+118 
+tmp_£rv”_addr
+.
+sš_addr
+.
+s_addr
+ = (
+m_£rv”_
+ =ğ"" ? 
+INADDR_ANY
+ : 
+	`š‘_addr
+(m_£rv”_.
+	`c_¡r
+()));
+
+119 
+tmp_»sue_addr_Ú
+ = 1;
+
+120 
+tmp_»t_code
+ = 0;
+
+121 
+	`£tsockİt
+(
+m_£rv”_li¡’_sock
+,
+SOL_SOCKET
+,
+SO_REUSEADDR
+,&
+tmp_»sue_addr_Ú
+,());
+
+122 
+tmp_»t_code
+ = 
+	`bšd
+(
+m_£rv”_li¡’_sock
+,(
+sockaddr
+*)&
+tmp_£rv”_addr
+,(tmp_server_addr));
+
+123 if(
+tmp_»t_code
+ == -1)
+
+125  
+çl£
+;
+
+127 
+tmp_»t_code
+ = 
+	`li¡’
+(
+m_£rv”_li¡’_sock
+,1024);
+
+128 if(
+tmp_»t_code
+ == -1)
+
+130  
+çl£
+;
+
+132  
+Œue
+;
+
+133 
+	}
+}
+
+135 
+	gG©eS”v”
+::
+	$SaãClo£Sock‘
+(
+sock
+)
+
+137 if(-1 !ğ
+sock
+)
+
+139 
+tmp_»tuº
+ = 
+	`şo£
+(
+sock
+);
+
+140 
+tmp_»tuº
+ != 0)
+
+142 if(
+”ºo
+ !ğ
+EINTR
+ ||ƒ¼nØ=ğ
+EBADF
+)
+
+144 
+tmp_»tuº
+ = 
+	`şo£
+(
+sock
+);
+
+147 
+	}
+}
+
+149 
+	gG©eS”v”
+::
+	$Acû±AùiÚ
+(
+sock
+,
+ev’t_æag
+,*
+aùiÚ_şass
+)
+
+151 
+G©eS”v”
+ *
+tmp_£rv”
+ = (G©eS”v” *)
+aùiÚ_şass
+;
+
+152 
+tmp_ş›Á_sock
+ = -1;
+
+153 
+sockaddr_š
+ 
+tmp_ş›Á_addr
+;
+
+154 
+sockËn_t
+ 
+tmp_Ën
+ = (
+sockaddr_š
+);
+
+157 
+tmp_ş›Á_sock
+ = 
+	`acû±
+(
+sock
+,(
+sockaddr
+*)&
+tmp_ş›Á_addr
+,&
+tmp_Ën
+);
+
+158 if(
+tmp_ş›Á_sock
+ < 0)
+
+160 if(
+”ºo
+ =ğ
+EINTR
+)
+
+164 
+tmp_nÚ_blockšg
+ = 1;
+
+165 if(
+	`ioùl
+(
+tmp_ş›Á_sock
+,
+FIONBIO
+,&
+tmp_nÚ_blockšg
+) < 0)
+
+167 
+tmp_£rv”
+->
+	`SaãClo£Sock‘
+(
+tmp_ş›Á_sock
+);
+
+168 
+tmp_ş›Á_sock
+ = -1;
+
+174 if(
+tmp_ş›Á_sock
+ > 0)
+
+176 
+¡d
+::
+cout
+<<"ş›Á cÚÃùšg ip:"<<*(*)&
+tmp_ş›Á_addr
+.
+sš_addr
+
+
+177 <<"…Üt:"<<
+tmp_ş›Á_addr
+.
+sš_pÜt
+<<
+¡d
+::
+’dl
+;
+
+181 
+¡d
+::
+cout
+<<"”rÜ :"<<¡d::
+’dl
+;
+
+183 
+	}
+}
+
+185 
+	gG©eS”v”
+::
+	$StİS”v”
+()
+
+188 
+	}
+}
+
+190 
+G©eS”v”
+::
+	$Te¡Time
+()
+
+192 
+m_‹¡_time_v®
+.
+tv_£c
+ = 10;
+
+193 
+m_‹¡_time_v®
+.
+tv_u£c
+ = 0;
+
+194 
+	`evtim”_£t
+(&
+m_‹¡_time_ev
+,
+Te¡Time
+,
+this
+);
+
+195 
+	`ev’t_add
+(&
+m_‹¡_time_ev
+,&
+m_‹¡_time_v®
+);
+
+196 
+	`ev’t_ba£_di¥©ch
+(
+m_ba£
+);
+
+197 
+	}
+}
+
+199 
+	gG©eS”v”
+::
+	$Te¡Time
+(
+sock
+,
+ev’t_æag
+,*
+¬gc
+)
+
+201 
+G©eS”v”
+ * 
+tmp_£rv”
+ = (G©eS”v”*)
+¬gc
+;
+
+202 
+¡d
+::
+cout
+<<"tim” wakeup!"<<¡d::
+’dl
+;
+
+203 
+	`ev’t_add
+(&(
+tmp_£rv”
+->
+m_‹¡_time_ev
+),&Ñmp_£rv”->
+m_‹¡_time_v®
+));
+
+204 
+	}
+}
+
+	@gate_server.h
+
+1 #iâdeà
+GATE_SERVER_H_
+
+
+2 
+	#GATE_SERVER_H_
+
+
+	)
+
+4 
+	~<sys/sock‘.h
+>
+
+5 
+	~<sys/ty³s.h
+>
+
+6 
+	~<Ãtš‘/š.h
+>
+
+7 
+	~<¬·/š‘.h
+>
+
+8 
+	~<sys/ioùl.h
+>
+
+9 
+	~<uni¡d.h
+>
+
+10 
+	~<¡ršg.h
+>
+
+12 
+	~<io¡»am
+>
+
+13 
+	~<¡ršg
+>
+
+14 
+	~<¡dlib.h
+>
+
+15 
+	~<”ºo.h
+>
+
+17 
+	~<ev’t.h
+>
+
+18 
+	~<±h»ad.h
+>
+
+20 
+	~"room_mªag”.h
+"
+
+22 şas 
+	cG©eS”v”
+
+
+24 
+	m´iv©e
+:
+
+25 
+¡d
+::
+¡ršg
+ 
+m_£rv”_
+;
+
+26 
+	mm_£rv”_pÜt
+;
+
+27 
+	mm_couÁ_wÜk”_th»ad
+;
+
+28 
+	mm_timeout
+;
+
+29 
+	mm_cÚn_num
+;
+
+30 
+	mm_couÁ_u£r
+;
+
+31 
+	mm_fe_num
+;
+
+33 
+	mm_£rv”_li¡’_sock
+;
+
+35 
+ev’t_ba£
+ *
+	mm_ba£
+;
+
+36 
+ev’t
+ 
+	mm_li¡’_ev’t
+;
+
+38 
+ev’t
+ 
+	mm_‹¡_time_ev
+;
+
+39 
+timev®
+ 
+	mm_‹¡_time_v®
+;
+
+41 
+RoomMªag”
+ 
+	mm_room_mªag”
+;
+
+43 
+	mpublic
+:
+
+44 
+G©eS”v”
+();
+
+45 ~
+G©eS”v”
+();
+
+47 
+	mpublic
+:
+
+48 
+boŞ
+ 
+In™S”v”
+();
+
+49 
+boŞ
+ 
+S¹S”v”
+();
+
+50 
+S‘NÚblock
+();
+
+51 
+boŞ
+ 
+O³nS”v”Sock‘
+();
+
+52 
+SaãClo£Sock‘
+(
+sock
+);
+
+53 
+Acû±AùiÚ
+(
+sock
+,
+ev’t_æag
+,*
+aùiÚ_şass
+);
+
+55 
+StİS”v”
+();
+
+57 
+Te¡Time
+();
+
+58 
+TimeC®lback
+(
+sock
+,
+ev’t_æag
+,*
+¬gc
+);
+
+	@room_manager.cpp
+
+19 
+	~"room_mªag”.h
+"
+
+21 
+	gRoomMªag”
+::
+	$RoomMªag”
+()
+
+23 
+m_room_li¡
+.
+	`ş—r
+();
+
+24 
+	`±h»ad_mu‹x_š™
+(&
+m_li¡_mu‹x
+,
+NULL
+);
+
+25 
+	`±h»ad_cÚd_š™
+(&
+m_li¡_cÚd
+,
+NULL
+);
+
+26 
+	}
+}
+
+28 
+	gRoomMªag”
+::~
+	$RoomMªag”
+()
+
+30 
+¡d
+::
+m­
+<,
+Ch©Room
+*>::
+™”©Ü
+ 
+tmp_™”
+;
+
+31 
+tmp_™”
+ = 
+m_room_li¡
+.
+	`begš
+();tmp_™” !ğm_room_li¡.
+	`’d
+();tmp_iter++)
+
+33 
+Ch©Room
+ *
+tmp_room
+ = 
+tmp_™”
+->
+£cÚd
+;
+
+34 if(
+NULL
+ !ğ
+tmp_room
+)
+
+36 
+tmp_room
+->
+	`Stİ
+();
+
+37 
+d–‘e
+ 
+tmp_room
+;
+
+40 
+m_room_li¡
+.
+	`ş—r
+();
+
+41 
+	}
+}
+
+44 
+boŞ
+ 
+	gRoomMªag”
+::
+	$AddRoom
+(
+room_id
+,
+Ch©Room
+ *
+ch©_room
+)
+
+46 if(
+NULL
+ =ğ
+ch©_room
+)
+
+47  
+çl£
+;
+
+49 if(
+NULL
+ !ğ
+m_room_li¡
+[
+room_id
+])
+
+52  
+Œue
+;
+
+55 
+Ch©Room
+ * 
+tmp_room
+ = 
+Ãw
+ ChatRoom;
+
+56 if(
+NULL
+ =ğ
+tmp_room
+)
+
+57  
+çl£
+;
+
+59 
+tmp_room
+->
+	`S‘Room
+(
+ch©_room
+);
+
+60 
+tmp_room
+->
+	`S¹
+();
+
+62 
+m_room_li¡
+[
+room_id
+] = 
+tmp_room
+;
+
+63 
+	}
+}
+
+65 
+boŞ
+ 
+	gRoomMªag”
+::
+	$D–Room
+(
+room_id
+)
+
+67 
+¡d
+::
+m­
+<,
+Ch©Room
+*>::
+™”©Ü
+ 
+tmp_™”
+ = 
+m_room_li¡
+.
+	`fšd
+(
+room_id
+);
+
+68 if(
+tmp_™”
+ =ğ
+m_room_li¡
+.
+	`’d
+())
+
+70  
+çl£
+;
+
+73 
+Ch©Room
+ *
+tmp_room
+ = 
+tmp_™”
+->
+£cÚd
+;
+
+74 
+tmp_room
+->
+	`Stİ
+();
+
+75 
+m_room_li¡
+.
+	`”a£
+(
+tmp_™”
+);
+
+76  
+Œue
+;
+
+77 
+	}
+}
+
+	@room_manager.h
+
+1 #iâdeà
+ROOM_MANAGER_H_
+
+
+2 
+	#ROOM_MANAGER_H_
+
+
+	)
+
+4 
+	~"ch©_room.h
+"
+
+5 
+	~<io¡»am
+>
+
+6 
+	~<m­
+>
+
+7 
+	~<±h»ad.h
+>
+
+10 şas 
+	cRoomMªag”
+
+
+12 
+	m´iv©e
+:
+
+13 
+¡d
+::
+m­
+<,
+	mCh©Room
+*> 
+	mm_room_li¡
+;
+
+14 
+±h»ad_mu‹x_t
+ 
+	mm_li¡_mu‹x
+;
+
+15 
+±h»ad_cÚd_t
+ 
+	mm_li¡_cÚd
+;
+
+16 
+	mpublic
+:
+
+17 
+RoomMªag”
+();
+
+18 ~
+RoomMªag”
+();
+
+20 
+boŞ
+ 
+AddRoom
+(
+room_id
+,
+Ch©Room
+ * 
+ch©_room
+);
+
+21 
+boŞ
+ 
+D–Room
+(
+room_id
+);
+
+	@rs_connector.cpp
+
+1 
+	~"rs_cÚÃùÜ.h
+"
+
+3 
+	gRoomS”v”CÚÃùÜ
+::
+	$RoomS”v”CÚÃùÜ
+()
+
+6 
+	}
+}
+
+8 
+RoomS”v”CÚÃùÜ
+::~
+	$RoomS”v”CÚÃùÜ
+()
+
+11 
+	}
+}
+
+	@rs_connector.h
+
+1 #iâdeà
+RS_CONNECTOR_H_
+
+
+2 
+	#RS_CONNECTOR_H_
+
+
+	)
+
+4 
+	~"cÚÃùÜ.h
+"
+
+6 şas 
+	cRoomS”v”CÚÃùÜ
+ : 
+public
+ 
+CÚÃùÜ
+
+
+8 
+´iv©e
+:
+
+10 
+public
+:
+
+11 
+RoomS”v”CÚÃùÜ
+();
+
+12 ~
+RoomS”v”CÚÃùÜ
+();
+
+	@server_main.cpp
+
+18 
+	~<sys/sock‘.h
+>
+
+19 
+	~<sys/ty³s.h
+>
+
+20 
+	~<Ãtš‘/š.h
+>
+
+21 
+	~<ev’t.h
+>
+
+22 
+	~<¡dio.h
+>
+
+23 
+	~<io¡»am
+>
+
+24 
+	~<¡ršg.h
+>
+
+25 
+	~<uni¡d.h
+>
+
+26 
+	~<fú.h
+>
+
+28 
+	~"g©e_£rv”.h
+"
+
+70 
+	$maš
+()
+
+72 
+G©eS”v”
+ 
+g©e_£rv”
+;
+
+73 
+g©e_£rv”
+.
+	`S¹S”v”
+();
+
+75 
+g©e_£rv”
+.
+	`StİS”v”
+();
+
+78 
+	}
+}
+
+	@server_types.h
+
+1 #iâdeà
+SERVER_TYPES_H_
+
+
+2 
+	#SERVER_TYPES_H_
+
+
+	)
+
+4 
+	t__št64
+;
+
+5 
+	t__ušt64
+;
+
+	@user_list.cpp
+
+19 
+	~"u£r_li¡.h
+"
+
+21 
+	gU£rInfoLi¡
+::
+	$U£rInfoLi¡
+()
+
+23 
+	`±h»ad_mu‹x_š™
+(&
+m_li¡_lock
+,
+NULL
+);
+
+24 
+	`±h»ad_cÚd_š™
+(&
+m_li¡_cÚd
+,
+NULL
+);
+
+25 
+	}
+}
+
+27 
+	gU£rInfoLi¡
+::~
+	$U£rInfoLi¡
+()
+
+29 
+	`D–‘eAÎU£r
+();
+
+30 
+	`±h»ad_mu‹x_de¡roy
+(&
+m_li¡_lock
+);
+
+31 
+	`±h»ad_cÚd_de¡roy
+(&
+m_li¡_cÚd
+);
+
+32 
+	}
+}
+
+34 
+boŞ
+ 
+	gU£rInfoLi¡
+::
+	$AddU£rInfo
+(
+u£r_id
+,
+U£rInfo
+ & 
+u£r
+)
+
+36 
+	`±h»ad_mu‹x_lock
+(&
+m_li¡_lock
+);
+
+38 
+	`±h»ad_mu‹x_uÆock
+(&
+m_li¡_lock
+);
+
+39  
+Œue
+;
+
+40 
+	}
+}
+
+42 
+boŞ
+ 
+	gU£rInfoLi¡
+::
+	$D–U£rInfo
+(
+u£r_id
+)
+
+44  
+Œue
+;
+
+45 
+	}
+}
+
+47 
+	gU£rInfoLi¡
+::
+	$D–‘eAÎU£r
+()
+
+49 
+USERLISTMAP
+::
+™”©Ü
+ 
+tmp_™”
+;
+
+50 
+tmp_™”
+ = 
+m_u£r_li¡
+.
+	`begš
+();tmp_™” !ğm_u£r_li¡.
+	`’d
+();tmp_iter++)
+
+52 
+U£rInfo
+ *
+tmp_u£r
+ = 
+tmp_™”
+->
+£cÚd
+;
+
+53 if(
+NULL
+ !ğ
+tmp_u£r
+)
+
+55 
+d–‘e
+ 
+tmp_u£r
+;
+
+58 
+m_u£r_li¡
+.
+	`ş—r
+();
+
+59 
+	}
+}
+
+	@user_list.h
+
+1 #iâdeà
+USER_LIST_H_
+
+
+2 
+	#USER_LIST_H_
+
+
+	)
+
+4 
+	~"£rv”_ty³s.h
+"
+
+5 
+	~<io¡»am
+>
+
+6 
+	~<m­
+>
+
+7 
+	~<±h»ad.h
+>
+
+9 #´agm¨
+·ck
+(1)
+
+10 
+	sU£rInfo
+
+
+12 
+	mm_u£r_id
+;
+
+13 
+	mm_u£r_sock
+;
+
+14 
+	mm_hash_key
+;
+
+16 #´agm¨
+·ck
+()
+
+18 
+	g¡d
+::
+	tm­
+<,
+	tU£rInfo
+*> 
+	tUSERLISTMAP
+;
+
+20 şas 
+	cU£rInfoLi¡
+
+
+22 
+	m´iv©e
+:
+
+23 
+USERLISTMAP
+ 
+m_u£r_li¡
+;
+
+24 
+±h»ad_mu‹x_t
+ 
+	mm_li¡_lock
+;
+
+25 
+±h»ad_cÚd_t
+ 
+	mm_li¡_cÚd
+;
+
+27 
+	mpublic
+:
+
+28 
+U£rInfoLi¡
+();
+
+29 ~
+U£rInfoLi¡
+();
+
+31 
+šlše
+ 
+USERLISTMAP
+ * 
+	$G‘U£rLi¡
+()
+
+33  &
+m_u£r_li¡
+;
+
+36 
+boŞ
+ 
+	`AddU£rInfo
+(
+u£r_id
+,
+U£rInfo
+ & 
+u£r
+);
+
+37 
+boŞ
+ 
+	`D–U£rInfo
+(
+u£r_id
+);
+
+38 
+	`D–‘eAÎU£r
+();
+
+39 
+	}
+};
+
+	@
+1
+.
+0
+16
+235
+chat_room.cpp
+chat_room.h
+connector.cpp
+connector.h
+ds_connector.cpp
+ds_connector.h
+gate_server.cpp
+gate_server.h
+room_manager.cpp
+room_manager.h
+rs_connector.cpp
+rs_connector.h
+server_main.cpp
+server_types.h
+user_list.cpp
+user_list.h

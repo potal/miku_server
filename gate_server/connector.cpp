@@ -23,8 +23,8 @@ Connector::Connector()
 
 void Connector::InitConnectionInfo(const char *server_ip,const short server_port)
 {
-	m_server_ip = server_ip;
-	m_server_port = server_port;
+	server_ip_ = server_ip;
+	server_port_ = server_port;
 }
 
 bool Connector::ConnectServer()

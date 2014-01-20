@@ -22,23 +22,24 @@
 class GateServer
 {
 private:	
-	std::string m_server_ip;
-	int m_server_port;
-	int m_count_worker_thread;
-	int m_timeout;
-	int m_conn_num;
-	int m_count_user;
-	int m_file_num;
+	std::string server_ip_;
+	int server_port_;
+	int count_worker_thread_;
+	int timeout_;
+	int conn_num_;
+	int count_user_;
+	int file_num_;
 
-	int m_server_listen_sock;
+	int server_listen_sock_;
 
-	struct event_base *m_base;
-	struct event m_listen_event;
+	struct event_base *base_;
+	struct event listen_event_;
 
-	struct event m_test_time_ev;
-	struct timeval m_test_time_val;
+	struct event test_time_ev_;
+	struct timeval test_time_val_;
 
-	RoomManager m_room_manager;
+	RoomManager room_manager_;
+	UserInfoList user_info_list_;
 
 public:
 	GateServer();
@@ -54,7 +55,8 @@ public:
 	//bool RegisterFunc();
 	void StopServer();
 
-	static void TestTime(int sock,short event_flag,void *argc);
+	void TestTime();
+	static void TimeCallback(int sock,short event_flag,void *argc);
 };
 
 #endif

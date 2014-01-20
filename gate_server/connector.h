@@ -4,8 +4,8 @@
 class Connector
 {
 private:
-	std::string m_server_ip;
-	short m_server_port;
+	std::string server_ip_;
+	short server_port_;
 
 public:
 	Connector();

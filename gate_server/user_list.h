@@ -9,9 +9,9 @@
 #pragma pack(1)
 struct UserInfo
 {
-	int m_user_id;
-	int m_user_sock;
-	long m_hash_key;
+	int user_id;
+	int user_sock;
+	long hash_key;
 };
 #pragma pack()
 
@@ -20,9 +20,9 @@ typedef std::map<int,UserInfo*> USERLISTMAP;
 class UserInfoList
 {
 private:
-	USERLISTMAP m_user_list;
-	pthread_mutex_t m_list_lock;
-	pthread_cond_t m_list_cond;
+	USERLISTMAP user_list_;
+	pthread_mutex_t list_lock_;
+	pthread_cond_t list_cond_;
 
 public:
 	UserInfoList();
@@ -30,7 +30,7 @@ public:
 	
 	inline USERLISTMAP * GetUserList()
 	{
-		return &m_user_list;
+		return &user_list_;
 	}
 
 	bool AddUserInfo(int user_id,UserInfo & user);

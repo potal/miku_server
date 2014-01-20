@@ -14,7 +14,6 @@ private:
 	int m_sock;
 	struct event m_room_event;
 
-	UserInfoList m_user_list;
 public:
 	ChatRoom();
 	~ChatRoom();
