@@ -21,7 +21,7 @@
 #include <fstream>
 #include <fcntl.h>
 
-GateServer::GateServer():server_port_(0)
+GateServer::GateServer():server_port_(0),base_hash_key_(0)
 {
 }
 
@@ -77,6 +77,30 @@ bool GateServer::InitServer()
 	return true;
 }
 
+bool GateServer::InitWorker()
+{
+	int tmp_fds[2];
+	if(pipe(tmp_fds))
+	{
+		std::cout<<"Error InitWorker pipe"<<std::endl;
+		return false;
+	}
+
+	pipe_read_fd_ = tmp_fds[0];
+	pipe_write_fd_ = tmp_fds[1];
+
+	worker_base_ = event_init();
+	event_set(&worker_event_,pipe_read_fd_,EV_READ|EV_PERSIST,ReadAction,this);
+	event_base_set(worker_base_,&worker_event_);
+	if(event_add(&worker_event_,0) < 0)
+	{
+		std::cout<<"Init worker error"<<std::endl;
+		return false;
+	}
+	std::cout<<"Init Worker ok!"<<std::endl;
+	return true;
+}
+
 bool GateServer::StartServer()
 {
 	if(!InitServer())
@@ -84,6 +108,20 @@ bool GateServer::StartServer()
 		std::cout<<"Init server error"<<std::endl;
 		return false;
 	}
+
+	// just open one worker thread here
+	if(!InitWorker())
+	{
+		std::cout<<"Init worker thread error"<<std::endl;
+		return false;
+	}
+
+	if(!StartWorker())
+	{
+		std::cout<<"Start worker error"<<std::endl;
+		return false;
+	}
+
 	if(!OpenServerSocket())
 	{
 		std::cout<<"Open socket error"<<std::endl;
@@ -152,6 +190,39 @@ void GateServer::SafeCloseSocket(int sock)
 	}
 }
 
+bool GateServer::StartWorker()
+{
+	pthread_t tmp_thread_id;
+	int tmp_ret = pthread_create(&tmp_thread_id,NULL,WorkerThread,this);
+	if(tmp_ret == 0)
+	{
+		std::cout<<"Create worker thread ok! ThreadID:"<<tmp_thread_id<<std::endl;
+		return true;
+	}
+	return false;
+}
+
+void *GateServer::WorkerThread(void *arg)
+{
+	GateServer *tmp_server = (GateServer *)arg;
+	std::cout<<"WorkerThread"<<std::endl;
+	event_base_dispatch(tmp_server->worker_base_);
+}
+
+void GateServer::ReadAction(int sock,short event_flag,void *action_class)
+{
+	GateServer *tmp_server = (GateServer*)action_class;
+	std::cout<<"notify pipe read"<<std::endl;
+	int tmp_user_hash_key;
+	int tmp_ret = read(sock,&tmp_user_hash_key,4);
+	if(tmp_ret <= 0)
+	{
+		std::cout<<"Read buff error"<<std::endl;
+		return ;
+	}
+	std::cout<<tmp_user_hash_key<<std::endl;
+}
+
 void GateServer::AcceptAction(int sock,short event_flag,void *action_class)
 {
 	GateServer *tmp_server = (GateServer *)action_class;
@@ -177,6 +248,14 @@ void GateServer::AcceptAction(int sock,short event_flag,void *action_class)
 	{
 		std::cout<<"client connecting ip:"<<*(int *)&tmp_client_addr.sin_addr
 			<<" port:"<<tmp_client_addr.sin_port<<std::endl;
+		tmp_server->base_hash_key_++;
+		UserInfo tmp_new_user;
+		tmp_new_user.hash_key = tmp_server->base_hash_key_;
+		tmp_new_user.user_sock = tmp_client_sock;
+		tmp_new_user.user_id = tmp_server->base_hash_key_;
+		tmp_server->GetUserInfoList()->AddUserInfo(tmp_server->base_hash_key_,tmp_new_user);
+		// notify worker thread the new user is already
+		write(tmp_server->pipe_write_fd_,&(tmp_server->base_hash_key_),4);
 	}
 	else
 	{
