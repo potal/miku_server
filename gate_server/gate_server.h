@@ -42,9 +42,6 @@ private:
 	struct event read_event_;
 	struct event write_event_;
 
-	struct event test_time_ev_;
-	struct timeval test_time_val_;
-
 	RoomManager room_manager_;
 	UserInfoList user_info_list_;
 	long base_hash_key_;
@@ -61,17 +58,17 @@ public:
 	void SetNonblock();
 	bool OpenServerSocket();
 	void SafeCloseSocket(int sock);
+	
 	bool StartWorker();
 
 	static void ReadAction(int sock,short event_flag,void *action_class);
 	static void AcceptAction(int sock,short event_flag,void *action_class);
-	//bool RegisterFunc();
+	static void DealWithReadData(struct bufferevent *buffev,void *arg);
+	static void ErrorRead(struct bufferevent *buffev,short event_flag,void *arg);
 	static void *WorkerThread(void *arg);
 	
 	void StopServer();
 
-	void TestTime();
-	static void TimeCallback(int sock,short event_flag,void *argc);
 };
 
 #endif

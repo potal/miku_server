@@ -97,6 +97,10 @@ bool GateServer::InitWorker()
 		std::cout<<"Init worker error"<<std::endl;
 		return false;
 	}
+	if(user_info_list_.Init(count_user_,worker_base_) == count_user_)
+	{
+		std::cout<<"Init user ok"<<std::endl;
+	}
 	std::cout<<"Init Worker ok!"<<std::endl;
 	return true;
 }
@@ -212,7 +216,6 @@ void *GateServer::WorkerThread(void *arg)
 void GateServer::ReadAction(int sock,short event_flag,void *action_class)
 {
 	GateServer *tmp_server = (GateServer*)action_class;
-	std::cout<<"notify pipe read"<<std::endl;
 	int tmp_user_hash_key;
 	int tmp_ret = read(sock,&tmp_user_hash_key,4);
 	if(tmp_ret <= 0)
@@ -220,7 +223,13 @@ void GateServer::ReadAction(int sock,short event_flag,void *action_class)
 		std::cout<<"Read buff error"<<std::endl;
 		return ;
 	}
-	std::cout<<tmp_user_hash_key<<std::endl;
+	std::cout<<tmp_user_hash_key<<":Enable user data transffer"<<std::endl;
+	UserInfo * tmp_user = tmp_server->GetUserInfoList()->GetUserInfo(tmp_user_hash_key);
+	if(NULL != tmp_user)
+	{
+		tmp_user->server_ptr = tmp_server;
+		bufferevent_setcb(tmp_user->buffev,	DealWithReadData,NULL,ErrorRead,tmp_user);
+	}
 }
 
 void GateServer::AcceptAction(int sock,short event_flag,void *action_class)
@@ -265,21 +274,19 @@ void GateServer::AcceptAction(int sock,short event_flag,void *action_class)
 
 void GateServer::StopServer()
 {
-
+	user_info_list_.DeleteAllUser();
 }
 
-void GateServer::TestTime()
+void GateServer::DealWithReadData(struct bufferevent *buffev,void *arg)
 {
-	test_time_val_.tv_sec = 10;
-	test_time_val_.tv_usec = 0;
-	evtimer_set(&test_time_ev_,TimeCallback,this);
-	event_add(&test_time_ev_,&test_time_val_);
-	event_base_dispatch(base_);
+	UserInfo * tmp_user = (UserInfo *)arg;
+	std::cout<<tmp_user->user_id<<":DealWithReadData"<<std::endl;
+	char tmp_read_buff[0x1000] = {0};
+	int tmp_len = bufferevent_read(buffev,tmp_read_buff,0x1000);
+	std::cout<<"Read:"<<tmp_read_buff<<std::endl;
 }
 
-void GateServer::TimeCallback(int sock,short event_flag,void *argc)
+void GateServer::ErrorRead(struct bufferevent * buffev,short event_flag,void *arg)
 {
-	GateServer * tmp_server = (GateServer*)argc;
-	std::cout<<"timer wakeup!"<<std::endl;
-	event_add(&(tmp_server->test_time_ev_),&(tmp_server->test_time_val_));
+	UserInfo *tmp_user = (UserInfo *)arg;
 }

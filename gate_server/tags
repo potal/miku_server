@@ -46,6 +46,8 @@ Connector::server_port_	connector.h	/^	short server_port_;$/;"	m	class:Connector
 Connector::~Connector	connector.h	/^	virtual ~Connector() = 0;$/;"	p	class:Connector	access:public	signature:()
 Connnector::Disconnect	connector.cpp	/^void Connnector::Disconnect()$/;"	f	class:Connnector	signature:()
 DS_CONNECTOR_H_	ds_connector.h	2;"	d
+DealWithReadData	gate_server.cpp	/^void GateServer::DealWithReadData(struct bufferevent *buffev,void *arg)$/;"	f	class:GateServer	signature:(struct bufferevent *buffev,void *arg)
+DealWithReadData	gate_server.h	/^	static void DealWithReadData(struct bufferevent *buffev,void *arg);$/;"	p	class:GateServer	access:public	signature:(struct bufferevent *buffev,void *arg)
 DelRoom	room_manager.cpp	/^bool RoomManager::DelRoom(long room_id)$/;"	f	class:RoomManager	signature:(long room_id)
 DelRoom	room_manager.h	/^	bool DelRoom(long room_id);$/;"	p	class:RoomManager	access:public	signature:(long room_id)
 DelUserInfo	user_list.cpp	/^bool UserInfoList::DelUserInfo(int user_id)$/;"	f	class:UserInfoList	signature:(int user_id)
@@ -61,12 +63,18 @@ DirectorServerConnector::~DirectorServerConnector	ds_connector.cpp	/^DirectorSer
 DirectorServerConnector::~DirectorServerConnector	ds_connector.h	/^	~DirectorServerConnector();$/;"	p	class:DirectorServerConnector	access:public	signature:()
 Disconnect	connector.cpp	/^void Connnector::Disconnect()$/;"	f	class:Connnector	signature:()
 Disconnect	connector.h	/^	void Disconnect();$/;"	p	class:Connector	access:public	signature:()
+ErrorRead	gate_server.cpp	/^void GateServer::ErrorRead(struct bufferevent * buffev,short event_flag,void *arg)$/;"	f	class:GateServer	signature:(struct bufferevent * buffev,short event_flag,void *arg)
+ErrorRead	gate_server.h	/^	static void ErrorRead(struct bufferevent *buffev,short event_flag,void *arg);$/;"	p	class:GateServer	access:public	signature:(struct bufferevent *buffev,short event_flag,void *arg)
 GATE_SERVER_H_	gate_server.h	2;"	d
 GateServer	gate_server.cpp	/^GateServer::GateServer():server_port_(0),base_hash_key_(0)$/;"	f	class:GateServer	signature:()
 GateServer	gate_server.h	/^	GateServer();$/;"	p	class:GateServer	access:public	signature:()
 GateServer	gate_server.h	/^class GateServer$/;"	c
 GateServer::AcceptAction	gate_server.cpp	/^void GateServer::AcceptAction(int sock,short event_flag,void *action_class)$/;"	f	class:GateServer	signature:(int sock,short event_flag,void *action_class)
 GateServer::AcceptAction	gate_server.h	/^	static void AcceptAction(int sock,short event_flag,void *action_class);$/;"	p	class:GateServer	access:public	signature:(int sock,short event_flag,void *action_class)
+GateServer::DealWithReadData	gate_server.cpp	/^void GateServer::DealWithReadData(struct bufferevent *buffev,void *arg)$/;"	f	class:GateServer	signature:(struct bufferevent *buffev,void *arg)
+GateServer::DealWithReadData	gate_server.h	/^	static void DealWithReadData(struct bufferevent *buffev,void *arg);$/;"	p	class:GateServer	access:public	signature:(struct bufferevent *buffev,void *arg)
+GateServer::ErrorRead	gate_server.cpp	/^void GateServer::ErrorRead(struct bufferevent * buffev,short event_flag,void *arg)$/;"	f	class:GateServer	signature:(struct bufferevent * buffev,short event_flag,void *arg)
+GateServer::ErrorRead	gate_server.h	/^	static void ErrorRead(struct bufferevent *buffev,short event_flag,void *arg);$/;"	p	class:GateServer	access:public	signature:(struct bufferevent *buffev,short event_flag,void *arg)
 GateServer::GateServer	gate_server.cpp	/^GateServer::GateServer():server_port_(0),base_hash_key_(0)$/;"	f	class:GateServer	signature:()
 GateServer::GateServer	gate_server.h	/^	GateServer();$/;"	p	class:GateServer	access:public	signature:()
 GateServer::GetUserInfoList	gate_server.h	/^	UserInfoList *GetUserInfoList(){return &user_info_list_;}$/;"	f	class:GateServer	access:public	signature:()
@@ -88,9 +96,7 @@ GateServer::StartWorker	gate_server.cpp	/^bool GateServer::StartWorker()$/;"	f	c
 GateServer::StartWorker	gate_server.h	/^	bool StartWorker();$/;"	p	class:GateServer	access:public	signature:()
 GateServer::StopServer	gate_server.cpp	/^void GateServer::StopServer()$/;"	f	class:GateServer	signature:()
 GateServer::StopServer	gate_server.h	/^	void StopServer();$/;"	p	class:GateServer	access:public	signature:()
-GateServer::TestTime	gate_server.cpp	/^void GateServer::TestTime()$/;"	f	class:GateServer	signature:()
 GateServer::TestTime	gate_server.h	/^	void TestTime();$/;"	p	class:GateServer	access:public	signature:()
-GateServer::TimeCallback	gate_server.cpp	/^void GateServer::TimeCallback(int sock,short event_flag,void *argc)$/;"	f	class:GateServer	signature:(int sock,short event_flag,void *argc)
 GateServer::TimeCallback	gate_server.h	/^	static void TimeCallback(int sock,short event_flag,void *argc);$/;"	p	class:GateServer	access:public	signature:(int sock,short event_flag,void *argc)
 GateServer::WorkerThread	gate_server.cpp	/^void *GateServer::WorkerThread(void *arg)$/;"	f	class:GateServer	signature:(void *arg)
 GateServer::WorkerThread	gate_server.h	/^	static void *WorkerThread(void *arg);$/;"	p	class:GateServer	access:public	signature:(void *arg)
@@ -117,8 +123,12 @@ GateServer::worker_event_	gate_server.h	/^	struct event worker_event_;$/;"	m	cla
 GateServer::write_event_	gate_server.h	/^	struct event write_event_;$/;"	m	class:GateServer	typeref:struct:GateServer::event	access:private
 GateServer::~GateServer	gate_server.cpp	/^GateServer::~GateServer()$/;"	f	class:GateServer	signature:()
 GateServer::~GateServer	gate_server.h	/^	~GateServer();$/;"	p	class:GateServer	access:public	signature:()
+GetUserInfo	user_list.cpp	/^UserInfo *UserInfoList::GetUserInfo(int user_id)$/;"	f	class:UserInfoList	signature:(int user_id)
+GetUserInfo	user_list.h	/^	UserInfo *GetUserInfo(int user_id);$/;"	p	class:UserInfoList	access:public	signature:(int user_id)
 GetUserInfoList	gate_server.h	/^	UserInfoList *GetUserInfoList(){return &user_info_list_;}$/;"	f	class:GateServer	access:public	signature:()
 GetUserList	user_list.h	/^	inline USERLISTMAP * GetUserList()$/;"	f	class:UserInfoList	access:public	signature:()
+Init	user_list.cpp	/^int UserInfoList::Init(int num,struct event_base * base)$/;"	f	class:UserInfoList	signature:(int num,struct event_base * base)
+Init	user_list.h	/^	int Init(int num,struct event_base * base);$/;"	p	class:UserInfoList	access:public	signature:(int num,struct event_base * base)
 InitConnectionInfo	connector.cpp	/^void Connector::InitConnectionInfo(const char *server_ip,const short server_port)$/;"	f	class:Connector	signature:(const char *server_ip,const short server_port)
 InitConnectionInfo	connector.h	/^	void InitConnectionInfo(const char *server_ip,const short server_port);$/;"	p	class:Connector	access:public	signature:(const char *server_ip,const short server_port)
 InitServer	gate_server.cpp	/^bool GateServer::InitServer()$/;"	f	class:GateServer	signature:()
@@ -169,14 +179,14 @@ Stop	chat_room.cpp	/^void ChatRoom::Stop()$/;"	f	class:ChatRoom	signature:()
 Stop	chat_room.h	/^	void Stop();$/;"	p	class:ChatRoom	access:public	signature:()
 StopServer	gate_server.cpp	/^void GateServer::StopServer()$/;"	f	class:GateServer	signature:()
 StopServer	gate_server.h	/^	void StopServer();$/;"	p	class:GateServer	access:public	signature:()
-TestTime	gate_server.cpp	/^void GateServer::TestTime()$/;"	f	class:GateServer	signature:()
 TestTime	gate_server.h	/^	void TestTime();$/;"	p	class:GateServer	access:public	signature:()
-TimeCallback	gate_server.cpp	/^void GateServer::TimeCallback(int sock,short event_flag,void *argc)$/;"	f	class:GateServer	signature:(int sock,short event_flag,void *argc)
 TimeCallback	gate_server.h	/^	static void TimeCallback(int sock,short event_flag,void *argc);$/;"	p	class:GateServer	access:public	signature:(int sock,short event_flag,void *argc)
 USERLISTMAP	user_list.h	/^typedef std::map<int,UserInfo*> USERLISTMAP;$/;"	t
 USER_LIST_H_	user_list.h	2;"	d
 UserInfo	user_list.h	/^struct UserInfo$/;"	s
+UserInfo::buffev	user_list.h	/^	struct bufferevent * buffev;$/;"	m	struct:UserInfo	typeref:struct:UserInfo::bufferevent	access:public
 UserInfo::hash_key	user_list.h	/^	long hash_key;$/;"	m	struct:UserInfo	access:public
+UserInfo::server_ptr	user_list.h	/^	void *server_ptr;$/;"	m	struct:UserInfo	access:public
 UserInfo::user_id	user_list.h	/^	int user_id;$/;"	m	struct:UserInfo	access:public
 UserInfo::user_sock	user_list.h	/^	int user_sock;$/;"	m	struct:UserInfo	access:public
 UserInfoList	user_list.cpp	/^UserInfoList::UserInfoList()$/;"	f	class:UserInfoList	signature:()
@@ -188,11 +198,16 @@ UserInfoList::DelUserInfo	user_list.cpp	/^bool UserInfoList::DelUserInfo(int use
 UserInfoList::DelUserInfo	user_list.h	/^	bool DelUserInfo(int user_id);$/;"	p	class:UserInfoList	access:public	signature:(int user_id)
 UserInfoList::DeleteAllUser	user_list.cpp	/^void UserInfoList::DeleteAllUser()$/;"	f	class:UserInfoList	signature:()
 UserInfoList::DeleteAllUser	user_list.h	/^	void DeleteAllUser();$/;"	p	class:UserInfoList	access:public	signature:()
+UserInfoList::GetUserInfo	user_list.cpp	/^UserInfo *UserInfoList::GetUserInfo(int user_id)$/;"	f	class:UserInfoList	signature:(int user_id)
+UserInfoList::GetUserInfo	user_list.h	/^	UserInfo *GetUserInfo(int user_id);$/;"	p	class:UserInfoList	access:public	signature:(int user_id)
 UserInfoList::GetUserList	user_list.h	/^	inline USERLISTMAP * GetUserList()$/;"	f	class:UserInfoList	access:public	signature:()
+UserInfoList::Init	user_list.cpp	/^int UserInfoList::Init(int num,struct event_base * base)$/;"	f	class:UserInfoList	signature:(int num,struct event_base * base)
+UserInfoList::Init	user_list.h	/^	int Init(int num,struct event_base * base);$/;"	p	class:UserInfoList	access:public	signature:(int num,struct event_base * base)
 UserInfoList::UserInfoList	user_list.cpp	/^UserInfoList::UserInfoList()$/;"	f	class:UserInfoList	signature:()
 UserInfoList::UserInfoList	user_list.h	/^	UserInfoList();$/;"	p	class:UserInfoList	access:public	signature:()
 UserInfoList::list_cond_	user_list.h	/^	pthread_cond_t list_cond_;$/;"	m	class:UserInfoList	access:private
 UserInfoList::list_lock_	user_list.h	/^	pthread_mutex_t list_lock_;$/;"	m	class:UserInfoList	access:private
+UserInfoList::unused_user_list_	user_list.h	/^	std::list<UserInfo*> unused_user_list_;$/;"	m	class:UserInfoList	access:private
 UserInfoList::user_list_	user_list.h	/^	USERLISTMAP user_list_;$/;"	m	class:UserInfoList	access:private
 UserInfoList::~UserInfoList	user_list.cpp	/^UserInfoList::~UserInfoList()$/;"	f	class:UserInfoList	signature:()
 UserInfoList::~UserInfoList	user_list.h	/^	~UserInfoList();$/;"	p	class:UserInfoList	access:public	signature:()
@@ -202,6 +217,7 @@ __int64	server_types.h	/^typedef long long __int64;$/;"	t
 __uint64	server_types.h	/^typedef unsigned long long __uint64;$/;"	t
 base_	gate_server.h	/^	struct event_base *base_;$/;"	m	class:GateServer	typeref:struct:GateServer::event_base	access:private
 base_hash_key_	gate_server.h	/^	long base_hash_key_;$/;"	m	class:GateServer	access:private
+buffev	user_list.h	/^	struct bufferevent * buffev;$/;"	m	struct:UserInfo	typeref:struct:UserInfo::bufferevent	access:public
 conn_num_	gate_server.h	/^	int conn_num_;$/;"	m	class:GateServer	access:private
 count_user_	gate_server.h	/^	int count_user_;$/;"	m	class:GateServer	access:private
 count_worker_thread_	gate_server.h	/^	int count_worker_thread_;$/;"	m	class:GateServer	access:private
@@ -227,9 +243,11 @@ server_ip_	gate_server.h	/^	std::string server_ip_;$/;"	m	class:GateServer	acces
 server_listen_sock_	gate_server.h	/^	int server_listen_sock_;$/;"	m	class:GateServer	access:private
 server_port_	connector.h	/^	short server_port_;$/;"	m	class:Connector	access:private
 server_port_	gate_server.h	/^	int server_port_;$/;"	m	class:GateServer	access:private
+server_ptr	user_list.h	/^	void *server_ptr;$/;"	m	struct:UserInfo	access:public
 test_time_ev_	gate_server.h	/^	struct event test_time_ev_;$/;"	m	class:GateServer	typeref:struct:GateServer::event	access:private
 test_time_val_	gate_server.h	/^	struct timeval test_time_val_;$/;"	m	class:GateServer	typeref:struct:GateServer::timeval	access:private
 timeout_	gate_server.h	/^	int timeout_;$/;"	m	class:GateServer	access:private
+unused_user_list_	user_list.h	/^	std::list<UserInfo*> unused_user_list_;$/;"	m	class:UserInfoList	access:private
 user_id	user_list.h	/^	int user_id;$/;"	m	struct:UserInfo	access:public
 user_info_list_	gate_server.h	/^	UserInfoList user_info_list_;$/;"	m	class:GateServer	access:private
 user_list_	user_list.h	/^	USERLISTMAP user_list_;$/;"	m	class:UserInfoList	access:private
