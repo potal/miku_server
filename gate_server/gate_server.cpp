@@ -101,7 +101,6 @@ bool GateServer::InitWorker()
 	{
 		std::cout<<"Init user ok"<<std::endl;
 	}
-	std::cout<<"Init Worker ok!"<<std::endl;
 	return true;
 }
 
@@ -113,7 +112,6 @@ bool GateServer::StartServer()
 		return false;
 	}
 
-	// just open one worker thread here
 	if(!InitWorker())
 	{
 		std::cout<<"Init worker thread error"<<std::endl;
@@ -132,8 +130,7 @@ bool GateServer::StartServer()
 		return false;
 	}
 	base_ = event_init();
-	std::cout<<"GateServer::StartServer"<<std::endl;
-//	TestTime();
+	std::cout<<"*****************GateServer::StartServer********************"<<std::endl;
 
 	event_set(&listen_event_,server_listen_sock_,EV_READ|EV_PERSIST,AcceptAction,this);
 	event_base_set(base_,&listen_event_);
@@ -209,7 +206,6 @@ bool GateServer::StartWorker()
 void *GateServer::WorkerThread(void *arg)
 {
 	GateServer *tmp_server = (GateServer *)arg;
-	std::cout<<"WorkerThread"<<std::endl;
 	event_base_dispatch(tmp_server->worker_base_);
 }
 
@@ -223,7 +219,6 @@ void GateServer::ReadAction(int sock,short event_flag,void *action_class)
 		std::cout<<"Read buff error"<<std::endl;
 		return ;
 	}
-	std::cout<<tmp_user_hash_key<<":Enable user data transffer"<<std::endl;
 	UserInfo * tmp_user = tmp_server->GetUserInfoList()->GetUserInfo(tmp_user_hash_key);
 	if(NULL != tmp_user)
 	{
@@ -238,8 +233,6 @@ void GateServer::AcceptAction(int sock,short event_flag,void *action_class)
 	int tmp_client_sock = -1;
 	struct sockaddr_in tmp_client_addr;
 	socklen_t tmp_len = sizeof(struct sockaddr_in);
-
-	std::cout<<"Call AcceptAction function"<<std::endl;
 
 	tmp_client_sock = accept(sock,(struct sockaddr*)&tmp_client_addr,&tmp_len);
 	if(tmp_client_sock < 0)

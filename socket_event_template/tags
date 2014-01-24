@@ -1,0 +1,270 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+AcceptAction	common/server_listenner.cpp	/^void ServerListenner::AcceptAction(int sock,short event_flag,void *action_class)$/;"	f	class:ServerListenner	signature:(int sock,short event_flag,void *action_class)
+AcceptAction	common/server_listenner.h	/^	static void AcceptAction(int sock,short event_flag,void *action_class);$/;"	p	class:ServerListenner	access:public	signature:(int sock,short event_flag,void *action_class)
+AddUserInfo	user_info_list.cpp	/^bool UserInfoList::AddUserInfo(int user_hashkey,UserInfoEx &user)$/;"	f	class:UserInfoList	signature:(int user_hashkey,UserInfoEx &user)
+AddUserInfo	user_info_list.h	/^	bool AddUserInfo(int user_hashkey,UserInfoEx &user);$/;"	p	class:UserInfoList	access:public	signature:(int user_hashkey,UserInfoEx &user)
+BASE_USER_INFO_H_	common/base_user_info.h	2;"	d
+BASE_USER_INFO_RESOURCE_H_	common/base_user_info_resource.h	2;"	d
+BaseUserInfo	common/base_user_info.h	/^	BaseUserInfo(){};$/;"	f	class:BaseUserInfo	access:public	signature:()
+BaseUserInfo	common/base_user_info.h	/^class BaseUserInfo$/;"	c
+BaseUserInfo::BaseUserInfo	common/base_user_info.h	/^	BaseUserInfo(){};$/;"	f	class:BaseUserInfo	access:public	signature:()
+BaseUserInfo::DealWithData	common/base_user_info.h	/^	virtual void DealWithData(struct bufferevent *buff_ev,void *arg) = 0;$/;"	p	class:BaseUserInfo	access:public	signature:(struct bufferevent *buff_ev,void *arg)
+BaseUserInfo::buffev	common/base_user_info.h	/^	struct bufferevent * buffev;$/;"	m	class:BaseUserInfo	typeref:struct:BaseUserInfo::bufferevent	access:public
+BaseUserInfo::hash_key	common/base_user_info.h	/^	long hash_key;$/;"	m	class:BaseUserInfo	access:public
+BaseUserInfo::server_ptr	common/base_user_info.h	/^	void *server_ptr;$/;"	m	class:BaseUserInfo	access:public
+BaseUserInfo::user_sock	common/base_user_info.h	/^	int user_sock;$/;"	m	class:BaseUserInfo	access:public
+BaseUserInfo::~BaseUserInfo	common/base_user_info.h	/^	virtual ~BaseUserInfo(){};$/;"	f	class:BaseUserInfo	access:public	signature:()
+BaseUserInfoResource	common/base_user_info_resource.h	/^class BaseUserInfoResource$/;"	c
+BaseUserInfoResource::GetUserInfo	common/base_user_info_resource.h	/^	virtual BaseUserInfo *GetUserInfo()=0;$/;"	p	class:BaseUserInfoResource	access:public	signature:()
+BaseUserInfoResource::ReleaseUserInfo	common/base_user_info_resource.h	/^	virtual void ReleaseUserInfo(BaseUserInfo *user)=0;$/;"	p	class:BaseUserInfoResource	access:public	signature:(BaseUserInfo *user)
+CC	Makefile	/^CC = g++$/;"	m
+CCFlag	Makefile	/^CCFlag = -O0 -g3 -w -c -fmessage-length=0 -fPIC$/;"	m
+DealWithData	common/base_user_info.h	/^	virtual void DealWithData(struct bufferevent *buff_ev,void *arg) = 0;$/;"	p	class:BaseUserInfo	access:public	signature:(struct bufferevent *buff_ev,void *arg)
+DealWithData	user_info_list.cpp	/^void UserInfoEx::DealWithData(struct bufferevent *buff_ev,void *arg)$/;"	f	class:UserInfoEx	signature:(struct bufferevent *buff_ev,void *arg)
+DealWithData	user_info_list.h	/^	void DealWithData(struct bufferevent *buff_ev,void *arg);$/;"	p	class:UserInfoEx	access:public	signature:(struct bufferevent *buff_ev,void *arg)
+DealWithReadData	common/server_listenner.cpp	/^void ServerListenner::DealWithReadData(struct bufferevent *buffev,void *arg)$/;"	f	class:ServerListenner	signature:(struct bufferevent *buffev,void *arg)
+DealWithReadData	common/server_listenner.h	/^	static void DealWithReadData(struct bufferevent *buffev,void *arg);$/;"	p	class:ServerListenner	access:public	signature:(struct bufferevent *buffev,void *arg)
+DelUserInfo	user_info_list.cpp	/^bool UserInfoList::DelUserInfo(int user_hashkey)$/;"	f	class:UserInfoList	signature:(int user_hashkey)
+DelUserInfo	user_info_list.h	/^	bool DelUserInfo(int user_hashkey);$/;"	p	class:UserInfoList	access:public	signature:(int user_hashkey)
+ErrorRead	common/server_listenner.cpp	/^void ServerListenner::ErrorRead(struct bufferevent * buffev,short event_flag,void *arg)$/;"	f	class:ServerListenner	signature:(struct bufferevent * buffev,short event_flag,void *arg)
+ErrorRead	common/server_listenner.h	/^	static void ErrorRead(struct bufferevent *buffev,short event_flag,void *arg);$/;"	p	class:ServerListenner	access:public	signature:(struct bufferevent *buffev,short event_flag,void *arg)
+GATE_SERVER_H_	common/server_listenner.h	2;"	d
+Get	common/resource_manager.h	/^	T *Get();$/;"	p	class:UserResourceManager	access:public	signature:()
+Get	common/resource_manager.h	/^T *UserResourceManager<T>::Get()$/;"	f	class:UserResourceManager	signature:()
+GetConfig	test_server.cpp	/^bool TestServer::GetConfig(std::string file_name)$/;"	f	class:TestServer	signature:(std::string file_name)
+GetConfig	test_server.h	/^	bool GetConfig(std::string file_name);$/;"	p	class:TestServer	access:public	signature:(std::string file_name)
+GetUserInfo	common/base_user_info_resource.h	/^	virtual BaseUserInfo *GetUserInfo()=0;$/;"	p	class:BaseUserInfoResource	access:public	signature:()
+GetUserInfo	common/server_listenner.cpp	/^UserInfo *ServerListenner::GetUserInfo()$/;"	f	class:ServerListenner	signature:()
+GetUserInfo	common/server_listenner.h	/^	BaseUserInfo *GetUserInfo();$/;"	p	class:ServerListenner	access:public	signature:()
+GetUserInfo	user_info_list.cpp	/^BaseUserInfo *UserInfoList::GetUserInfo()$/;"	f	class:UserInfoList	signature:()
+GetUserInfo	user_info_list.h	/^	virtual BaseUserInfo *GetUserInfo();$/;"	p	class:UserInfoList	access:public	signature:()
+INCLUDES	Makefile	/^INCLUDES = -I$(ROOT)\/ -Icommon$/;"	m
+Init	common/resource_manager.h	/^	int Init(int max_num);$/;"	p	class:UserResourceManager	access:public	signature:(int max_num)
+Init	common/resource_manager.h	/^int UserResourceManager<T>::Init(int max_num)$/;"	f	class:UserResourceManager	signature:(int max_num)
+Init	user_info_list.cpp	/^int UserInfoList::Init(int max_user)$/;"	f	class:UserInfoList	signature:(int max_user)
+Init	user_info_list.h	/^	int Init(int max_user);$/;"	p	class:UserInfoList	access:public	signature:(int max_user)
+InitServer	common/server_listenner.cpp	/^bool ServerListenner::InitServer(std::string server_ip,int server_port,int worker_count,int count_user_per_worker,int read_timeout,int write_timeout)$/;"	f	class:ServerListenner	signature:(std::string server_ip,int server_port,int worker_count,int count_user_per_worker,int read_timeout,int write_timeout)
+InitServer	common/server_listenner.h	/^	bool InitServer(std::string server_ip,int server_port,int worker_count,int count_user_per_worker,int read_timeout,int write_timeout);$/;"	p	class:ServerListenner	access:public	signature:(std::string server_ip,int server_port,int worker_count,int count_user_per_worker,int read_timeout,int write_timeout)
+InitServer	test_server.cpp	/^bool TestServer::InitServer()$/;"	f	class:TestServer	signature:()
+InitServer	test_server.h	/^	bool InitServer();$/;"	p	class:TestServer	access:public	signature:()
+InitWorker	common/server_listenner.cpp	/^bool ServerListenner::InitWorker()$/;"	f	class:ServerListenner	signature:()
+InitWorker	common/server_listenner.h	/^	bool InitWorker();$/;"	p	class:ServerListenner	access:public	signature:()
+LIBS	Makefile	/^LIBS = -lpthread -levent$/;"	m
+LINK	Makefile	/^LINK = g++$/;"	m
+LINKFlag	Makefile	/^LINKFlag = -shared$/;"	m
+OpenServerSocket	common/server_listenner.cpp	/^bool ServerListenner::OpenServerSocket()$/;"	f	class:ServerListenner	signature:()
+OpenServerSocket	common/server_listenner.h	/^	bool OpenServerSocket();$/;"	p	class:ServerListenner	access:public	signature:()
+PROGRAM	Makefile	/^PROGRAM = testserver$/;"	m
+Put	common/resource_manager.h	/^	bool Put(T *user);$/;"	p	class:UserResourceManager	access:public	signature:(T *user)
+Put	common/resource_manager.h	/^bool UserResourceManager<T>::Put(T *user)$/;"	f	class:UserResourceManager	signature:(T *user)
+RESOURCE_MANAGER_H_	common/resource_manager.h	2;"	d
+RM	Makefile	/^RM = rm -f$/;"	m
+ROOT	Makefile	/^ROOT =.$/;"	m
+ReadAction	common/server_listenner.cpp	/^void ServerListenner::ReadAction(int sock,short event_flag,void *action_class)$/;"	f	class:ServerListenner	signature:(int sock,short event_flag,void *action_class)
+ReadAction	common/server_listenner.h	/^	static void ReadAction(int sock,short event_flag,void *action_class);$/;"	p	class:ServerListenner	access:public	signature:(int sock,short event_flag,void *action_class)
+ReleaseUserInfo	common/base_user_info_resource.h	/^	virtual void ReleaseUserInfo(BaseUserInfo *user)=0;$/;"	p	class:BaseUserInfoResource	access:public	signature:(BaseUserInfo *user)
+ReleaseUserInfo	user_info_list.cpp	/^void UserInfoList::ReleaseUserInfo(BaseUserInfo * user)$/;"	f	class:UserInfoList	signature:(BaseUserInfo * user)
+ReleaseUserInfo	user_info_list.h	/^	virtual void ReleaseUserInfo(BaseUserInfo * user);$/;"	p	class:UserInfoList	access:public	signature:(BaseUserInfo * user)
+SOURCE0	Makefile	/^SOURCE0 := $(wildcard $SRC)$/;"	m
+SRC	Makefile	/^SRC=$(shell find $(ROOT) -path -prune -o -name '*.cpp')$/;"	m
+SRCOBJ	Makefile	/^SRCOBJ=$(SRC:%.cpp=%.o)$/;"	m
+SafeCloseSocket	common/server_listenner.cpp	/^void ServerListenner::SafeCloseSocket(int sock)$/;"	f	class:ServerListenner	signature:(int sock)
+SafeCloseSocket	common/server_listenner.h	/^	void SafeCloseSocket(int sock);$/;"	p	class:ServerListenner	access:public	signature:(int sock)
+ServerListenner	common/server_listenner.cpp	/^ServerListenner::ServerListenner()$/;"	f	class:ServerListenner	signature:()
+ServerListenner	common/server_listenner.h	/^	ServerListenner();$/;"	p	class:ServerListenner	access:public	signature:()
+ServerListenner	common/server_listenner.h	/^class ServerListenner$/;"	c
+ServerListenner::AcceptAction	common/server_listenner.cpp	/^void ServerListenner::AcceptAction(int sock,short event_flag,void *action_class)$/;"	f	class:ServerListenner	signature:(int sock,short event_flag,void *action_class)
+ServerListenner::AcceptAction	common/server_listenner.h	/^	static void AcceptAction(int sock,short event_flag,void *action_class);$/;"	p	class:ServerListenner	access:public	signature:(int sock,short event_flag,void *action_class)
+ServerListenner::DealWithReadData	common/server_listenner.cpp	/^void ServerListenner::DealWithReadData(struct bufferevent *buffev,void *arg)$/;"	f	class:ServerListenner	signature:(struct bufferevent *buffev,void *arg)
+ServerListenner::DealWithReadData	common/server_listenner.h	/^	static void DealWithReadData(struct bufferevent *buffev,void *arg);$/;"	p	class:ServerListenner	access:public	signature:(struct bufferevent *buffev,void *arg)
+ServerListenner::ErrorRead	common/server_listenner.cpp	/^void ServerListenner::ErrorRead(struct bufferevent * buffev,short event_flag,void *arg)$/;"	f	class:ServerListenner	signature:(struct bufferevent * buffev,short event_flag,void *arg)
+ServerListenner::ErrorRead	common/server_listenner.h	/^	static void ErrorRead(struct bufferevent *buffev,short event_flag,void *arg);$/;"	p	class:ServerListenner	access:public	signature:(struct bufferevent *buffev,short event_flag,void *arg)
+ServerListenner::GetUserInfo	common/server_listenner.cpp	/^UserInfo *ServerListenner::GetUserInfo()$/;"	f	class:ServerListenner	signature:()
+ServerListenner::GetUserInfo	common/server_listenner.h	/^	BaseUserInfo *GetUserInfo();$/;"	p	class:ServerListenner	access:public	signature:()
+ServerListenner::InitServer	common/server_listenner.cpp	/^bool ServerListenner::InitServer(std::string server_ip,int server_port,int worker_count,int count_user_per_worker,int read_timeout,int write_timeout)$/;"	f	class:ServerListenner	signature:(std::string server_ip,int server_port,int worker_count,int count_user_per_worker,int read_timeout,int write_timeout)
+ServerListenner::InitServer	common/server_listenner.h	/^	bool InitServer(std::string server_ip,int server_port,int worker_count,int count_user_per_worker,int read_timeout,int write_timeout);$/;"	p	class:ServerListenner	access:public	signature:(std::string server_ip,int server_port,int worker_count,int count_user_per_worker,int read_timeout,int write_timeout)
+ServerListenner::InitWorker	common/server_listenner.cpp	/^bool ServerListenner::InitWorker()$/;"	f	class:ServerListenner	signature:()
+ServerListenner::InitWorker	common/server_listenner.h	/^	bool InitWorker();$/;"	p	class:ServerListenner	access:public	signature:()
+ServerListenner::OpenServerSocket	common/server_listenner.cpp	/^bool ServerListenner::OpenServerSocket()$/;"	f	class:ServerListenner	signature:()
+ServerListenner::OpenServerSocket	common/server_listenner.h	/^	bool OpenServerSocket();$/;"	p	class:ServerListenner	access:public	signature:()
+ServerListenner::ReadAction	common/server_listenner.cpp	/^void ServerListenner::ReadAction(int sock,short event_flag,void *action_class)$/;"	f	class:ServerListenner	signature:(int sock,short event_flag,void *action_class)
+ServerListenner::ReadAction	common/server_listenner.h	/^	static void ReadAction(int sock,short event_flag,void *action_class);$/;"	p	class:ServerListenner	access:public	signature:(int sock,short event_flag,void *action_class)
+ServerListenner::SafeCloseSocket	common/server_listenner.cpp	/^void ServerListenner::SafeCloseSocket(int sock)$/;"	f	class:ServerListenner	signature:(int sock)
+ServerListenner::SafeCloseSocket	common/server_listenner.h	/^	void SafeCloseSocket(int sock);$/;"	p	class:ServerListenner	access:public	signature:(int sock)
+ServerListenner::ServerListenner	common/server_listenner.cpp	/^ServerListenner::ServerListenner()$/;"	f	class:ServerListenner	signature:()
+ServerListenner::ServerListenner	common/server_listenner.h	/^	ServerListenner();$/;"	p	class:ServerListenner	access:public	signature:()
+ServerListenner::SetNonblock	common/server_listenner.cpp	/^void ServerListenner::SetNonblock()$/;"	f	class:ServerListenner	signature:()
+ServerListenner::SetNonblock	common/server_listenner.h	/^	void SetNonblock();$/;"	p	class:ServerListenner	access:public	signature:()
+ServerListenner::StartServer	common/server_listenner.cpp	/^bool ServerListenner::StartServer(BaseUserInfoResource *user_resource)$/;"	f	class:ServerListenner	signature:(BaseUserInfoResource *user_resource)
+ServerListenner::StartServer	common/server_listenner.h	/^	bool StartServer(BaseUserInfoResource *user_resource);$/;"	p	class:ServerListenner	access:public	signature:(BaseUserInfoResource *user_resource)
+ServerListenner::StartWorker	common/server_listenner.cpp	/^bool ServerListenner::StartWorker()$/;"	f	class:ServerListenner	signature:()
+ServerListenner::StartWorker	common/server_listenner.h	/^	bool StartWorker();$/;"	p	class:ServerListenner	access:public	signature:()
+ServerListenner::StopServer	common/server_listenner.cpp	/^void ServerListenner::StopServer()$/;"	f	class:ServerListenner	signature:()
+ServerListenner::StopServer	common/server_listenner.h	/^	void StopServer();$/;"	p	class:ServerListenner	access:public	signature:()
+ServerListenner::WorkerThread	common/server_listenner.cpp	/^void *ServerListenner::WorkerThread(void *arg)$/;"	f	class:ServerListenner	signature:(void *arg)
+ServerListenner::WorkerThread	common/server_listenner.h	/^	static void *WorkerThread(void *arg);$/;"	p	class:ServerListenner	access:public	signature:(void *arg)
+ServerListenner::base_	common/server_listenner.h	/^	struct event_base *base_;$/;"	m	class:ServerListenner	typeref:struct:ServerListenner::event_base	access:private
+ServerListenner::base_hash_key_	common/server_listenner.h	/^	int base_hash_key_;$/;"	m	class:ServerListenner	access:private
+ServerListenner::count_user_per_worker_	common/server_listenner.h	/^	int count_user_per_worker_;$/;"	m	class:ServerListenner	access:private
+ServerListenner::count_worker_	common/server_listenner.h	/^	int count_worker_;$/;"	m	class:ServerListenner	access:private
+ServerListenner::listen_event_	common/server_listenner.h	/^	struct event listen_event_;$/;"	m	class:ServerListenner	typeref:struct:ServerListenner::event	access:private
+ServerListenner::pipe_read_fd_	common/server_listenner.h	/^	int pipe_read_fd_;$/;"	m	class:ServerListenner	access:private
+ServerListenner::pipe_write_fd_	common/server_listenner.h	/^	int pipe_write_fd_;$/;"	m	class:ServerListenner	access:private
+ServerListenner::read_event_	common/server_listenner.h	/^	struct event read_event_;$/;"	m	class:ServerListenner	typeref:struct:ServerListenner::event	access:private
+ServerListenner::read_timeout_	common/server_listenner.h	/^	int read_timeout_;$/;"	m	class:ServerListenner	access:private
+ServerListenner::server_ip_	common/server_listenner.h	/^	std::string server_ip_;$/;"	m	class:ServerListenner	access:private
+ServerListenner::server_listen_sock_	common/server_listenner.h	/^	int server_listen_sock_;$/;"	m	class:ServerListenner	access:private
+ServerListenner::server_port_	common/server_listenner.h	/^	int server_port_;$/;"	m	class:ServerListenner	access:private
+ServerListenner::user_info_resource_	common/server_listenner.h	/^	BaseUserInfoResource* user_info_resource_;$/;"	m	class:ServerListenner	access:private
+ServerListenner::using_user_list_	common/server_listenner.h	/^	std::list<BaseUserInfo *> using_user_list_;$/;"	m	class:ServerListenner	access:private
+ServerListenner::using_user_map_	common/server_listenner.h	/^	std::map<int,BaseUserInfo *> using_user_map_;$/;"	m	class:ServerListenner	access:private
+ServerListenner::worker_base_	common/server_listenner.h	/^	struct event_base *worker_base_;$/;"	m	class:ServerListenner	typeref:struct:ServerListenner::event_base	access:private
+ServerListenner::worker_event_	common/server_listenner.h	/^	struct event worker_event_;$/;"	m	class:ServerListenner	typeref:struct:ServerListenner::event	access:private
+ServerListenner::write_event_	common/server_listenner.h	/^	struct event write_event_;$/;"	m	class:ServerListenner	typeref:struct:ServerListenner::event	access:private
+ServerListenner::write_timeout_	common/server_listenner.h	/^	int write_timeout_;$/;"	m	class:ServerListenner	access:private
+ServerListenner::~ServerListenner	common/server_listenner.cpp	/^ServerListenner::~ServerListenner()$/;"	f	class:ServerListenner	signature:()
+ServerListenner::~ServerListenner	common/server_listenner.h	/^	~ServerListenner();$/;"	p	class:ServerListenner	access:public	signature:()
+SetNonblock	common/server_listenner.cpp	/^void ServerListenner::SetNonblock()$/;"	f	class:ServerListenner	signature:()
+SetNonblock	common/server_listenner.h	/^	void SetNonblock();$/;"	p	class:ServerListenner	access:public	signature:()
+StartServer	common/server_listenner.cpp	/^bool ServerListenner::StartServer(BaseUserInfoResource *user_resource)$/;"	f	class:ServerListenner	signature:(BaseUserInfoResource *user_resource)
+StartServer	common/server_listenner.h	/^	bool StartServer(BaseUserInfoResource *user_resource);$/;"	p	class:ServerListenner	access:public	signature:(BaseUserInfoResource *user_resource)
+StartServer	test_server.cpp	/^bool TestServer::StartServer()$/;"	f	class:TestServer	signature:()
+StartServer	test_server.h	/^	bool StartServer();$/;"	p	class:TestServer	access:public	signature:()
+StartWorker	common/server_listenner.cpp	/^bool ServerListenner::StartWorker()$/;"	f	class:ServerListenner	signature:()
+StartWorker	common/server_listenner.h	/^	bool StartWorker();$/;"	p	class:ServerListenner	access:public	signature:()
+StopServer	common/server_listenner.cpp	/^void ServerListenner::StopServer()$/;"	f	class:ServerListenner	signature:()
+StopServer	common/server_listenner.h	/^	void StopServer();$/;"	p	class:ServerListenner	access:public	signature:()
+StopServer	test_server.cpp	/^void TestServer::StopServer()$/;"	f	class:TestServer	signature:()
+StopServer	test_server.h	/^	void StopServer();$/;"	p	class:TestServer	access:public	signature:()
+TEST_SERVER_H_	test_server.h	2;"	d
+TestServer	test_server.cpp	/^TestServer::TestServer()$/;"	f	class:TestServer	signature:()
+TestServer	test_server.h	/^	TestServer();$/;"	p	class:TestServer	access:public	signature:()
+TestServer	test_server.h	/^class TestServer$/;"	c
+TestServer::GetConfig	test_server.cpp	/^bool TestServer::GetConfig(std::string file_name)$/;"	f	class:TestServer	signature:(std::string file_name)
+TestServer::GetConfig	test_server.h	/^	bool GetConfig(std::string file_name);$/;"	p	class:TestServer	access:public	signature:(std::string file_name)
+TestServer::InitServer	test_server.cpp	/^bool TestServer::InitServer()$/;"	f	class:TestServer	signature:()
+TestServer::InitServer	test_server.h	/^	bool InitServer();$/;"	p	class:TestServer	access:public	signature:()
+TestServer::StartServer	test_server.cpp	/^bool TestServer::StartServer()$/;"	f	class:TestServer	signature:()
+TestServer::StartServer	test_server.h	/^	bool StartServer();$/;"	p	class:TestServer	access:public	signature:()
+TestServer::StopServer	test_server.cpp	/^void TestServer::StopServer()$/;"	f	class:TestServer	signature:()
+TestServer::StopServer	test_server.h	/^	void StopServer();$/;"	p	class:TestServer	access:public	signature:()
+TestServer::TestServer	test_server.cpp	/^TestServer::TestServer()$/;"	f	class:TestServer	signature:()
+TestServer::TestServer	test_server.h	/^	TestServer();$/;"	p	class:TestServer	access:public	signature:()
+TestServer::count_user_per_worker_	test_server.h	/^	int count_user_per_worker_;$/;"	m	class:TestServer	access:private
+TestServer::count_worker_	test_server.h	/^	int count_worker_;$/;"	m	class:TestServer	access:private
+TestServer::read_timeout_	test_server.h	/^	int read_timeout_;$/;"	m	class:TestServer	access:private
+TestServer::server_ip_	test_server.h	/^	std::string server_ip_;$/;"	m	class:TestServer	access:private
+TestServer::server_listenner_	test_server.h	/^	ServerListenner server_listenner_;$/;"	m	class:TestServer	access:private
+TestServer::server_port_	test_server.h	/^	int server_port_;$/;"	m	class:TestServer	access:private
+TestServer::user_list_	test_server.h	/^	UserInfoList user_list_;$/;"	m	class:TestServer	access:private
+TestServer::write_timeout_	test_server.h	/^	int write_timeout_;$/;"	m	class:TestServer	access:private
+TestServer::~TestServer	test_server.cpp	/^TestServer::~TestServer()$/;"	f	class:TestServer	signature:()
+TestServer::~TestServer	test_server.h	/^	~TestServer();$/;"	p	class:TestServer	access:public	signature:()
+USER_INFO_LIST_H_	user_info_list.h	2;"	d
+UserInfoEx	user_info_list.cpp	/^UserInfoEx::UserInfoEx()$/;"	f	class:UserInfoEx	signature:()
+UserInfoEx	user_info_list.h	/^	UserInfoEx();$/;"	p	class:UserInfoEx	access:public	signature:()
+UserInfoEx	user_info_list.h	/^class UserInfoEx : public BaseUserInfo$/;"	c	inherits:BaseUserInfo
+UserInfoEx::DealWithData	user_info_list.cpp	/^void UserInfoEx::DealWithData(struct bufferevent *buff_ev,void *arg)$/;"	f	class:UserInfoEx	signature:(struct bufferevent *buff_ev,void *arg)
+UserInfoEx::DealWithData	user_info_list.h	/^	void DealWithData(struct bufferevent *buff_ev,void *arg);$/;"	p	class:UserInfoEx	access:public	signature:(struct bufferevent *buff_ev,void *arg)
+UserInfoEx::UserInfoEx	user_info_list.cpp	/^UserInfoEx::UserInfoEx()$/;"	f	class:UserInfoEx	signature:()
+UserInfoEx::UserInfoEx	user_info_list.h	/^	UserInfoEx();$/;"	p	class:UserInfoEx	access:public	signature:()
+UserInfoEx::user_uip	user_info_list.h	/^	int user_uip;$/;"	m	class:UserInfoEx	access:private
+UserInfoEx::user_uport	user_info_list.h	/^	short user_uport;$/;"	m	class:UserInfoEx	access:private
+UserInfoEx::~UserInfoEx	user_info_list.cpp	/^UserInfoEx::~UserInfoEx()$/;"	f	class:UserInfoEx	signature:()
+UserInfoEx::~UserInfoEx	user_info_list.h	/^	~UserInfoEx();$/;"	p	class:UserInfoEx	access:public	signature:()
+UserInfoList	user_info_list.cpp	/^UserInfoList::UserInfoList()$/;"	f	class:UserInfoList	signature:()
+UserInfoList	user_info_list.h	/^	UserInfoList();$/;"	p	class:UserInfoList	access:public	signature:()
+UserInfoList	user_info_list.h	/^class UserInfoList : public BaseUserInfoResource$/;"	c	inherits:BaseUserInfoResource
+UserInfoList::AddUserInfo	user_info_list.cpp	/^bool UserInfoList::AddUserInfo(int user_hashkey,UserInfoEx &user)$/;"	f	class:UserInfoList	signature:(int user_hashkey,UserInfoEx &user)
+UserInfoList::AddUserInfo	user_info_list.h	/^	bool AddUserInfo(int user_hashkey,UserInfoEx &user);$/;"	p	class:UserInfoList	access:public	signature:(int user_hashkey,UserInfoEx &user)
+UserInfoList::DelUserInfo	user_info_list.cpp	/^bool UserInfoList::DelUserInfo(int user_hashkey)$/;"	f	class:UserInfoList	signature:(int user_hashkey)
+UserInfoList::DelUserInfo	user_info_list.h	/^	bool DelUserInfo(int user_hashkey);$/;"	p	class:UserInfoList	access:public	signature:(int user_hashkey)
+UserInfoList::GetUserInfo	user_info_list.cpp	/^BaseUserInfo *UserInfoList::GetUserInfo()$/;"	f	class:UserInfoList	signature:()
+UserInfoList::GetUserInfo	user_info_list.h	/^	virtual BaseUserInfo *GetUserInfo();$/;"	p	class:UserInfoList	access:public	signature:()
+UserInfoList::Init	user_info_list.cpp	/^int UserInfoList::Init(int max_user)$/;"	f	class:UserInfoList	signature:(int max_user)
+UserInfoList::Init	user_info_list.h	/^	int Init(int max_user);$/;"	p	class:UserInfoList	access:public	signature:(int max_user)
+UserInfoList::ReleaseUserInfo	user_info_list.cpp	/^void UserInfoList::ReleaseUserInfo(BaseUserInfo * user)$/;"	f	class:UserInfoList	signature:(BaseUserInfo * user)
+UserInfoList::ReleaseUserInfo	user_info_list.h	/^	virtual void ReleaseUserInfo(BaseUserInfo * user);$/;"	p	class:UserInfoList	access:public	signature:(BaseUserInfo * user)
+UserInfoList::UserInfoList	user_info_list.cpp	/^UserInfoList::UserInfoList()$/;"	f	class:UserInfoList	signature:()
+UserInfoList::UserInfoList	user_info_list.h	/^	UserInfoList();$/;"	p	class:UserInfoList	access:public	signature:()
+UserInfoList::unused_user_list_	user_info_list.h	/^	UserResourceManager<UserInfoEx> unused_user_list_;$/;"	m	class:UserInfoList	access:private
+UserInfoList::user_list_	user_info_list.h	/^	std::map<int,UserInfoEx*> user_list_;$/;"	m	class:UserInfoList	access:private
+UserInfoList::~UserInfoList	user_info_list.cpp	/^UserInfoList::~UserInfoList()$/;"	f	class:UserInfoList	signature:()
+UserInfoList::~UserInfoList	user_info_list.h	/^	~UserInfoList();$/;"	p	class:UserInfoList	access:public	signature:()
+UserResourceManager	common/resource_manager.h	/^	UserResourceManager();$/;"	p	class:UserResourceManager	access:public	signature:()
+UserResourceManager	common/resource_manager.h	/^UserResourceManager<T>::UserResourceManager()$/;"	f	class:UserResourceManager	signature:()
+UserResourceManager	common/resource_manager.h	/^class UserResourceManager$/;"	c
+UserResourceManager::Get	common/resource_manager.h	/^	T *Get();$/;"	p	class:UserResourceManager	access:public	signature:()
+UserResourceManager::Get	common/resource_manager.h	/^T *UserResourceManager<T>::Get()$/;"	f	class:UserResourceManager	signature:()
+UserResourceManager::Init	common/resource_manager.h	/^	int Init(int max_num);$/;"	p	class:UserResourceManager	access:public	signature:(int max_num)
+UserResourceManager::Init	common/resource_manager.h	/^int UserResourceManager<T>::Init(int max_num)$/;"	f	class:UserResourceManager	signature:(int max_num)
+UserResourceManager::Put	common/resource_manager.h	/^	bool Put(T *user);$/;"	p	class:UserResourceManager	access:public	signature:(T *user)
+UserResourceManager::Put	common/resource_manager.h	/^bool UserResourceManager<T>::Put(T *user)$/;"	f	class:UserResourceManager	signature:(T *user)
+UserResourceManager::UserResourceManager	common/resource_manager.h	/^	UserResourceManager();$/;"	p	class:UserResourceManager	access:public	signature:()
+UserResourceManager::UserResourceManager	common/resource_manager.h	/^UserResourceManager<T>::UserResourceManager()$/;"	f	class:UserResourceManager	signature:()
+UserResourceManager::list_lock_	common/resource_manager.h	/^	pthread_mutex_t list_lock_;$/;"	m	class:UserResourceManager	access:private
+UserResourceManager::max_num_	common/resource_manager.h	/^	int max_num_;$/;"	m	class:UserResourceManager	access:private
+UserResourceManager::resource_block_ptr	common/resource_manager.h	/^	T * resource_block_ptr;$/;"	m	class:UserResourceManager	access:private
+UserResourceManager::unused_user_list_	common/resource_manager.h	/^	std::list<T*> unused_user_list_;$/;"	m	class:UserResourceManager	access:private
+UserResourceManager::using_user_list_	common/resource_manager.h	/^	std::map<T*,T*> using_user_list_;$/;"	m	class:UserResourceManager	access:private
+UserResourceManager::~UserResourceManager	common/resource_manager.h	/^	~UserResourceManager();$/;"	p	class:UserResourceManager	access:public	signature:()
+UserResourceManager::~UserResourceManager	common/resource_manager.h	/^UserResourceManager<T>::~UserResourceManager()$/;"	f	class:UserResourceManager	signature:()
+WorkerThread	common/server_listenner.cpp	/^void *ServerListenner::WorkerThread(void *arg)$/;"	f	class:ServerListenner	signature:(void *arg)
+WorkerThread	common/server_listenner.h	/^	static void *WorkerThread(void *arg);$/;"	p	class:ServerListenner	access:public	signature:(void *arg)
+base_	common/server_listenner.h	/^	struct event_base *base_;$/;"	m	class:ServerListenner	typeref:struct:ServerListenner::event_base	access:private
+base_hash_key_	common/server_listenner.h	/^	int base_hash_key_;$/;"	m	class:ServerListenner	access:private
+buffev	common/base_user_info.h	/^	struct bufferevent * buffev;$/;"	m	class:BaseUserInfo	typeref:struct:BaseUserInfo::bufferevent	access:public
+count_user_per_worker_	common/server_listenner.h	/^	int count_user_per_worker_;$/;"	m	class:ServerListenner	access:private
+count_user_per_worker_	test_server.h	/^	int count_user_per_worker_;$/;"	m	class:TestServer	access:private
+count_worker_	common/server_listenner.h	/^	int count_worker_;$/;"	m	class:ServerListenner	access:private
+count_worker_	test_server.h	/^	int count_worker_;$/;"	m	class:TestServer	access:private
+hash_key	common/base_user_info.h	/^	long hash_key;$/;"	m	class:BaseUserInfo	access:public
+list_lock_	common/resource_manager.h	/^	pthread_mutex_t list_lock_;$/;"	m	class:UserResourceManager	access:private
+listen_event_	common/server_listenner.h	/^	struct event listen_event_;$/;"	m	class:ServerListenner	typeref:struct:ServerListenner::event	access:private
+main	server_main.cpp	/^int main()$/;"	f	signature:()
+max_num_	common/resource_manager.h	/^	int max_num_;$/;"	m	class:UserResourceManager	access:private
+pipe_read_fd_	common/server_listenner.h	/^	int pipe_read_fd_;$/;"	m	class:ServerListenner	access:private
+pipe_write_fd_	common/server_listenner.h	/^	int pipe_write_fd_;$/;"	m	class:ServerListenner	access:private
+read_event_	common/server_listenner.h	/^	struct event read_event_;$/;"	m	class:ServerListenner	typeref:struct:ServerListenner::event	access:private
+read_timeout_	common/server_listenner.h	/^	int read_timeout_;$/;"	m	class:ServerListenner	access:private
+read_timeout_	test_server.h	/^	int read_timeout_;$/;"	m	class:TestServer	access:private
+resource_block_ptr	common/resource_manager.h	/^	T * resource_block_ptr;$/;"	m	class:UserResourceManager	access:private
+server_ip_	common/server_listenner.h	/^	std::string server_ip_;$/;"	m	class:ServerListenner	access:private
+server_ip_	test_server.h	/^	std::string server_ip_;$/;"	m	class:TestServer	access:private
+server_listen_sock_	common/server_listenner.h	/^	int server_listen_sock_;$/;"	m	class:ServerListenner	access:private
+server_listenner_	test_server.h	/^	ServerListenner server_listenner_;$/;"	m	class:TestServer	access:private
+server_port_	common/server_listenner.h	/^	int server_port_;$/;"	m	class:ServerListenner	access:private
+server_port_	test_server.h	/^	int server_port_;$/;"	m	class:TestServer	access:private
+server_ptr	common/base_user_info.h	/^	void *server_ptr;$/;"	m	class:BaseUserInfo	access:public
+unused_user_list_	common/resource_manager.h	/^	std::list<T*> unused_user_list_;$/;"	m	class:UserResourceManager	access:private
+unused_user_list_	user_info_list.h	/^	UserResourceManager<UserInfoEx> unused_user_list_;$/;"	m	class:UserInfoList	access:private
+user_info_resource_	common/server_listenner.h	/^	BaseUserInfoResource* user_info_resource_;$/;"	m	class:ServerListenner	access:private
+user_list_	test_server.h	/^	UserInfoList user_list_;$/;"	m	class:TestServer	access:private
+user_list_	user_info_list.h	/^	std::map<int,UserInfoEx*> user_list_;$/;"	m	class:UserInfoList	access:private
+user_sock	common/base_user_info.h	/^	int user_sock;$/;"	m	class:BaseUserInfo	access:public
+user_uip	user_info_list.h	/^	int user_uip;$/;"	m	class:UserInfoEx	access:private
+user_uport	user_info_list.h	/^	short user_uport;$/;"	m	class:UserInfoEx	access:private
+using_user_list_	common/resource_manager.h	/^	std::map<T*,T*> using_user_list_;$/;"	m	class:UserResourceManager	access:private
+using_user_list_	common/server_listenner.h	/^	std::list<BaseUserInfo *> using_user_list_;$/;"	m	class:ServerListenner	access:private
+using_user_map_	common/server_listenner.h	/^	std::map<int,BaseUserInfo *> using_user_map_;$/;"	m	class:ServerListenner	access:private
+worker_base_	common/server_listenner.h	/^	struct event_base *worker_base_;$/;"	m	class:ServerListenner	typeref:struct:ServerListenner::event_base	access:private
+worker_event_	common/server_listenner.h	/^	struct event worker_event_;$/;"	m	class:ServerListenner	typeref:struct:ServerListenner::event	access:private
+write_event_	common/server_listenner.h	/^	struct event write_event_;$/;"	m	class:ServerListenner	typeref:struct:ServerListenner::event	access:private
+write_timeout_	common/server_listenner.h	/^	int write_timeout_;$/;"	m	class:ServerListenner	access:private
+write_timeout_	test_server.h	/^	int write_timeout_;$/;"	m	class:TestServer	access:private
+~BaseUserInfo	common/base_user_info.h	/^	virtual ~BaseUserInfo(){};$/;"	f	class:BaseUserInfo	access:public	signature:()
+~ServerListenner	common/server_listenner.cpp	/^ServerListenner::~ServerListenner()$/;"	f	class:ServerListenner	signature:()
+~ServerListenner	common/server_listenner.h	/^	~ServerListenner();$/;"	p	class:ServerListenner	access:public	signature:()
+~TestServer	test_server.cpp	/^TestServer::~TestServer()$/;"	f	class:TestServer	signature:()
+~TestServer	test_server.h	/^	~TestServer();$/;"	p	class:TestServer	access:public	signature:()
+~UserInfoEx	user_info_list.cpp	/^UserInfoEx::~UserInfoEx()$/;"	f	class:UserInfoEx	signature:()
+~UserInfoEx	user_info_list.h	/^	~UserInfoEx();$/;"	p	class:UserInfoEx	access:public	signature:()
+~UserInfoList	user_info_list.cpp	/^UserInfoList::~UserInfoList()$/;"	f	class:UserInfoList	signature:()
+~UserInfoList	user_info_list.h	/^	~UserInfoList();$/;"	p	class:UserInfoList	access:public	signature:()
+~UserResourceManager	common/resource_manager.h	/^	~UserResourceManager();$/;"	p	class:UserResourceManager	access:public	signature:()
+~UserResourceManager	common/resource_manager.h	/^UserResourceManager<T>::~UserResourceManager()$/;"	f	class:UserResourceManager	signature:()
