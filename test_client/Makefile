@@ -6,11 +6,11 @@ CC = g++
 LINK = g++
 CCFlag = -O0 -g3 -w -c -fmessage-length=0 -fPIC
 LINKFlag = -shared
-PROGRAM = testserver
+PROGRAM = tclient
 
-INCLUDES = -I$(ROOT)/ -Icommon
+INCLUDES = -I$(ROOT)/
 #LIBPATH= -Llib/libevent -Llib/protobuf
-LIBS = -lpthread -levent -lprotobuf
+LIBS = -lprotobuf
 #-lrt -ldl -levent_core -levent_pthreads -lprotobuf -lprotoc
 RM = rm -f
 

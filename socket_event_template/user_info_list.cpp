@@ -17,6 +17,8 @@
  */
 
 #include "user_info_list.h"
+#include "packet/cyt_packet.pb.h"
+#include "packet/package_define.pb.h"
 
 UserInfoEx::UserInfoEx()
 {
@@ -46,7 +48,14 @@ void UserInfoEx::DealWithData(struct bufferevent *buff_ev,void *arg)
 	std::cout<<hash_key<<"UserInfoEx::DealWithData()"<<std::endl;
 	char tmp_read_buff[0x1000] = {0};
 	int tmp_len = bufferevent_read(buffev,tmp_read_buff,0x1000);
-	std::cout<<"Read:"<<tmp_read_buff<<std::endl;
+	StruCytPacket tmp_pack_cyt_pack;
+	tmp_pack_cyt_pack.ParseFromArray(tmp_read_buff,tmp_len);
+	std::cout<<tmp_pack_cyt_pack.str_head()<<std::endl;
+	std::cout<<tmp_pack_cyt_pack.room_id()<<std::endl;
+	std::cout<<tmp_pack_cyt_pack.msg_len()<<std::endl;
+	std::cout<<tmp_pack_cyt_pack.msg_type()<<std::endl;
+	std::cout<<tmp_pack_cyt_pack.msg_data()<<std::endl;
+	std::cout<<tmp_pack_cyt_pack.str_tail()<<std::endl;
 }
 
 /////////////////////////////////////////////////
