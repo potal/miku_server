@@ -11,7 +11,7 @@
 class UserInfoEx : public BaseUserInfo
 {
 private:
-	
+	char *recved_buff_;
 public:
 	UserInfoEx();
 	~UserInfoEx();
@@ -25,6 +25,7 @@ class UserInfoList : public BaseUserInfoResource
 private:
 	UserResourceManager<UserInfoEx> unused_user_list_;
 	std::map<int,UserInfoEx*> user_list_;
+	pthread_mutex_t list_lock_;
 
 public:
 	virtual BaseUserInfo *GetUserInfo();

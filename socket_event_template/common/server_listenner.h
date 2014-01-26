@@ -24,6 +24,16 @@
 //基础用户列表信息，也就是基础资源列表
 #include "base_user_info_resource.h"
 
+struct WorkerInfo
+{
+	struct event_base *worker_base;
+	struct event worker_event;
+	int pipe_read_fd;
+	int pipe_write_fd;
+	void *server_ptr;
+	pthread_t worker_thread_id;
+};
+
 class ServerListenner
 {
 private:	
@@ -39,12 +49,13 @@ private:
 	struct event_base *base_;
 	struct event listen_event_;
 
-	struct event_base *worker_base_;
-	struct event worker_event_;
-	int pipe_read_fd_;
-	int pipe_write_fd_;
-	struct event read_event_;
-	struct event write_event_;
+	WorkerInfo *workers_ptr_;
+//	struct event_base *worker_base_;
+//	struct event worker_event_;
+//	int pipe_read_fd_;
+//	int pipe_write_fd_;
+//	struct event read_event_;
+//	struct event write_event_;
 
 	int base_hash_key_;
 	
@@ -65,6 +76,7 @@ public:
 	bool OpenServerSocket();
 	void SafeCloseSocket(int sock);
 	BaseUserInfo *GetUserInfo();
+	void ReleaseUserInfo(int hash_key,BaseUserInfo *user);
 	
 	static void ReadAction(int sock,short event_flag,void *action_class);
 	static void AcceptAction(int sock,short event_flag,void *action_class);

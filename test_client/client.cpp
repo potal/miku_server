@@ -28,6 +28,12 @@
 #include <unistd.h>
 #include <strings.h>
 #include <netinet/in.h>
+#include <string>
+#include "package_define.pb.h"
+#include "cyt_packet.pb.h"
+
+std::string g_pack_header = "123";
+std::string g_pack_tail = "456";
 
 #define PORT 5555
 #define MAXDATASIZE 5000
@@ -39,20 +45,20 @@ int main(int argc,char **argv)
 	struct sockaddr_in srvaddr;
 	if(argc!=2)
 	{
-	perror("Usage:client hostname\n");
-	exit(1);
+		perror("Usage:client hostname\n");
+		exit(1);
 	}
 	/*函数gethostbyname获得指定域名地址所对应的ip地址*/
 	if((he=gethostbyname(argv[1]))==NULL)
 	{
-	perror("gethostbyname");
-	exit(1);
+		perror("gethostbyname");
+		exit(1);
 	}
 	/*创建套接字，返回套接字描述符*/
 	if((sockfd=socket(AF_INET,SOCK_STREAM,0))==-1)
 	{
-	perror("create socket error");
-	exit(1);
+		perror("create socket error");
+		exit(1);
 	}
 	bzero(&srvaddr,sizeof(srvaddr));
 	/*用获得的远程服务器进程的ip地址和端口号来填充一个internet套接字地址结构*/
@@ -62,19 +68,43 @@ int main(int argc,char **argv)
 	/*用connect于这个远程服务器建立一个internet连接*/
 	if(connect(sockfd,(struct sockaddr *)&srvaddr,sizeof(struct sockaddr))==-1)
 	{
-	perror("connect error");
-	exit(1);
+		perror("connect error");
+		exit(1);
 	}
-	const char * send_buff = "send buff!";
-	if(write(sockfd,send_buff,strlen(send_buff)) > 0)
+	const char * send_buff = "s";
+	StruUserLoginRQ tmp_user_login;
+	tmp_user_login.set_user_id(92002);
+	tmp_user_login.set_room_id(16000);
+	tmp_user_login.set_user_psw("123132");
+	tmp_user_login.set_user_account_name("Test");
+
+	int tmp_byte_size = tmp_user_login.ByteSize();
+	char *tmp_send_buff = new char[tmp_byte_size+1];
+	tmp_user_login.SerializeToArray(tmp_send_buff,tmp_byte_size);
+
+	StruCytPacket tmp_packet;
+	tmp_packet.set_str_head(g_pack_header.c_str(),g_pack_header.length());
+	tmp_packet.set_room_id(16000);
+	tmp_packet.set_msg_len(tmp_byte_size);
+	tmp_packet.set_msg_type(1);
+	tmp_packet.set_msg_data(tmp_send_buff,tmp_byte_size);
+	tmp_packet.set_str_tail(g_pack_tail.c_str(),g_pack_tail.length());
+
+	char tmp_buff[0x1000] = {0};
+	int tmp_send_buff_len = tmp_packet.ByteSize();
+	tmp_packet.SerializeToArray(tmp_buff,tmp_send_buff_len);
+//	std::cout<<tmp_byte_size<<" "<<tmp_send_buff<<std::endl;
+
+//	if(write(sockfd,send_buff,strlen(send_buff)) > 0)
+//	{
+//		std::cout<<"write ok1"<<std::endl;
+//	}
+
+	if(write(sockfd,tmp_buff,tmp_send_buff_len) > 0)
 	{
-	std::cout<<"write ok"<<std::endl;
+		std::cout<<"write ok!length:"<<tmp_send_buff_len<<std::endl;
 	}
-	const char *tmp_send_buff = "asfdasdfasdfas";
-	if(write(sockfd,tmp_send_buff,strlen(tmp_send_buff)) > 0)
-	{
-	std::cout<<"write 1 ok"<<std::endl;
-	}
+
 	std::cin.get();
 	/*调用read函数读取服务器write过来的信息*/
 	//  if((nbytes=read(sockfd,buf,MAXDATASIZE))==-1)

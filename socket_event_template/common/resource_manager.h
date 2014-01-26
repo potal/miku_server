@@ -39,7 +39,7 @@ UserResourceManager<T>::~UserResourceManager()
 		delete []resource_block_ptr;
 	unused_user_list_.clear();
 
-	pthread_mutex_destory(&list_lock_);
+	pthread_mutex_destroy(&list_lock_);
 }
 
 template <typename T>
