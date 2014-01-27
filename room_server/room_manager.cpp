@@ -40,8 +40,11 @@ RoomManager::~RoomManager()
 }
 
 
-bool RoomManager::AddRoom(long room_id,int server_fd)
+bool RoomManager::AddRoom(long room_id,ChatRoom *chat_room)
 {
+	if(NULL == chat_room)
+		return false;
+
 	if(NULL != room_list_[room_id])
 	{
 		//the room adding exists,modify room information
@@ -52,16 +55,9 @@ bool RoomManager::AddRoom(long room_id,int server_fd)
 	if(NULL == tmp_room)
 		return false;
 
-	tmp_room->SetRoom(room_id,server_fd);
+	tmp_room->SetRoom(chat_room);
 
 	room_list_[room_id] = tmp_room;
-	return true;
-}
-
-ChatRoom * RoomManager::GetChatRoom(long room_id)
-{
-	ChatRoom *tmp_chat_room = room_list_[room_id];
-	return tmp_chat_room;
 }
 
 bool RoomManager::DelRoom(long room_id)

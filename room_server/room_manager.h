@@ -17,8 +17,7 @@ public:
 	RoomManager();
 	~RoomManager();
 
-	bool AddRoom(long room_id,int server_fd);
-	ChatRoom * GetChatRoom(long room_id);
+	bool AddRoom(long room_id,ChatRoom * chat_room);
 	bool DelRoom(long room_id);
 };
 

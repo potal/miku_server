@@ -7,17 +7,14 @@
 class ChatRoom
 {
 private:
-	long room_id_;
-	int server_fd_;
+	long m_room_id;
+	int m_sock;
 
 public:
 	ChatRoom();
 	~ChatRoom();
 
-	bool SetRoom(long room_id,int server_fd);
-	int GetSocket(){
-		return server_fd_;
-	}
+	bool SetRoom(ChatRoom *chat_room);
 };
 
 

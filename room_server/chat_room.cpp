@@ -18,7 +18,7 @@
 
 #include "chat_room.h"
 
-ChatRoom::ChatRoom():room_id_(0),server_fd_(-1)
+ChatRoom::ChatRoom():m_sock(-1),m_room_id(0)
 {
 }
 
@@ -26,10 +26,8 @@ ChatRoom::~ChatRoom()
 {
 }
 
-bool ChatRoom::SetRoom(long room_id,int server_fd)
+bool ChatRoom::SetRoom(ChatRoom* chat_room)
 {
-	room_id_ = room_id;
-	server_fd_ = server_fd;
 	return true;
 }
 

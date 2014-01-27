@@ -23,9 +23,6 @@ public:
 public:
 	void InitConnectionInfo(const char *server_ip,const short server_port);
 	bool ConnectServer();
-	int GetSocket(){
-		return client_fd_;
-	};
 	void Disconnect();
 };
 

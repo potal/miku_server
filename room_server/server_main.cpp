@@ -1,12 +1,12 @@
 /*
  * =====================================================================================
  *
- *       Filename:  chatroom.cpp
+ *       Filename:  main.cpp
  *
  *    Description:  
  *
  *        Version:  1.0
- *        Created:  01/14/2014 01:49:29 PM
+ *        Created:  2014年01月07日 14时38分25秒
  *       Revision:  none
  *       Compiler:  gcc
  *
@@ -16,20 +16,15 @@
  * =====================================================================================
  */
 
-#include "chat_room.h"
 
-ChatRoom::ChatRoom():room_id_(0),server_fd_(-1)
+#include "room_server.h"
+
+#include <iostream>
+int main()
 {
+	RoomServer tmp_server;
+	if(tmp_server.InitServer())
+		tmp_server.StartServer();
+	std::cout<<"server quit"<<std::endl;
+	return 0;
 }
-
-ChatRoom::~ChatRoom()
-{
-}
-
-bool ChatRoom::SetRoom(long room_id,int server_fd)
-{
-	room_id_ = room_id;
-	server_fd_ = server_fd;
-	return true;
-}
-

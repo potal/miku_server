@@ -19,8 +19,6 @@
 #include "user_info_list.h"
 #include "packet/cyt_packet.pb.h"
 #include "packet/package_define.pb.h"
-#include "room_manager.h"
-#include "test_server.h"
 
 UserInfoEx::UserInfoEx()
 {
@@ -54,20 +52,13 @@ void UserInfoEx::DealWithData(struct bufferevent *buff_ev,void *arg)
 	
 	StruCytPacket tmp_pack_cyt_pack;
 	tmp_pack_cyt_pack.ParseFromArray(tmp_read_buff,tmp_len);
-	long tmp_room_id = tmp_pack_cyt_pack.room_id();
-	std::cout<<tmp_room_id<<std::endl;
-	ChatRoom *tmp_chat_room = reinterpret_cast<TestServer *>(gate_server_)->GetRoomManager()->GetChatRoom(tmp_room_id);
-	if(NULL == tmp_chat_room)
-	{
-		std::cout<<"There is no room you find"<<std::endl;
-		return ;
-	}
-	if(write(tmp_chat_room->GetSocket(),tmp_read_buff,tmp_len) != tmp_len)
-	{
-		std::cout<<"Write length error!"<<std::endl;
-		return ;
-	}
-/*
+	std::cout<<tmp_pack_cyt_pack.str_head()<<std::endl;
+	std::cout<<tmp_pack_cyt_pack.room_id()<<std::endl;
+	std::cout<<tmp_pack_cyt_pack.msg_len()<<std::endl;
+	std::cout<<tmp_pack_cyt_pack.msg_type()<<std::endl;
+	std::cout<<tmp_pack_cyt_pack.msg_data()<<std::endl;
+	std::cout<<tmp_pack_cyt_pack.str_tail()<<std::endl;
+
 	std::string tmp_msg_data = tmp_pack_cyt_pack.msg_data();
 
 	StruUserLoginRQ tmp_user_login;
@@ -77,7 +68,6 @@ void UserInfoEx::DealWithData(struct bufferevent *buff_ev,void *arg)
 	std::cout<<tmp_user_login.room_id()<<std::endl;
 	std::cout<<tmp_user_login.user_psw()<<std::endl;
 	std::cout<<tmp_user_login.user_account_name()<<std::endl;
-	*/
 }
 
 /////////////////////////////////////////////////

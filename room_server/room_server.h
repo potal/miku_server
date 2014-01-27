@@ -5,9 +5,9 @@
 #include "common/server_listenner.h"
 #include "user_info_list.h"
 #include "room_manager.h"
-#include "rs_connector.h"
+#include "cs_connector.h"
 
-class TestServer
+class RoomServer
 {
 private:
 	std::string server_ip_;
@@ -20,18 +20,15 @@ private:
 	UserInfoList user_list_;
 	ServerListenner server_listenner_;
 	RoomManager room_manager_;
-	RoomServerConnector rs_connector_;
+	CenterServerConnector cs_connector_;
 
 public:
-	TestServer();
-	~TestServer();
+	RoomServer();
+	~RoomServer();
 
 	bool GetConfig(std::string file_name);
 	bool InitServer();
 	bool StartServer();
-	RoomManager *GetRoomManager(){
-		return &room_manager_;
-	};
 	void StopServer();
 };
 
