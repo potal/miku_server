@@ -54,6 +54,10 @@ ByteSize	package_define.pb.h	/^  int ByteSize() const;$/;"	p	class:StruUserOffMi
 ByteSize	package_define.pb.h	/^  int ByteSize() const;$/;"	p	class:StruUserOffMicRS	access:public	signature:() const
 ByteSize	package_define.pb.h	/^  int ByteSize() const;$/;"	p	class:StruUserOnMicID	access:public	signature:() const
 ByteSize	package_define.pb.h	/^  int ByteSize() const;$/;"	p	class:StruUserRoleInfoID	access:public	signature:() const
+CC	Makefile	/^CC = g++$/;"	m
+CCFlag	Makefile	/^CCFlag = -O0 -g3 -w -c -fmessage-length=0 -fPIC$/;"	m
+CCSRC	Makefile	/^CCSRC=$(shell find $(ROOT) -path -prune -o -name '*.cc')$/;"	m
+CCSRCOBJ	Makefile	/^CCSRCOBJ=$(CCSRC:%.cc=%.o)$/;"	m
 Clear	cyt_packet.pb.cpp	/^void StruCytPacket::Clear() {$/;"	f	class:StruCytPacket	signature:()
 Clear	cyt_packet.pb.h	/^  void Clear();$/;"	p	class:StruCytPacket	access:public	signature:()
 Clear	package_define.pb.cc	/^void StruCancleUserMicRQ::Clear() {$/;"	f	class:StruCancleUserMicRQ	signature:()
@@ -204,8 +208,8 @@ CopyFrom	package_define.pb.h	/^  void CopyFrom(const StruUserOffMicRQ& from);$/;
 CopyFrom	package_define.pb.h	/^  void CopyFrom(const StruUserOffMicRS& from);$/;"	p	class:StruUserOffMicRS	access:public	signature:(const StruUserOffMicRS& from)
 CopyFrom	package_define.pb.h	/^  void CopyFrom(const StruUserOnMicID& from);$/;"	p	class:StruUserOnMicID	access:public	signature:(const StruUserOnMicID& from)
 CopyFrom	package_define.pb.h	/^  void CopyFrom(const StruUserRoleInfoID& from);$/;"	p	class:StruUserRoleInfoID	access:public	signature:(const StruUserRoleInfoID& from)
-DO_	cyt_packet.pb.cpp	202;"	d	file:
-DO_	cyt_packet.pb.cpp	314;"	d	file:
+DO_	cyt_packet.pb.cpp	201;"	d	file:
+DO_	cyt_packet.pb.cpp	313;"	d	file:
 DO_	package_define.pb.cc	1069;"	d	file:
 DO_	package_define.pb.cc	1357;"	d	file:
 DO_	package_define.pb.cc	1442;"	d	file:
@@ -368,7 +372,8 @@ GetMetadata	package_define.pb.h	/^  ::google::protobuf::Metadata GetMetadata() c
 GetMetadata	package_define.pb.h	/^  ::google::protobuf::Metadata GetMetadata() const;$/;"	p	class:StruUserOffMicRS	access:public	signature:() const
 GetMetadata	package_define.pb.h	/^  ::google::protobuf::Metadata GetMetadata() const;$/;"	p	class:StruUserOnMicID	access:public	signature:() const
 GetMetadata	package_define.pb.h	/^  ::google::protobuf::Metadata GetMetadata() const;$/;"	p	class:StruUserRoleInfoID	access:public	signature:() const
-INTERNAL_SUPPRESS_PROTOBUF_FIELD_DEPRECATION	cyt_packet.pb.cpp	4;"	d	file:
+INCLUDES	Makefile	/^INCLUDES = -I$(ROOT)\/$/;"	m
+INTERNAL_SUPPRESS_PROTOBUF_FIELD_DEPRECATION	cyt_packet.pb.cpp	3;"	d	file:
 INTERNAL_SUPPRESS_PROTOBUF_FIELD_DEPRECATION	package_define.pb.cc	3;"	d	file:
 InitAsDefaultInstance	cyt_packet.pb.cpp	/^void StruCytPacket::InitAsDefaultInstance() {$/;"	f	class:StruCytPacket	signature:()
 InitAsDefaultInstance	cyt_packet.pb.h	/^  void InitAsDefaultInstance();$/;"	p	class:StruCytPacket	access:private	signature:()
@@ -470,7 +475,10 @@ IsInitialized	package_define.pb.h	/^  bool IsInitialized() const;$/;"	p	class:St
 IsInitialized	package_define.pb.h	/^  bool IsInitialized() const;$/;"	p	class:StruUserOffMicRS	access:public	signature:() const
 IsInitialized	package_define.pb.h	/^  bool IsInitialized() const;$/;"	p	class:StruUserOnMicID	access:public	signature:() const
 IsInitialized	package_define.pb.h	/^  bool IsInitialized() const;$/;"	p	class:StruUserRoleInfoID	access:public	signature:() const
-MAXDATASIZE	client.cpp	35;"	d	file:
+LIBS	Makefile	/^LIBS = -lprotobuf$/;"	m
+LINK	Makefile	/^LINK = g++$/;"	m
+LINKFlag	Makefile	/^LINKFlag = -shared$/;"	m
+MAXDATASIZE	client.cpp	39;"	d	file:
 MergeFrom	cyt_packet.pb.cpp	/^void StruCytPacket::MergeFrom(const ::google::protobuf::Message& from) {$/;"	f	class:StruCytPacket	signature:(const ::google::protobuf::Message& from)
 MergeFrom	cyt_packet.pb.cpp	/^void StruCytPacket::MergeFrom(const StruCytPacket& from) {$/;"	f	class:StruCytPacket	signature:(const StruCytPacket& from)
 MergeFrom	cyt_packet.pb.h	/^  void MergeFrom(const ::google::protobuf::Message& from);$/;"	p	class:StruCytPacket	access:public	signature:(const ::google::protobuf::Message& from)
@@ -671,9 +679,15 @@ New	package_define.pb.h	/^  StruUserOffMicRQ* New() const;$/;"	p	class:StruUserO
 New	package_define.pb.h	/^  StruUserOffMicRS* New() const;$/;"	p	class:StruUserOffMicRS	access:public	signature:() const
 New	package_define.pb.h	/^  StruUserOnMicID* New() const;$/;"	p	class:StruUserOnMicID	access:public	signature:() const
 New	package_define.pb.h	/^  StruUserRoleInfoID* New() const;$/;"	p	class:StruUserRoleInfoID	access:public	signature:() const
-PORT	client.cpp	34;"	d	file:
+PORT	client.cpp	38;"	d	file:
+PROGRAM	Makefile	/^PROGRAM = tclient$/;"	m
 PROTOBUF_cyt_5fpacket_2eproto__INCLUDED	cyt_packet.pb.h	5;"	d
 PROTOBUF_package_5fdefine_2eproto__INCLUDED	package_define.pb.h	5;"	d
+RM	Makefile	/^RM = rm -f$/;"	m
+ROOT	Makefile	/^ROOT =.$/;"	m
+SOURCE0	Makefile	/^SOURCE0 := $(wildcard $SRC)$/;"	m
+SRC	Makefile	/^SRC=$(shell find $(ROOT) -path -prune -o -name '*.cpp')$/;"	m
+SRCOBJ	Makefile	/^SRCOBJ=$(SRC:%.cpp=%.o)$/;"	m
 SerializeWithCachedSizes	cyt_packet.pb.cpp	/^void StruCytPacket::SerializeWithCachedSizes($/;"	f	class:StruCytPacket	signature:( ::google::protobuf::io::CodedOutputStream* output) const
 SerializeWithCachedSizes	cyt_packet.pb.h	/^  void SerializeWithCachedSizes($/;"	p	class:StruCytPacket	access:public	signature:( ::google::protobuf::io::CodedOutputStream* output) const
 SerializeWithCachedSizes	package_define.pb.cc	/^void StruCancleUserMicRQ::SerializeWithCachedSizes($/;"	f	class:StruCancleUserMicRQ	signature:( ::google::protobuf::io::CodedOutputStream* output) const
@@ -5369,6 +5383,8 @@ dst_user_id_	package_define.pb.h	/^  ::google::protobuf::int32 dst_user_id_;$/;"
 dst_user_id_	package_define.pb.h	/^  ::google::protobuf::int32 dst_user_id_;$/;"	m	class:StruUserGiveGiftRS	access:private
 dst_user_id_	package_define.pb.h	/^  ::google::protobuf::int32 dst_user_id_;$/;"	m	class:StruUserMsgRQ	access:private
 dst_user_id_	package_define.pb.h	/^  ::google::protobuf::int32 dst_user_id_;$/;"	m	class:StruUserMsgTextID	access:private
+g_pack_header	client.cpp	/^std::string g_pack_header = "123";$/;"	v
+g_pack_tail	client.cpp	/^std::string g_pack_tail = "456";$/;"	v
 gift_code	package_define.pb.h	/^  inline const ::std::string& gift_code() const;$/;"	p	class:StruUserGiveGiftRQ	access:public	signature:() const
 gift_code	package_define.pb.h	/^  inline const ::std::string& gift_code() const;$/;"	p	class:StruUserGiveGiftRS	access:public	signature:() const
 gift_code	package_define.pb.h	/^inline const ::std::string& StruUserGiveGiftRQ::gift_code() const {$/;"	f	class:StruUserGiveGiftRQ	signature:() const

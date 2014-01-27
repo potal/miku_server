@@ -4,6 +4,8 @@
 #include "common/base_user_info.h"
 #include "common/server_listenner.h"
 #include "user_info_list.h"
+#include "room_manager.h"
+#include "rs_connector.h"
 
 class TestServer
 {
@@ -17,6 +19,8 @@ private:
 
 	UserInfoList user_list_;
 	ServerListenner server_listenner_;
+	RoomManager room_manager_;
+	RoomServerConnector rs_connector_;
 
 public:
 	TestServer();

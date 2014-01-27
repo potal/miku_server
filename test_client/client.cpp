@@ -73,6 +73,7 @@ int main(int argc,char **argv)
 	}
 	const char * send_buff = "s";
 	StruUserLoginRQ tmp_user_login;
+	tmp_user_login.set_msg_id(E_USER_LOGIN_RQ);
 	tmp_user_login.set_user_id(92002);
 	tmp_user_login.set_room_id(16000);
 	tmp_user_login.set_user_psw("123132");

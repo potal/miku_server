@@ -25,7 +25,7 @@ public:
 	};
 	virtual ~BaseUserInfo()
 	{
-		bufferevent_free(buffev);
+		//bufferevent_free(buffev);
 	};
 
 	virtual void Clear(){

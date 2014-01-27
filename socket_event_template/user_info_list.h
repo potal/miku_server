@@ -10,8 +10,9 @@
 
 class UserInfoEx : public BaseUserInfo
 {
-private:
+public:
 	char *recved_buff_;
+	void *gate_server_;
 public:
 	UserInfoEx();
 	~UserInfoEx();
@@ -25,6 +26,7 @@ class UserInfoList : public BaseUserInfoResource
 private:
 	UserResourceManager<UserInfoEx> unused_user_list_;
 	std::map<int,UserInfoEx*> user_list_;
+	void *gate_server_;
 	pthread_mutex_t list_lock_;
 
 public:
@@ -37,6 +39,6 @@ public:
 	UserInfoList();
 	~UserInfoList();
 
-	int Init(int max_user);
+	int Init(int max_user,void *server_ptr);
 };
 #endif

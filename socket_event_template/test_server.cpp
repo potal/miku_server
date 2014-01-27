@@ -74,20 +74,27 @@ bool TestServer::InitServer()
 {
 	if(!GetConfig("server.conf"))
 		return false;
-	int tmp_max_user_count = user_list_.Init(1000);
+	int tmp_max_user_count = user_list_.Init(10,this);
 	std::cout<<"Max user:"<<tmp_max_user_count<<std::endl;
 	std::cout<<"IP:"<<server_ip_<<"  port:"<<server_port_<<std::endl;
 	bool tmp_return = server_listenner_.InitServer(server_ip_,server_port_,count_worker_,count_user_per_worker_,read_timeout_,write_timeout_);
 	
 	if(!tmp_return)
 		return false;
+	rs_connector_.InitConnectionInfo("192.168.229.128",5556);
 	return true;
 }
 
 bool TestServer::StartServer()
 {
-	bool tmp_return = server_listenner_.StartServer(&user_list_);
-
+	bool tmp_return = false;
+	tmp_return = rs_connector_.ConnectServer();
+	if(!tmp_return)
+		return false;
+	std::cout<<"Connect RoomServer OK!"<<std::endl;
+	tmp_return = server_listenner_.StartServer(&user_list_);
+	if(!tmp_return)
+		return false;
 	return true;
 }
 

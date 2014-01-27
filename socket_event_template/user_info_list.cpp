@@ -48,6 +48,9 @@ void UserInfoEx::DealWithData(struct bufferevent *buff_ev,void *arg)
 	std::cout<<hash_key<<"UserInfoEx::DealWithData()"<<std::endl;
 	char tmp_read_buff[0x1000] = {0};
 	int tmp_len = bufferevent_read(buffev,tmp_read_buff,0x1000);
+	//analyse received buffer ...
+	
+	/*
 	StruCytPacket tmp_pack_cyt_pack;
 	tmp_pack_cyt_pack.ParseFromArray(tmp_read_buff,tmp_len);
 	std::cout<<tmp_pack_cyt_pack.str_head()<<std::endl;
@@ -56,6 +59,17 @@ void UserInfoEx::DealWithData(struct bufferevent *buff_ev,void *arg)
 	std::cout<<tmp_pack_cyt_pack.msg_type()<<std::endl;
 	std::cout<<tmp_pack_cyt_pack.msg_data()<<std::endl;
 	std::cout<<tmp_pack_cyt_pack.str_tail()<<std::endl;
+
+	std::string tmp_msg_data = tmp_pack_cyt_pack.msg_data();
+
+	StruUserLoginRQ tmp_user_login;
+	tmp_user_login.ParseFromArray(tmp_msg_data.c_str(),tmp_msg_data.size());
+	std::cout<<tmp_user_login.msg_id()<<std::endl;
+	std::cout<<tmp_user_login.user_id()<<std::endl;
+	std::cout<<tmp_user_login.room_id()<<std::endl;
+	std::cout<<tmp_user_login.user_psw()<<std::endl;
+	std::cout<<tmp_user_login.user_account_name()<<std::endl;
+	*/
 }
 
 /////////////////////////////////////////////////
@@ -99,8 +113,9 @@ BaseUserInfo *UserInfoList::GetUserByHashkey(int user_hashkey)
 	return tmp_user;
 }
 
-int UserInfoList::Init(int max_user)
+int UserInfoList::Init(int max_user,void *server_ptr)
 {
+	gate_server_ = server_ptr;
 	return unused_user_list_.Init(max_user);
 }
 
@@ -115,6 +130,7 @@ bool UserInfoList::AddUserInfo(int user_hashkey,BaseUserInfo *user)
 	UserInfoEx *tmp_user = (UserInfoEx *)user;
 	tmp_user->hash_key = user_hashkey;
 	//copy other members
+	tmp_user->gate_server_ = gate_server_;
 	user_list_[user_hashkey] = tmp_user;
 	pthread_mutex_unlock(&list_lock_);
 	return true;
