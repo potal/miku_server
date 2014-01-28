@@ -94,16 +94,22 @@ int main(int argc,char **argv)
 	char tmp_buff[0x1000] = {0};
 	int tmp_send_buff_len = tmp_packet.ByteSize();
 	tmp_packet.SerializeToArray(tmp_buff,tmp_send_buff_len);
-//	std::cout<<tmp_byte_size<<" "<<tmp_send_buff<<std::endl;
+
+	std::cout<<"Total length:"<<tmp_send_buff_len<<std::endl;
 
 //	if(write(sockfd,send_buff,strlen(send_buff)) > 0)
 //	{
 //		std::cout<<"write ok1"<<std::endl;
 //	}
+	int tmp_first_send_len = 10;
 
-	if(write(sockfd,tmp_buff,tmp_send_buff_len) > 0)
+	if(write(sockfd,tmp_buff,tmp_first_send_len) > 0)
 	{
-		std::cout<<"write ok!length:"<<tmp_send_buff_len<<std::endl;
+		std::cout<<"write ok!length:"<<tmp_first_send_len<<std::endl;
+	}
+	if(write(sockfd,tmp_buff+tmp_first_send_len,tmp_send_buff_len-tmp_first_send_len) > 0)
+	{
+		std::cout<<"write ok!length:"<<tmp_send_buff_len-tmp_first_send_len<<std::endl;
 	}
 
 	std::cin.get();

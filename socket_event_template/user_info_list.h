@@ -11,6 +11,7 @@
 class UserInfoEx : public BaseUserInfo
 {
 public:
+	int remain_buff_len_;
 	char *recved_buff_;
 	void *gate_server_;
 public:

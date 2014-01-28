@@ -22,7 +22,7 @@
 #include "room_manager.h"
 #include "test_server.h"
 
-UserInfoEx::UserInfoEx()
+UserInfoEx::UserInfoEx():remain_buff_len_(0)
 {
 	recved_buff_ = new char[0x1000];
 }
@@ -47,37 +47,49 @@ void UserInfoEx::Clear()
 
 void UserInfoEx::DealWithData(struct bufferevent *buff_ev,void *arg)
 {
-	std::cout<<hash_key<<"UserInfoEx::DealWithData()"<<std::endl;
 	char tmp_read_buff[0x1000] = {0};
 	int tmp_len = bufferevent_read(buffev,tmp_read_buff,0x1000);
+	std::cout<<"UserInfoEx::DealWithData() user("<<hash_key<<") recv "<<tmp_len<<" bytes"<<std::endl;
+	if(remain_buff_len_+tmp_len < 0x1000)
+	{
+		memcpy(recved_buff_+remain_buff_len_,tmp_read_buff,tmp_len);
+		remain_buff_len_ += tmp_len;
+	}
+	else
+	{
+		memset(recved_buff_,0,0x1000);
+		memcpy(recved_buff_,tmp_read_buff,tmp_len);
+		remain_buff_len_ = tmp_len;
+	}
 	//analyse received buffer ...
-	
+	std::cout<<"remain_len:"<<remain_buff_len_<<" Buff:"<<recved_buff_<<std::endl;
+	bool tmp_result = false;
 	StruCytPacket tmp_pack_cyt_pack;
-	tmp_pack_cyt_pack.ParseFromArray(tmp_read_buff,tmp_len);
-	long tmp_room_id = tmp_pack_cyt_pack.room_id();
-	std::cout<<tmp_room_id<<std::endl;
-	ChatRoom *tmp_chat_room = reinterpret_cast<TestServer *>(gate_server_)->GetRoomManager()->GetChatRoom(tmp_room_id);
-	if(NULL == tmp_chat_room)
+	char tmp_send_buff[0x1000] = {0};
+	do
 	{
-		std::cout<<"There is no room you find"<<std::endl;
-		return ;
-	}
-	if(write(tmp_chat_room->GetSocket(),tmp_read_buff,tmp_len) != tmp_len)
-	{
-		std::cout<<"Write length error!"<<std::endl;
-		return ;
-	}
-/*
-	std::string tmp_msg_data = tmp_pack_cyt_pack.msg_data();
-
-	StruUserLoginRQ tmp_user_login;
-	tmp_user_login.ParseFromArray(tmp_msg_data.c_str(),tmp_msg_data.size());
-	std::cout<<tmp_user_login.msg_id()<<std::endl;
-	std::cout<<tmp_user_login.user_id()<<std::endl;
-	std::cout<<tmp_user_login.room_id()<<std::endl;
-	std::cout<<tmp_user_login.user_psw()<<std::endl;
-	std::cout<<tmp_user_login.user_account_name()<<std::endl;
-	*/
+		tmp_result = tmp_pack_cyt_pack.ParseFromArray(recved_buff_,remain_buff_len_);
+		if(tmp_result)
+		{
+			int tmp_current_pack_len = tmp_pack_cyt_pack.ByteSize();
+			memcpy(tmp_send_buff,recved_buff_,tmp_current_pack_len);
+			remain_buff_len_ -= tmp_current_pack_len;
+			memmove(recved_buff_,recved_buff_+tmp_current_pack_len,0x1000-tmp_current_pack_len);
+			long tmp_room_id = tmp_pack_cyt_pack.room_id();
+			std::cout<<tmp_room_id<<std::endl;
+			ChatRoom *tmp_chat_room = reinterpret_cast<TestServer *>(gate_server_)->GetRoomManager()->GetChatRoom(tmp_room_id);
+			if(NULL == tmp_chat_room)
+			{
+				std::cout<<"There is no room you find"<<std::endl;
+				continue ;
+			}
+			if(write(tmp_chat_room->GetSocket(),tmp_send_buff,tmp_current_pack_len) != tmp_current_pack_len)
+			{
+				std::cout<<"Write length error!"<<std::endl;
+				return ;
+			}
+		}
+	}while (tmp_result);
 }
 
 /////////////////////////////////////////////////
