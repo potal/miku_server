@@ -6,6 +6,7 @@
 #include "user_info_list.h"
 #include "room_manager.h"
 #include "rs_connector.h"
+#include "common/command_chain.h"
 
 class TestServer
 {
@@ -21,6 +22,7 @@ private:
 	ServerListenner server_listenner_;
 	RoomManager room_manager_;
 	RoomServerConnector rs_connector_;
+	CommandChain ds_cmd_chain_;
 
 public:
 	TestServer();
@@ -29,7 +31,9 @@ public:
 	bool GetConfig(std::string file_name);
 	bool InitServer();
 	bool StartServer();
-	RoomManager *GetRoomManager(){
+	
+	RoomManager *GetRoomManager()
+	{
 		return &room_manager_;
 	};
 	void StopServer();

@@ -16,11 +16,11 @@
  * =====================================================================================
  */
 
-#include "user_info_list.h"
 #include "packet/cyt_packet.pb.h"
 #include "packet/package_define.pb.h"
 #include "room_manager.h"
 #include "test_server.h"
+#include "user_info_list.h"
 
 UserInfoEx::UserInfoEx():remain_buff_len_(0)
 {

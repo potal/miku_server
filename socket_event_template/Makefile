@@ -28,6 +28,8 @@ $(PROGRAM): $(SRCOBJ) $(CCSRCOBJ)
 %.o:%.cc
 	$(CC) -c $(MACROS) $(CCFlag) $(INCLUDES) $< -o $@
 
+.PHONY:clean
+
 clean::
 	$(RM) $(SRCOBJ)
 	$(RM) $(ROOT)/$PROGRAM
