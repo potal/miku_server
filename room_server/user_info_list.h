@@ -12,7 +12,7 @@ class UserInfoEx : public BaseUserInfo
 {
 public:
 	char *recved_buff_;
-	void *gate_server_;
+	void *room_server_;
 public:
 	UserInfoEx();
 	~UserInfoEx();
@@ -26,7 +26,7 @@ class UserInfoList : public BaseUserInfoResource
 private:
 	UserResourceManager<UserInfoEx> unused_user_list_;
 	std::map<int,UserInfoEx*> user_list_;
-	void *gate_server_;
+	void *room_server_;
 	pthread_mutex_t list_lock_;
 
 public:

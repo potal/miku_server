@@ -33,6 +33,11 @@ public:
 	bool InitServer();
 	bool StartServer();
 	void StopServer();
+
+	UserInfoList *GetUserList();
+	RoomManager *GetRoomManager();
+	CenterServerConnector *GetCSConnector();
+	ClientProcessor *GetClientProcessor();
 };
 
 #endif

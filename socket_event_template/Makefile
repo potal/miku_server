@@ -32,4 +32,5 @@ $(PROGRAM): $(SRCOBJ) $(CCSRCOBJ)
 
 clean::
 	$(RM) $(SRCOBJ)
+	$(RM) $(CCSRCOBJ)
 	$(RM) $(ROOT)/$PROGRAM

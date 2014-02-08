@@ -87,7 +87,7 @@ int main(int argc,char **argv)
 	tmp_packet.set_str_head(g_pack_header.c_str(),g_pack_header.length());
 	tmp_packet.set_room_id(16000);
 	tmp_packet.set_msg_len(tmp_byte_size);
-	tmp_packet.set_msg_type(1);
+	tmp_packet.set_msg_type(E_USER_LOGIN_RQ);
 	tmp_packet.set_msg_data(tmp_send_buff,tmp_byte_size);
 	tmp_packet.set_str_tail(g_pack_tail.c_str(),g_pack_tail.length());
 
