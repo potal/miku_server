@@ -8,10 +8,10 @@
 class ChatRoom
 {
 private:
-	long m_room_id;
+	int m_room_id;
 	int m_sock;
-	UserInfoList *user_list_;
-	UserInfoList *pre_user_list_;
+	UserInfoList user_list_;
+	UserInfoList pre_user_list_;
 
 public:
 	ChatRoom();

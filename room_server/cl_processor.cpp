@@ -33,12 +33,12 @@ ClientProcessor::~ClientProcessor()
 
 }
 
-bool ClientProcessor::InitProcessor(int max_list_size,void *server_ptr)
+bool ClientProcessor::InitProcessor(int max_list_size,void *caller_ptr)
 {
-	BaseProcessor::InitProcessor(max_list_size,server_ptr);
+	BaseProcessor::InitProcessor(max_list_size,caller_ptr);
 	CommandChain *tmp_cmd_chain = GetCmdChain();
 	bool tmp_ret = false;
-	tmp_ret = tmp_cmd_chain->RegisterCommand(E_USER_LOGIN_RQ,new ClientLoginRQ(server_ptr));
+	tmp_ret = tmp_cmd_chain->RegisterCommand(E_USER_LOGIN_RQ,new ClientLoginRQ(caller_ptr));
 	if(!tmp_ret)
 	{
 		std::cout<<"Register UserLoginRQ Error"<<std::endl;

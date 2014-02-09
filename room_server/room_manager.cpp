@@ -26,7 +26,7 @@ RoomManager::RoomManager()
 
 RoomManager::~RoomManager()
 {
-	std::map<long,ChatRoom*>::iterator tmp_iter;
+	std::map<int,ChatRoom*>::iterator tmp_iter;
 	for(tmp_iter = room_list_.begin();tmp_iter != room_list_.end();tmp_iter++)
 	{
 		ChatRoom *tmp_room = tmp_iter->second;
@@ -40,8 +40,9 @@ RoomManager::~RoomManager()
 }
 
 
-bool RoomManager::AddRoom(long room_id,ChatRoom *chat_room)
+bool RoomManager::AddRoom(int room_id,ChatRoom *chat_room)
 {
+	AutoLock lock(&list_mutex_);
 	if(NULL == chat_room)
 		return false;
 
@@ -60,9 +61,10 @@ bool RoomManager::AddRoom(long room_id,ChatRoom *chat_room)
 	room_list_[room_id] = tmp_room;
 }
 
-bool RoomManager::DelRoom(long room_id)
+bool RoomManager::DelRoom(int room_id)
 {
-	std::map<long,ChatRoom*>::iterator tmp_iter = room_list_.find(room_id);
+	AutoLock lock(&list_mutex_);
+	std::map<int,ChatRoom*>::iterator tmp_iter = room_list_.find(room_id);
 	if(tmp_iter == room_list_.end())
 	{
 		return false;
@@ -71,4 +73,11 @@ bool RoomManager::DelRoom(long room_id)
 	ChatRoom *tmp_room = tmp_iter->second;
 	room_list_.erase(tmp_iter);
 	return true;
+}
+
+ChatRoom *RoomManager::GetRoom(int room_id)
+{
+	AutoLock lock(&list_mutex_);
+	ChatRoom *tmp_room = room_list_[room_id];
+	return tmp_room;
 }

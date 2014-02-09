@@ -12,7 +12,7 @@ public:
 	ClientLoginRQ(void *server_ptr);
 	~ClientLoginRQ();
 
-	void Execute(char *buff,int len,void *server_ptr);
+	void Execute(char *buff,int len,void *caller_ptr);
 };
 
 #endif

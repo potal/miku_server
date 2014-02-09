@@ -14,7 +14,7 @@ public:
 	virtual ~BaseCommand()
 	{
 	};
-	virtual void Execute(char * buff,int len,void *server_ptr) = 0;
+	virtual void Execute(char * buff,int len,void *caller_ptr) = 0;
 };
 
 

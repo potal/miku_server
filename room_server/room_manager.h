@@ -2,6 +2,7 @@
 #define ROOM_MANAGER_H_
 
 #include "chat_room.h"
+#include "common/auto_lock.h"
 #include <iostream>
 #include <map>
 #include <pthread.h>
@@ -10,15 +11,16 @@
 class RoomManager
 {
 private:
-	std::map<long,ChatRoom*> room_list_;
+	std::map<int,ChatRoom *> room_list_;
 	pthread_mutex_t list_mutex_;
 
 public:
 	RoomManager();
 	~RoomManager();
 
-	bool AddRoom(long room_id,ChatRoom * chat_room);
-	bool DelRoom(long room_id);
+	bool AddRoom(int room_id,ChatRoom * chat_room);
+	bool DelRoom(int room_id);
+	ChatRoom *GetRoom(int room_id);
 };
 
 #endif
