@@ -16,21 +16,21 @@
  * =====================================================================================
  */
 
-#include "room_server.h"
+#include "center_server.h"
 #include <sstream>
 #include <fstream>
 
-RoomServer::RoomServer()
+CenterServer::CenterServer()
 {
 
 }
 
-RoomServer::~RoomServer()
+CenterServer::~CenterServer()
 {
 
 }
 
-bool RoomServer::GetConfig(std::string file_name)
+bool CenterServer::GetConfig(std::string file_name)
 {
 	std::ifstream tmp_conf_file(file_name.c_str());
 	std::string tmp_str;
@@ -70,12 +70,12 @@ bool RoomServer::GetConfig(std::string file_name)
 	return true;
 }
 
-bool RoomServer::InitServer()
+bool CenterServer::InitServer()
 {
 	if(!GetConfig("server.conf"))
 		return false;
 	cl_processor_.InitProcessor(10,this);//max circle list buffer count
-	int tmp_max_user_count = client_list_.Init(10,this);
+	int tmp_max_user_count = user_list_.Init(10,this);
 	std::cout<<"Max user:"<<tmp_max_user_count<<std::endl;
 	std::cout<<"IP:"<<server_ip_<<"  port:"<<server_port_<<std::endl;
 	bool tmp_return = server_listenner_.InitServer(server_ip_,server_port_,count_worker_,count_user_per_worker_,read_timeout_,write_timeout_);
@@ -86,19 +86,19 @@ bool RoomServer::InitServer()
 	return true;
 }
 
-bool RoomServer::StartServer()
+bool CenterServer::StartServer()
 {
 	bool tmp_return = false;
 	//tmp_return = cs_connector_.ConnectServer();
 	//if(!tmp_return)
 	//	return false;
-	//std::cout<<"Connect RoomServer OK!"<<std::endl;
+	//std::cout<<"Connect CenterServer OK!"<<std::endl;
 	tmp_return = cl_processor_.StartProcessor(1);
 	if(!tmp_return)
 	{
 		return false;
 	}
-	tmp_return = server_listenner_.StartServer(&client_list_);
+	tmp_return = server_listenner_.StartServer(&user_list_);
 	if(!tmp_return)
 	{
 		return false;
@@ -106,27 +106,27 @@ bool RoomServer::StartServer()
 	return true;
 }
 
-void RoomServer::StopServer()
+void CenterServer::StopServer()
 {
 
 }
 
-ClientInfoList *RoomServer::GetClientList()
+UserInfoList *CenterServer::GetUserList()
 {
-	return &client_list_;
+	return &user_list_;
 }
 
-RoomManager *RoomServer::GetRoomManager()
+RoomManager *CenterServer::GetRoomManager()
 {
 	return &room_manager_;
 }
 
-CenterServerConnector *RoomServer::GetCSConnector()
+CenterServerConnector *CenterServer::GetCSConnector()
 {
 	return &cs_connector_;
 }
 
-ClientProcessor *RoomServer::GetClientProcessor()
+ClientProcessor *CenterServer::GetClientProcessor()
 {
 	return &cl_processor_;
 }

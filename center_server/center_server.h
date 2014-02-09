@@ -4,12 +4,12 @@
 #include "common/base_user_info.h"
 #include "common/server_listenner.h"
 #include "common/command_chain.h"
-#include "client_info_list.h"
+#include "user_info_list.h"
 #include "room_manager.h"
 #include "cs_connector.h"
 #include "cl_processor.h"
 
-class RoomServer
+class CenterServer
 {
 private:
 	std::string server_ip_;
@@ -19,22 +19,22 @@ private:
 	int read_timeout_;
 	int write_timeout_;
 
-	ClientInfoList client_list_;
+	UserInfoList user_list_;
 	ServerListenner server_listenner_;
 	RoomManager room_manager_;
 	CenterServerConnector cs_connector_;
 	ClientProcessor cl_processor_;
 
 public:
-	RoomServer();
-	~RoomServer();
+	CenterServer();
+	~CenterServer();
 
 	bool GetConfig(std::string file_name);
 	bool InitServer();
 	bool StartServer();
 	void StopServer();
 
-	ClientInfoList *GetClientList();
+	UserInfoList *GetUserList();
 	RoomManager *GetRoomManager();
 	CenterServerConnector *GetCSConnector();
 	ClientProcessor *GetClientProcessor();

@@ -13,11 +13,9 @@ AddBuffer	common/circle_list.cpp	/^bool CircleList::AddBuffer(char *buff,int len
 AddBuffer	common/circle_list.h	/^	bool AddBuffer(char *buff,int len);$/;"	p	class:CircleList	access:public	signature:(char *buff,int len)
 AddRoom	room_manager.cpp	/^bool RoomManager::AddRoom(long room_id,ChatRoom *chat_room)$/;"	f	class:RoomManager	signature:(long room_id,ChatRoom *chat_room)
 AddRoom	room_manager.h	/^	bool AddRoom(long room_id,ChatRoom * chat_room);$/;"	p	class:RoomManager	access:public	signature:(long room_id,ChatRoom * chat_room)
-AddUserInfo	client_info_list.cpp	/^bool ClientInfoList::AddUserInfo(int user_hashkey,BaseUserInfo *user)$/;"	f	class:ClientInfoList	signature:(int user_hashkey,BaseUserInfo *user)
-AddUserInfo	client_info_list.h	/^	virtual bool AddUserInfo(int user_hashkey,BaseUserInfo *user);$/;"	p	class:ClientInfoList	access:public	signature:(int user_hashkey,BaseUserInfo *user)
 AddUserInfo	common/base_user_info_resource.h	/^	virtual bool AddUserInfo(int user_hashkey,BaseUserInfo *user)=0;$/;"	p	class:BaseUserInfoResource	access:public	signature:(int user_hashkey,BaseUserInfo *user)
-AddUserInfo	user_info_list.cpp	/^bool UserInfoList::AddUserInfo(int user_id,UserInfo *user_info)$/;"	f	class:UserInfoList	signature:(int user_id,UserInfo *user_info)
-AddUserInfo	user_info_list.h	/^	bool AddUserInfo(int user_id,UserInfo *user_info);$/;"	p	class:UserInfoList	access:public	signature:(int user_id,UserInfo *user_info)
+AddUserInfo	user_info_list.cpp	/^bool UserInfoList::AddUserInfo(int user_hashkey,BaseUserInfo *user)$/;"	f	class:UserInfoList	signature:(int user_hashkey,BaseUserInfo *user)
+AddUserInfo	user_info_list.h	/^	virtual bool AddUserInfo(int user_hashkey,BaseUserInfo *user);$/;"	p	class:UserInfoList	access:public	signature:(int user_hashkey,BaseUserInfo *user)
 AutoLock	common/auto_lock.h	/^	AutoLock(pthread_mutex_t * mutex_t)$/;"	f	class:AutoLock	access:public	signature:(pthread_mutex_t * mutex_t)
 AutoLock	common/auto_lock.h	/^class AutoLock$/;"	c
 AutoLock::AutoLock	common/auto_lock.h	/^	AutoLock(pthread_mutex_t * mutex_t)$/;"	f	class:AutoLock	access:public	signature:(pthread_mutex_t * mutex_t)
@@ -126,7 +124,6 @@ CHAT_ROOM_H_	chat_room.h	2;"	d
 CIRCLE_BUFF_H_	common/circle_buff.h	2;"	d
 CIRCLE_LIST_H_	common/circle_list.h	2;"	d
 CLIENT_GIVE_GIFT_RQ_H_	cl_command/client_give_gift_rq.h	2;"	d
-CLIENT_INFO_LIST_H_	client_info_list.h	2;"	d
 CLIENT_LOGIN_RQ_H_	cl_command/client_login_rq.h	2;"	d
 CL_PROCESSOR_H_	cl_processor.h	2;"	d
 COMMAND_CHAIN_H_	common/command_chain.h	2;"	d
@@ -143,13 +140,10 @@ ChatRoom	chat_room.h	/^	ChatRoom();$/;"	p	class:ChatRoom	access:public	signature
 ChatRoom	chat_room.h	/^class ChatRoom$/;"	c
 ChatRoom::ChatRoom	chat_room.cpp	/^ChatRoom::ChatRoom():m_sock(-1),m_room_id(0)$/;"	f	class:ChatRoom	signature:()
 ChatRoom::ChatRoom	chat_room.h	/^	ChatRoom();$/;"	p	class:ChatRoom	access:public	signature:()
-ChatRoom::GetUserInfoList	chat_room.h	/^	UserInfoList *GetUserInfoList();$/;"	p	class:ChatRoom	access:public	signature:()
 ChatRoom::SetRoom	chat_room.cpp	/^bool ChatRoom::SetRoom(ChatRoom* chat_room)$/;"	f	class:ChatRoom	signature:(ChatRoom* chat_room)
 ChatRoom::SetRoom	chat_room.h	/^	bool SetRoom(ChatRoom *chat_room);$/;"	p	class:ChatRoom	access:public	signature:(ChatRoom *chat_room)
 ChatRoom::m_room_id	chat_room.h	/^	long m_room_id;$/;"	m	class:ChatRoom	access:private
 ChatRoom::m_sock	chat_room.h	/^	int m_sock;$/;"	m	class:ChatRoom	access:private
-ChatRoom::pre_user_list_	chat_room.h	/^	UserInfoList *pre_user_list_;$/;"	m	class:ChatRoom	access:private
-ChatRoom::user_list_	chat_room.h	/^	UserInfoList *user_list_;$/;"	m	class:ChatRoom	access:private
 ChatRoom::~ChatRoom	chat_room.cpp	/^ChatRoom::~ChatRoom()$/;"	f	class:ChatRoom	signature:()
 ChatRoom::~ChatRoom	chat_room.h	/^	~ChatRoom();$/;"	p	class:ChatRoom	access:public	signature:()
 CircleBuff	common/circle_buff.cpp	/^CircleBuff::CircleBuff()$/;"	f	class:CircleBuff	signature:()
@@ -202,8 +196,6 @@ CircleList::start_pos_index_	common/circle_list.h	/^	int start_pos_index_;$/;"	m
 CircleList::using_size_	common/circle_list.h	/^	int using_size_;$/;"	m	class:CircleList	access:private
 CircleList::~CircleList	common/circle_list.cpp	/^CircleList::~CircleList()$/;"	f	class:CircleList	signature:()
 CircleList::~CircleList	common/circle_list.h	/^	~CircleList();$/;"	p	class:CircleList	access:public	signature:()
-Clear	client_info_list.cpp	/^void ClientInfoEx::Clear()$/;"	f	class:ClientInfoEx	signature:()
-Clear	client_info_list.h	/^	void Clear();$/;"	p	class:ClientInfoEx	access:public	signature:()
 Clear	common/base_user_info.h	/^	virtual void Clear(){$/;"	f	class:BaseUserInfo	access:public	signature:()
 Clear	packet/cyt_packet.pb.cpp	/^void StruCytPacket::Clear() {$/;"	f	class:StruCytPacket	signature:()
 Clear	packet/cyt_packet.pb.h	/^  void Clear();$/;"	p	class:StruCytPacket	access:public	signature:()
@@ -255,40 +247,8 @@ Clear	packet/package_define.pb.h	/^  void Clear();$/;"	p	class:StruUserOffMicRQ	
 Clear	packet/package_define.pb.h	/^  void Clear();$/;"	p	class:StruUserOffMicRS	access:public	signature:()
 Clear	packet/package_define.pb.h	/^  void Clear();$/;"	p	class:StruUserOnMicID	access:public	signature:()
 Clear	packet/package_define.pb.h	/^  void Clear();$/;"	p	class:StruUserRoleInfoID	access:public	signature:()
-ClientInfoEx	client_info_list.cpp	/^ClientInfoEx::ClientInfoEx():room_server_(NULL)$/;"	f	class:ClientInfoEx	signature:()
-ClientInfoEx	client_info_list.h	/^	ClientInfoEx();$/;"	p	class:ClientInfoEx	access:public	signature:()
-ClientInfoEx	client_info_list.h	/^class ClientInfoEx : public BaseUserInfo$/;"	c	inherits:BaseUserInfo
-ClientInfoEx::Clear	client_info_list.cpp	/^void ClientInfoEx::Clear()$/;"	f	class:ClientInfoEx	signature:()
-ClientInfoEx::Clear	client_info_list.h	/^	void Clear();$/;"	p	class:ClientInfoEx	access:public	signature:()
-ClientInfoEx::ClientInfoEx	client_info_list.cpp	/^ClientInfoEx::ClientInfoEx():room_server_(NULL)$/;"	f	class:ClientInfoEx	signature:()
-ClientInfoEx::ClientInfoEx	client_info_list.h	/^	ClientInfoEx();$/;"	p	class:ClientInfoEx	access:public	signature:()
-ClientInfoEx::DealWithData	client_info_list.cpp	/^void ClientInfoEx::DealWithData(struct bufferevent *buff_ev,void *arg)$/;"	f	class:ClientInfoEx	signature:(struct bufferevent *buff_ev,void *arg)
-ClientInfoEx::DealWithData	client_info_list.h	/^	void DealWithData(struct bufferevent *buff_ev,void *arg);$/;"	p	class:ClientInfoEx	access:public	signature:(struct bufferevent *buff_ev,void *arg)
-ClientInfoEx::recved_buff_	client_info_list.h	/^	char *recved_buff_;$/;"	m	class:ClientInfoEx	access:public
-ClientInfoEx::room_server_	client_info_list.h	/^	void *room_server_;$/;"	m	class:ClientInfoEx	access:public
-ClientInfoEx::~ClientInfoEx	client_info_list.cpp	/^ClientInfoEx::~ClientInfoEx()$/;"	f	class:ClientInfoEx	signature:()
-ClientInfoEx::~ClientInfoEx	client_info_list.h	/^	~ClientInfoEx();$/;"	p	class:ClientInfoEx	access:public	signature:()
-ClientInfoList	client_info_list.cpp	/^ClientInfoList::ClientInfoList()$/;"	f	class:ClientInfoList	signature:()
-ClientInfoList	client_info_list.h	/^	ClientInfoList();$/;"	p	class:ClientInfoList	access:public	signature:()
-ClientInfoList	client_info_list.h	/^class ClientInfoList : public BaseUserInfoResource$/;"	c	inherits:BaseUserInfoResource
-ClientInfoList::AddUserInfo	client_info_list.cpp	/^bool ClientInfoList::AddUserInfo(int user_hashkey,BaseUserInfo *user)$/;"	f	class:ClientInfoList	signature:(int user_hashkey,BaseUserInfo *user)
-ClientInfoList::AddUserInfo	client_info_list.h	/^	virtual bool AddUserInfo(int user_hashkey,BaseUserInfo *user);$/;"	p	class:ClientInfoList	access:public	signature:(int user_hashkey,BaseUserInfo *user)
-ClientInfoList::ClientInfoList	client_info_list.cpp	/^ClientInfoList::ClientInfoList()$/;"	f	class:ClientInfoList	signature:()
-ClientInfoList::ClientInfoList	client_info_list.h	/^	ClientInfoList();$/;"	p	class:ClientInfoList	access:public	signature:()
-ClientInfoList::GetUserByHashkey	client_info_list.cpp	/^BaseUserInfo *ClientInfoList::GetUserByHashkey(int user_hashkey)$/;"	f	class:ClientInfoList	signature:(int user_hashkey)
-ClientInfoList::GetUserByHashkey	client_info_list.h	/^	virtual BaseUserInfo *GetUserByHashkey(int user_hashkey);$/;"	p	class:ClientInfoList	access:public	signature:(int user_hashkey)
-ClientInfoList::GetUserInfo	client_info_list.cpp	/^BaseUserInfo *ClientInfoList::GetUserInfo()$/;"	f	class:ClientInfoList	signature:()
-ClientInfoList::GetUserInfo	client_info_list.h	/^	virtual BaseUserInfo *GetUserInfo();$/;"	p	class:ClientInfoList	access:public	signature:()
-ClientInfoList::Init	client_info_list.cpp	/^int ClientInfoList::Init(int max_user,void *server_ptr)$/;"	f	class:ClientInfoList	signature:(int max_user,void *server_ptr)
-ClientInfoList::Init	client_info_list.h	/^	int Init(int max_user,void *server_ptr);$/;"	p	class:ClientInfoList	access:public	signature:(int max_user,void *server_ptr)
-ClientInfoList::ReleaseUserInfo	client_info_list.cpp	/^void ClientInfoList::ReleaseUserInfo(BaseUserInfo * user)$/;"	f	class:ClientInfoList	signature:(BaseUserInfo * user)
-ClientInfoList::ReleaseUserInfo	client_info_list.h	/^	virtual void ReleaseUserInfo(BaseUserInfo * user);$/;"	p	class:ClientInfoList	access:public	signature:(BaseUserInfo * user)
-ClientInfoList::list_lock_	client_info_list.h	/^	pthread_mutex_t list_lock_;$/;"	m	class:ClientInfoList	access:private
-ClientInfoList::room_server_	client_info_list.h	/^	void *room_server_;$/;"	m	class:ClientInfoList	access:private
-ClientInfoList::unused_user_list_	client_info_list.h	/^	UserResourceManager<ClientInfoEx> unused_user_list_;$/;"	m	class:ClientInfoList	access:private
-ClientInfoList::user_list_	client_info_list.h	/^	std::map<int,ClientInfoEx*> user_list_;$/;"	m	class:ClientInfoList	access:private
-ClientInfoList::~ClientInfoList	client_info_list.cpp	/^ClientInfoList::~ClientInfoList()$/;"	f	class:ClientInfoList	signature:()
-ClientInfoList::~ClientInfoList	client_info_list.h	/^	~ClientInfoList();$/;"	p	class:ClientInfoList	access:public	signature:()
+Clear	user_info_list.cpp	/^void UserInfoEx::Clear()$/;"	f	class:UserInfoEx	signature:()
+Clear	user_info_list.h	/^	void Clear();$/;"	p	class:UserInfoEx	access:public	signature:()
 ClientLoginRQ	cl_command/client_login_rq.cpp	/^ClientLoginRQ::ClientLoginRQ()$/;"	f	class:ClientLoginRQ	signature:()
 ClientLoginRQ	cl_command/client_login_rq.cpp	/^ClientLoginRQ::ClientLoginRQ(void *server_ptr)$/;"	f	class:ClientLoginRQ	signature:(void *server_ptr)
 ClientLoginRQ	cl_command/client_login_rq.h	/^	ClientLoginRQ();$/;"	p	class:ClientLoginRQ	access:public	signature:()
@@ -506,9 +466,9 @@ DO_	packet/package_define.pb.cc	9575;"	d	file:
 DO_	packet/package_define.pb.cc	966;"	d	file:
 DO_	packet/package_define.pb.cc	9821;"	d	file:
 DO_	packet/package_define.pb.cc	9890;"	d	file:
-DealWithData	client_info_list.cpp	/^void ClientInfoEx::DealWithData(struct bufferevent *buff_ev,void *arg)$/;"	f	class:ClientInfoEx	signature:(struct bufferevent *buff_ev,void *arg)
-DealWithData	client_info_list.h	/^	void DealWithData(struct bufferevent *buff_ev,void *arg);$/;"	p	class:ClientInfoEx	access:public	signature:(struct bufferevent *buff_ev,void *arg)
 DealWithData	common/base_user_info.h	/^	virtual void DealWithData(struct bufferevent *buff_ev,void *arg) = 0;$/;"	p	class:BaseUserInfo	access:public	signature:(struct bufferevent *buff_ev,void *arg)
+DealWithData	user_info_list.cpp	/^void UserInfoEx::DealWithData(struct bufferevent *buff_ev,void *arg)$/;"	f	class:UserInfoEx	signature:(struct bufferevent *buff_ev,void *arg)
+DealWithData	user_info_list.h	/^	void DealWithData(struct bufferevent *buff_ev,void *arg);$/;"	p	class:UserInfoEx	access:public	signature:(struct bufferevent *buff_ev,void *arg)
 DealWithDataThread	cl_processor.cpp	/^void* ClientProcessor::DealWithDataThread(void *arg)$/;"	f	class:ClientProcessor	signature:(void *arg)
 DealWithDataThread	cl_processor.h	/^	static void* DealWithDataThread(void *arg);$/;"	p	class:ClientProcessor	access:public	signature:(void *arg)
 DealWithReadData	common/server_listenner.cpp	/^void ServerListenner::DealWithReadData(struct bufferevent *buffev,void *arg)$/;"	f	class:ServerListenner	signature:(struct bufferevent *buffev,void *arg)
@@ -601,8 +561,6 @@ GetCaller	common/command_chain.cpp	/^void *CommandChain::GetCaller()$/;"	f	class
 GetCaller	common/command_chain.h	/^	void *GetCaller();$/;"	p	class:CommandChain	access:public	signature:()
 GetCircleList	common/base_processor.cpp	/^CircleList *BaseProcessor::GetCircleList()$/;"	f	class:BaseProcessor	signature:()
 GetCircleList	common/base_processor.h	/^	CircleList *GetCircleList();$/;"	p	class:BaseProcessor	access:public	signature:()
-GetClientList	room_server.cpp	/^ClientInfoList *RoomServer::GetClientList()$/;"	f	class:RoomServer	signature:()
-GetClientList	room_server.h	/^	ClientInfoList *GetClientList();$/;"	p	class:RoomServer	access:public	signature:()
 GetClientProcessor	room_server.cpp	/^ClientProcessor *RoomServer::GetClientProcessor()$/;"	f	class:RoomServer	signature:()
 GetClientProcessor	room_server.h	/^	ClientProcessor *GetClientProcessor();$/;"	p	class:RoomServer	access:public	signature:()
 GetCmdChain	common/base_processor.cpp	/^CommandChain *BaseProcessor::GetCmdChain()$/;"	f	class:BaseProcessor	signature:()
@@ -664,28 +622,25 @@ GetMetadata	packet/package_define.pb.h	/^  ::google::protobuf::Metadata GetMetad
 GetMetadata	packet/package_define.pb.h	/^  ::google::protobuf::Metadata GetMetadata() const;$/;"	p	class:StruUserRoleInfoID	access:public	signature:() const
 GetRoomManager	room_server.cpp	/^RoomManager *RoomServer::GetRoomManager()$/;"	f	class:RoomServer	signature:()
 GetRoomManager	room_server.h	/^	RoomManager *GetRoomManager();$/;"	p	class:RoomServer	access:public	signature:()
-GetUnusedUser	user_info_list.cpp	/^int UserInfoList::GetUnusedUser(UserInfo *&user_info)$/;"	f	class:UserInfoList	signature:(UserInfo *&user_info)
-GetUnusedUser	user_info_list.h	/^	int GetUnusedUser(UserInfo *&user_info);$/;"	p	class:UserInfoList	access:public	signature:(UserInfo *&user_info)
-GetUserByHashkey	client_info_list.cpp	/^BaseUserInfo *ClientInfoList::GetUserByHashkey(int user_hashkey)$/;"	f	class:ClientInfoList	signature:(int user_hashkey)
-GetUserByHashkey	client_info_list.h	/^	virtual BaseUserInfo *GetUserByHashkey(int user_hashkey);$/;"	p	class:ClientInfoList	access:public	signature:(int user_hashkey)
 GetUserByHashkey	common/base_user_info_resource.h	/^	virtual BaseUserInfo *GetUserByHashkey(int user_hashkey)=0;$/;"	p	class:BaseUserInfoResource	access:public	signature:(int user_hashkey)
-GetUserInfo	client_info_list.cpp	/^BaseUserInfo *ClientInfoList::GetUserInfo()$/;"	f	class:ClientInfoList	signature:()
-GetUserInfo	client_info_list.h	/^	virtual BaseUserInfo *GetUserInfo();$/;"	p	class:ClientInfoList	access:public	signature:()
+GetUserByHashkey	user_info_list.cpp	/^BaseUserInfo *UserInfoList::GetUserByHashkey(int user_hashkey)$/;"	f	class:UserInfoList	signature:(int user_hashkey)
+GetUserByHashkey	user_info_list.h	/^	virtual BaseUserInfo *GetUserByHashkey(int user_hashkey);$/;"	p	class:UserInfoList	access:public	signature:(int user_hashkey)
 GetUserInfo	common/base_user_info_resource.h	/^	virtual BaseUserInfo *GetUserInfo()=0;$/;"	p	class:BaseUserInfoResource	access:public	signature:()
 GetUserInfo	common/server_listenner.cpp	/^BaseUserInfo *ServerListenner::GetUserInfo()$/;"	f	class:ServerListenner	signature:()
 GetUserInfo	common/server_listenner.h	/^	BaseUserInfo *GetUserInfo();$/;"	p	class:ServerListenner	access:public	signature:()
-GetUserInfo	user_info_list.cpp	/^UserInfo *UserInfoList::GetUserInfo(int user_id)$/;"	f	class:UserInfoList	signature:(int user_id)
-GetUserInfo	user_info_list.h	/^	UserInfo *GetUserInfo(int user_id);$/;"	p	class:UserInfoList	access:public	signature:(int user_id)
-GetUserInfoList	chat_room.h	/^	UserInfoList *GetUserInfoList();$/;"	p	class:ChatRoom	access:public	signature:()
+GetUserInfo	user_info_list.cpp	/^BaseUserInfo *UserInfoList::GetUserInfo()$/;"	f	class:UserInfoList	signature:()
+GetUserInfo	user_info_list.h	/^	virtual BaseUserInfo *GetUserInfo();$/;"	p	class:UserInfoList	access:public	signature:()
+GetUserList	room_server.cpp	/^UserInfoList *RoomServer::GetUserList()$/;"	f	class:RoomServer	signature:()
+GetUserList	room_server.h	/^	UserInfoList *GetUserList();$/;"	p	class:RoomServer	access:public	signature:()
 INCLUDES	Makefile	/^INCLUDES = -I$(ROOT)\/ -Icommon -Ipacket$/;"	m
 INTERNAL_SUPPRESS_PROTOBUF_FIELD_DEPRECATION	packet/cyt_packet.pb.cpp	3;"	d	file:
 INTERNAL_SUPPRESS_PROTOBUF_FIELD_DEPRECATION	packet/package_define.pb.cc	3;"	d	file:
-Init	client_info_list.cpp	/^int ClientInfoList::Init(int max_user,void *server_ptr)$/;"	f	class:ClientInfoList	signature:(int max_user,void *server_ptr)
-Init	client_info_list.h	/^	int Init(int max_user,void *server_ptr);$/;"	p	class:ClientInfoList	access:public	signature:(int max_user,void *server_ptr)
 Init	common/command_chain.cpp	/^void CommandChain::Init(void *caller_ptr)$/;"	f	class:CommandChain	signature:(void *caller_ptr)
 Init	common/command_chain.h	/^	void Init(void *caller_ptr);$/;"	p	class:CommandChain	access:public	signature:(void *caller_ptr)
 Init	common/resource_manager.h	/^	int Init(int max_num);$/;"	p	class:UserResourceManager	access:public	signature:(int max_num)
 Init	common/resource_manager.h	/^int UserResourceManager<T>::Init(int max_num)$/;"	f	class:UserResourceManager	signature:(int max_num)
+Init	user_info_list.cpp	/^int UserInfoList::Init(int max_user,void *server_ptr)$/;"	f	class:UserInfoList	signature:(int max_user,void *server_ptr)
+Init	user_info_list.h	/^	int Init(int max_user,void *server_ptr);$/;"	p	class:UserInfoList	access:public	signature:(int max_user,void *server_ptr)
 InitAsDefaultInstance	packet/cyt_packet.pb.cpp	/^void StruCytPacket::InitAsDefaultInstance() {$/;"	f	class:StruCytPacket	signature:()
 InitAsDefaultInstance	packet/cyt_packet.pb.h	/^  void InitAsDefaultInstance();$/;"	p	class:StruCytPacket	access:private	signature:()
 InitAsDefaultInstance	packet/package_define.pb.cc	/^void StruCancleUserMicRQ::InitAsDefaultInstance() {$/;"	f	class:StruCancleUserMicRQ	signature:()
@@ -748,8 +703,6 @@ InitServer	common/server_listenner.cpp	/^bool ServerListenner::InitServer(std::s
 InitServer	common/server_listenner.h	/^	bool InitServer(std::string server_ip,int server_port,int worker_count,int count_user_per_worker,int read_timeout,int write_timeout);$/;"	p	class:ServerListenner	access:public	signature:(std::string server_ip,int server_port,int worker_count,int count_user_per_worker,int read_timeout,int write_timeout)
 InitServer	room_server.cpp	/^bool RoomServer::InitServer()$/;"	f	class:RoomServer	signature:()
 InitServer	room_server.h	/^	bool InitServer();$/;"	p	class:RoomServer	access:public	signature:()
-InitUserList	user_info_list.cpp	/^bool UserInfoList::InitUserList(int max_user_count)$/;"	f	class:UserInfoList	signature:(int max_user_count)
-InitUserList	user_info_list.h	/^	bool InitUserList(int max_user_count);$/;"	p	class:UserInfoList	access:public	signature:(int max_user_count)
 InitWorker	common/server_listenner.cpp	/^bool ServerListenner::InitWorker()$/;"	f	class:ServerListenner	signature:()
 InitWorker	common/server_listenner.h	/^	bool InitWorker();$/;"	p	class:ServerListenner	access:public	signature:()
 IsInitialized	packet/cyt_packet.pb.cpp	/^bool StruCytPacket::IsInitialized() const {$/;"	f	class:StruCytPacket	signature:() const
@@ -805,7 +758,6 @@ IsInitialized	packet/package_define.pb.h	/^  bool IsInitialized() const;$/;"	p	c
 LIBS	Makefile	/^LIBS = -lpthread -levent -lprotobuf$/;"	m
 LINK	Makefile	/^LINK = g++$/;"	m
 LINKFlag	Makefile	/^LINKFlag = -shared$/;"	m
-MaxNickNameLen	user_info_list.h	/^const int MaxNickNameLen = 0x20;$/;"	v
 MaxSizePerBuff	common/circle_list.h	/^const int MaxSizePerBuff = 0x1000;$/;"	v
 MergeFrom	packet/cyt_packet.pb.cpp	/^void StruCytPacket::MergeFrom(const ::google::protobuf::Message& from) {$/;"	f	class:StruCytPacket	signature:(const ::google::protobuf::Message& from)
 MergeFrom	packet/cyt_packet.pb.cpp	/^void StruCytPacket::MergeFrom(const StruCytPacket& from) {$/;"	f	class:StruCytPacket	signature:(const StruCytPacket& from)
@@ -1012,8 +964,6 @@ OpenServerSocket	common/server_listenner.h	/^	bool OpenServerSocket();$/;"	p	cla
 PROGRAM	Makefile	/^PROGRAM = roomserver$/;"	m
 PROTOBUF_cyt_5fpacket_2eproto__INCLUDED	packet/cyt_packet.pb.h	5;"	d
 PROTOBUF_package_5fdefine_2eproto__INCLUDED	packet/package_define.pb.h	5;"	d
-PushUserInUnusedList	user_info_list.cpp	/^bool UserInfoList::PushUserInUnusedList(UserInfo *user_info)$/;"	f	class:UserInfoList	signature:(UserInfo *user_info)
-PushUserInUnusedList	user_info_list.h	/^	bool PushUserInUnusedList(UserInfo *user_info);$/;"	p	class:UserInfoList	access:public	signature:(UserInfo *user_info)
 Put	common/resource_manager.h	/^	bool Put(T *user);$/;"	p	class:UserResourceManager	access:public	signature:(T *user)
 Put	common/resource_manager.h	/^bool UserResourceManager<T>::Put(T *user)$/;"	f	class:UserResourceManager	signature:(T *user)
 RESOURCE_MANAGER_H_	common/resource_manager.h	2;"	d
@@ -1033,11 +983,11 @@ ReleaseBuffer	common/circle_list.cpp	/^void CircleList::ReleaseBuffer()$/;"	f	cl
 ReleaseBuffer	common/circle_list.h	/^	void ReleaseBuffer();$/;"	p	class:CircleList	access:public	signature:()
 ReleaseCommand	common/command_chain.cpp	/^void CommandChain::ReleaseCommand(int command_index)$/;"	f	class:CommandChain	signature:(int command_index)
 ReleaseCommand	common/command_chain.h	/^	void ReleaseCommand(int command_index);$/;"	p	class:CommandChain	access:public	signature:(int command_index)
-ReleaseUserInfo	client_info_list.cpp	/^void ClientInfoList::ReleaseUserInfo(BaseUserInfo * user)$/;"	f	class:ClientInfoList	signature:(BaseUserInfo * user)
-ReleaseUserInfo	client_info_list.h	/^	virtual void ReleaseUserInfo(BaseUserInfo * user);$/;"	p	class:ClientInfoList	access:public	signature:(BaseUserInfo * user)
 ReleaseUserInfo	common/base_user_info_resource.h	/^	virtual void ReleaseUserInfo(BaseUserInfo *user)=0;$/;"	p	class:BaseUserInfoResource	access:public	signature:(BaseUserInfo *user)
 ReleaseUserInfo	common/server_listenner.cpp	/^void ServerListenner::ReleaseUserInfo(int user_hashkey,BaseUserInfo *user)$/;"	f	class:ServerListenner	signature:(int user_hashkey,BaseUserInfo *user)
 ReleaseUserInfo	common/server_listenner.h	/^	void ReleaseUserInfo(int hash_key,BaseUserInfo *user);$/;"	p	class:ServerListenner	access:public	signature:(int hash_key,BaseUserInfo *user)
+ReleaseUserInfo	user_info_list.cpp	/^void UserInfoList::ReleaseUserInfo(BaseUserInfo * user)$/;"	f	class:UserInfoList	signature:(BaseUserInfo * user)
+ReleaseUserInfo	user_info_list.h	/^	virtual void ReleaseUserInfo(BaseUserInfo * user);$/;"	p	class:UserInfoList	access:public	signature:(BaseUserInfo * user)
 ResetBuff	common/circle_buff.cpp	/^bool CircleBuff::ResetBuff()$/;"	f	class:CircleBuff	signature:()
 ResetBuff	common/circle_buff.h	/^	bool ResetBuff();$/;"	p	class:CircleBuff	access:public	signature:()
 RoomManager	room_manager.cpp	/^RoomManager::RoomManager()$/;"	f	class:RoomManager	signature:()
@@ -1058,14 +1008,14 @@ RoomServer	room_server.h	/^	RoomServer();$/;"	p	class:RoomServer	access:public	s
 RoomServer	room_server.h	/^class RoomServer$/;"	c
 RoomServer::GetCSConnector	room_server.cpp	/^CenterServerConnector *RoomServer::GetCSConnector()$/;"	f	class:RoomServer	signature:()
 RoomServer::GetCSConnector	room_server.h	/^	CenterServerConnector *GetCSConnector();$/;"	p	class:RoomServer	access:public	signature:()
-RoomServer::GetClientList	room_server.cpp	/^ClientInfoList *RoomServer::GetClientList()$/;"	f	class:RoomServer	signature:()
-RoomServer::GetClientList	room_server.h	/^	ClientInfoList *GetClientList();$/;"	p	class:RoomServer	access:public	signature:()
 RoomServer::GetClientProcessor	room_server.cpp	/^ClientProcessor *RoomServer::GetClientProcessor()$/;"	f	class:RoomServer	signature:()
 RoomServer::GetClientProcessor	room_server.h	/^	ClientProcessor *GetClientProcessor();$/;"	p	class:RoomServer	access:public	signature:()
 RoomServer::GetConfig	room_server.cpp	/^bool RoomServer::GetConfig(std::string file_name)$/;"	f	class:RoomServer	signature:(std::string file_name)
 RoomServer::GetConfig	room_server.h	/^	bool GetConfig(std::string file_name);$/;"	p	class:RoomServer	access:public	signature:(std::string file_name)
 RoomServer::GetRoomManager	room_server.cpp	/^RoomManager *RoomServer::GetRoomManager()$/;"	f	class:RoomServer	signature:()
 RoomServer::GetRoomManager	room_server.h	/^	RoomManager *GetRoomManager();$/;"	p	class:RoomServer	access:public	signature:()
+RoomServer::GetUserList	room_server.cpp	/^UserInfoList *RoomServer::GetUserList()$/;"	f	class:RoomServer	signature:()
+RoomServer::GetUserList	room_server.h	/^	UserInfoList *GetUserList();$/;"	p	class:RoomServer	access:public	signature:()
 RoomServer::InitServer	room_server.cpp	/^bool RoomServer::InitServer()$/;"	f	class:RoomServer	signature:()
 RoomServer::InitServer	room_server.h	/^	bool InitServer();$/;"	p	class:RoomServer	access:public	signature:()
 RoomServer::RoomServer	room_server.cpp	/^RoomServer::RoomServer()$/;"	f	class:RoomServer	signature:()
@@ -1075,7 +1025,6 @@ RoomServer::StartServer	room_server.h	/^	bool StartServer();$/;"	p	class:RoomSer
 RoomServer::StopServer	room_server.cpp	/^void RoomServer::StopServer()$/;"	f	class:RoomServer	signature:()
 RoomServer::StopServer	room_server.h	/^	void StopServer();$/;"	p	class:RoomServer	access:public	signature:()
 RoomServer::cl_processor_	room_server.h	/^	ClientProcessor cl_processor_;$/;"	m	class:RoomServer	access:private
-RoomServer::client_list_	room_server.h	/^	ClientInfoList client_list_;$/;"	m	class:RoomServer	access:private
 RoomServer::count_user_per_worker_	room_server.h	/^	int count_user_per_worker_;$/;"	m	class:RoomServer	access:private
 RoomServer::count_worker_	room_server.h	/^	int count_worker_;$/;"	m	class:RoomServer	access:private
 RoomServer::cs_connector_	room_server.h	/^	CenterServerConnector cs_connector_;$/;"	m	class:RoomServer	access:private
@@ -1084,6 +1033,7 @@ RoomServer::room_manager_	room_server.h	/^	RoomManager room_manager_;$/;"	m	clas
 RoomServer::server_ip_	room_server.h	/^	std::string server_ip_;$/;"	m	class:RoomServer	access:private
 RoomServer::server_listenner_	room_server.h	/^	ServerListenner server_listenner_;$/;"	m	class:RoomServer	access:private
 RoomServer::server_port_	room_server.h	/^	int server_port_;$/;"	m	class:RoomServer	access:private
+RoomServer::user_list_	room_server.h	/^	UserInfoList user_list_;$/;"	m	class:RoomServer	access:private
 RoomServer::write_timeout_	room_server.h	/^	int write_timeout_;$/;"	m	class:RoomServer	access:private
 RoomServer::~RoomServer	room_server.cpp	/^RoomServer::~RoomServer()$/;"	f	class:RoomServer	signature:()
 RoomServer::~RoomServer	room_server.h	/^	~RoomServer();$/;"	p	class:RoomServer	access:public	signature:()
@@ -5074,29 +5024,38 @@ UnitStruct::UnitStruct	common/circle_list.h	/^	UnitStruct(){$/;"	f	struct:UnitSt
 UnitStruct::buff	common/circle_list.h	/^	char buff[MaxSizePerBuff];$/;"	m	struct:UnitStruct	access:public
 UnitStruct::has_child	common/circle_list.h	/^	bool has_child;			\/\/is there any data after$/;"	m	struct:UnitStruct	access:public
 UnitStruct::len	common/circle_list.h	/^	int len;$/;"	m	struct:UnitStruct	access:public
-UserInfo	user_info_list.h	/^struct UserInfo$/;"	s
-UserInfo::user_hash_key	user_info_list.h	/^	int user_hash_key;$/;"	m	struct:UserInfo	access:public
-UserInfo::user_id	user_info_list.h	/^	int user_id;$/;"	m	struct:UserInfo	access:public
-UserInfo::user_nickname	user_info_list.h	/^	char user_nickname[MaxNickNameLen];$/;"	m	struct:UserInfo	access:public
-UserInfoList	user_info_list.cpp	/^UserInfoList::UserInfoList():max_user_count_(0)$/;"	f	class:UserInfoList	signature:()
+UserInfoEx	user_info_list.cpp	/^UserInfoEx::UserInfoEx()$/;"	f	class:UserInfoEx	signature:()
+UserInfoEx	user_info_list.h	/^	UserInfoEx();$/;"	p	class:UserInfoEx	access:public	signature:()
+UserInfoEx	user_info_list.h	/^class UserInfoEx : public BaseUserInfo$/;"	c	inherits:BaseUserInfo
+UserInfoEx::Clear	user_info_list.cpp	/^void UserInfoEx::Clear()$/;"	f	class:UserInfoEx	signature:()
+UserInfoEx::Clear	user_info_list.h	/^	void Clear();$/;"	p	class:UserInfoEx	access:public	signature:()
+UserInfoEx::DealWithData	user_info_list.cpp	/^void UserInfoEx::DealWithData(struct bufferevent *buff_ev,void *arg)$/;"	f	class:UserInfoEx	signature:(struct bufferevent *buff_ev,void *arg)
+UserInfoEx::DealWithData	user_info_list.h	/^	void DealWithData(struct bufferevent *buff_ev,void *arg);$/;"	p	class:UserInfoEx	access:public	signature:(struct bufferevent *buff_ev,void *arg)
+UserInfoEx::UserInfoEx	user_info_list.cpp	/^UserInfoEx::UserInfoEx()$/;"	f	class:UserInfoEx	signature:()
+UserInfoEx::UserInfoEx	user_info_list.h	/^	UserInfoEx();$/;"	p	class:UserInfoEx	access:public	signature:()
+UserInfoEx::gate_server_	user_info_list.h	/^	void *gate_server_;$/;"	m	class:UserInfoEx	access:public
+UserInfoEx::recved_buff_	user_info_list.h	/^	char *recved_buff_;$/;"	m	class:UserInfoEx	access:public
+UserInfoEx::~UserInfoEx	user_info_list.cpp	/^UserInfoEx::~UserInfoEx()$/;"	f	class:UserInfoEx	signature:()
+UserInfoEx::~UserInfoEx	user_info_list.h	/^	~UserInfoEx();$/;"	p	class:UserInfoEx	access:public	signature:()
+UserInfoList	user_info_list.cpp	/^UserInfoList::UserInfoList()$/;"	f	class:UserInfoList	signature:()
 UserInfoList	user_info_list.h	/^	UserInfoList();$/;"	p	class:UserInfoList	access:public	signature:()
-UserInfoList	user_info_list.h	/^class UserInfoList$/;"	c
-UserInfoList::AddUserInfo	user_info_list.cpp	/^bool UserInfoList::AddUserInfo(int user_id,UserInfo *user_info)$/;"	f	class:UserInfoList	signature:(int user_id,UserInfo *user_info)
-UserInfoList::AddUserInfo	user_info_list.h	/^	bool AddUserInfo(int user_id,UserInfo *user_info);$/;"	p	class:UserInfoList	access:public	signature:(int user_id,UserInfo *user_info)
-UserInfoList::GetUnusedUser	user_info_list.cpp	/^int UserInfoList::GetUnusedUser(UserInfo *&user_info)$/;"	f	class:UserInfoList	signature:(UserInfo *&user_info)
-UserInfoList::GetUnusedUser	user_info_list.h	/^	int GetUnusedUser(UserInfo *&user_info);$/;"	p	class:UserInfoList	access:public	signature:(UserInfo *&user_info)
-UserInfoList::GetUserInfo	user_info_list.cpp	/^UserInfo *UserInfoList::GetUserInfo(int user_id)$/;"	f	class:UserInfoList	signature:(int user_id)
-UserInfoList::GetUserInfo	user_info_list.h	/^	UserInfo *GetUserInfo(int user_id);$/;"	p	class:UserInfoList	access:public	signature:(int user_id)
-UserInfoList::InitUserList	user_info_list.cpp	/^bool UserInfoList::InitUserList(int max_user_count)$/;"	f	class:UserInfoList	signature:(int max_user_count)
-UserInfoList::InitUserList	user_info_list.h	/^	bool InitUserList(int max_user_count);$/;"	p	class:UserInfoList	access:public	signature:(int max_user_count)
-UserInfoList::PushUserInUnusedList	user_info_list.cpp	/^bool UserInfoList::PushUserInUnusedList(UserInfo *user_info)$/;"	f	class:UserInfoList	signature:(UserInfo *user_info)
-UserInfoList::PushUserInUnusedList	user_info_list.h	/^	bool PushUserInUnusedList(UserInfo *user_info);$/;"	p	class:UserInfoList	access:public	signature:(UserInfo *user_info)
-UserInfoList::UserInfoList	user_info_list.cpp	/^UserInfoList::UserInfoList():max_user_count_(0)$/;"	f	class:UserInfoList	signature:()
+UserInfoList	user_info_list.h	/^class UserInfoList : public BaseUserInfoResource$/;"	c	inherits:BaseUserInfoResource
+UserInfoList::AddUserInfo	user_info_list.cpp	/^bool UserInfoList::AddUserInfo(int user_hashkey,BaseUserInfo *user)$/;"	f	class:UserInfoList	signature:(int user_hashkey,BaseUserInfo *user)
+UserInfoList::AddUserInfo	user_info_list.h	/^	virtual bool AddUserInfo(int user_hashkey,BaseUserInfo *user);$/;"	p	class:UserInfoList	access:public	signature:(int user_hashkey,BaseUserInfo *user)
+UserInfoList::GetUserByHashkey	user_info_list.cpp	/^BaseUserInfo *UserInfoList::GetUserByHashkey(int user_hashkey)$/;"	f	class:UserInfoList	signature:(int user_hashkey)
+UserInfoList::GetUserByHashkey	user_info_list.h	/^	virtual BaseUserInfo *GetUserByHashkey(int user_hashkey);$/;"	p	class:UserInfoList	access:public	signature:(int user_hashkey)
+UserInfoList::GetUserInfo	user_info_list.cpp	/^BaseUserInfo *UserInfoList::GetUserInfo()$/;"	f	class:UserInfoList	signature:()
+UserInfoList::GetUserInfo	user_info_list.h	/^	virtual BaseUserInfo *GetUserInfo();$/;"	p	class:UserInfoList	access:public	signature:()
+UserInfoList::Init	user_info_list.cpp	/^int UserInfoList::Init(int max_user,void *server_ptr)$/;"	f	class:UserInfoList	signature:(int max_user,void *server_ptr)
+UserInfoList::Init	user_info_list.h	/^	int Init(int max_user,void *server_ptr);$/;"	p	class:UserInfoList	access:public	signature:(int max_user,void *server_ptr)
+UserInfoList::ReleaseUserInfo	user_info_list.cpp	/^void UserInfoList::ReleaseUserInfo(BaseUserInfo * user)$/;"	f	class:UserInfoList	signature:(BaseUserInfo * user)
+UserInfoList::ReleaseUserInfo	user_info_list.h	/^	virtual void ReleaseUserInfo(BaseUserInfo * user);$/;"	p	class:UserInfoList	access:public	signature:(BaseUserInfo * user)
+UserInfoList::UserInfoList	user_info_list.cpp	/^UserInfoList::UserInfoList()$/;"	f	class:UserInfoList	signature:()
 UserInfoList::UserInfoList	user_info_list.h	/^	UserInfoList();$/;"	p	class:UserInfoList	access:public	signature:()
+UserInfoList::gate_server_	user_info_list.h	/^	void *gate_server_;$/;"	m	class:UserInfoList	access:private
 UserInfoList::list_lock_	user_info_list.h	/^	pthread_mutex_t list_lock_;$/;"	m	class:UserInfoList	access:private
-UserInfoList::max_user_count_	user_info_list.h	/^	int max_user_count_;$/;"	m	class:UserInfoList	access:private
-UserInfoList::unused_user_info_list_	user_info_list.h	/^	std::list<UserInfo *> unused_user_info_list_;$/;"	m	class:UserInfoList	access:private
-UserInfoList::user_info_list_	user_info_list.h	/^	std::map<int,UserInfo *> user_info_list_;$/;"	m	class:UserInfoList	access:private
+UserInfoList::unused_user_list_	user_info_list.h	/^	UserResourceManager<UserInfoEx> unused_user_list_;$/;"	m	class:UserInfoList	access:private
+UserInfoList::user_list_	user_info_list.h	/^	std::map<int,UserInfoEx*> user_list_;$/;"	m	class:UserInfoList	access:private
 UserInfoList::~UserInfoList	user_info_list.cpp	/^UserInfoList::~UserInfoList()$/;"	f	class:UserInfoList	signature:()
 UserInfoList::~UserInfoList	user_info_list.h	/^	~UserInfoList();$/;"	p	class:UserInfoList	access:public	signature:()
 UserResourceManager	common/resource_manager.h	/^	UserResourceManager();$/;"	p	class:UserResourceManager	access:public	signature:()
@@ -5757,7 +5716,6 @@ clear_user_role_uid	packet/package_define.pb.h	/^  inline void clear_user_role_u
 clear_user_role_uid	packet/package_define.pb.h	/^inline void StruUserInfo::clear_user_role_uid() {$/;"	f	class:StruUserInfo	signature:()
 clear_user_role_uid	packet/package_define.pb.h	/^inline void StruUserRoleInfoID::clear_user_role_uid() {$/;"	f	class:StruUserRoleInfoID	signature:()
 client_fd_	connector.h	/^	int client_fd_;$/;"	m	class:Connector	access:private
-client_list_	room_server.h	/^	ClientInfoList client_list_;$/;"	m	class:RoomServer	access:private
 cmd_chain_	common/base_processor.h	/^	CommandChain cmd_chain_;$/;"	m	class:BaseProcessor	access:private
 command_chain_	common/command_chain.h	/^	std::map<int ,BaseCommand *> command_chain_;$/;"	m	class:CommandChain	access:private
 count_user_per_worker_	common/server_listenner.h	/^	int count_user_per_worker_;$/;"	m	class:ServerListenner	access:private
@@ -5942,6 +5900,8 @@ dst_user_id_	packet/package_define.pb.h	/^  ::google::protobuf::int32 dst_user_i
 dst_user_id_	packet/package_define.pb.h	/^  ::google::protobuf::int32 dst_user_id_;$/;"	m	class:StruUserMsgRQ	access:private
 dst_user_id_	packet/package_define.pb.h	/^  ::google::protobuf::int32 dst_user_id_;$/;"	m	class:StruUserMsgTextID	access:private
 end_pos_index_	common/circle_list.h	/^	int end_pos_index_;$/;"	m	class:CircleList	access:private
+gate_server_	user_info_list.h	/^	void *gate_server_;$/;"	m	class:UserInfoEx	access:public
+gate_server_	user_info_list.h	/^	void *gate_server_;$/;"	m	class:UserInfoList	access:private
 gift_code	packet/package_define.pb.h	/^  inline const ::std::string& gift_code() const;$/;"	p	class:StruUserGiveGiftRQ	access:public	signature:() const
 gift_code	packet/package_define.pb.h	/^  inline const ::std::string& gift_code() const;$/;"	p	class:StruUserGiveGiftRS	access:public	signature:() const
 gift_code	packet/package_define.pb.h	/^inline const ::std::string& StruUserGiveGiftRQ::gift_code() const {$/;"	f	class:StruUserGiveGiftRQ	signature:() const
@@ -6444,7 +6404,6 @@ kUserRoleUidFieldNumber	packet/package_define.pb.h	/^  static const int kUserRol
 kUserRoleUidFieldNumber	packet/package_define.pb.h	/^  static const int kUserRoleUidFieldNumber = 5;$/;"	m	class:StruUserRoleInfoID	access:public
 len	common/circle_list.h	/^	int len;$/;"	m	struct:UnitStruct	access:public
 list_end_	common/circle_list.h	/^	UnitStruct * list_end_;$/;"	m	class:CircleList	access:private
-list_lock_	client_info_list.h	/^	pthread_mutex_t list_lock_;$/;"	m	class:ClientInfoList	access:private
 list_lock_	common/circle_list.h	/^	pthread_mutex_t list_lock_;$/;"	m	class:CircleList	access:private
 list_lock_	common/resource_manager.h	/^	pthread_mutex_t list_lock_;$/;"	m	class:UserResourceManager	access:private
 list_lock_	user_info_list.h	/^	pthread_mutex_t list_lock_;$/;"	m	class:UserInfoList	access:private
@@ -6456,7 +6415,6 @@ m_sock	chat_room.h	/^	int m_sock;$/;"	m	class:ChatRoom	access:private
 main	server_main.cpp	/^int main()$/;"	f	signature:()
 max_num_	common/resource_manager.h	/^	int max_num_;$/;"	m	class:UserResourceManager	access:private
 max_stru_size_	common/circle_list.h	/^	int max_stru_size_;$/;"	m	class:CircleList	access:private
-max_user_count_	user_info_list.h	/^	int max_user_count_;$/;"	m	class:UserInfoList	access:private
 mic_channel_str	packet/package_define.pb.h	/^  inline const ::std::string& mic_channel_str() const;$/;"	p	class:StruCancleUserMicRQ	access:public	signature:() const
 mic_channel_str	packet/package_define.pb.h	/^  inline const ::std::string& mic_channel_str() const;$/;"	p	class:StruMicInfo	access:public	signature:() const
 mic_channel_str	packet/package_define.pb.h	/^  inline const ::std::string& mic_channel_str() const;$/;"	p	class:StruPutUserOnMicRS	access:public	signature:() const
@@ -6711,7 +6669,6 @@ other_data	packet/package_define.pb.h	/^inline const ::std::string& StruUserRole
 other_data_	packet/package_define.pb.h	/^  ::std::string* other_data_;$/;"	m	class:StruUserRoleInfoID	access:private
 pipe_read_fd	common/server_listenner.h	/^	int pipe_read_fd;$/;"	m	struct:WorkerInfo	access:public
 pipe_write_fd	common/server_listenner.h	/^	int pipe_write_fd;$/;"	m	struct:WorkerInfo	access:public
-pre_user_list_	chat_room.h	/^	UserInfoList *pre_user_list_;$/;"	m	class:ChatRoom	access:private
 protobuf	packet/cyt_packet.pb.h	/^namespace protobuf {$/;"	n	namespace:google
 protobuf	packet/package_define.pb.h	/^namespace protobuf {$/;"	n	namespace:google
 protobuf_AddDesc_cyt_5fpacket_2eproto	packet/cyt_packet.pb.cpp	/^void protobuf_AddDesc_cyt_5fpacket_2eproto() {$/;"	f	signature:()
@@ -6807,7 +6764,7 @@ protobuf_ShutdownFile_package_5fdefine_2eproto	packet/package_define.pb.h	/^  fr
 protobuf_ShutdownFile_package_5fdefine_2eproto	packet/package_define.pb.h	/^void protobuf_ShutdownFile_package_5fdefine_2eproto();$/;"	p	signature:()
 read_timeout_	common/server_listenner.h	/^	int read_timeout_;$/;"	m	class:ServerListenner	access:private
 read_timeout_	room_server.h	/^	int read_timeout_;$/;"	m	class:RoomServer	access:private
-recved_buff_	client_info_list.h	/^	char *recved_buff_;$/;"	m	class:ClientInfoEx	access:public
+recved_buff_	user_info_list.h	/^	char *recved_buff_;$/;"	m	class:UserInfoEx	access:public
 release_gift_code	packet/package_define.pb.h	/^  inline ::std::string* release_gift_code();$/;"	p	class:StruUserGiveGiftRQ	access:public	signature:()
 release_gift_code	packet/package_define.pb.h	/^  inline ::std::string* release_gift_code();$/;"	p	class:StruUserGiveGiftRS	access:public	signature:()
 release_gift_code	packet/package_define.pb.h	/^inline ::std::string* StruUserGiveGiftRQ::release_gift_code() {$/;"	f	class:StruUserGiveGiftRQ	signature:()
@@ -6957,8 +6914,6 @@ room_manager_	room_server.h	/^	RoomManager room_manager_;$/;"	m	class:RoomServer
 room_name	packet/package_define.pb.h	/^  inline const ::std::string& room_name() const;$/;"	p	class:StruRoomInfoID	access:public	signature:() const
 room_name	packet/package_define.pb.h	/^inline const ::std::string& StruRoomInfoID::room_name() const {$/;"	f	class:StruRoomInfoID	signature:() const
 room_name_	packet/package_define.pb.h	/^  ::std::string* room_name_;$/;"	m	class:StruRoomInfoID	access:private
-room_server_	client_info_list.h	/^	void *room_server_;$/;"	m	class:ClientInfoEx	access:public
-room_server_	client_info_list.h	/^	void *room_server_;$/;"	m	class:ClientInfoList	access:private
 room_type	packet/package_define.pb.h	/^  inline ::google::protobuf::int32 room_type() const;$/;"	p	class:StruRoomInfoID	access:public	signature:() const
 room_type	packet/package_define.pb.h	/^inline ::google::protobuf::int32 StruRoomInfoID::room_type() const {$/;"	f	class:StruRoomInfoID	signature:() const
 room_type_	packet/package_define.pb.h	/^  ::google::protobuf::int32 room_type_;$/;"	m	class:StruRoomInfoID	access:private
@@ -7587,9 +7542,8 @@ unknown_fields	packet/package_define.pb.h	/^  inline const ::google::protobuf::U
 unknown_fields	packet/package_define.pb.h	/^  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {$/;"	f	class:StruUserOffMicRS	access:public	signature:() const
 unknown_fields	packet/package_define.pb.h	/^  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {$/;"	f	class:StruUserOnMicID	access:public	signature:() const
 unknown_fields	packet/package_define.pb.h	/^  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {$/;"	f	class:StruUserRoleInfoID	access:public	signature:() const
-unused_user_info_list_	user_info_list.h	/^	std::list<UserInfo *> unused_user_info_list_;$/;"	m	class:UserInfoList	access:private
-unused_user_list_	client_info_list.h	/^	UserResourceManager<ClientInfoEx> unused_user_list_;$/;"	m	class:ClientInfoList	access:private
 unused_user_list_	common/resource_manager.h	/^	std::list<T*> unused_user_list_;$/;"	m	class:UserResourceManager	access:private
+unused_user_list_	user_info_list.h	/^	UserResourceManager<UserInfoEx> unused_user_list_;$/;"	m	class:UserInfoList	access:private
 user_account_name	packet/package_define.pb.h	/^  inline const ::std::string& user_account_name() const;$/;"	p	class:StruMicInfo	access:public	signature:() const
 user_account_name	packet/package_define.pb.h	/^  inline const ::std::string& user_account_name() const;$/;"	p	class:StruUserInfo	access:public	signature:() const
 user_account_name	packet/package_define.pb.h	/^  inline const ::std::string& user_account_name() const;$/;"	p	class:StruUserLoginRQ	access:public	signature:() const
@@ -7602,7 +7556,6 @@ user_account_name_	packet/package_define.pb.h	/^  ::std::string* user_account_na
 user_account_name_	packet/package_define.pb.h	/^  ::std::string* user_account_name_;$/;"	m	class:StruUserInfo	access:private
 user_account_name_	packet/package_define.pb.h	/^  ::std::string* user_account_name_;$/;"	m	class:StruUserLoginRQ	access:private
 user_account_name_	packet/package_define.pb.h	/^  ::std::string* user_account_name_;$/;"	m	class:StruUserRoleInfoID	access:private
-user_hash_key	user_info_list.h	/^	int user_hash_key;$/;"	m	struct:UserInfo	access:public
 user_id	packet/package_define.pb.h	/^  inline ::google::protobuf::int32 user_id() const;$/;"	p	class:StruCancleUserMicRQ	access:public	signature:() const
 user_id	packet/package_define.pb.h	/^  inline ::google::protobuf::int32 user_id() const;$/;"	p	class:StruCancleUserMicRS	access:public	signature:() const
 user_id	packet/package_define.pb.h	/^  inline ::google::protobuf::int32 user_id() const;$/;"	p	class:StruMicInfo	access:public	signature:() const
@@ -7647,7 +7600,6 @@ user_id	packet/package_define.pb.h	/^inline ::google::protobuf::int32 StruUserMs
 user_id	packet/package_define.pb.h	/^inline ::google::protobuf::int32 StruUserOffMicRQ::user_id() const {$/;"	f	class:StruUserOffMicRQ	signature:() const
 user_id	packet/package_define.pb.h	/^inline ::google::protobuf::int32 StruUserOffMicRS::user_id() const {$/;"	f	class:StruUserOffMicRS	signature:() const
 user_id	packet/package_define.pb.h	/^inline ::google::protobuf::int32 StruUserRoleInfoID::user_id() const {$/;"	f	class:StruUserRoleInfoID	signature:() const
-user_id	user_info_list.h	/^	int user_id;$/;"	m	struct:UserInfo	access:public
 user_id_	packet/package_define.pb.h	/^  ::google::protobuf::int32 user_id_;$/;"	m	class:StruCancleUserMicRQ	access:private
 user_id_	packet/package_define.pb.h	/^  ::google::protobuf::int32 user_id_;$/;"	m	class:StruCancleUserMicRS	access:private
 user_id_	packet/package_define.pb.h	/^  ::google::protobuf::int32 user_id_;$/;"	m	class:StruMicInfo	access:private
@@ -7675,13 +7627,11 @@ user_info_list	packet/package_define.pb.h	/^  inline const ::StruUserInfo& user_
 user_info_list	packet/package_define.pb.h	/^StruUserInfoListID::user_info_list() const {$/;"	f	class:StruUserInfoListID	signature:() const
 user_info_list	packet/package_define.pb.h	/^inline const ::StruUserInfo& StruUserInfoListID::user_info_list(int index) const {$/;"	f	class:StruUserInfoListID	signature:(int index) const
 user_info_list_	packet/package_define.pb.h	/^  ::google::protobuf::RepeatedPtrField< ::StruUserInfo > user_info_list_;$/;"	m	class:StruUserInfoListID	access:private
-user_info_list_	user_info_list.h	/^	std::map<int,UserInfo *> user_info_list_;$/;"	m	class:UserInfoList	access:private
 user_info_list_size	packet/package_define.pb.h	/^  inline int user_info_list_size() const;$/;"	p	class:StruUserInfoListID	access:public	signature:() const
 user_info_list_size	packet/package_define.pb.h	/^inline int StruUserInfoListID::user_info_list_size() const {$/;"	f	class:StruUserInfoListID	signature:() const
 user_info_resource_	common/server_listenner.h	/^	BaseUserInfoResource* user_info_resource_;$/;"	m	class:ServerListenner	access:private
-user_list_	chat_room.h	/^	UserInfoList *user_list_;$/;"	m	class:ChatRoom	access:private
-user_list_	client_info_list.h	/^	std::map<int,ClientInfoEx*> user_list_;$/;"	m	class:ClientInfoList	access:private
-user_nickname	user_info_list.h	/^	char user_nickname[MaxNickNameLen];$/;"	m	struct:UserInfo	access:public
+user_list_	room_server.h	/^	UserInfoList user_list_;$/;"	m	class:RoomServer	access:private
+user_list_	user_info_list.h	/^	std::map<int,UserInfoEx*> user_list_;$/;"	m	class:UserInfoList	access:private
 user_psw	packet/package_define.pb.h	/^  inline const ::std::string& user_psw() const;$/;"	p	class:StruUserLoginRQ	access:public	signature:() const
 user_psw	packet/package_define.pb.h	/^inline const ::std::string& StruUserLoginRQ::user_psw() const {$/;"	f	class:StruUserLoginRQ	signature:() const
 user_psw_	packet/package_define.pb.h	/^  ::std::string* user_psw_;$/;"	m	class:StruUserLoginRQ	access:private
@@ -7716,10 +7666,6 @@ write_timeout_	room_server.h	/^	int write_timeout_;$/;"	m	class:RoomServer	acces
 ~CircleBuff	common/circle_buff.h	/^	~CircleBuff();$/;"	p	class:CircleBuff	access:public	signature:()
 ~CircleList	common/circle_list.cpp	/^CircleList::~CircleList()$/;"	f	class:CircleList	signature:()
 ~CircleList	common/circle_list.h	/^	~CircleList();$/;"	p	class:CircleList	access:public	signature:()
-~ClientInfoEx	client_info_list.cpp	/^ClientInfoEx::~ClientInfoEx()$/;"	f	class:ClientInfoEx	signature:()
-~ClientInfoEx	client_info_list.h	/^	~ClientInfoEx();$/;"	p	class:ClientInfoEx	access:public	signature:()
-~ClientInfoList	client_info_list.cpp	/^ClientInfoList::~ClientInfoList()$/;"	f	class:ClientInfoList	signature:()
-~ClientInfoList	client_info_list.h	/^	~ClientInfoList();$/;"	p	class:ClientInfoList	access:public	signature:()
 ~ClientLoginRQ	cl_command/client_login_rq.cpp	/^ClientLoginRQ::~ClientLoginRQ()$/;"	f	class:ClientLoginRQ	signature:()
 ~ClientLoginRQ	cl_command/client_login_rq.h	/^	~ClientLoginRQ();$/;"	p	class:ClientLoginRQ	access:public	signature:()
 ~ClientProcessor	cl_processor.cpp	/^ClientProcessor::~ClientProcessor()$/;"	f	class:ClientProcessor	signature:()
@@ -7784,6 +7730,8 @@ write_timeout_	room_server.h	/^	int write_timeout_;$/;"	m	class:RoomServer	acces
 ~StruUserOnMicID	packet/package_define.pb.h	/^  virtual ~StruUserOnMicID();$/;"	p	class:StruUserOnMicID	access:public	signature:()
 ~StruUserRoleInfoID	packet/package_define.pb.cc	/^StruUserRoleInfoID::~StruUserRoleInfoID() {$/;"	f	class:StruUserRoleInfoID	signature:()
 ~StruUserRoleInfoID	packet/package_define.pb.h	/^  virtual ~StruUserRoleInfoID();$/;"	p	class:StruUserRoleInfoID	access:public	signature:()
+~UserInfoEx	user_info_list.cpp	/^UserInfoEx::~UserInfoEx()$/;"	f	class:UserInfoEx	signature:()
+~UserInfoEx	user_info_list.h	/^	~UserInfoEx();$/;"	p	class:UserInfoEx	access:public	signature:()
 ~UserInfoList	user_info_list.cpp	/^UserInfoList::~UserInfoList()$/;"	f	class:UserInfoList	signature:()
 ~UserInfoList	user_info_list.h	/^	~UserInfoList();$/;"	p	class:UserInfoList	access:public	signature:()
 ~UserResourceManager	common/resource_manager.h	/^	~UserResourceManager();$/;"	p	class:UserResourceManager	access:public	signature:()

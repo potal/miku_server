@@ -1,44 +1,43 @@
 #ifndef USER_INFO_LIST_H_
 #define USER_INFO_LIST_H_
 
-#include "common/base_user_info.h"
-#include "common/base_user_info_resource.h"
-#include "common/resource_manager.h"
 #include <iostream>
 #include <map>
+#include <list>
+#include <string>
+#include <pthread.h>
 
+using std::map;
 
-class UserInfoEx : public BaseUserInfo
+const int MaxNickNameLen = 0x20;
+#pragma pack(1)
+struct UserInfo
 {
-public:
-	char *recved_buff_;
-	void *room_server_;
-public:
-	UserInfoEx();
-	~UserInfoEx();
-
-	void Clear();
-	void DealWithData(struct bufferevent *buff_ev,void *arg);
+	int user_id;
+	int user_hash_key;
+	char user_nickname[MaxNickNameLen];
 };
+#pragma pack()
 
-class UserInfoList : public BaseUserInfoResource
+class UserInfoList
 {
 private:
-	UserResourceManager<UserInfoEx> unused_user_list_;
-	std::map<int,UserInfoEx*> user_list_;
-	void *room_server_;
 	pthread_mutex_t list_lock_;
-
-public:
-	virtual BaseUserInfo *GetUserInfo();
-	virtual void ReleaseUserInfo(BaseUserInfo * user);
-	virtual BaseUserInfo *GetUserByHashkey(int user_hashkey);
-	virtual bool AddUserInfo(int user_hashkey,BaseUserInfo *user);
+	int max_user_count_;
+	std::list<UserInfo *> unused_user_info_list_;
+	std::map<int,UserInfo *> user_info_list_;
 
 public:
 	UserInfoList();
 	~UserInfoList();
 
-	int Init(int max_user,void *server_ptr);
+	bool InitUserList(int max_user_count);
+
+	int GetUnusedUser(UserInfo *&user_info);
+	bool PushUserInUnusedList(UserInfo *user_info);
+
+	bool AddUserInfo(int user_id,UserInfo *user_info);
+	UserInfo *GetUserInfo(int user_id);
 };
+
 #endif

@@ -3,133 +3,134 @@
  *
  *       Filename:  user_info_list.cpp
  *
- *    Description:  
+ *    Description:  store all user information
  *
  *        Version:  1.0
- *        Created:  01/23/2014 11:51:13 AM
+ *        Created:  02/08/2014 08:46:45 PM
  *       Revision:  none
  *       Compiler:  gcc
  *
- *         Author:  YOUR NAME (), 
+ *         Author:  YOUR NAME (potal), 
  *   Organization:  
  *
  * =====================================================================================
  */
 
 #include "user_info_list.h"
-#include "packet/cyt_packet.pb.h"
-#include "packet/package_define.pb.h"
-#include "room_server.h"
+#include "common/auto_lock.h"
 
-UserInfoEx::UserInfoEx():room_server_(NULL)
-{
-	recved_buff_ = new char[0x1000];
-}
-
-UserInfoEx::~UserInfoEx()
-{
-	if(recved_buff_)
-	{
-		delete []recved_buff_;
-		recved_buff_ = NULL;
-	}
-}
-
-void UserInfoEx::Clear()
-{
-	user_sock = 0;
-	hash_key = 0;
-	user_uip = 0;
-	user_uport = 0;
-	server_ptr = NULL;
-}
-
-void UserInfoEx::DealWithData(struct bufferevent *buff_ev,void *arg)
-{
-	std::cout<<hash_key<<"UserInfoEx::DealWithData()"<<std::endl;
-	char tmp_read_buff[0x1000] = {0};
-	int tmp_len = bufferevent_read(buffev,tmp_read_buff,0x1000);
-	//analyse received buffer ...
-	
-	StruCytPacket tmp_pack_cyt_pack;
-	bool tmp_ret = tmp_pack_cyt_pack.ParseFromArray(tmp_read_buff,tmp_len);
-	if(tmp_ret)
-	{
-		RoomServer *tmp_server = reinterpret_cast<RoomServer *>(server_ptr);
-		if(!tmp_server)
-		{
-			std::cout<<"tmp_server NULL"<<std::endl;
-			return;
-		}
-		tmp_ret = tmp_server->GetClientProcessor()->GetCircleList()->AddBuffer(tmp_read_buff,tmp_len);
-		if(!tmp_ret)
-			std::cout<<"Add buffer error!"<<std::endl;
-	}
-}
-
-/////////////////////////////////////////////////
-
-UserInfoList::UserInfoList()
+UserInfoList::UserInfoList():max_user_count_(0)
 {
 	pthread_mutex_init(&list_lock_,NULL);
+	unused_user_info_list_.clear();
+	user_info_list_.clear();
 }
 
 UserInfoList::~UserInfoList()
 {
+	std::list<UserInfo *>::iterator tmp_list_iter;
+	for(tmp_list_iter = unused_user_info_list_.begin();tmp_list_iter != unused_user_info_list_.end();tmp_list_iter++)
+	{
+		UserInfo *tmp_user = *tmp_list_iter;
+		if(tmp_user)
+		{
+			delete tmp_user;
+			tmp_user = NULL;
+		}
+	}
+	unused_user_info_list_.clear();
+
+	std::map<int,UserInfo *>::iterator tmp_map_iter;
+	for(tmp_map_iter = user_info_list_.begin();tmp_map_iter != user_info_list_.end();tmp_map_iter++)
+	{
+		UserInfo *tmp_user = tmp_map_iter->second;
+		if(tmp_user)
+		{
+			delete tmp_user;
+			tmp_user = NULL;
+		}
+	}
+	user_info_list_.clear();
+	
 	pthread_mutex_destroy(&list_lock_);
 }
 
-BaseUserInfo *UserInfoList::GetUserInfo()
+bool UserInfoList::InitUserList(int max_user_count)
 {
-	pthread_mutex_lock(&list_lock_);
-	UserInfoEx *tmp_user = unused_user_list_.Get();
-	pthread_mutex_unlock(&list_lock_);
-	return tmp_user;
-}
-
-void UserInfoList::ReleaseUserInfo(BaseUserInfo * user)
-{
-	pthread_mutex_lock(&list_lock_);
-	UserInfoEx *tmp_user = (UserInfoEx *)user;
-	if(NULL != user_list_[tmp_user->hash_key])
+	AutoLock lock(&list_lock_);
+	max_user_count_ = max_user_count;
+	try
 	{
-		user_list_.erase(tmp_user->hash_key);
+		for(int i = 0;i < max_user_count;i++)
+		{
+			UserInfo *tmp_user = new UserInfo;
+			if(tmp_user)
+			{
+				unused_user_info_list_.push_back(tmp_user);
+			}
+		}
 	}
-	tmp_user->Clear();
-	unused_user_list_.Put(tmp_user);
-	pthread_mutex_unlock(&list_lock_);
-}
-
-BaseUserInfo *UserInfoList::GetUserByHashkey(int user_hashkey)
-{
-	pthread_mutex_lock(&list_lock_);
-	BaseUserInfo *tmp_user = (BaseUserInfo *)user_list_[user_hashkey];
-	pthread_mutex_unlock(&list_lock_);
-	return tmp_user;
-}
-
-int UserInfoList::Init(int max_user,void *server_ptr)
-{
-	room_server_ = server_ptr;
-	return unused_user_list_.Init(max_user);
-}
-
-bool UserInfoList::AddUserInfo(int user_hashkey,BaseUserInfo *user)
-{
-	pthread_mutex_lock(&list_lock_);
-	if(NULL != user_list_[user_hashkey])
+	catch(...)
 	{
-		pthread_mutex_unlock(&list_lock_);
-		return false;
+		std::cout<<"new error"<<std::endl;
 	}
-	UserInfoEx *tmp_user = (UserInfoEx *)user;
-	tmp_user->hash_key = user_hashkey;
-	//copy other members
-	tmp_user->room_server_ = room_server_;
-	tmp_user->server_ptr = room_server_;
-	user_list_[user_hashkey] = tmp_user;
-	pthread_mutex_unlock(&list_lock_);
+	user_info_list_.clear();
 	return true;
 }
 
+int UserInfoList::GetUnusedUser(UserInfo *&user_info)
+{
+	AutoLock lock(&list_lock_);
+	UserInfo *tmp_user = unused_user_info_list_.front();
+	if(tmp_user)
+	{
+		user_info = tmp_user;
+		unused_user_info_list_.pop_front();
+		return 1;
+	}
+	else if(unused_user_info_list_.size() <= 0)
+	{
+		try
+		{
+			tmp_user = new UserInfo;
+			if(tmp_user)
+			{
+				user_info = tmp_user;
+			}
+		}
+		catch(...)
+		{
+			std::cout<<"new error"<<std::endl;
+			return -2;
+		}
+		return 0;
+	}
+	else
+		return -1;
+}
 
+bool UserInfoList::PushUserInUnusedList(UserInfo *user_info)
+{
+	AutoLock lock(&list_lock_);
+	unused_user_info_list_.push_back(user_info);
+	return true;
+}
+
+bool UserInfoList::AddUserInfo(int user_id,UserInfo *user_info)
+{
+	AutoLock lock(&list_lock_);
+	if(user_info_list_[user_id])
+	{
+		std::cout<<"User "<<user_id<<" in list"<<std::endl;
+		return false;
+	}
+	user_info_list_[user_id] = user_info;
+	return true;
+}
+
+UserInfo *UserInfoList::GetUserInfo(int user_id)
+{
+	AutoLock lock(&list_lock_);
+	UserInfo *tmp_user = user_info_list_[user_id];
+	return tmp_user;
+}
