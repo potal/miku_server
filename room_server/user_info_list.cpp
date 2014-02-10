@@ -17,7 +17,6 @@
  */
 
 #include "user_info_list.h"
-#include "common/auto_lock.h"
 
 UserInfoList::UserInfoList():max_user_count_(0)
 {
@@ -57,7 +56,7 @@ UserInfoList::~UserInfoList()
 
 bool UserInfoList::InitUserList(int max_user_count)
 {
-	AutoLock lock(&list_lock_);
+	AutoLock tmp_lock(&list_lock_);
 	max_user_count_ = max_user_count;
 	try
 	{
@@ -80,7 +79,7 @@ bool UserInfoList::InitUserList(int max_user_count)
 
 int UserInfoList::GetUnusedUser(UserInfo *&user_info)
 {
-	AutoLock lock(&list_lock_);
+	AutoLock tmp_lock(&list_lock_);
 	UserInfo *tmp_user = unused_user_info_list_.front();
 	if(tmp_user)
 	{
@@ -111,14 +110,14 @@ int UserInfoList::GetUnusedUser(UserInfo *&user_info)
 
 bool UserInfoList::PushUserInUnusedList(UserInfo *user_info)
 {
-	AutoLock lock(&list_lock_);
+	AutoLock tmp_lock(&list_lock_);
 	unused_user_info_list_.push_back(user_info);
 	return true;
 }
 
 bool UserInfoList::AddUserInfo(int user_id,UserInfo *user_info)
 {
-	AutoLock lock(&list_lock_);
+	AutoLock tmp_lock(&list_lock_);
 	if(user_info_list_[user_id])
 	{
 		std::cout<<"User "<<user_id<<" in list"<<std::endl;
@@ -130,7 +129,7 @@ bool UserInfoList::AddUserInfo(int user_id,UserInfo *user_info)
 
 UserInfo *UserInfoList::GetUserInfo(int user_id)
 {
-	AutoLock lock(&list_lock_);
+	AutoLock tmp_lock(&list_lock_);
 	UserInfo *tmp_user = user_info_list_[user_id];
 	return tmp_user;
 }

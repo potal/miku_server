@@ -6,6 +6,7 @@
 #include <list>
 #include <string>
 #include <pthread.h>
+#include "../common/auto_lock.h"
 
 using std::map;
 

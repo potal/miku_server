@@ -81,6 +81,8 @@ bool TestServer::InitServer()
 	if(!tmp_return)
 		return false;
 	rs_connector_.InitConnectionInfo("192.168.229.128",5556);
+	//ds_connector_.InitConnectionInfo("192.168.229.128",5560);
+	//ds_processor_.InitProcessor(100,this);
 	return true;
 }
 
@@ -91,11 +93,28 @@ bool TestServer::StartServer()
 	if(!tmp_return)
 		return false;
 	std::cout<<"Connect RoomServer OK!"<<std::endl;
+	
+//	tmp_return = ds_connector_.StartConnect();
+//	if(!tmp_return)
+//		return false;
+//	std::cout<<"Connect DirectorServer OK!"<<std::endl;
+//	ds_processor_.StartProcessor(1);
+
 	room_manager_.AddRoom(16000,rs_connector_.GetSocket());
 	tmp_return = server_listenner_.StartServer(&user_list_);
 	if(!tmp_return)
 		return false;
 	return true;
+}
+
+RoomManager *TestServer::GetRoomManager()
+{
+	return &room_manager_;
+}
+
+DirectorServerConnector *TestServer::GetDSConnector()
+{
+	return &ds_connector_;
 }
 
 void TestServer::StopServer()

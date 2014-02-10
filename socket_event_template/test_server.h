@@ -8,6 +8,7 @@
 #include "room_manager.h"
 #include "rs_connector.h"
 #include "ds_connector.h"
+#include "ds_processor.h"
 
 class TestServer
 {
@@ -23,7 +24,9 @@ private:
 	ServerListenner server_listenner_;
 	RoomManager room_manager_;
 	RoomServerConnector rs_connector_;
+
 	DirectorServerConnector ds_connector_;
+	DirectorProcessor ds_processor_;
 
 public:
 	TestServer();
@@ -33,10 +36,9 @@ public:
 	bool InitServer();
 	bool StartServer();
 	
-	RoomManager *GetRoomManager()
-	{
-		return &room_manager_;
-	};
+	RoomManager *GetRoomManager();
+	DirectorServerConnector *GetDSConnector();
+
 	void StopServer();
 };
 

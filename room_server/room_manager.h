@@ -2,7 +2,7 @@
 #define ROOM_MANAGER_H_
 
 #include "chat_room.h"
-#include "common/auto_lock.h"
+#include "../common/auto_lock.h"
 #include <iostream>
 #include <map>
 #include <pthread.h>

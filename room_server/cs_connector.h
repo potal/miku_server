@@ -1,7 +1,7 @@
 #ifndef RS_CONNECTOR_H_
 #define RS_CONNECTOR_H_
 
-#include "common/connector.h"
+#include "../common/connector.h"
 
 class CenterServerConnector : public Connector
 {

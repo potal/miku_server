@@ -42,7 +42,7 @@ RoomManager::~RoomManager()
 
 bool RoomManager::AddRoom(int room_id,ChatRoom *chat_room)
 {
-	AutoLock lock(&list_mutex_);
+	AutoLock tmp_lock(&list_mutex_);
 	if(NULL == chat_room)
 		return false;
 
@@ -63,7 +63,7 @@ bool RoomManager::AddRoom(int room_id,ChatRoom *chat_room)
 
 bool RoomManager::DelRoom(int room_id)
 {
-	AutoLock lock(&list_mutex_);
+	AutoLock tmp_lock(&list_mutex_);
 	std::map<int,ChatRoom*>::iterator tmp_iter = room_list_.find(room_id);
 	if(tmp_iter == room_list_.end())
 	{
@@ -77,7 +77,7 @@ bool RoomManager::DelRoom(int room_id)
 
 ChatRoom *RoomManager::GetRoom(int room_id)
 {
-	AutoLock lock(&list_mutex_);
+	AutoLock tmp_lock(&list_mutex_);
 	ChatRoom *tmp_room = room_list_[room_id];
 	return tmp_room;
 }

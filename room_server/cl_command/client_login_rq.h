@@ -1,7 +1,7 @@
 #ifndef CLIENT_LOGIN_RQ_H_
 #define CLIENT_LOGIN_RQ_H_
 
-#include "../common/base_command.h"
+#include "../../common/base_command.h"
 
 class ClientLoginRQ : public BaseCommand
 {

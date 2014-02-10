@@ -1,9 +1,9 @@
 #ifndef CLIENT_INFO_LIST_H_
 #define CLIENT_INFO_LIST_H_
 
-#include "common/base_user_info.h"
-#include "common/base_user_info_resource.h"
-#include "common/resource_manager.h"
+#include "../common/base_user_info.h"
+#include "../common/base_user_info_resource.h"
+#include "../common/resource_manager.h"
 #include <iostream>
 #include <map>
 
