@@ -26,7 +26,7 @@ ChatRoom::~ChatRoom()
 {
 }
 
-bool ChatRoom::SetRoom(long room_id,int server_fd)
+bool ChatRoom::SetRoom(int room_id,int server_fd)
 {
 	room_id_ = room_id;
 	server_fd_ = server_fd;

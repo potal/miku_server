@@ -1,12 +1,13 @@
 #ifndef TEST_SERVER_H_
 #define TEST_SERVER_H_
 
-#include "common/base_user_info.h"
-#include "common/server_listenner.h"
+#include "../common/base_user_info.h"
+#include "../common/server_listenner.h"
+#include "../common/command_chain.h"
 #include "user_info_list.h"
 #include "room_manager.h"
 #include "rs_connector.h"
-#include "common/command_chain.h"
+#include "ds_connector.h"
 
 class TestServer
 {
@@ -22,7 +23,7 @@ private:
 	ServerListenner server_listenner_;
 	RoomManager room_manager_;
 	RoomServerConnector rs_connector_;
-	CommandChain ds_cmd_chain_;
+	DirectorServerConnector ds_connector_;
 
 public:
 	TestServer();

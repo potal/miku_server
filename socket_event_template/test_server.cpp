@@ -22,7 +22,6 @@
 
 TestServer::TestServer()
 {
-	ds_cmd_chain_.Init(this);
 }
 
 TestServer::~TestServer()
@@ -82,14 +81,13 @@ bool TestServer::InitServer()
 	if(!tmp_return)
 		return false;
 	rs_connector_.InitConnectionInfo("192.168.229.128",5556);
-	//register cmd
 	return true;
 }
 
 bool TestServer::StartServer()
 {
 	bool tmp_return = false;
-	tmp_return = rs_connector_.ConnectServer();
+	tmp_return = rs_connector_.StartConnect();
 	if(!tmp_return)
 		return false;
 	std::cout<<"Connect RoomServer OK!"<<std::endl;

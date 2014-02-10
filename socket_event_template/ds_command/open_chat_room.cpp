@@ -10,7 +10,7 @@ OpenChatRoom::~OpenChatRoom()
 
 }
 
-void OpenChatRoom::Execute(char *buff,int len,void *server_ptr)
+void OpenChatRoom::Execute(char *buff,int len,void *caller_ptr)
 {
 
 }

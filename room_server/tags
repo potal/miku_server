@@ -130,7 +130,7 @@ CLIENT_INFO_LIST_H_	client_info_list.h	2;"	d
 CLIENT_LOGIN_RQ_H_	cl_command/client_login_rq.h	2;"	d
 CL_PROCESSOR_H_	cl_processor.h	2;"	d
 COMMAND_CHAIN_H_	common/command_chain.h	2;"	d
-CONNECTOR_H_	connector.h	2;"	d
+CONNECTOR_H_	common/connector.h	2;"	d
 CenterServerConnector	cs_connector.cpp	/^CenterServerConnector::CenterServerConnector()$/;"	f	class:CenterServerConnector	signature:()
 CenterServerConnector	cs_connector.h	/^	CenterServerConnector();$/;"	p	class:CenterServerConnector	access:public	signature:()
 CenterServerConnector	cs_connector.h	/^class CenterServerConnector : public Connector$/;"	c	inherits:Connector
@@ -341,24 +341,35 @@ CommandChain::chain_lock_	common/command_chain.h	/^	pthread_mutex_t chain_lock_;
 CommandChain::command_chain_	common/command_chain.h	/^	std::map<int ,BaseCommand *> command_chain_;$/;"	m	class:CommandChain	access:private
 CommandChain::~CommandChain	common/command_chain.cpp	/^CommandChain::~CommandChain()$/;"	f	class:CommandChain	signature:()
 CommandChain::~CommandChain	common/command_chain.h	/^	~CommandChain();$/;"	p	class:CommandChain	access:public	signature:()
-ConnectServer	connector.cpp	/^bool Connector::ConnectServer()$/;"	f	class:Connector	signature:()
-ConnectServer	connector.h	/^	bool ConnectServer();$/;"	p	class:Connector	access:public	signature:()
-Connector	connector.cpp	/^Connector::Connector():server_port_(0),client_fd_(-1)$/;"	f	class:Connector	signature:()
-Connector	connector.h	/^	Connector();$/;"	p	class:Connector	access:public	signature:()
-Connector	connector.h	/^class Connector$/;"	c
-Connector::ConnectServer	connector.cpp	/^bool Connector::ConnectServer()$/;"	f	class:Connector	signature:()
-Connector::ConnectServer	connector.h	/^	bool ConnectServer();$/;"	p	class:Connector	access:public	signature:()
-Connector::Connector	connector.cpp	/^Connector::Connector():server_port_(0),client_fd_(-1)$/;"	f	class:Connector	signature:()
-Connector::Connector	connector.h	/^	Connector();$/;"	p	class:Connector	access:public	signature:()
-Connector::Disconnect	connector.cpp	/^void Connector::Disconnect()$/;"	f	class:Connector	signature:()
-Connector::Disconnect	connector.h	/^	void Disconnect();$/;"	p	class:Connector	access:public	signature:()
-Connector::InitConnectionInfo	connector.cpp	/^void Connector::InitConnectionInfo(const char *server_ip,const short server_port)$/;"	f	class:Connector	signature:(const char *server_ip,const short server_port)
-Connector::InitConnectionInfo	connector.h	/^	void InitConnectionInfo(const char *server_ip,const short server_port);$/;"	p	class:Connector	access:public	signature:(const char *server_ip,const short server_port)
-Connector::client_fd_	connector.h	/^	int client_fd_;$/;"	m	class:Connector	access:private
-Connector::server_ip_	connector.h	/^	std::string server_ip_;$/;"	m	class:Connector	access:private
-Connector::server_port_	connector.h	/^	short server_port_;$/;"	m	class:Connector	access:private
-Connector::~Connector	connector.cpp	/^Connector::~Connector()$/;"	f	class:Connector	signature:()
-Connector::~Connector	connector.h	/^	virtual ~Connector();$/;"	p	class:Connector	access:public	signature:()
+ConnectServer	common/connector.cpp	/^bool Connector::ConnectServer()$/;"	f	class:Connector	signature:()
+ConnectServer	common/connector.h	/^	bool ConnectServer();	$/;"	p	class:Connector	access:public	signature:()
+Connector	common/connector.cpp	/^Connector::Connector():server_port_(0),client_fd_(-1)$/;"	f	class:Connector	signature:()
+Connector	common/connector.h	/^	Connector();$/;"	p	class:Connector	access:public	signature:()
+Connector	common/connector.h	/^class Connector$/;"	c
+Connector::ConnectServer	common/connector.cpp	/^bool Connector::ConnectServer()$/;"	f	class:Connector	signature:()
+Connector::ConnectServer	common/connector.h	/^	bool ConnectServer();	$/;"	p	class:Connector	access:public	signature:()
+Connector::Connector	common/connector.cpp	/^Connector::Connector():server_port_(0),client_fd_(-1)$/;"	f	class:Connector	signature:()
+Connector::Connector	common/connector.h	/^	Connector();$/;"	p	class:Connector	access:public	signature:()
+Connector::Disconnect	common/connector.cpp	/^void Connector::Disconnect()$/;"	f	class:Connector	signature:()
+Connector::Disconnect	common/connector.h	/^	void Disconnect();$/;"	p	class:Connector	access:public	signature:()
+Connector::InitConnectionInfo	common/connector.cpp	/^void Connector::InitConnectionInfo(const char *server_ip,const short server_port)$/;"	f	class:Connector	signature:(const char *server_ip,const short server_port)
+Connector::InitConnectionInfo	common/connector.h	/^	void InitConnectionInfo(const char *server_ip,const short server_port);$/;"	p	class:Connector	access:public	signature:(const char *server_ip,const short server_port)
+Connector::ReconnectThread	common/connector.cpp	/^void *Connector::ReconnectThread(void *arg)$/;"	f	class:Connector	signature:(void *arg)
+Connector::ReconnectThread	common/connector.h	/^	static void * ReconnectThread(void *arg);$/;"	p	class:Connector	access:public	signature:(void *arg)
+Connector::RecvDataThread	common/connector.cpp	/^void *Connector::RecvDataThread(void *arg)$/;"	f	class:Connector	signature:(void *arg)
+Connector::RecvDataThread	common/connector.h	/^	static void * RecvDataThread(void *arg);$/;"	p	class:Connector	access:public	signature:(void *arg)
+Connector::SendData	common/connector.cpp	/^bool Connector::SendData(char *buff,int len)$/;"	f	class:Connector	signature:(char *buff,int len)
+Connector::SendData	common/connector.h	/^	bool SendData(char *buff,int len);$/;"	p	class:Connector	access:public	signature:(char *buff,int len)
+Connector::SendDataThread	common/connector.cpp	/^void *Connector::SendDataThread(void *arg)$/;"	f	class:Connector	signature:(void *arg)
+Connector::SendDataThread	common/connector.h	/^	static void * SendDataThread(void *arg);$/;"	p	class:Connector	access:public	signature:(void *arg)
+Connector::StartConnect	common/connector.cpp	/^bool Connector::StartConnect()$/;"	f	class:Connector	signature:()
+Connector::StartConnect	common/connector.h	/^	bool StartConnect();$/;"	p	class:Connector	access:public	signature:()
+Connector::client_fd_	common/connector.h	/^	int client_fd_;$/;"	m	class:Connector	access:private
+Connector::send_list_	common/connector.h	/^	CircleList send_list_;$/;"	m	class:Connector	access:private
+Connector::server_ip_	common/connector.h	/^	std::string server_ip_;$/;"	m	class:Connector	access:private
+Connector::server_port_	common/connector.h	/^	short server_port_;$/;"	m	class:Connector	access:private
+Connector::~Connector	common/connector.cpp	/^Connector::~Connector()$/;"	f	class:Connector	signature:()
+Connector::~Connector	common/connector.h	/^	virtual ~Connector();$/;"	p	class:Connector	access:public	signature:()
 CopyFrom	packet/cyt_packet.pb.cpp	/^void StruCytPacket::CopyFrom(const ::google::protobuf::Message& from) {$/;"	f	class:StruCytPacket	signature:(const ::google::protobuf::Message& from)
 CopyFrom	packet/cyt_packet.pb.cpp	/^void StruCytPacket::CopyFrom(const StruCytPacket& from) {$/;"	f	class:StruCytPacket	signature:(const StruCytPacket& from)
 CopyFrom	packet/cyt_packet.pb.h	/^  void CopyFrom(const ::google::protobuf::Message& from);$/;"	p	class:StruCytPacket	access:public	signature:(const ::google::protobuf::Message& from)
@@ -519,8 +530,8 @@ DealWithReadData	common/server_listenner.h	/^	static void DealWithReadData(struc
 DefaltMaxSize	common/circle_list.h	/^const int DefaltMaxSize = 0;$/;"	v
 DelRoom	room_manager.cpp	/^bool RoomManager::DelRoom(int room_id)$/;"	f	class:RoomManager	signature:(int room_id)
 DelRoom	room_manager.h	/^	bool DelRoom(int room_id);$/;"	p	class:RoomManager	access:public	signature:(int room_id)
-Disconnect	connector.cpp	/^void Connector::Disconnect()$/;"	f	class:Connector	signature:()
-Disconnect	connector.h	/^	void Disconnect();$/;"	p	class:Connector	access:public	signature:()
+Disconnect	common/connector.cpp	/^void Connector::Disconnect()$/;"	f	class:Connector	signature:()
+Disconnect	common/connector.h	/^	void Disconnect();$/;"	p	class:Connector	access:public	signature:()
 E_CANCLE_USER_MIC_RQ	packet/package_define.pb.h	/^  E_CANCLE_USER_MIC_RQ = 6022,$/;"	e	enum:EnumMsgID
 E_CANCLE_USER_MIC_RS	packet/package_define.pb.h	/^  E_CANCLE_USER_MIC_RS = 6023,$/;"	e	enum:EnumMsgID
 E_MIC_INFO	packet/package_define.pb.h	/^  E_MIC_INFO = 6005,$/;"	e	enum:EnumMsgID
@@ -746,8 +757,8 @@ InitAsDefaultInstance	packet/package_define.pb.h	/^  void InitAsDefaultInstance(
 InitAsDefaultInstance	packet/package_define.pb.h	/^  void InitAsDefaultInstance();$/;"	p	class:StruUserRoleInfoID	access:private	signature:()
 InitBuffer	common/circle_list.cpp	/^void CircleList::InitBuffer(int max_stru_size)$/;"	f	class:CircleList	signature:(int max_stru_size)
 InitBuffer	common/circle_list.h	/^	void InitBuffer(int max_stru_size);$/;"	p	class:CircleList	access:public	signature:(int max_stru_size)
-InitConnectionInfo	connector.cpp	/^void Connector::InitConnectionInfo(const char *server_ip,const short server_port)$/;"	f	class:Connector	signature:(const char *server_ip,const short server_port)
-InitConnectionInfo	connector.h	/^	void InitConnectionInfo(const char *server_ip,const short server_port);$/;"	p	class:Connector	access:public	signature:(const char *server_ip,const short server_port)
+InitConnectionInfo	common/connector.cpp	/^void Connector::InitConnectionInfo(const char *server_ip,const short server_port)$/;"	f	class:Connector	signature:(const char *server_ip,const short server_port)
+InitConnectionInfo	common/connector.h	/^	void InitConnectionInfo(const char *server_ip,const short server_port);$/;"	p	class:Connector	access:public	signature:(const char *server_ip,const short server_port)
 InitProcessor	cl_processor.cpp	/^bool ClientProcessor::InitProcessor(int max_list_size,void *caller_ptr)$/;"	f	class:ClientProcessor	signature:(int max_list_size,void *caller_ptr)
 InitProcessor	cl_processor.h	/^	bool InitProcessor(int max_list_size,void *caller_ptr);$/;"	p	class:ClientProcessor	access:public	signature:(int max_list_size,void *caller_ptr)
 InitProcessor	common/base_processor.cpp	/^bool BaseProcessor::InitProcessor(int max_list_size,void *caller_ptr)$/;"	f	class:BaseProcessor	signature:(int max_list_size,void *caller_ptr)
@@ -1031,6 +1042,10 @@ ROOT	Makefile	/^ROOT =.$/;"	m
 RS_CONNECTOR_H_	cs_connector.h	2;"	d
 ReadAction	common/server_listenner.cpp	/^void ServerListenner::ReadAction(int sock,short event_flag,void *action_class)$/;"	f	class:ServerListenner	signature:(int sock,short event_flag,void *action_class)
 ReadAction	common/server_listenner.h	/^	static void ReadAction(int sock,short event_flag,void *action_class);$/;"	p	class:ServerListenner	access:public	signature:(int sock,short event_flag,void *action_class)
+ReconnectThread	common/connector.cpp	/^void *Connector::ReconnectThread(void *arg)$/;"	f	class:Connector	signature:(void *arg)
+ReconnectThread	common/connector.h	/^	static void * ReconnectThread(void *arg);$/;"	p	class:Connector	access:public	signature:(void *arg)
+RecvDataThread	common/connector.cpp	/^void *Connector::RecvDataThread(void *arg)$/;"	f	class:Connector	signature:(void *arg)
+RecvDataThread	common/connector.h	/^	static void * RecvDataThread(void *arg);$/;"	p	class:Connector	access:public	signature:(void *arg)
 RegisterCommand	common/command_chain.cpp	/^bool CommandChain::RegisterCommand(int command_index,BaseCommand *command_class)$/;"	f	class:CommandChain	signature:(int command_index,BaseCommand *command_class)
 RegisterCommand	common/command_chain.h	/^	bool RegisterCommand(int command_index,BaseCommand * command_class);$/;"	p	class:CommandChain	access:public	signature:(int command_index,BaseCommand * command_class)
 ReleaseAllCommand	common/command_chain.cpp	/^void CommandChain::ReleaseAllCommand()$/;"	f	class:CommandChain	signature:()
@@ -1102,6 +1117,10 @@ SRC	Makefile	/^SRC=$(shell find $(ROOT) -path -prune -o -name '*.cpp')$/;"	m
 SRCOBJ	Makefile	/^SRCOBJ=$(SRC:%.cpp=%.o)$/;"	m
 SafeCloseSocket	common/server_listenner.cpp	/^void ServerListenner::SafeCloseSocket(int sock)$/;"	f	class:ServerListenner	signature:(int sock)
 SafeCloseSocket	common/server_listenner.h	/^	void SafeCloseSocket(int sock);$/;"	p	class:ServerListenner	access:public	signature:(int sock)
+SendData	common/connector.cpp	/^bool Connector::SendData(char *buff,int len)$/;"	f	class:Connector	signature:(char *buff,int len)
+SendData	common/connector.h	/^	bool SendData(char *buff,int len);$/;"	p	class:Connector	access:public	signature:(char *buff,int len)
+SendDataThread	common/connector.cpp	/^void *Connector::SendDataThread(void *arg)$/;"	f	class:Connector	signature:(void *arg)
+SendDataThread	common/connector.h	/^	static void * SendDataThread(void *arg);$/;"	p	class:Connector	access:public	signature:(void *arg)
 SerializeWithCachedSizes	packet/cyt_packet.pb.cpp	/^void StruCytPacket::SerializeWithCachedSizes($/;"	f	class:StruCytPacket	signature:( ::google::protobuf::io::CodedOutputStream* output) const
 SerializeWithCachedSizes	packet/cyt_packet.pb.h	/^  void SerializeWithCachedSizes($/;"	p	class:StruCytPacket	access:public	signature:( ::google::protobuf::io::CodedOutputStream* output) const
 SerializeWithCachedSizes	packet/package_define.pb.cc	/^void StruCancleUserMicRQ::SerializeWithCachedSizes($/;"	f	class:StruCancleUserMicRQ	signature:( ::google::protobuf::io::CodedOutputStream* output) const
@@ -1406,6 +1425,8 @@ SharedDtor	packet/package_define.pb.h	/^  void SharedDtor();$/;"	p	class:StruUse
 SharedDtor	packet/package_define.pb.h	/^  void SharedDtor();$/;"	p	class:StruUserOffMicRS	access:private	signature:()
 SharedDtor	packet/package_define.pb.h	/^  void SharedDtor();$/;"	p	class:StruUserOnMicID	access:private	signature:()
 SharedDtor	packet/package_define.pb.h	/^  void SharedDtor();$/;"	p	class:StruUserRoleInfoID	access:private	signature:()
+StartConnect	common/connector.cpp	/^bool Connector::StartConnect()$/;"	f	class:Connector	signature:()
+StartConnect	common/connector.h	/^	bool StartConnect();$/;"	p	class:Connector	access:public	signature:()
 StartProcessor	cl_processor.cpp	/^bool ClientProcessor::StartProcessor(int thread_count)$/;"	f	class:ClientProcessor	signature:(int thread_count)
 StartProcessor	cl_processor.h	/^	bool StartProcessor(int thread_count);$/;"	p	class:ClientProcessor	access:public	signature:(int thread_count)
 StartServer	common/server_listenner.cpp	/^bool ServerListenner::StartServer(BaseUserInfoResource *user_resource)$/;"	f	class:ServerListenner	signature:(BaseUserInfoResource *user_resource)
@@ -5766,7 +5787,7 @@ clear_user_role_uid	packet/package_define.pb.h	/^  inline void clear_user_role_u
 clear_user_role_uid	packet/package_define.pb.h	/^  inline void clear_user_role_uid();$/;"	p	class:StruUserRoleInfoID	access:public	signature:()
 clear_user_role_uid	packet/package_define.pb.h	/^inline void StruUserInfo::clear_user_role_uid() {$/;"	f	class:StruUserInfo	signature:()
 clear_user_role_uid	packet/package_define.pb.h	/^inline void StruUserRoleInfoID::clear_user_role_uid() {$/;"	f	class:StruUserRoleInfoID	signature:()
-client_fd_	connector.h	/^	int client_fd_;$/;"	m	class:Connector	access:private
+client_fd_	common/connector.h	/^	int client_fd_;$/;"	m	class:Connector	access:private
 client_list_	room_server.h	/^	ClientInfoList client_list_;$/;"	m	class:RoomServer	access:private
 cmd_chain_	common/base_processor.h	/^	CommandChain cmd_chain_;$/;"	m	class:BaseProcessor	access:private
 command_chain_	common/command_chain.h	/^	std::map<int ,BaseCommand *> command_chain_;$/;"	m	class:CommandChain	access:private
@@ -6972,13 +6993,14 @@ room_server_	client_info_list.h	/^	void *room_server_;$/;"	m	class:ClientInfoLis
 room_type	packet/package_define.pb.h	/^  inline ::google::protobuf::int32 room_type() const;$/;"	p	class:StruRoomInfoID	access:public	signature:() const
 room_type	packet/package_define.pb.h	/^inline ::google::protobuf::int32 StruRoomInfoID::room_type() const {$/;"	f	class:StruRoomInfoID	signature:() const
 room_type_	packet/package_define.pb.h	/^  ::google::protobuf::int32 room_type_;$/;"	m	class:StruRoomInfoID	access:private
+send_list_	common/connector.h	/^	CircleList send_list_;$/;"	m	class:Connector	access:private
+server_ip_	common/connector.h	/^	std::string server_ip_;$/;"	m	class:Connector	access:private
 server_ip_	common/server_listenner.h	/^	std::string server_ip_;$/;"	m	class:ServerListenner	access:private
-server_ip_	connector.h	/^	std::string server_ip_;$/;"	m	class:Connector	access:private
 server_ip_	room_server.h	/^	std::string server_ip_;$/;"	m	class:RoomServer	access:private
 server_listen_sock_	common/server_listenner.h	/^	int server_listen_sock_;$/;"	m	class:ServerListenner	access:private
 server_listenner_	room_server.h	/^	ServerListenner server_listenner_;$/;"	m	class:RoomServer	access:private
+server_port_	common/connector.h	/^	short server_port_;$/;"	m	class:Connector	access:private
 server_port_	common/server_listenner.h	/^	int server_port_;$/;"	m	class:ServerListenner	access:private
-server_port_	connector.h	/^	short server_port_;$/;"	m	class:Connector	access:private
 server_port_	room_server.h	/^	int server_port_;$/;"	m	class:RoomServer	access:private
 server_ptr	common/base_user_info.h	/^	void *server_ptr;$/;"	m	class:BaseUserInfo	access:public
 server_ptr	common/server_listenner.h	/^	void *server_ptr;$/;"	m	struct:WorkerInfo	access:public
@@ -7736,8 +7758,8 @@ write_timeout_	room_server.h	/^	int write_timeout_;$/;"	m	class:RoomServer	acces
 ~ClientProcessor	cl_processor.h	/^	~ClientProcessor();$/;"	p	class:ClientProcessor	access:public	signature:()
 ~CommandChain	common/command_chain.cpp	/^CommandChain::~CommandChain()$/;"	f	class:CommandChain	signature:()
 ~CommandChain	common/command_chain.h	/^	~CommandChain();$/;"	p	class:CommandChain	access:public	signature:()
-~Connector	connector.cpp	/^Connector::~Connector()$/;"	f	class:Connector	signature:()
-~Connector	connector.h	/^	virtual ~Connector();$/;"	p	class:Connector	access:public	signature:()
+~Connector	common/connector.cpp	/^Connector::~Connector()$/;"	f	class:Connector	signature:()
+~Connector	common/connector.h	/^	virtual ~Connector();$/;"	p	class:Connector	access:public	signature:()
 ~RoomManager	room_manager.cpp	/^RoomManager::~RoomManager()$/;"	f	class:RoomManager	signature:()
 ~RoomManager	room_manager.h	/^	~RoomManager();$/;"	p	class:RoomManager	access:public	signature:()
 ~RoomServer	room_server.cpp	/^RoomServer::~RoomServer()$/;"	f	class:RoomServer	signature:()

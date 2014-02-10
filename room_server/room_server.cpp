@@ -89,7 +89,7 @@ bool RoomServer::InitServer()
 bool RoomServer::StartServer()
 {
 	bool tmp_return = false;
-	//tmp_return = cs_connector_.ConnectServer();
+	//tmp_return = cs_connector_.StartConnect();
 	//if(!tmp_return)
 	//	return false;
 	//std::cout<<"Connect RoomServer OK!"<<std::endl;
