@@ -43,6 +43,7 @@ bool Connector::StartConnect()
 {
 	is_started_ = true;
 	bool tmp_return = false;
+	int tmp_create_ret = -1;
 	tmp_return = ConnectServer();
 	if(!tmp_return)
 	{
@@ -50,20 +51,20 @@ bool Connector::StartConnect()
 		return false;
 	}
 	pthread_t tmp_thread_id = 0;
-	tmp_return = pthread_create(&tmp_thread_id,NULL,ReconnectThread,this);
-	if(!tmp_return)
+	tmp_create_ret = pthread_create(&tmp_thread_id,NULL,ReconnectThread,this);
+	if(tmp_create_ret != 0)
 	{
 		is_started_ = false;
 		return false;
 	}
-	tmp_return = pthread_create(&tmp_thread_id,NULL,RecvDataThread,this);
-	if(!tmp_return)
+	tmp_create_ret = pthread_create(&tmp_thread_id,NULL,RecvDataThread,this);
+	if(tmp_create_ret != 0)
 	{
 		is_started_ = false;
 		return false;
 	}
-	tmp_return = pthread_create(&tmp_thread_id,NULL,SendDataThread,this);
-	if(!tmp_return)
+	tmp_create_ret = pthread_create(&tmp_thread_id,NULL,SendDataThread,this);
+	if(tmp_create_ret != 0)
 	{
 		is_started_ = false;
 		return false;
@@ -173,14 +174,13 @@ void *Connector::RecvDataThread(void *arg)
 			continue;
 		}
 		tmp_read_len = read(tmp_connector->client_fd_,tmp_read_buff,sizeof(tmp_read_buff));
-		if(tmp_read_buff < 0)
+		if(tmp_read_len > 0)
 		{
-			close(tmp_connector->client_fd_);
-			tmp_connector->client_fd_ = -1;
+			tmp_connector->DealWithData(tmp_read_buff,tmp_read_len,tmp_connector->client_fd_);
 		}
 		else
 		{
-			tmp_connector->DealWithData(tmp_read_buff,tmp_read_len,tmp_connector->client_fd_);
+			usleep(5);
 		}
 	}
 	return NULL;

@@ -291,7 +291,7 @@ void ServerListenner::AcceptAction(int sock,short event_flag,void *action_class)
 void ServerListenner::DealWithReadData(struct bufferevent *buffev,void *arg)
 {
 	BaseUserInfo * tmp_user = (BaseUserInfo *)arg;
-	std::cout<<tmp_user->hash_key<<"ServerListenner::DealWithReadData()"<<std::endl;
+	std::cout<<tmp_user->hash_key<<" ServerListenner::DealWithReadData()"<<std::endl;
 	tmp_user->DealWithData(buffev,arg);
 }
 

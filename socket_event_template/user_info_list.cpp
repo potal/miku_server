@@ -65,14 +65,15 @@ void UserInfoEx::DealWithData(struct bufferevent *buff_ev,void *arg)
 	std::cout<<"remain_len:"<<remain_buff_len_<<" Buff:"<<recved_buff_<<std::endl;
 	bool tmp_result = false;
 	StruCytPacket tmp_pack_cyt_pack;
-	char tmp_send_buff[0x1000] = {0};
+	char tmp_pack_data[0x1000] = {0};
+	char tmp_send_buff[0x2000] = {0};
 	do
 	{
 		tmp_result = tmp_pack_cyt_pack.ParseFromArray(recved_buff_,remain_buff_len_);
 		if(tmp_result)
 		{
 			int tmp_current_pack_len = tmp_pack_cyt_pack.ByteSize();
-			memcpy(tmp_send_buff,recved_buff_,tmp_current_pack_len);
+			memcpy(tmp_pack_data,recved_buff_,tmp_current_pack_len);
 			remain_buff_len_ -= tmp_current_pack_len;
 			memmove(recved_buff_,recved_buff_+tmp_current_pack_len,0x1000-tmp_current_pack_len);
 			long tmp_room_id = tmp_pack_cyt_pack.room_id();
@@ -83,10 +84,20 @@ void UserInfoEx::DealWithData(struct bufferevent *buff_ev,void *arg)
 				std::cout<<"There is no room you find"<<std::endl;
 				continue ;
 			}
+			GateRoomServerPack tmp_package;
+			tmp_package.set_str_head("123");
+			tmp_package.set_user_hashkey(hash_key);
+			tmp_package.set_data_len(tmp_current_pack_len);
+			tmp_package.set_data_msg(tmp_pack_data,tmp_current_pack_len);
+			tmp_package.set_str_tail("456");
+			tmp_current_pack_len = tmp_package.ByteSize();
+			bool tmp_return = tmp_package.SerializeToArray(tmp_send_buff,tmp_current_pack_len);
+			if(!tmp_return)
+				continue;
 			if(write(tmp_chat_room->GetSocket(),tmp_send_buff,tmp_current_pack_len) != tmp_current_pack_len)
 			{
 				std::cout<<"Write length error!"<<std::endl;
-				return ;
+				continue;
 			}
 		}
 	}while (tmp_result);

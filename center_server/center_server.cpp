@@ -121,10 +121,10 @@ RoomManager *CenterServer::GetRoomManager()
 	return &room_manager_;
 }
 
-CenterServerConnector *CenterServer::GetCSConnector()
-{
-	return &cs_connector_;
-}
+//CenterServerConnector *CenterServer::GetCSConnector()
+//{
+//	return &cs_connector_;
+//}
 
 ClientProcessor *CenterServer::GetClientProcessor()
 {

@@ -83,12 +83,20 @@ void* ClientProcessor::DealWithDataThread(void *arg)
 		int tmp_out_len = 0;
 		if(!tmp_processor->GetCircleList()->GetBuffer(tmp_out_buff,0x2000,tmp_out_len))
 		{
-			usleep(1);
+			sleep(5);
 			continue;
 		}
 		std::cout<<"GetBuffer ok! buff_len:"<<tmp_out_len<<std::endl;
+		GateRoomServerPack tmp_gr_pack;
+		tmp_return = tmp_gr_pack.ParseFromArray(tmp_out_buff,tmp_out_len);
+		if(!tmp_return)
+		{
+			std::cout<<"Unpack package error!"<<std::endl;
+			continue;
+		}
+
 		StruCytPacket tmp_pack_cyt_pack;
-		tmp_return = tmp_pack_cyt_pack.ParseFromArray(tmp_out_buff,tmp_out_len);
+		tmp_return = tmp_pack_cyt_pack.ParseFromArray(tmp_gr_pack.data_msg().c_str(),tmp_gr_pack.data_len());
 		if(!tmp_return)
 		{
 			std::cout<<"Unpack package error!"<<std::endl;
@@ -96,16 +104,15 @@ void* ClientProcessor::DealWithDataThread(void *arg)
 		}
 
 		int tmp_msg_type = tmp_pack_cyt_pack.msg_type();
-		std::string tmp_msg_data = tmp_pack_cyt_pack.msg_data();
 
 		BaseCommand *tmp_cmd = tmp_processor->GetCmdChain()->GetCommand(tmp_msg_type);
 		if(!tmp_cmd)
 		{
 			std::cout<<"Get cmd error!"<<std::endl;
-			usleep(1);
+			sleep(5);
 			continue;
 		}
-		tmp_cmd->Execute(const_cast<char*>(tmp_msg_data.c_str()),tmp_pack_cyt_pack.msg_len(),arg);
+		tmp_cmd->Execute(tmp_out_buff,tmp_out_len,arg);
 	}
 	std::cout<<"ClientProcessor::DealWithDataThread ends"<<std::endl;
 	return NULL;

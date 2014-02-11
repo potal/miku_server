@@ -39,7 +39,6 @@ CircleList::CircleList(int stru_size)
 
 CircleList::~CircleList()
 {
-	pthread_mutex_lock(&list_lock_);
 	if(data_ptr_)
 	{
 		delete []data_ptr_;
@@ -49,7 +48,6 @@ CircleList::~CircleList()
 		data_start_ = NULL;
 		data_end_ = NULL;
 	}
-	pthread_mutex_unlock(&list_lock_);
 	pthread_mutex_destroy(&list_lock_);
 }
 
@@ -73,6 +71,7 @@ void CircleList::InitBuffer(int max_stru_size)
 bool CircleList::AddBuffer(char *buff,int len)
 {
 	AutoLock tmp_lock(&list_lock_);
+
 	if(!data_ptr_)
 		return false;
 	//if(data_start_ <= list_start_ && list_start_ <= list_end_)
@@ -142,6 +141,7 @@ bool CircleList::AddBuffer(char *buff,int len)
 bool CircleList::GetBuffer(char * out_buff,int max_buff_len,int &out_len)
 {
 	AutoLock tmp_lock(&list_lock_);
+
 	if(!data_ptr_)
 		return false;
 	if(start_pos_index_ == end_pos_index_ && using_size_ == 0)//buffer empty
@@ -188,12 +188,13 @@ bool CircleList::GetBuffer(char * out_buff,int max_buff_len,int &out_len)
 	if(start_pos_index_ == max_stru_size_)
 		start_pos_index_ = 0;
 	using_size_ -= tmp_pack_count;
-	//std::cout<<start_pos_index_<<"  "<<end_pos_index_<<std::endl;
 	return true;
 }
 
 void CircleList::ReleaseBuffer()
 {
+	AutoLock tmp_lock(&list_lock_);
+
 	using_size_ = 0;
 	data_start_ = list_start_ = list_end_ = data_ptr_;
 	start_pos_index_ = end_pos_index_ = 0;

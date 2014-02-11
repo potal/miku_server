@@ -30,6 +30,7 @@ void  protobuf_AddDesc_package_5fdefine_2eproto();
 void protobuf_AssignDesc_package_5fdefine_2eproto();
 void protobuf_ShutdownFile_package_5fdefine_2eproto();
 
+class GateRoomServerPack;
 class StruUserLoginRQ;
 class StruUserLoginRS;
 class StruUserRoleInfoID;
@@ -98,6 +99,140 @@ inline bool EnumMsgID_Parse(
     EnumMsgID_descriptor(), name, value);
 }
 // ===================================================================
+
+class GateRoomServerPack : public ::google::protobuf::Message {
+ public:
+  GateRoomServerPack();
+  virtual ~GateRoomServerPack();
+  
+  GateRoomServerPack(const GateRoomServerPack& from);
+  
+  inline GateRoomServerPack& operator=(const GateRoomServerPack& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const GateRoomServerPack& default_instance();
+  
+  void Swap(GateRoomServerPack* other);
+  
+  // implements Message ----------------------------------------------
+  
+  GateRoomServerPack* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const GateRoomServerPack& from);
+  void MergeFrom(const GateRoomServerPack& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // required string str_head = 1;
+  inline bool has_str_head() const;
+  inline void clear_str_head();
+  static const int kStrHeadFieldNumber = 1;
+  inline const ::std::string& str_head() const;
+  inline void set_str_head(const ::std::string& value);
+  inline void set_str_head(const char* value);
+  inline void set_str_head(const char* value, size_t size);
+  inline ::std::string* mutable_str_head();
+  inline ::std::string* release_str_head();
+  
+  // required int32 user_hashkey = 2;
+  inline bool has_user_hashkey() const;
+  inline void clear_user_hashkey();
+  static const int kUserHashkeyFieldNumber = 2;
+  inline ::google::protobuf::int32 user_hashkey() const;
+  inline void set_user_hashkey(::google::protobuf::int32 value);
+  
+  // required int32 data_len = 3;
+  inline bool has_data_len() const;
+  inline void clear_data_len();
+  static const int kDataLenFieldNumber = 3;
+  inline ::google::protobuf::int32 data_len() const;
+  inline void set_data_len(::google::protobuf::int32 value);
+  
+  // required bytes data_msg = 4;
+  inline bool has_data_msg() const;
+  inline void clear_data_msg();
+  static const int kDataMsgFieldNumber = 4;
+  inline const ::std::string& data_msg() const;
+  inline void set_data_msg(const ::std::string& value);
+  inline void set_data_msg(const char* value);
+  inline void set_data_msg(const void* value, size_t size);
+  inline ::std::string* mutable_data_msg();
+  inline ::std::string* release_data_msg();
+  
+  // required string str_tail = 5;
+  inline bool has_str_tail() const;
+  inline void clear_str_tail();
+  static const int kStrTailFieldNumber = 5;
+  inline const ::std::string& str_tail() const;
+  inline void set_str_tail(const ::std::string& value);
+  inline void set_str_tail(const char* value);
+  inline void set_str_tail(const char* value, size_t size);
+  inline ::std::string* mutable_str_tail();
+  inline ::std::string* release_str_tail();
+  
+  // @@protoc_insertion_point(class_scope:GateRoomServerPack)
+ private:
+  inline void set_has_str_head();
+  inline void clear_has_str_head();
+  inline void set_has_user_hashkey();
+  inline void clear_has_user_hashkey();
+  inline void set_has_data_len();
+  inline void clear_has_data_len();
+  inline void set_has_data_msg();
+  inline void clear_has_data_msg();
+  inline void set_has_str_tail();
+  inline void clear_has_str_tail();
+  
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  
+  ::std::string* str_head_;
+  ::google::protobuf::int32 user_hashkey_;
+  ::google::protobuf::int32 data_len_;
+  ::std::string* data_msg_;
+  ::std::string* str_tail_;
+  
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(5 + 31) / 32];
+  
+  friend void  protobuf_AddDesc_package_5fdefine_2eproto();
+  friend void protobuf_AssignDesc_package_5fdefine_2eproto();
+  friend void protobuf_ShutdownFile_package_5fdefine_2eproto();
+  
+  void InitAsDefaultInstance();
+  static GateRoomServerPack* default_instance_;
+};
+// -------------------------------------------------------------------
 
 class StruUserLoginRQ : public ::google::protobuf::Message {
  public:
@@ -3077,6 +3212,228 @@ class StruUserExitRoomID : public ::google::protobuf::Message {
 
 
 // ===================================================================
+
+// GateRoomServerPack
+
+// required string str_head = 1;
+inline bool GateRoomServerPack::has_str_head() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void GateRoomServerPack::set_has_str_head() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void GateRoomServerPack::clear_has_str_head() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void GateRoomServerPack::clear_str_head() {
+  if (str_head_ != &::google::protobuf::internal::kEmptyString) {
+    str_head_->clear();
+  }
+  clear_has_str_head();
+}
+inline const ::std::string& GateRoomServerPack::str_head() const {
+  return *str_head_;
+}
+inline void GateRoomServerPack::set_str_head(const ::std::string& value) {
+  set_has_str_head();
+  if (str_head_ == &::google::protobuf::internal::kEmptyString) {
+    str_head_ = new ::std::string;
+  }
+  str_head_->assign(value);
+}
+inline void GateRoomServerPack::set_str_head(const char* value) {
+  set_has_str_head();
+  if (str_head_ == &::google::protobuf::internal::kEmptyString) {
+    str_head_ = new ::std::string;
+  }
+  str_head_->assign(value);
+}
+inline void GateRoomServerPack::set_str_head(const char* value, size_t size) {
+  set_has_str_head();
+  if (str_head_ == &::google::protobuf::internal::kEmptyString) {
+    str_head_ = new ::std::string;
+  }
+  str_head_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* GateRoomServerPack::mutable_str_head() {
+  set_has_str_head();
+  if (str_head_ == &::google::protobuf::internal::kEmptyString) {
+    str_head_ = new ::std::string;
+  }
+  return str_head_;
+}
+inline ::std::string* GateRoomServerPack::release_str_head() {
+  clear_has_str_head();
+  if (str_head_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
+  } else {
+    ::std::string* temp = str_head_;
+    str_head_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
+}
+
+// required int32 user_hashkey = 2;
+inline bool GateRoomServerPack::has_user_hashkey() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void GateRoomServerPack::set_has_user_hashkey() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void GateRoomServerPack::clear_has_user_hashkey() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void GateRoomServerPack::clear_user_hashkey() {
+  user_hashkey_ = 0;
+  clear_has_user_hashkey();
+}
+inline ::google::protobuf::int32 GateRoomServerPack::user_hashkey() const {
+  return user_hashkey_;
+}
+inline void GateRoomServerPack::set_user_hashkey(::google::protobuf::int32 value) {
+  set_has_user_hashkey();
+  user_hashkey_ = value;
+}
+
+// required int32 data_len = 3;
+inline bool GateRoomServerPack::has_data_len() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void GateRoomServerPack::set_has_data_len() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void GateRoomServerPack::clear_has_data_len() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void GateRoomServerPack::clear_data_len() {
+  data_len_ = 0;
+  clear_has_data_len();
+}
+inline ::google::protobuf::int32 GateRoomServerPack::data_len() const {
+  return data_len_;
+}
+inline void GateRoomServerPack::set_data_len(::google::protobuf::int32 value) {
+  set_has_data_len();
+  data_len_ = value;
+}
+
+// required bytes data_msg = 4;
+inline bool GateRoomServerPack::has_data_msg() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void GateRoomServerPack::set_has_data_msg() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void GateRoomServerPack::clear_has_data_msg() {
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline void GateRoomServerPack::clear_data_msg() {
+  if (data_msg_ != &::google::protobuf::internal::kEmptyString) {
+    data_msg_->clear();
+  }
+  clear_has_data_msg();
+}
+inline const ::std::string& GateRoomServerPack::data_msg() const {
+  return *data_msg_;
+}
+inline void GateRoomServerPack::set_data_msg(const ::std::string& value) {
+  set_has_data_msg();
+  if (data_msg_ == &::google::protobuf::internal::kEmptyString) {
+    data_msg_ = new ::std::string;
+  }
+  data_msg_->assign(value);
+}
+inline void GateRoomServerPack::set_data_msg(const char* value) {
+  set_has_data_msg();
+  if (data_msg_ == &::google::protobuf::internal::kEmptyString) {
+    data_msg_ = new ::std::string;
+  }
+  data_msg_->assign(value);
+}
+inline void GateRoomServerPack::set_data_msg(const void* value, size_t size) {
+  set_has_data_msg();
+  if (data_msg_ == &::google::protobuf::internal::kEmptyString) {
+    data_msg_ = new ::std::string;
+  }
+  data_msg_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* GateRoomServerPack::mutable_data_msg() {
+  set_has_data_msg();
+  if (data_msg_ == &::google::protobuf::internal::kEmptyString) {
+    data_msg_ = new ::std::string;
+  }
+  return data_msg_;
+}
+inline ::std::string* GateRoomServerPack::release_data_msg() {
+  clear_has_data_msg();
+  if (data_msg_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
+  } else {
+    ::std::string* temp = data_msg_;
+    data_msg_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
+}
+
+// required string str_tail = 5;
+inline bool GateRoomServerPack::has_str_tail() const {
+  return (_has_bits_[0] & 0x00000010u) != 0;
+}
+inline void GateRoomServerPack::set_has_str_tail() {
+  _has_bits_[0] |= 0x00000010u;
+}
+inline void GateRoomServerPack::clear_has_str_tail() {
+  _has_bits_[0] &= ~0x00000010u;
+}
+inline void GateRoomServerPack::clear_str_tail() {
+  if (str_tail_ != &::google::protobuf::internal::kEmptyString) {
+    str_tail_->clear();
+  }
+  clear_has_str_tail();
+}
+inline const ::std::string& GateRoomServerPack::str_tail() const {
+  return *str_tail_;
+}
+inline void GateRoomServerPack::set_str_tail(const ::std::string& value) {
+  set_has_str_tail();
+  if (str_tail_ == &::google::protobuf::internal::kEmptyString) {
+    str_tail_ = new ::std::string;
+  }
+  str_tail_->assign(value);
+}
+inline void GateRoomServerPack::set_str_tail(const char* value) {
+  set_has_str_tail();
+  if (str_tail_ == &::google::protobuf::internal::kEmptyString) {
+    str_tail_ = new ::std::string;
+  }
+  str_tail_->assign(value);
+}
+inline void GateRoomServerPack::set_str_tail(const char* value, size_t size) {
+  set_has_str_tail();
+  if (str_tail_ == &::google::protobuf::internal::kEmptyString) {
+    str_tail_ = new ::std::string;
+  }
+  str_tail_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* GateRoomServerPack::mutable_str_tail() {
+  set_has_str_tail();
+  if (str_tail_ == &::google::protobuf::internal::kEmptyString) {
+    str_tail_ = new ::std::string;
+  }
+  return str_tail_;
+}
+inline ::std::string* GateRoomServerPack::release_str_tail() {
+  clear_has_str_tail();
+  if (str_tail_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
+  } else {
+    ::std::string* temp = str_tail_;
+    str_tail_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
+}
+
+// -------------------------------------------------------------------
 
 // StruUserLoginRQ
 

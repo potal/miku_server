@@ -1,6 +1,8 @@
 #                     MAKE MACRO DEFINATION
 ROOT =.
-SRC=$(shell find $(ROOT) -path -prune -o -name '*.cpp')
+DIRS =./\
+	 ../common/
+SRC=$(shell find $(DIRS) -path -prune -o -name '*.cpp')
 SRCOBJ=$(SRC:%.cpp=%.o)
 CCSRC=$(shell find $(ROOT) -path -prune -o -name '*.cc')
 CCSRCOBJ=$(CCSRC:%.cc=%.o)
@@ -10,7 +12,7 @@ CCFlag = -O0 -g3 -w -c -fmessage-length=0 -fPIC
 LINKFlag = -shared
 PROGRAM = roomserver
 
-INCLUDES = -I$(ROOT)/ -Icommon -Ipacket
+INCLUDES = -I../common/ -I$(ROOT)/ -Ipacket
 #LIBPATH= -Llib/libevent -Llib/protobuf
 LIBS = -lpthread -levent -lprotobuf
 #-lrt -ldl -levent_core -levent_pthreads -lprotobuf -lprotoc

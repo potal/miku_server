@@ -1,7 +1,7 @@
 #ifndef CL_PROCESSOR_H_
 #define CL_PROCESSOR_H_
 
-#include "common/base_processor.h"
+#include "../common/base_processor.h"
 class ClientProcessor : public BaseProcessor
 {
 private:
@@ -10,7 +10,7 @@ public:
 	ClientProcessor();
 	~ClientProcessor();
 
-	bool InitProcessor(int max_list_size,void *server_ptr);
+	bool InitProcessor(int max_list_size,void *caller_ptr);
 	bool StartProcessor(int thread_count);
 
 	static void* DealWithDataThread(void *arg);

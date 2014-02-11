@@ -15,6 +15,9 @@
 
 namespace {
 
+const ::google::protobuf::Descriptor* GateRoomServerPack_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  GateRoomServerPack_reflection_ = NULL;
 const ::google::protobuf::Descriptor* StruUserLoginRQ_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   StruUserLoginRQ_reflection_ = NULL;
@@ -98,7 +101,26 @@ void protobuf_AssignDesc_package_5fdefine_2eproto() {
     ::google::protobuf::DescriptorPool::generated_pool()->FindFileByName(
       "package_define.proto");
   GOOGLE_CHECK(file != NULL);
-  StruUserLoginRQ_descriptor_ = file->message_type(0);
+  GateRoomServerPack_descriptor_ = file->message_type(0);
+  static const int GateRoomServerPack_offsets_[5] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GateRoomServerPack, str_head_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GateRoomServerPack, user_hashkey_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GateRoomServerPack, data_len_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GateRoomServerPack, data_msg_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GateRoomServerPack, str_tail_),
+  };
+  GateRoomServerPack_reflection_ =
+    new ::google::protobuf::internal::GeneratedMessageReflection(
+      GateRoomServerPack_descriptor_,
+      GateRoomServerPack::default_instance_,
+      GateRoomServerPack_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GateRoomServerPack, _has_bits_[0]),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GateRoomServerPack, _unknown_fields_),
+      -1,
+      ::google::protobuf::DescriptorPool::generated_pool(),
+      ::google::protobuf::MessageFactory::generated_factory(),
+      sizeof(GateRoomServerPack));
+  StruUserLoginRQ_descriptor_ = file->message_type(1);
   static const int StruUserLoginRQ_offsets_[5] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserLoginRQ, msg_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserLoginRQ, user_id_),
@@ -117,7 +139,7 @@ void protobuf_AssignDesc_package_5fdefine_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(StruUserLoginRQ));
-  StruUserLoginRS_descriptor_ = file->message_type(1);
+  StruUserLoginRS_descriptor_ = file->message_type(2);
   static const int StruUserLoginRS_offsets_[4] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserLoginRS, msg_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserLoginRS, user_id_),
@@ -135,7 +157,7 @@ void protobuf_AssignDesc_package_5fdefine_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(StruUserLoginRS));
-  StruUserRoleInfoID_descriptor_ = file->message_type(2);
+  StruUserRoleInfoID_descriptor_ = file->message_type(3);
   static const int StruUserRoleInfoID_offsets_[6] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserRoleInfoID, msg_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserRoleInfoID, user_id_),
@@ -155,7 +177,7 @@ void protobuf_AssignDesc_package_5fdefine_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(StruUserRoleInfoID));
-  StruRoomInfoID_descriptor_ = file->message_type(3);
+  StruRoomInfoID_descriptor_ = file->message_type(4);
   static const int StruRoomInfoID_offsets_[7] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruRoomInfoID, msg_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruRoomInfoID, user_id_),
@@ -176,7 +198,7 @@ void protobuf_AssignDesc_package_5fdefine_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(StruRoomInfoID));
-  StruMicInfo_descriptor_ = file->message_type(4);
+  StruMicInfo_descriptor_ = file->message_type(5);
   static const int StruMicInfo_offsets_[4] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruMicInfo, msg_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruMicInfo, user_id_),
@@ -194,7 +216,7 @@ void protobuf_AssignDesc_package_5fdefine_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(StruMicInfo));
-  StruRoomMicInfoID_descriptor_ = file->message_type(5);
+  StruRoomMicInfoID_descriptor_ = file->message_type(6);
   static const int StruRoomMicInfoID_offsets_[4] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruRoomMicInfoID, msg_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruRoomMicInfoID, user_id_),
@@ -212,7 +234,7 @@ void protobuf_AssignDesc_package_5fdefine_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(StruRoomMicInfoID));
-  StruUserInfo_descriptor_ = file->message_type(6);
+  StruUserInfo_descriptor_ = file->message_type(7);
   static const int StruUserInfo_offsets_[4] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserInfo, msg_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserInfo, user_id_),
@@ -230,7 +252,7 @@ void protobuf_AssignDesc_package_5fdefine_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(StruUserInfo));
-  StruUserInfoListID_descriptor_ = file->message_type(7);
+  StruUserInfoListID_descriptor_ = file->message_type(8);
   static const int StruUserInfoListID_offsets_[4] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserInfoListID, msg_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserInfoListID, user_id_),
@@ -248,7 +270,7 @@ void protobuf_AssignDesc_package_5fdefine_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(StruUserInfoListID));
-  StruUserMsgRQ_descriptor_ = file->message_type(8);
+  StruUserMsgRQ_descriptor_ = file->message_type(9);
   static const int StruUserMsgRQ_offsets_[6] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserMsgRQ, msg_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserMsgRQ, user_id_),
@@ -268,7 +290,7 @@ void protobuf_AssignDesc_package_5fdefine_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(StruUserMsgRQ));
-  StruUserMsgRS_descriptor_ = file->message_type(9);
+  StruUserMsgRS_descriptor_ = file->message_type(10);
   static const int StruUserMsgRS_offsets_[4] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserMsgRS, msg_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserMsgRS, user_id_),
@@ -286,7 +308,7 @@ void protobuf_AssignDesc_package_5fdefine_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(StruUserMsgRS));
-  StruUserMsgTextID_descriptor_ = file->message_type(10);
+  StruUserMsgTextID_descriptor_ = file->message_type(11);
   static const int StruUserMsgTextID_offsets_[6] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserMsgTextID, msg_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserMsgTextID, user_id_),
@@ -306,7 +328,7 @@ void protobuf_AssignDesc_package_5fdefine_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(StruUserMsgTextID));
-  StruUserGiveGiftRQ_descriptor_ = file->message_type(11);
+  StruUserGiveGiftRQ_descriptor_ = file->message_type(12);
   static const int StruUserGiveGiftRQ_offsets_[5] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserGiveGiftRQ, msg_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserGiveGiftRQ, user_id_),
@@ -325,7 +347,7 @@ void protobuf_AssignDesc_package_5fdefine_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(StruUserGiveGiftRQ));
-  StruUserGiveGiftRS_descriptor_ = file->message_type(12);
+  StruUserGiveGiftRS_descriptor_ = file->message_type(13);
   static const int StruUserGiveGiftRS_offsets_[6] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserGiveGiftRS, msg_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserGiveGiftRS, user_id_),
@@ -345,7 +367,7 @@ void protobuf_AssignDesc_package_5fdefine_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(StruUserGiveGiftRS));
-  StruUserApplyMicRQ_descriptor_ = file->message_type(13);
+  StruUserApplyMicRQ_descriptor_ = file->message_type(14);
   static const int StruUserApplyMicRQ_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserApplyMicRQ, msg_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserApplyMicRQ, user_id_),
@@ -362,7 +384,7 @@ void protobuf_AssignDesc_package_5fdefine_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(StruUserApplyMicRQ));
-  StruUserApplyMicRS_descriptor_ = file->message_type(14);
+  StruUserApplyMicRS_descriptor_ = file->message_type(15);
   static const int StruUserApplyMicRS_offsets_[5] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserApplyMicRS, msg_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserApplyMicRS, user_id_),
@@ -381,7 +403,7 @@ void protobuf_AssignDesc_package_5fdefine_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(StruUserApplyMicRS));
-  StruUserOnMicID_descriptor_ = file->message_type(15);
+  StruUserOnMicID_descriptor_ = file->message_type(16);
   static const int StruUserOnMicID_offsets_[5] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserOnMicID, msg_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserOnMicID, mic_user_id_),
@@ -400,7 +422,7 @@ void protobuf_AssignDesc_package_5fdefine_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(StruUserOnMicID));
-  StruUserOffMicRQ_descriptor_ = file->message_type(16);
+  StruUserOffMicRQ_descriptor_ = file->message_type(17);
   static const int StruUserOffMicRQ_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserOffMicRQ, msg_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserOffMicRQ, user_id_),
@@ -417,7 +439,7 @@ void protobuf_AssignDesc_package_5fdefine_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(StruUserOffMicRQ));
-  StruUserOffMicRS_descriptor_ = file->message_type(17);
+  StruUserOffMicRS_descriptor_ = file->message_type(18);
   static const int StruUserOffMicRS_offsets_[4] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserOffMicRS, msg_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserOffMicRS, user_id_),
@@ -435,7 +457,7 @@ void protobuf_AssignDesc_package_5fdefine_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(StruUserOffMicRS));
-  StruUserOffMicID_descriptor_ = file->message_type(18);
+  StruUserOffMicID_descriptor_ = file->message_type(19);
   static const int StruUserOffMicID_offsets_[5] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserOffMicID, msg_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserOffMicID, mic_user_id_),
@@ -454,7 +476,7 @@ void protobuf_AssignDesc_package_5fdefine_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(StruUserOffMicID));
-  StruPutUserOnMicRQ_descriptor_ = file->message_type(19);
+  StruPutUserOnMicRQ_descriptor_ = file->message_type(20);
   static const int StruPutUserOnMicRQ_offsets_[5] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruPutUserOnMicRQ, msg_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruPutUserOnMicRQ, user_id_),
@@ -473,7 +495,7 @@ void protobuf_AssignDesc_package_5fdefine_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(StruPutUserOnMicRQ));
-  StruPutUserOnMicRS_descriptor_ = file->message_type(20);
+  StruPutUserOnMicRS_descriptor_ = file->message_type(21);
   static const int StruPutUserOnMicRS_offsets_[7] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruPutUserOnMicRS, msg_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruPutUserOnMicRS, user_id_),
@@ -494,7 +516,7 @@ void protobuf_AssignDesc_package_5fdefine_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(StruPutUserOnMicRS));
-  StruCancleUserMicRQ_descriptor_ = file->message_type(21);
+  StruCancleUserMicRQ_descriptor_ = file->message_type(22);
   static const int StruCancleUserMicRQ_offsets_[6] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruCancleUserMicRQ, msg_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruCancleUserMicRQ, user_id_),
@@ -514,7 +536,7 @@ void protobuf_AssignDesc_package_5fdefine_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(StruCancleUserMicRQ));
-  StruCancleUserMicRS_descriptor_ = file->message_type(22);
+  StruCancleUserMicRS_descriptor_ = file->message_type(23);
   static const int StruCancleUserMicRS_offsets_[4] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruCancleUserMicRS, msg_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruCancleUserMicRS, user_id_),
@@ -532,7 +554,7 @@ void protobuf_AssignDesc_package_5fdefine_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(StruCancleUserMicRS));
-  StruUserExitRoomID_descriptor_ = file->message_type(23);
+  StruUserExitRoomID_descriptor_ = file->message_type(24);
   static const int StruUserExitRoomID_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserExitRoomID, msg_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserExitRoomID, user_id_),
@@ -562,6 +584,8 @@ inline void protobuf_AssignDescriptorsOnce() {
 
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+    GateRoomServerPack_descriptor_, &GateRoomServerPack::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     StruUserLoginRQ_descriptor_, &StruUserLoginRQ::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
@@ -615,6 +639,8 @@ void protobuf_RegisterTypes(const ::std::string&) {
 }  // namespace
 
 void protobuf_ShutdownFile_package_5fdefine_2eproto() {
+  delete GateRoomServerPack::default_instance_;
+  delete GateRoomServerPack_reflection_;
   delete StruUserLoginRQ::default_instance_;
   delete StruUserLoginRQ_reflection_;
   delete StruUserLoginRS::default_instance_;
@@ -672,110 +698,113 @@ void protobuf_AddDesc_package_5fdefine_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\024package_define.proto\"\215\001\n\017StruUserLogin"
-    "RQ\022+\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\017E_USER_L"
-    "OGIN_RQ\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002("
-    "\005\022\020\n\010user_psw\030\004 \002(\t\022\031\n\021user_account_name"
-    "\030\005 \002(\t\"p\n\017StruUserLoginRS\022+\n\006msg_id\030\001 \002("
-    "\0162\n.EnumMsgID:\017E_USER_LOGIN_RS\022\017\n\007user_i"
-    "d\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\016\n\006result\030\004 \002(\005"
-    "\"\255\001\n\022StruUserRoleInfoID\022/\n\006msg_id\030\001 \002(\0162"
-    "\n.EnumMsgID:\023E_USER_ROLE_INFO_ID\022\017\n\007user"
-    "_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\031\n\021user_accou"
-    "nt_name\030\004 \002(\t\022\025\n\ruser_role_uid\030\005 \002(\t\022\022\n\n"
-    "other_data\030\006 \001(\t\"\260\001\n\016StruRoomInfoID\022*\n\006m"
-    "sg_id\030\001 \002(\0162\n.EnumMsgID:\016E_ROOM_INFO_ID\022"
-    "\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\021\n\troo"
-    "m_type\030\004 \002(\005\022\021\n\troom_name\030\005 \002(\t\022\023\n\013room_"
-    "advert\030\006 \002(\t\022\025\n\rroom_announce\030\007 \002(\t\"z\n\013S"
-    "truMicInfo\022&\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\n"
-    "E_MIC_INFO\022\017\n\007user_id\030\002 \002(\005\022\031\n\021user_acco"
-    "unt_name\030\003 \002(\t\022\027\n\017mic_channel_str\030\004 \002(\t\""
-    "\205\001\n\021StruRoomMicInfoID\022.\n\006msg_id\030\001 \002(\0162\n."
-    "EnumMsgID:\022E_ROOM_MIC_INFO_ID\022\017\n\007user_id"
-    "\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\036\n\010mic_list\030\004 \003("
-    "\0132\014.StruMicInfo\"z\n\014StruUserInfo\022\'\n\006msg_i"
-    "d\030\001 \002(\0162\n.EnumMsgID:\013E_USER_INFO\022\017\n\007user"
-    "_id\030\002 \002(\005\022\031\n\021user_account_name\030\003 \002(\t\022\025\n\r"
-    "user_role_uid\030\004 \002(\t\"\216\001\n\022StruUserInfoList"
-    "ID\022/\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\023E_USER_I"
-    "NFO_LIST_ID\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030"
-    "\003 \002(\005\022%\n\016user_info_list\030\004 \003(\0132\r.StruUser"
-    "Info\"\227\001\n\rStruUserMsgRQ\022)\n\006msg_id\030\001 \002(\0162\n"
-    ".EnumMsgID:\rE_USER_MSG_RQ\022\017\n\007user_id\030\002 \002"
-    "(\005\022\017\n\007room_id\030\003 \002(\005\022\020\n\010msg_text\030\004 \002(\t\022\022\n"
-    "\nis_private\030\005 \002(\010\022\023\n\013dst_user_id\030\006 \002(\005\"l"
-    "\n\rStruUserMsgRS\022)\n\006msg_id\030\001 \002(\0162\n.EnumMs"
-    "gID:\rE_USER_MSG_RS\022\017\n\007user_id\030\002 \002(\005\022\017\n\007r"
-    "oom_id\030\003 \002(\005\022\016\n\006result\030\004 \002(\005\"\240\001\n\021StruUse"
-    "rMsgTextID\022.\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\022"
-    "E_USER_MSG_TEXT_ID\022\017\n\007user_id\030\002 \002(\005\022\017\n\007r"
-    "oom_id\030\003 \002(\005\022\020\n\010msg_text\030\004 \002(\t\022\022\n\nis_pri"
-    "vate\030\005 \002(\010\022\023\n\013dst_user_id\030\006 \002(\005\"\217\001\n\022Stru"
-    "UserGiveGiftRQ\022/\n\006msg_id\030\001 \002(\0162\n.EnumMsg"
-    "ID:\023E_USER_GIVE_GIFT_RQ\022\017\n\007user_id\030\002 \002(\005"
-    "\022\017\n\007room_id\030\003 \002(\005\022\021\n\tgift_code\030\004 \002(\t\022\023\n\013"
-    "dst_user_id\030\005 \002(\005\"\237\001\n\022StruUserGiveGiftRS"
-    "\022/\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\023E_USER_GIV"
-    "E_GIFT_RS\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 "
-    "\002(\005\022\016\n\006result\030\004 \002(\005\022\021\n\tgift_code\030\005 \002(\t\022\023"
-    "\n\013dst_user_id\030\006 \002(\005\"g\n\022StruUserApplyMicR"
-    "Q\022/\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\023E_USER_AP"
-    "PLY_MIC_RQ\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003"
-    " \002(\005\"\220\001\n\022StruUserApplyMicRS\022/\n\006msg_id\030\001 "
-    "\002(\0162\n.EnumMsgID:\023E_USER_APPLY_MIC_RS\022\017\n\007"
-    "user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\016\n\006result"
-    "\030\004 \002(\005\022\027\n\017mic_channel_str\030\005 \002(\t\"\241\001\n\017Stru"
-    "UserOnMicID\022,\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:"
-    "\020E_USER_ON_MIC_ID\022\023\n\013mic_user_id\030\002 \002(\005\022\023"
-    "\n\013mic_room_id\030\003 \002(\005\022\035\n\025mic_user_account_"
-    "name\030\004 \002(\t\022\027\n\017mic_channel_str\030\005 \002(\t\"c\n\020S"
-    "truUserOffMicRQ\022-\n\006msg_id\030\001 \002(\0162\n.EnumMs"
-    "gID:\021E_USER_OFF_MIC_RQ\022\017\n\007user_id\030\002 \002(\005\022"
-    "\017\n\007room_id\030\003 \002(\005\"s\n\020StruUserOffMicRS\022-\n\006"
-    "msg_id\030\001 \002(\0162\n.EnumMsgID:\021E_USER_OFF_MIC"
-    "_RS\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\016\n"
-    "\006result\030\004 \002(\005\"\243\001\n\020StruUserOffMicID\022-\n\006ms"
-    "g_id\030\001 \002(\0162\n.EnumMsgID:\021E_USER_OFF_MIC_I"
-    "D\022\023\n\013mic_user_id\030\002 \002(\005\022\023\n\013mic_room_id\030\003 "
-    "\002(\005\022\035\n\025mic_user_account_name\030\004 \002(\t\022\027\n\017mi"
-    "c_channel_str\030\005 \002(\t\"\217\001\n\022StruPutUserOnMic"
-    "RQ\0220\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\024E_PUT_US"
-    "ER_ON_MIC_RQ\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id"
-    "\030\003 \002(\005\022\023\n\013dst_user_id\030\004 \002(\005\022\020\n\010mic_type\030"
-    "\005 \002(\005\"\270\001\n\022StruPutUserOnMicRS\0220\n\006msg_id\030\001"
-    " \002(\0162\n.EnumMsgID:\024E_PUT_USER_ON_MIC_RS\022\017"
-    "\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\023\n\013dst_"
-    "user_id\030\004 \002(\005\022\020\n\010mic_type\030\005 \002(\005\022\016\n\006resul"
-    "t\030\006 \002(\005\022\027\n\017mic_channel_str\030\007 \002(\t\"\251\001\n\023Str"
-    "uCancleUserMicRQ\0220\n\006msg_id\030\001 \002(\0162\n.EnumM"
-    "sgID:\024E_CANCLE_USER_MIC_RQ\022\017\n\007user_id\030\002 "
-    "\002(\005\022\017\n\007room_id\030\003 \002(\005\022\023\n\013dst_user_id\030\004 \002("
-    "\005\022\020\n\010mic_type\030\005 \002(\005\022\027\n\017mic_channel_str\030\006"
-    " \002(\t\"y\n\023StruCancleUserMicRS\0220\n\006msg_id\030\001 "
-    "\002(\0162\n.EnumMsgID:\024E_CANCLE_USER_MIC_RS\022\017\n"
-    "\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\016\n\006resul"
-    "t\030\004 \002(\005\"g\n\022StruUserExitRoomID\022/\n\006msg_id\030"
-    "\001 \002(\0162\n.EnumMsgID:\023E_USER_EXIT_ROOM_ID\022\017"
-    "\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005*\336\004\n\tEnu"
-    "mMsgID\022\022\n\rE_MSG_ID_BASE\020\360.\022\024\n\017E_USER_LOG"
-    "IN_RQ\020\361.\022\024\n\017E_USER_LOGIN_RS\020\362.\022\030\n\023E_USER"
-    "_ROLE_INFO_ID\020\363.\022\023\n\016E_ROOM_INFO_ID\020\364.\022\017\n"
-    "\nE_MIC_INFO\020\365.\022\027\n\022E_ROOM_MIC_INFO_ID\020\366.\022"
-    "\020\n\013E_USER_INFO\020\367.\022\030\n\023E_USER_INFO_LIST_ID"
-    "\020\370.\022\022\n\rE_USER_MSG_RQ\020\371.\022\022\n\rE_USER_MSG_RS"
-    "\020\372.\022\027\n\022E_USER_MSG_TEXT_ID\020\373.\022\030\n\023E_USER_G"
-    "IVE_GIFT_RQ\020\374.\022\030\n\023E_USER_GIVE_GIFT_RS\020\375."
-    "\022\030\n\023E_USER_APPLY_MIC_RQ\020\376.\022\030\n\023E_USER_APP"
-    "LY_MIC_RS\020\377.\022\025\n\020E_USER_ON_MIC_ID\020\200/\022\026\n\021E"
-    "_USER_OFF_MIC_RQ\020\201/\022\026\n\021E_USER_OFF_MIC_RS"
-    "\020\202/\022\026\n\021E_USER_OFF_MIC_ID\020\203/\022\031\n\024E_PUT_USE"
-    "R_ON_MIC_RQ\020\204/\022\031\n\024E_PUT_USER_ON_MIC_RS\020\205"
-    "/\022\031\n\024E_CANCLE_USER_MIC_RQ\020\206/\022\031\n\024E_CANCLE"
-    "_USER_MIC_RS\020\207/\022\030\n\023E_USER_EXIT_ROOM_ID\020\210"
-    "/", 4041);
+    "\n\024package_define.proto\"r\n\022GateRoomServer"
+    "Pack\022\020\n\010str_head\030\001 \002(\t\022\024\n\014user_hashkey\030\002"
+    " \002(\005\022\020\n\010data_len\030\003 \002(\005\022\020\n\010data_msg\030\004 \002(\014"
+    "\022\020\n\010str_tail\030\005 \002(\t\"\215\001\n\017StruUserLoginRQ\022+"
+    "\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\017E_USER_LOGIN"
+    "_RQ\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\020\n"
+    "\010user_psw\030\004 \002(\t\022\031\n\021user_account_name\030\005 \002"
+    "(\t\"p\n\017StruUserLoginRS\022+\n\006msg_id\030\001 \002(\0162\n."
+    "EnumMsgID:\017E_USER_LOGIN_RS\022\017\n\007user_id\030\002 "
+    "\002(\005\022\017\n\007room_id\030\003 \002(\005\022\016\n\006result\030\004 \002(\005\"\255\001\n"
+    "\022StruUserRoleInfoID\022/\n\006msg_id\030\001 \002(\0162\n.En"
+    "umMsgID:\023E_USER_ROLE_INFO_ID\022\017\n\007user_id\030"
+    "\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\031\n\021user_account_n"
+    "ame\030\004 \002(\t\022\025\n\ruser_role_uid\030\005 \002(\t\022\022\n\nothe"
+    "r_data\030\006 \001(\t\"\260\001\n\016StruRoomInfoID\022*\n\006msg_i"
+    "d\030\001 \002(\0162\n.EnumMsgID:\016E_ROOM_INFO_ID\022\017\n\007u"
+    "ser_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\021\n\troom_ty"
+    "pe\030\004 \002(\005\022\021\n\troom_name\030\005 \002(\t\022\023\n\013room_adve"
+    "rt\030\006 \002(\t\022\025\n\rroom_announce\030\007 \002(\t\"z\n\013StruM"
+    "icInfo\022&\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\nE_MI"
+    "C_INFO\022\017\n\007user_id\030\002 \002(\005\022\031\n\021user_account_"
+    "name\030\003 \002(\t\022\027\n\017mic_channel_str\030\004 \002(\t\"\205\001\n\021"
+    "StruRoomMicInfoID\022.\n\006msg_id\030\001 \002(\0162\n.Enum"
+    "MsgID:\022E_ROOM_MIC_INFO_ID\022\017\n\007user_id\030\002 \002"
+    "(\005\022\017\n\007room_id\030\003 \002(\005\022\036\n\010mic_list\030\004 \003(\0132\014."
+    "StruMicInfo\"z\n\014StruUserInfo\022\'\n\006msg_id\030\001 "
+    "\002(\0162\n.EnumMsgID:\013E_USER_INFO\022\017\n\007user_id\030"
+    "\002 \002(\005\022\031\n\021user_account_name\030\003 \002(\t\022\025\n\ruser"
+    "_role_uid\030\004 \002(\t\"\216\001\n\022StruUserInfoListID\022/"
+    "\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\023E_USER_INFO_"
+    "LIST_ID\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002("
+    "\005\022%\n\016user_info_list\030\004 \003(\0132\r.StruUserInfo"
+    "\"\227\001\n\rStruUserMsgRQ\022)\n\006msg_id\030\001 \002(\0162\n.Enu"
+    "mMsgID:\rE_USER_MSG_RQ\022\017\n\007user_id\030\002 \002(\005\022\017"
+    "\n\007room_id\030\003 \002(\005\022\020\n\010msg_text\030\004 \002(\t\022\022\n\nis_"
+    "private\030\005 \002(\010\022\023\n\013dst_user_id\030\006 \002(\005\"l\n\rSt"
+    "ruUserMsgRS\022)\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:"
+    "\rE_USER_MSG_RS\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_"
+    "id\030\003 \002(\005\022\016\n\006result\030\004 \002(\005\"\240\001\n\021StruUserMsg"
+    "TextID\022.\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\022E_US"
+    "ER_MSG_TEXT_ID\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_"
+    "id\030\003 \002(\005\022\020\n\010msg_text\030\004 \002(\t\022\022\n\nis_private"
+    "\030\005 \002(\010\022\023\n\013dst_user_id\030\006 \002(\005\"\217\001\n\022StruUser"
+    "GiveGiftRQ\022/\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\023"
+    "E_USER_GIVE_GIFT_RQ\022\017\n\007user_id\030\002 \002(\005\022\017\n\007"
+    "room_id\030\003 \002(\005\022\021\n\tgift_code\030\004 \002(\t\022\023\n\013dst_"
+    "user_id\030\005 \002(\005\"\237\001\n\022StruUserGiveGiftRS\022/\n\006"
+    "msg_id\030\001 \002(\0162\n.EnumMsgID:\023E_USER_GIVE_GI"
+    "FT_RS\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022"
+    "\016\n\006result\030\004 \002(\005\022\021\n\tgift_code\030\005 \002(\t\022\023\n\013ds"
+    "t_user_id\030\006 \002(\005\"g\n\022StruUserApplyMicRQ\022/\n"
+    "\006msg_id\030\001 \002(\0162\n.EnumMsgID:\023E_USER_APPLY_"
+    "MIC_RQ\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005"
+    "\"\220\001\n\022StruUserApplyMicRS\022/\n\006msg_id\030\001 \002(\0162"
+    "\n.EnumMsgID:\023E_USER_APPLY_MIC_RS\022\017\n\007user"
+    "_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\016\n\006result\030\004 \002"
+    "(\005\022\027\n\017mic_channel_str\030\005 \002(\t\"\241\001\n\017StruUser"
+    "OnMicID\022,\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\020E_U"
+    "SER_ON_MIC_ID\022\023\n\013mic_user_id\030\002 \002(\005\022\023\n\013mi"
+    "c_room_id\030\003 \002(\005\022\035\n\025mic_user_account_name"
+    "\030\004 \002(\t\022\027\n\017mic_channel_str\030\005 \002(\t\"c\n\020StruU"
+    "serOffMicRQ\022-\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:"
+    "\021E_USER_OFF_MIC_RQ\022\017\n\007user_id\030\002 \002(\005\022\017\n\007r"
+    "oom_id\030\003 \002(\005\"s\n\020StruUserOffMicRS\022-\n\006msg_"
+    "id\030\001 \002(\0162\n.EnumMsgID:\021E_USER_OFF_MIC_RS\022"
+    "\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\016\n\006res"
+    "ult\030\004 \002(\005\"\243\001\n\020StruUserOffMicID\022-\n\006msg_id"
+    "\030\001 \002(\0162\n.EnumMsgID:\021E_USER_OFF_MIC_ID\022\023\n"
+    "\013mic_user_id\030\002 \002(\005\022\023\n\013mic_room_id\030\003 \002(\005\022"
+    "\035\n\025mic_user_account_name\030\004 \002(\t\022\027\n\017mic_ch"
+    "annel_str\030\005 \002(\t\"\217\001\n\022StruPutUserOnMicRQ\0220"
+    "\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\024E_PUT_USER_O"
+    "N_MIC_RQ\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002"
+    "(\005\022\023\n\013dst_user_id\030\004 \002(\005\022\020\n\010mic_type\030\005 \002("
+    "\005\"\270\001\n\022StruPutUserOnMicRS\0220\n\006msg_id\030\001 \002(\016"
+    "2\n.EnumMsgID:\024E_PUT_USER_ON_MIC_RS\022\017\n\007us"
+    "er_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\023\n\013dst_user"
+    "_id\030\004 \002(\005\022\020\n\010mic_type\030\005 \002(\005\022\016\n\006result\030\006 "
+    "\002(\005\022\027\n\017mic_channel_str\030\007 \002(\t\"\251\001\n\023StruCan"
+    "cleUserMicRQ\0220\n\006msg_id\030\001 \002(\0162\n.EnumMsgID"
+    ":\024E_CANCLE_USER_MIC_RQ\022\017\n\007user_id\030\002 \002(\005\022"
+    "\017\n\007room_id\030\003 \002(\005\022\023\n\013dst_user_id\030\004 \002(\005\022\020\n"
+    "\010mic_type\030\005 \002(\005\022\027\n\017mic_channel_str\030\006 \002(\t"
+    "\"y\n\023StruCancleUserMicRS\0220\n\006msg_id\030\001 \002(\0162"
+    "\n.EnumMsgID:\024E_CANCLE_USER_MIC_RS\022\017\n\007use"
+    "r_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\016\n\006result\030\004 "
+    "\002(\005\"g\n\022StruUserExitRoomID\022/\n\006msg_id\030\001 \002("
+    "\0162\n.EnumMsgID:\023E_USER_EXIT_ROOM_ID\022\017\n\007us"
+    "er_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005*\336\004\n\tEnumMsg"
+    "ID\022\022\n\rE_MSG_ID_BASE\020\360.\022\024\n\017E_USER_LOGIN_R"
+    "Q\020\361.\022\024\n\017E_USER_LOGIN_RS\020\362.\022\030\n\023E_USER_ROL"
+    "E_INFO_ID\020\363.\022\023\n\016E_ROOM_INFO_ID\020\364.\022\017\n\nE_M"
+    "IC_INFO\020\365.\022\027\n\022E_ROOM_MIC_INFO_ID\020\366.\022\020\n\013E"
+    "_USER_INFO\020\367.\022\030\n\023E_USER_INFO_LIST_ID\020\370.\022"
+    "\022\n\rE_USER_MSG_RQ\020\371.\022\022\n\rE_USER_MSG_RS\020\372.\022"
+    "\027\n\022E_USER_MSG_TEXT_ID\020\373.\022\030\n\023E_USER_GIVE_"
+    "GIFT_RQ\020\374.\022\030\n\023E_USER_GIVE_GIFT_RS\020\375.\022\030\n\023"
+    "E_USER_APPLY_MIC_RQ\020\376.\022\030\n\023E_USER_APPLY_M"
+    "IC_RS\020\377.\022\025\n\020E_USER_ON_MIC_ID\020\200/\022\026\n\021E_USE"
+    "R_OFF_MIC_RQ\020\201/\022\026\n\021E_USER_OFF_MIC_RS\020\202/\022"
+    "\026\n\021E_USER_OFF_MIC_ID\020\203/\022\031\n\024E_PUT_USER_ON"
+    "_MIC_RQ\020\204/\022\031\n\024E_PUT_USER_ON_MIC_RS\020\205/\022\031\n"
+    "\024E_CANCLE_USER_MIC_RQ\020\206/\022\031\n\024E_CANCLE_USE"
+    "R_MIC_RS\020\207/\022\030\n\023E_USER_EXIT_ROOM_ID\020\210/", 4157);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "package_define.proto", &protobuf_RegisterTypes);
+  GateRoomServerPack::default_instance_ = new GateRoomServerPack();
   StruUserLoginRQ::default_instance_ = new StruUserLoginRQ();
   StruUserLoginRS::default_instance_ = new StruUserLoginRS();
   StruUserRoleInfoID::default_instance_ = new StruUserRoleInfoID();
@@ -800,6 +829,7 @@ void protobuf_AddDesc_package_5fdefine_2eproto() {
   StruCancleUserMicRQ::default_instance_ = new StruCancleUserMicRQ();
   StruCancleUserMicRS::default_instance_ = new StruCancleUserMicRS();
   StruUserExitRoomID::default_instance_ = new StruUserExitRoomID();
+  GateRoomServerPack::default_instance_->InitAsDefaultInstance();
   StruUserLoginRQ::default_instance_->InitAsDefaultInstance();
   StruUserLoginRS::default_instance_->InitAsDefaultInstance();
   StruUserRoleInfoID::default_instance_->InitAsDefaultInstance();
@@ -869,6 +899,416 @@ bool EnumMsgID_IsValid(int value) {
     default:
       return false;
   }
+}
+
+
+// ===================================================================
+
+#ifndef _MSC_VER
+const int GateRoomServerPack::kStrHeadFieldNumber;
+const int GateRoomServerPack::kUserHashkeyFieldNumber;
+const int GateRoomServerPack::kDataLenFieldNumber;
+const int GateRoomServerPack::kDataMsgFieldNumber;
+const int GateRoomServerPack::kStrTailFieldNumber;
+#endif  // !_MSC_VER
+
+GateRoomServerPack::GateRoomServerPack()
+  : ::google::protobuf::Message() {
+  SharedCtor();
+}
+
+void GateRoomServerPack::InitAsDefaultInstance() {
+}
+
+GateRoomServerPack::GateRoomServerPack(const GateRoomServerPack& from)
+  : ::google::protobuf::Message() {
+  SharedCtor();
+  MergeFrom(from);
+}
+
+void GateRoomServerPack::SharedCtor() {
+  _cached_size_ = 0;
+  str_head_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  user_hashkey_ = 0;
+  data_len_ = 0;
+  data_msg_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  str_tail_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+}
+
+GateRoomServerPack::~GateRoomServerPack() {
+  SharedDtor();
+}
+
+void GateRoomServerPack::SharedDtor() {
+  if (str_head_ != &::google::protobuf::internal::kEmptyString) {
+    delete str_head_;
+  }
+  if (data_msg_ != &::google::protobuf::internal::kEmptyString) {
+    delete data_msg_;
+  }
+  if (str_tail_ != &::google::protobuf::internal::kEmptyString) {
+    delete str_tail_;
+  }
+  if (this != default_instance_) {
+  }
+}
+
+void GateRoomServerPack::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* GateRoomServerPack::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return GateRoomServerPack_descriptor_;
+}
+
+const GateRoomServerPack& GateRoomServerPack::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_package_5fdefine_2eproto();  return *default_instance_;
+}
+
+GateRoomServerPack* GateRoomServerPack::default_instance_ = NULL;
+
+GateRoomServerPack* GateRoomServerPack::New() const {
+  return new GateRoomServerPack;
+}
+
+void GateRoomServerPack::Clear() {
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    if (has_str_head()) {
+      if (str_head_ != &::google::protobuf::internal::kEmptyString) {
+        str_head_->clear();
+      }
+    }
+    user_hashkey_ = 0;
+    data_len_ = 0;
+    if (has_data_msg()) {
+      if (data_msg_ != &::google::protobuf::internal::kEmptyString) {
+        data_msg_->clear();
+      }
+    }
+    if (has_str_tail()) {
+      if (str_tail_ != &::google::protobuf::internal::kEmptyString) {
+        str_tail_->clear();
+      }
+    }
+  }
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+  mutable_unknown_fields()->Clear();
+}
+
+bool GateRoomServerPack::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!(EXPRESSION)) return false
+  ::google::protobuf::uint32 tag;
+  while ((tag = input->ReadTag()) != 0) {
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // required string str_head = 1;
+      case 1: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_str_head()));
+          ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+            this->str_head().data(), this->str_head().length(),
+            ::google::protobuf::internal::WireFormat::PARSE);
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(16)) goto parse_user_hashkey;
+        break;
+      }
+      
+      // required int32 user_hashkey = 2;
+      case 2: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_user_hashkey:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &user_hashkey_)));
+          set_has_user_hashkey();
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(24)) goto parse_data_len;
+        break;
+      }
+      
+      // required int32 data_len = 3;
+      case 3: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_data_len:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &data_len_)));
+          set_has_data_len();
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(34)) goto parse_data_msg;
+        break;
+      }
+      
+      // required bytes data_msg = 4;
+      case 4: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+         parse_data_msg:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
+                input, this->mutable_data_msg()));
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(42)) goto parse_str_tail;
+        break;
+      }
+      
+      // required string str_tail = 5;
+      case 5: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+         parse_str_tail:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_str_tail()));
+          ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+            this->str_tail().data(), this->str_tail().length(),
+            ::google::protobuf::internal::WireFormat::PARSE);
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectAtEnd()) return true;
+        break;
+      }
+      
+      default: {
+      handle_uninterpreted:
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          return true;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+  return true;
+#undef DO_
+}
+
+void GateRoomServerPack::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // required string str_head = 1;
+  if (has_str_head()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->str_head().data(), this->str_head().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      1, this->str_head(), output);
+  }
+  
+  // required int32 user_hashkey = 2;
+  if (has_user_hashkey()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->user_hashkey(), output);
+  }
+  
+  // required int32 data_len = 3;
+  if (has_data_len()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->data_len(), output);
+  }
+  
+  // required bytes data_msg = 4;
+  if (has_data_msg()) {
+    ::google::protobuf::internal::WireFormatLite::WriteBytes(
+      4, this->data_msg(), output);
+  }
+  
+  // required string str_tail = 5;
+  if (has_str_tail()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->str_tail().data(), this->str_tail().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      5, this->str_tail(), output);
+  }
+  
+  if (!unknown_fields().empty()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        unknown_fields(), output);
+  }
+}
+
+::google::protobuf::uint8* GateRoomServerPack::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // required string str_head = 1;
+  if (has_str_head()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->str_head().data(), this->str_head().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        1, this->str_head(), target);
+  }
+  
+  // required int32 user_hashkey = 2;
+  if (has_user_hashkey()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->user_hashkey(), target);
+  }
+  
+  // required int32 data_len = 3;
+  if (has_data_len()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->data_len(), target);
+  }
+  
+  // required bytes data_msg = 4;
+  if (has_data_msg()) {
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
+        4, this->data_msg(), target);
+  }
+  
+  // required string str_tail = 5;
+  if (has_str_tail()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->str_tail().data(), this->str_tail().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        5, this->str_tail(), target);
+  }
+  
+  if (!unknown_fields().empty()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        unknown_fields(), target);
+  }
+  return target;
+}
+
+int GateRoomServerPack::ByteSize() const {
+  int total_size = 0;
+  
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    // required string str_head = 1;
+    if (has_str_head()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->str_head());
+    }
+    
+    // required int32 user_hashkey = 2;
+    if (has_user_hashkey()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->user_hashkey());
+    }
+    
+    // required int32 data_len = 3;
+    if (has_data_len()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->data_len());
+    }
+    
+    // required bytes data_msg = 4;
+    if (has_data_msg()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::BytesSize(
+          this->data_msg());
+    }
+    
+    // required string str_tail = 5;
+    if (has_str_tail()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->str_tail());
+    }
+    
+  }
+  if (!unknown_fields().empty()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        unknown_fields());
+  }
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void GateRoomServerPack::MergeFrom(const ::google::protobuf::Message& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  const GateRoomServerPack* source =
+    ::google::protobuf::internal::dynamic_cast_if_available<const GateRoomServerPack*>(
+      &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
+}
+
+void GateRoomServerPack::MergeFrom(const GateRoomServerPack& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    if (from.has_str_head()) {
+      set_str_head(from.str_head());
+    }
+    if (from.has_user_hashkey()) {
+      set_user_hashkey(from.user_hashkey());
+    }
+    if (from.has_data_len()) {
+      set_data_len(from.data_len());
+    }
+    if (from.has_data_msg()) {
+      set_data_msg(from.data_msg());
+    }
+    if (from.has_str_tail()) {
+      set_str_tail(from.str_tail());
+    }
+  }
+  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
+}
+
+void GateRoomServerPack::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void GateRoomServerPack::CopyFrom(const GateRoomServerPack& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GateRoomServerPack::IsInitialized() const {
+  if ((_has_bits_[0] & 0x0000001f) != 0x0000001f) return false;
+  
+  return true;
+}
+
+void GateRoomServerPack::Swap(GateRoomServerPack* other) {
+  if (other != this) {
+    std::swap(str_head_, other->str_head_);
+    std::swap(user_hashkey_, other->user_hashkey_);
+    std::swap(data_len_, other->data_len_);
+    std::swap(data_msg_, other->data_msg_);
+    std::swap(str_tail_, other->str_tail_);
+    std::swap(_has_bits_[0], other->_has_bits_[0]);
+    _unknown_fields_.Swap(&other->_unknown_fields_);
+    std::swap(_cached_size_, other->_cached_size_);
+  }
+}
+
+::google::protobuf::Metadata GateRoomServerPack::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = GateRoomServerPack_descriptor_;
+  metadata.reflection = GateRoomServerPack_reflection_;
+  return metadata;
 }
 
 

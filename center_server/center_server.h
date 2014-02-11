@@ -1,9 +1,9 @@
 #ifndef TEST_SERVER_H_
 #define TEST_SERVER_H_
 
-#include "common/base_user_info.h"
-#include "common/server_listenner.h"
-#include "common/command_chain.h"
+#include "../common/base_user_info.h"
+#include "../common/server_listenner.h"
+#include "../common/command_chain.h"
 #include "user_info_list.h"
 #include "room_manager.h"
 #include "cs_connector.h"
@@ -22,7 +22,7 @@ private:
 	UserInfoList user_list_;
 	ServerListenner server_listenner_;
 	RoomManager room_manager_;
-	CenterServerConnector cs_connector_;
+	//CenterServerConnector cs_connector_;
 	ClientProcessor cl_processor_;
 
 public:
@@ -36,7 +36,7 @@ public:
 
 	UserInfoList *GetUserList();
 	RoomManager *GetRoomManager();
-	CenterServerConnector *GetCSConnector();
+	//CenterServerConnector *GetCSConnector();
 	ClientProcessor *GetClientProcessor();
 };
 
