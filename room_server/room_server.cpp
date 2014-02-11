@@ -82,17 +82,17 @@ bool RoomServer::InitServer()
 	
 	if(!tmp_return)
 		return false;
-	//cs_connector_.InitConnectionInfo("192.168.229.128",5556);
+	cs_connector_.InitConnectionInfo("192.168.229.128",5560);
 	return true;
 }
 
 bool RoomServer::StartServer()
 {
 	bool tmp_return = false;
-	//tmp_return = cs_connector_.StartConnect();
-	//if(!tmp_return)
-	//	return false;
-	//std::cout<<"Connect RoomServer OK!"<<std::endl;
+	tmp_return = cs_connector_.StartConnect();
+	if(!tmp_return)
+		return false;
+	std::cout<<"Connect CenterServer OK!"<<std::endl;
 	tmp_return = cl_processor_.StartProcessor(1);
 	if(!tmp_return)
 	{
