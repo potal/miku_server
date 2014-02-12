@@ -56,6 +56,7 @@ void ClientLoginRQ::Execute(char *buff,int len,void *caller_ptr)
 		tmp_user->user_hash_key = tmp_package.user_hashkey();
 		tmp_user->user_id = tmp_user_login.user_id();
 		tmp_room->GetPreUserInfoList()->AddUserInfo(tmp_user_login.user_id(),tmp_user);
+		std::cout<<"Add User to pre-user-list OK.send_len:"<<tmp_package.data_len()<<std::endl;
 		//send login package to cs to comfirm
 		tmp_server->GetCSConnector()->SendData(const_cast<char *>(tmp_package.data_msg().c_str()),tmp_package.data_len());
 	}

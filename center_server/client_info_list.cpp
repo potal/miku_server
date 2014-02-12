@@ -19,9 +19,8 @@
 #include "client_info_list.h"
 #include "packet/cyt_packet.pb.h"
 #include "packet/package_define.pb.h"
-#include "room_server.h"
 
-ClientInfoEx::ClientInfoEx():room_server_(NULL),remain_buff_len_(0)
+ClientInfoEx::ClientInfoEx():center_server_(NULL),remain_buff_len_(0)
 {
 	recved_buff_ = new char[0x1000];
 }
@@ -61,7 +60,7 @@ void ClientInfoEx::DealWithData(struct bufferevent *buff_ev,void *arg)
 		remain_buff_len_ = tmp_len;
 	}
 	bool tmp_result = false;
-	GateRoomServerPack tmp_package;
+	StruCytPacket tmp_package;
 	char tmp_pack_data[0x1000] = {0};
 	char tmp_send_buff[0x2000] = {0};
 	do
@@ -73,20 +72,11 @@ void ClientInfoEx::DealWithData(struct bufferevent *buff_ev,void *arg)
 			memcpy(tmp_pack_data,recved_buff_,tmp_current_pack_len);
 			remain_buff_len_ -= tmp_current_pack_len;
 			memmove(recved_buff_,recved_buff_+tmp_current_pack_len,0x1000-tmp_current_pack_len);
-			RoomServer *tmp_server = reinterpret_cast<RoomServer *>(room_server_);
-			if(!tmp_server)
-			{
-				std::cout<<"tmp_server NULL"<<std::endl;
-				continue;
-			}
-			bool tmp_ret = tmp_server->GetClientProcessor()->GetCircleList()->AddBuffer(tmp_read_buff,tmp_len);
+
+			bool tmp_ret = rs_processor_.GetCircleList()->AddBuffer(tmp_read_buff,tmp_len);
 			if(!tmp_ret)
 			{
 				std::cout<<"Add buffer error!"<<std::endl;
-			}
-			else
-			{
-				std::cout<<"Add OK"<<std::endl;
 			}
 		}
 	}while (tmp_result);
@@ -120,6 +110,7 @@ void ClientInfoList::ReleaseUserInfo(BaseUserInfo * user)
 	{
 		user_list_.erase(tmp_user->hash_key);
 	}
+	tmp_user->rs_processor_.StopProcessor();
 	tmp_user->Clear();
 	unused_user_list_.Put(tmp_user);
 	pthread_mutex_unlock(&list_lock_);
@@ -135,7 +126,7 @@ BaseUserInfo *ClientInfoList::GetUserByHashkey(int user_hashkey)
 
 int ClientInfoList::Init(int max_user,void *server_ptr)
 {
-	room_server_ = server_ptr;
+	center_server_ = server_ptr;
 	return unused_user_list_.Init(max_user);
 }
 
@@ -150,7 +141,9 @@ bool ClientInfoList::AddUserInfo(int user_hashkey,BaseUserInfo *user)
 	ClientInfoEx *tmp_user = (ClientInfoEx *)user;
 	tmp_user->hash_key = user_hashkey;
 	//copy other members
-	tmp_user->room_server_ = room_server_;
+	tmp_user->center_server_ = center_server_;
+	tmp_user->rs_processor_.InitProcessor(1000,tmp_user,center_server_);
+	tmp_user->rs_processor_.StartProcessor(1);
 	user_list_[user_hashkey] = tmp_user;
 	pthread_mutex_unlock(&list_lock_);
 	return true;

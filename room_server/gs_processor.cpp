@@ -17,28 +17,32 @@
  */
 #include "packet/cyt_packet.pb.h"
 #include "packet/package_define.pb.h"
-#include "cl_processor.h"
+#include "gs_processor.h"
 #include <iostream>
-#include <pthread.h>
 
 #include "cl_command/client_login_rq.h"
 
-ClientProcessor::ClientProcessor():is_started_(false)
+GateServerProcessor::GateServerProcessor():is_started_(false),thread_id_ptr_(NULL),thread_count_(0),parent_ptr_(NULL)
 {
 
 }
 
-ClientProcessor::~ClientProcessor()
+GateServerProcessor::~GateServerProcessor()
 {
-
+	if(thread_id_ptr_)
+	{
+		delete []thread_id_ptr_;
+		thread_id_ptr_ = NULL;
+	}
 }
 
-bool ClientProcessor::InitProcessor(int max_list_size,void *caller_ptr)
+bool GateServerProcessor::InitProcessor(int max_list_size,void *caller_ptr,void *server_ptr)
 {
-	BaseProcessor::InitProcessor(max_list_size,caller_ptr);
+	BaseProcessor::InitProcessor(max_list_size,server_ptr);
+	parent_ptr_ = caller_ptr;
 	CommandChain *tmp_cmd_chain = GetCmdChain();
 	bool tmp_ret = false;
-	tmp_ret = tmp_cmd_chain->RegisterCommand(E_USER_LOGIN_RQ,new ClientLoginRQ(caller_ptr));
+	tmp_ret = tmp_cmd_chain->RegisterCommand(E_USER_LOGIN_RQ,new ClientLoginRQ(server_ptr));
 	if(!tmp_ret)
 	{
 		std::cout<<"Register UserLoginRQ Error"<<std::endl;
@@ -48,29 +52,42 @@ bool ClientProcessor::InitProcessor(int max_list_size,void *caller_ptr)
 	return true;
 }
 
-bool ClientProcessor::StartProcessor(int thread_count)
+bool GateServerProcessor::StartProcessor(int thread_count)
 {
 	//starting the thread of dealing with package
+	if(thread_count <= 0)
+		return false;
+	thread_count_ = thread_count;
 	is_started_ = true;
 	bool tmp_ret = false;
-	pthread_t tmp_thread_id = 0;
+	thread_id_ptr_ = new pthread_t[thread_count];
 	int i = 0;
 	for(i = 0;i < thread_count;i ++)
 	{
-		tmp_ret = pthread_create(&tmp_thread_id,NULL,DealWithDataThread,this);
+		tmp_ret = pthread_create(&thread_id_ptr_[i],NULL,DealWithDataThread,this);
 		if(!tmp_ret)
 		{
 			break;
 		}
 	}
-	std::cout<<"Create "<<i<<" thread(s) ok!"<<std::endl;
+	std::cout<<"Create "<<i+1<<" thread(s) ok!"<<std::endl;
 	return true;
 }
 
-void* ClientProcessor::DealWithDataThread(void *arg)
+void GateServerProcessor::StopProcessor()
 {
-	std::cout<<"ClientProcessor::DealWithDataThread starts"<<std::endl;
-	ClientProcessor *tmp_processor = reinterpret_cast<ClientProcessor *>(arg);
+	is_started_ = false;
+	for(int i = 0;i < thread_count_;i++)
+	{
+		pthread_join(thread_id_ptr_[i],NULL);
+	}
+	GetCmdChain()->ReleaseAllCommand();
+}
+
+void* GateServerProcessor::DealWithDataThread(void *arg)
+{
+	std::cout<<"GateServerProcessor::DealWithDataThread starts"<<std::endl;
+	GateServerProcessor *tmp_processor = reinterpret_cast<GateServerProcessor *>(arg);
 	if(!tmp_processor)
 	{
 		std::cout<<"tmp_processor NULL"<<std::endl;
@@ -114,6 +131,6 @@ void* ClientProcessor::DealWithDataThread(void *arg)
 		}
 		tmp_cmd->Execute(tmp_out_buff,tmp_out_len,arg);
 	}
-	std::cout<<"ClientProcessor::DealWithDataThread ends"<<std::endl;
+	std::cout<<"GateServerProcessor::DealWithDataThread ends"<<std::endl;
 	return NULL;
 }

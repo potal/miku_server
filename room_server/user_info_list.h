@@ -6,6 +6,7 @@
 #include <list>
 #include <string>
 #include <pthread.h>
+#include <string.h>
 #include "../common/auto_lock.h"
 
 using std::map;
@@ -17,6 +18,17 @@ struct UserInfo
 	int user_id;
 	int user_hash_key;
 	char user_nickname[MaxNickNameLen];
+
+	UserInfo():user_id(0),user_hash_key(0)
+	{
+		memset(user_nickname,0,MaxNickNameLen);
+	}
+	void Clear()
+	{
+		user_id = 0;
+		user_hash_key = 0;
+		memset(user_nickname,0,MaxNickNameLen);
+	}
 };
 #pragma pack()
 
@@ -39,6 +51,8 @@ public:
 
 	bool AddUserInfo(int user_id,UserInfo *user_info);
 	UserInfo *GetUserInfo(int user_id);
+
+	void ClearAllUserInfo();
 };
 
 #endif

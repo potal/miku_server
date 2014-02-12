@@ -10,7 +10,7 @@ CC = g++
 LINK = g++
 CCFlag = -O0 -g3 -w -c -fmessage-length=0 -fPIC
 LINKFlag = -shared
-PROGRAM = roomserver
+PROGRAM = centerserver
 
 INCLUDES = -I../common/ -I$(ROOT)/ -Ipacket
 #LIBPATH= -Llib/libevent -Llib/protobuf

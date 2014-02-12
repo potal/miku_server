@@ -74,7 +74,7 @@ bool RoomServer::InitServer()
 {
 	if(!GetConfig("server.conf"))
 		return false;
-	cl_processor_.InitProcessor(10,this);//max circle list buffer count
+	//cl_processor_.InitProcessor(10,this);//max circle list buffer count
 	int tmp_max_user_count = client_list_.Init(10,this);
 	std::cout<<"Max user:"<<tmp_max_user_count<<std::endl;
 	std::cout<<"IP:"<<server_ip_<<"  port:"<<server_port_<<std::endl;
@@ -93,7 +93,12 @@ bool RoomServer::StartServer()
 	if(!tmp_return)
 		return false;
 	std::cout<<"Connect CenterServer OK!"<<std::endl;
-	tmp_return = cl_processor_.StartProcessor(1);
+	//tmp_return = cl_processor_.StartProcessor(1);
+	
+	ChatRoom *tmp_room = room_manager_.GetNewRoom();
+	tmp_room->SetRoom(16000,-1);
+	room_manager_.AddRoom(16000,tmp_room);
+	
 	if(!tmp_return)
 	{
 		return false;
@@ -125,10 +130,3 @@ CenterServerConnector *RoomServer::GetCSConnector()
 {
 	return &cs_connector_;
 }
-
-ClientProcessor *RoomServer::GetClientProcessor()
-{
-	return &cl_processor_;
-}
-
-

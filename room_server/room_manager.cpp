@@ -21,6 +21,7 @@
 RoomManager::RoomManager()
 {
 	room_list_.clear();
+	unused_room_list_.clear();
 	pthread_mutex_init(&list_mutex_,NULL);
 }
 
@@ -39,6 +40,30 @@ RoomManager::~RoomManager()
 	pthread_mutex_destroy(&list_mutex_);
 }
 
+ChatRoom *RoomManager::GetNewRoom()
+{
+	AutoLock tmp_lock(&list_mutex_);
+	ChatRoom *tmp_room = NULL;
+	if(unused_room_list_.size() <= 0)
+	{
+		try
+		{
+			tmp_room = new ChatRoom;
+		}
+		catch(...)
+		{
+			tmp_room = NULL;
+		}
+		return tmp_room;
+	}
+	else
+	{
+		tmp_room = unused_room_list_.front();
+		tmp_room->ResetRoom(0,-1);
+		unused_room_list_.pop_front();
+		return tmp_room;
+	}
+}
 
 bool RoomManager::AddRoom(int room_id,ChatRoom *chat_room)
 {
@@ -48,17 +73,9 @@ bool RoomManager::AddRoom(int room_id,ChatRoom *chat_room)
 
 	if(NULL != room_list_[room_id])
 	{
-		//the room adding exists,modify room information
 		return true;
 	}
-
-	ChatRoom * tmp_room = new ChatRoom;
-	if(NULL == tmp_room)
-		return false;
-
-	tmp_room->SetRoom(chat_room);
-
-	room_list_[room_id] = tmp_room;
+	room_list_[room_id] = chat_room;
 }
 
 bool RoomManager::DelRoom(int room_id)
@@ -71,6 +88,11 @@ bool RoomManager::DelRoom(int room_id)
 	}
 
 	ChatRoom *tmp_room = tmp_iter->second;
+	if(!tmp_room)
+	{
+		unused_room_list_.push_back(tmp_room);
+	}
+
 	room_list_.erase(tmp_iter);
 	return true;
 }

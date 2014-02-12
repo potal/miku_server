@@ -17,7 +17,7 @@
  */
 
 
-#include "room_server.h"
+#include "center_server.h"
 
 #include <iostream>
 int main()

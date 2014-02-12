@@ -8,8 +8,8 @@
 class ChatRoom
 {
 private:
-	int m_room_id;
-	int m_sock;
+	int room_id_;
+	int sock_;
 	UserInfoList user_list_;
 	UserInfoList pre_user_list_;
 
@@ -17,7 +17,8 @@ public:
 	ChatRoom();
 	~ChatRoom();
 
-	bool SetRoom(ChatRoom *chat_room);
+	bool SetRoom(int room_id,int room_fd);
+	void ResetRoom(int room_id,int room_fd);
 	UserInfoList *GetUserInfoList();
 	UserInfoList *GetPreUserInfoList();
 };

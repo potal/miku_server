@@ -18,7 +18,7 @@
 
 #include "chat_room.h"
 
-ChatRoom::ChatRoom():m_sock(-1),m_room_id(0)
+ChatRoom::ChatRoom():sock_(-1),room_id_(0)
 {
 	user_list_.InitUserList(100000);
 	pre_user_list_.InitUserList(1000);
@@ -28,9 +28,19 @@ ChatRoom::~ChatRoom()
 {
 }
 
-bool ChatRoom::SetRoom(ChatRoom* chat_room)
+bool ChatRoom::SetRoom(int room_id,int room_fd)
 {
+	room_id_ = room_id;
+	sock_ = room_fd;
 	return true;
+}
+
+void ChatRoom::ResetRoom(int room_id,int room_fd)
+{
+	room_id_ = room_id;
+	sock_ = room_fd;
+	user_list_.ClearAllUserInfo();
+	pre_user_list_.ClearAllUserInfo();
 }
 
 UserInfoList *ChatRoom::GetUserInfoList()

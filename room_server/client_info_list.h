@@ -4,6 +4,7 @@
 #include "../common/base_user_info.h"
 #include "../common/base_user_info_resource.h"
 #include "../common/resource_manager.h"
+#include "gs_processor.h"
 #include <iostream>
 #include <map>
 
@@ -14,6 +15,8 @@ public:
 	int remain_buff_len_;
 	char *recved_buff_;
 	void *room_server_;
+
+	GateServerProcessor gs_processor_;//gs processor
 public:
 	ClientInfoEx();
 	~ClientInfoEx();

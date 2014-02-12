@@ -1,7 +1,7 @@
 /*
  * =====================================================================================
  *
- *       Filename:  cl_processor.cpp
+ *       Filename:  rs_processor.cpp
  *
  *    Description:  
  *
@@ -17,28 +17,28 @@
  */
 #include "packet/cyt_packet.pb.h"
 #include "packet/package_define.pb.h"
-#include "cl_processor.h"
+#include "rs_processor.h"
 #include <iostream>
-#include <pthread.h>
 
-#include "cl_command/client_login_rq.h"
+#include "rs_command/client_login_rq.h"
 
-ClientProcessor::ClientProcessor():is_started_(false)
+RoomServerProcessor::RoomServerProcessor():is_started_(false),thread_count_(0),thread_id_ptr_(NULL),parent_ptr_(NULL)
 {
 
 }
 
-ClientProcessor::~ClientProcessor()
+RoomServerProcessor::~RoomServerProcessor()
 {
 
 }
 
-bool ClientProcessor::InitProcessor(int max_list_size,void *caller_ptr)
+bool RoomServerProcessor::InitProcessor(int max_list_size,void *caller_ptr,void *server_ptr)
 {
-	BaseProcessor::InitProcessor(max_list_size,caller_ptr);
+	BaseProcessor::InitProcessor(max_list_size,server_ptr);
+	parent_ptr_ = caller_ptr;
 	CommandChain *tmp_cmd_chain = GetCmdChain();
 	bool tmp_ret = false;
-	tmp_ret = tmp_cmd_chain->RegisterCommand(E_USER_LOGIN_RQ,new ClientLoginRQ(caller_ptr));
+	tmp_ret = tmp_cmd_chain->RegisterCommand(E_USER_LOGIN_RQ,new ClientLoginRQ(server_ptr));
 	if(!tmp_ret)
 	{
 		std::cout<<"Register UserLoginRQ Error"<<std::endl;
@@ -48,29 +48,42 @@ bool ClientProcessor::InitProcessor(int max_list_size,void *caller_ptr)
 	return true;
 }
 
-bool ClientProcessor::StartProcessor(int thread_count)
+bool RoomServerProcessor::StartProcessor(int thread_count)
 {
 	//starting the thread of dealing with package
+	if(thread_count <= 0)
+		return false;
+	thread_count_ = thread_count;
 	is_started_ = true;
 	bool tmp_ret = false;
-	pthread_t tmp_thread_id = 0;
+	thread_id_ptr_ = new pthread_t[thread_count];
 	int i = 0;
 	for(i = 0;i < thread_count;i ++)
 	{
-		tmp_ret = pthread_create(&tmp_thread_id,NULL,DealWithDataThread,this);
+		tmp_ret = pthread_create(&thread_id_ptr_[i],NULL,DealWithDataThread,this);
 		if(!tmp_ret)
 		{
 			break;
 		}
 	}
-	std::cout<<"Create "<<i<<" thread(s) ok!"<<std::endl;
+	std::cout<<"Create "<<i+1<<" thread(s) ok!"<<std::endl;
 	return true;
 }
 
-void* ClientProcessor::DealWithDataThread(void *arg)
+void RoomServerProcessor::StopProcessor()
 {
-	std::cout<<"ClientProcessor::DealWithDataThread starts"<<std::endl;
-	ClientProcessor *tmp_processor = reinterpret_cast<ClientProcessor *>(arg);
+	is_started_ = false;
+	for(int i = 0;i < thread_count_;i++)
+	{
+		pthread_join(thread_id_ptr_[i],NULL);
+	}
+	GetCmdChain()->ReleaseAllCommand();
+}
+
+void* RoomServerProcessor::DealWithDataThread(void *arg)
+{
+	std::cout<<"RoomServerProcessor::DealWithDataThread starts"<<std::endl;
+	RoomServerProcessor *tmp_processor = reinterpret_cast<RoomServerProcessor *>(arg);
 	if(!tmp_processor)
 	{
 		std::cout<<"tmp_processor NULL"<<std::endl;
@@ -87,16 +100,10 @@ void* ClientProcessor::DealWithDataThread(void *arg)
 			continue;
 		}
 		std::cout<<"GetBuffer ok! buff_len:"<<tmp_out_len<<std::endl;
-		GateRoomServerPack tmp_gr_pack;
-		tmp_return = tmp_gr_pack.ParseFromArray(tmp_out_buff,tmp_out_len);
-		if(!tmp_return)
-		{
-			std::cout<<"Unpack package error!"<<std::endl;
-			continue;
-		}
+		std::cout<<"Buff:"<<tmp_out_buff<<std::endl;
 
 		StruCytPacket tmp_pack_cyt_pack;
-		tmp_return = tmp_pack_cyt_pack.ParseFromArray(tmp_gr_pack.data_msg().c_str(),tmp_gr_pack.data_len());
+		tmp_return = tmp_pack_cyt_pack.ParseFromArray(tmp_out_buff,tmp_out_len);
 		if(!tmp_return)
 		{
 			std::cout<<"Unpack package error!"<<std::endl;
@@ -112,8 +119,8 @@ void* ClientProcessor::DealWithDataThread(void *arg)
 			sleep(5);
 			continue;
 		}
-		tmp_cmd->Execute(tmp_out_buff,tmp_out_len,arg);
+		tmp_cmd->Execute(const_cast<char *>(tmp_pack_cyt_pack.msg_data().c_str()),tmp_pack_cyt_pack.msg_len(),tmp_processor->parent_ptr_);
 	}
-	std::cout<<"ClientProcessor::DealWithDataThread ends"<<std::endl;
+	std::cout<<"RoomServerProcessor::DealWithDataThread ends"<<std::endl;
 	return NULL;
 }

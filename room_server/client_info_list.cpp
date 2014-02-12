@@ -19,7 +19,6 @@
 #include "client_info_list.h"
 #include "packet/cyt_packet.pb.h"
 #include "packet/package_define.pb.h"
-#include "room_server.h"
 
 ClientInfoEx::ClientInfoEx():room_server_(NULL),remain_buff_len_(0)
 {
@@ -73,20 +72,11 @@ void ClientInfoEx::DealWithData(struct bufferevent *buff_ev,void *arg)
 			memcpy(tmp_pack_data,recved_buff_,tmp_current_pack_len);
 			remain_buff_len_ -= tmp_current_pack_len;
 			memmove(recved_buff_,recved_buff_+tmp_current_pack_len,0x1000-tmp_current_pack_len);
-			RoomServer *tmp_server = reinterpret_cast<RoomServer *>(room_server_);
-			if(!tmp_server)
-			{
-				std::cout<<"tmp_server NULL"<<std::endl;
-				continue;
-			}
-			bool tmp_ret = tmp_server->GetClientProcessor()->GetCircleList()->AddBuffer(tmp_read_buff,tmp_len);
+
+			bool tmp_ret = gs_processor_.GetCircleList()->AddBuffer(tmp_read_buff,tmp_len);
 			if(!tmp_ret)
 			{
 				std::cout<<"Add buffer error!"<<std::endl;
-			}
-			else
-			{
-				std::cout<<"Add OK"<<std::endl;
 			}
 		}
 	}while (tmp_result);
@@ -120,6 +110,7 @@ void ClientInfoList::ReleaseUserInfo(BaseUserInfo * user)
 	{
 		user_list_.erase(tmp_user->hash_key);
 	}
+	tmp_user->gs_processor_.StopProcessor();
 	tmp_user->Clear();
 	unused_user_list_.Put(tmp_user);
 	pthread_mutex_unlock(&list_lock_);
@@ -151,6 +142,8 @@ bool ClientInfoList::AddUserInfo(int user_hashkey,BaseUserInfo *user)
 	tmp_user->hash_key = user_hashkey;
 	//copy other members
 	tmp_user->room_server_ = room_server_;
+	tmp_user->gs_processor_.InitProcessor(1000,tmp_user,room_server_);
+	tmp_user->gs_processor_.StartProcessor(1);
 	user_list_[user_hashkey] = tmp_user;
 	pthread_mutex_unlock(&list_lock_);
 	return true;

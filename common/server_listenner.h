@@ -50,12 +50,6 @@ private:
 	struct event listen_event_;
 
 	WorkerInfo *workers_ptr_;
-//	struct event_base *worker_base_;
-//	struct event worker_event_;
-//	int pipe_read_fd_;
-//	int pipe_write_fd_;
-//	struct event read_event_;
-//	struct event write_event_;
 
 	int base_hash_key_;
 	

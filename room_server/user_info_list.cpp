@@ -83,6 +83,7 @@ int UserInfoList::GetUnusedUser(UserInfo *&user_info)
 	UserInfo *tmp_user = unused_user_info_list_.front();
 	if(tmp_user)
 	{
+		tmp_user->Clear();
 		user_info = tmp_user;
 		unused_user_info_list_.pop_front();
 		return 1;
@@ -132,4 +133,16 @@ UserInfo *UserInfoList::GetUserInfo(int user_id)
 	AutoLock tmp_lock(&list_lock_);
 	UserInfo *tmp_user = user_info_list_[user_id];
 	return tmp_user;
+}
+
+void UserInfoList::ClearAllUserInfo()
+{
+	AutoLock tmp_lock(&list_lock_);
+	std::map<int ,UserInfo *>::iterator tmp_map_iter;
+	for(tmp_map_iter = user_info_list_.begin();tmp_map_iter != user_info_list_.end();tmp_map_iter++)
+	{
+		UserInfo *tmp_user = tmp_map_iter->second;
+		PushUserInUnusedList(tmp_user);
+	}
+	user_info_list_.clear();
 }
