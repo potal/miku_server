@@ -1,0 +1,34 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+DBHOST	test_mysql_conn.cpp	15;"	d	file:
+MYSQL_CONN_H_	mysql_conn.h	2;"	d
+MysqlConn	mysql_conn.cpp	/^MysqlConn::MysqlConn():sql_driver_(NULL),sql_conn_(NULL)$/;"	f	class:MysqlConn	signature:()
+MysqlConn	mysql_conn.h	/^	MysqlConn();$/;"	p	class:MysqlConn	access:public	signature:()
+MysqlConn	mysql_conn.h	/^class MysqlConn$/;"	c
+MysqlConn::MysqlConn	mysql_conn.cpp	/^MysqlConn::MysqlConn():sql_driver_(NULL),sql_conn_(NULL)$/;"	f	class:MysqlConn	signature:()
+MysqlConn::MysqlConn	mysql_conn.h	/^	MysqlConn();$/;"	p	class:MysqlConn	access:public	signature:()
+MysqlConn::StartConnect	mysql_conn.cpp	/^bool MysqlConn::StartConnect(const std::string sql_addr,const std::string user_name,const std::string user_psw)$/;"	f	class:MysqlConn	signature:(const std::string sql_addr,const std::string user_name,const std::string user_psw)
+MysqlConn::StartConnect	mysql_conn.h	/^	bool StartConnect(const std::string sql_addr,const std::string user_name,const std::string user_psw);$/;"	p	class:MysqlConn	access:public	signature:(const std::string sql_addr,const std::string user_name,const std::string user_psw)
+MysqlConn::sql_addr_	mysql_conn.h	/^	std::string sql_addr_;$/;"	m	class:MysqlConn	access:private
+MysqlConn::sql_conn_	mysql_conn.h	/^	sql::Connection *sql_conn_;$/;"	m	class:MysqlConn	access:private
+MysqlConn::sql_driver_	mysql_conn.h	/^	sql::mysql::MySQL_Driver *sql_driver_;$/;"	m	class:MysqlConn	access:private
+MysqlConn::user_name_	mysql_conn.h	/^	std::string user_name_;$/;"	m	class:MysqlConn	access:private
+MysqlConn::user_psw_	mysql_conn.h	/^	std::string user_psw_;$/;"	m	class:MysqlConn	access:private
+MysqlConn::~MysqlConn	mysql_conn.cpp	/^MysqlConn::~MysqlConn()$/;"	f	class:MysqlConn	signature:()
+MysqlConn::~MysqlConn	mysql_conn.h	/^	~MysqlConn();$/;"	p	class:MysqlConn	access:public	signature:()
+PASSWORD	test_mysql_conn.cpp	17;"	d	file:
+StartConnect	mysql_conn.cpp	/^bool MysqlConn::StartConnect(const std::string sql_addr,const std::string user_name,const std::string user_psw)$/;"	f	class:MysqlConn	signature:(const std::string sql_addr,const std::string user_name,const std::string user_psw)
+StartConnect	mysql_conn.h	/^	bool StartConnect(const std::string sql_addr,const std::string user_name,const std::string user_psw);$/;"	p	class:MysqlConn	access:public	signature:(const std::string sql_addr,const std::string user_name,const std::string user_psw)
+USER	test_mysql_conn.cpp	16;"	d	file:
+main	test_mysql_conn.cpp	/^int main() $/;"	f	signature:()
+sql_addr_	mysql_conn.h	/^	std::string sql_addr_;$/;"	m	class:MysqlConn	access:private
+sql_conn_	mysql_conn.h	/^	sql::Connection *sql_conn_;$/;"	m	class:MysqlConn	access:private
+sql_driver_	mysql_conn.h	/^	sql::mysql::MySQL_Driver *sql_driver_;$/;"	m	class:MysqlConn	access:private
+user_name_	mysql_conn.h	/^	std::string user_name_;$/;"	m	class:MysqlConn	access:private
+user_psw_	mysql_conn.h	/^	std::string user_psw_;$/;"	m	class:MysqlConn	access:private
+~MysqlConn	mysql_conn.cpp	/^MysqlConn::~MysqlConn()$/;"	f	class:MysqlConn	signature:()
+~MysqlConn	mysql_conn.h	/^	~MysqlConn();$/;"	p	class:MysqlConn	access:public	signature:()
