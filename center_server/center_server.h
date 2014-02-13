@@ -6,6 +6,7 @@
 #include "../common/command_chain.h"
 #include "client_info_list.h"
 #include "ds_connector.h"
+#include "mmiku_database.h"
 
 class CenterServer
 {
@@ -19,6 +20,7 @@ private:
 
 	ClientInfoList client_list_;
 	ServerListenner server_listenner_;
+	MikuDatabase miku_db_;
 
 	//DirectorServerConnector ds_connector_;
 
@@ -33,6 +35,7 @@ public:
 
 	ClientInfoList *GetClientList();
 	ServerListenner *GetListenner();
+	MikuDatabase *GetMikuDB();
 	//DirectorServerConnector *GetCSConnector();
 };
 

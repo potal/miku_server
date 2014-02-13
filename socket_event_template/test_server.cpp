@@ -80,7 +80,7 @@ bool TestServer::InitServer()
 	
 	if(!tmp_return)
 		return false;
-	rs_connector_.InitConnectionInfo("192.168.229.128",5556);
+	rs_connector_.InitConnectionInfo("192.168.220.142",5556);
 	//ds_connector_.InitConnectionInfo("192.168.229.128",5560);
 	//ds_processor_.InitProcessor(100,this);
 	return true;

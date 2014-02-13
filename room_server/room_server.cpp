@@ -82,7 +82,7 @@ bool RoomServer::InitServer()
 	
 	if(!tmp_return)
 		return false;
-	cs_connector_.InitConnectionInfo("192.168.229.128",5560);
+	cs_connector_.InitConnectionInfo("192.168.220.142",5560);
 	return true;
 }
 

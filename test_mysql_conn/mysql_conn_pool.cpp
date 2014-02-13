@@ -92,7 +92,7 @@ MysqlConnPool *MysqlConnPool::GetInstance()
 			string tmp_sql_addr = "tcp://127.0.0.1:3306";
 			string tmp_user_name = "root";
 			string tmp_user_psw = "13637848712";
-			string tmp_db_name = "test";
+			string tmp_db_name = "mmiku";
 			int tmp_max_conn = 32;
 			conn_pool_ = new MysqlConnPool(tmp_sql_addr,tmp_user_name,tmp_user_psw,tmp_db_name,tmp_max_conn);
 		}

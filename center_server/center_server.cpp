@@ -115,6 +115,11 @@ ServerListenner *CenterServer::GetListenner()
 {
 	return &server_listenner_;
 }
+
+MikuDatabase *CenterServer::GetMikuDB()
+{
+	return &miku_db_;
+}
 //CenterServerConnector *CenterServer::GetCSConnector()
 //{
 //	return &cs_connector_;

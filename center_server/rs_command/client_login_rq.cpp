@@ -31,6 +31,13 @@ void ClientLoginRQ::Execute(char *buff,int len,void *caller_ptr)
 	std::cout<<tmp_user_login.room_id()<<std::endl;
 	std::cout<<tmp_user_login.user_psw()<<std::endl;
 	std::cout<<tmp_user_login.user_account_name()<<std::endl;
+
+
+	CenterServer *tmp_server = reinterpret_cast<CenterServer *>(server_ptr_);
+	if(!tmp_server)
+		return ;
+	int tmp_verify_result = 0;
+	int tmp_db_ret = tmp_server->GetMikuDB()->UserLogin(tmp_user_login.user_id(),tmp_user_login.user_psw(),tmp_verify_result);
 	//伪验证成功
 	StruUserLoginRS tmp_login_rs;
 	tmp_login_rs.set_msg_id(E_USER_LOGIN_RS);
@@ -48,7 +55,6 @@ void ClientLoginRQ::Execute(char *buff,int len,void *caller_ptr)
 	//第二次封装
 	
 
-	CenterServer *tmp_server = reinterpret_cast<CenterServer *>(server_ptr_);
 	ClientInfoEx *tmp_user = reinterpret_cast<ClientInfoEx *>(caller_ptr);
 	//发送
 }

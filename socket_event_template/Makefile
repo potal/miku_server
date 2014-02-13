@@ -8,13 +8,13 @@ CCSRC=$(shell find $(ROOT) -path -prune -o -name '*.cc')
 CCSRCOBJ=$(CCSRC:%.cc=%.o)
 CC = g++
 LINK = g++
-CCFlag = -O0 -g3 -w -c -fmessage-length=0 -fPIC
+CCFlag = -O0 -g3 -w -c -fmessage-length=0 -fPIC $(mysql_config --cflags)
 LINKFlag = -shared
 PROGRAM = testserver
 
 INCLUDES = -I../common/ -I$(ROOT)/ -Ipacket
 #LIBPATH= -Llib/libevent -Llib/protobuf
-LIBS = -lpthread -levent -lprotobuf
+LIBS = -lpthread -levent -lprotobuf -lmysqlcppconn $(mysql_config --libs)
 #-lrt -ldl -levent_core -levent_pthreads -lprotobuf -lprotoc
 RM = rm -f
 
