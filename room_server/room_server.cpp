@@ -91,9 +91,17 @@ bool RoomServer::StartServer()
 	bool tmp_return = false;
 	tmp_return = cs_connector_.StartConnect();
 	if(!tmp_return)
+	{
+		std::cout<<"connect centersercer error"<<std::endl;
 		return false;
+	}
 	std::cout<<"Connect CenterServer OK!"<<std::endl;
-	//tmp_return = cl_processor_.StartProcessor(1);
+	tmp_return = cs_connector_.StartCSProcessor(100,1,this);
+	if(!tmp_return)
+	{
+		cs_connector_.Disconnect();
+		return false;
+	}
 	
 	ChatRoom *tmp_room = room_manager_.GetNewRoom();
 	tmp_room->SetRoom(16000,-1);

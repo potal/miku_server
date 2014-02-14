@@ -70,12 +70,13 @@ int MikuDatabase::UserLogin(int user_id,std::string user_psw,int &result)
 				std::cout<<tmp_user_psw<<std::endl;
 				if(tmp_user_psw == user_psw)
 				{
-					tmp_return = 1;
+					result = 1;
 				}
 				else
 				{
-					tmp_return = -1;
+					result = -1;
 				}
+				tmp_return = 1;
 			}
 			else
 				tmp_return = 0;

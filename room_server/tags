@@ -70,16 +70,43 @@ CHAT_ROOM_H_	chat_room.h	2;"	d
 CLIENT_GIVE_GIFT_RQ_H_	cl_command/client_give_gift_rq.h	2;"	d
 CLIENT_INFO_LIST_H_	client_info_list.h	2;"	d
 CLIENT_LOGIN_RQ_H_	cl_command/client_login_rq.h	2;"	d
-CenterServerConnector	cs_connector.cpp	/^CenterServerConnector::CenterServerConnector()$/;"	f	class:CenterServerConnector	signature:()
+CLIENT_LOGIN_RS_H_	cs_command/client_login_rs.h	2;"	d
+CS_PROCESSOR_H_	cs_processor.h	2;"	d
+CenterServerConnector	cs_connector.cpp	/^CenterServerConnector::CenterServerConnector():server_ptr_(NULL)$/;"	f	class:CenterServerConnector	signature:()
 CenterServerConnector	cs_connector.h	/^	CenterServerConnector();$/;"	p	class:CenterServerConnector	access:public	signature:()
 CenterServerConnector	cs_connector.h	/^class CenterServerConnector : public Connector$/;"	c	inherits:Connector
-CenterServerConnector::CenterServerConnector	cs_connector.cpp	/^CenterServerConnector::CenterServerConnector()$/;"	f	class:CenterServerConnector	signature:()
+CenterServerConnector::CenterServerConnector	cs_connector.cpp	/^CenterServerConnector::CenterServerConnector():server_ptr_(NULL)$/;"	f	class:CenterServerConnector	signature:()
 CenterServerConnector::CenterServerConnector	cs_connector.h	/^	CenterServerConnector();$/;"	p	class:CenterServerConnector	access:public	signature:()
 CenterServerConnector::DealWithData	cs_connector.cpp	/^void CenterServerConnector::DealWithData(char *buff,int len,int fd)$/;"	f	class:CenterServerConnector	signature:(char *buff,int len,int fd)
 CenterServerConnector::DealWithData	cs_connector.h	/^	void DealWithData(char *buff,int len,int fd);$/;"	p	class:CenterServerConnector	access:public	signature:(char *buff,int len,int fd)
-CenterServerConnector::recv_list_	cs_connector.h	/^	CircleList recv_list_;$/;"	m	class:CenterServerConnector	access:private
+CenterServerConnector::StartCSProcessor	cs_connector.cpp	/^bool CenterServerConnector::StartCSProcessor(int circle_list_size,int proc_thread_count,void *server_ptr)$/;"	f	class:CenterServerConnector	signature:(int circle_list_size,int proc_thread_count,void *server_ptr)
+CenterServerConnector::StartCSProcessor	cs_connector.h	/^	bool StartCSProcessor(int circle_list_size,int proc_thread_count,void *server_ptr);$/;"	p	class:CenterServerConnector	access:public	signature:(int circle_list_size,int proc_thread_count,void *server_ptr)
+CenterServerConnector::cs_processor_	cs_connector.h	/^	CenterServerProcessor cs_processor_;$/;"	m	class:CenterServerConnector	access:private
+CenterServerConnector::server_ptr_	cs_connector.h	/^	void *server_ptr_;$/;"	m	class:CenterServerConnector	access:private
 CenterServerConnector::~CenterServerConnector	cs_connector.cpp	/^CenterServerConnector::~CenterServerConnector()$/;"	f	class:CenterServerConnector	signature:()
 CenterServerConnector::~CenterServerConnector	cs_connector.h	/^	~CenterServerConnector();$/;"	p	class:CenterServerConnector	access:public	signature:()
+CenterServerProcessor	cs_processor.cpp	/^CenterServerProcessor::CenterServerProcessor():is_started_(false),thread_count_(0),thread_id_ptr_(NULL),parent_ptr_(NULL)$/;"	f	class:CenterServerProcessor	signature:()
+CenterServerProcessor	cs_processor.h	/^	CenterServerProcessor();$/;"	p	class:CenterServerProcessor	access:public	signature:()
+CenterServerProcessor	cs_processor.h	/^class CenterServerProcessor : public BaseProcessor$/;"	c	inherits:BaseProcessor
+CenterServerProcessor::CenterServerProcessor	cs_processor.cpp	/^CenterServerProcessor::CenterServerProcessor():is_started_(false),thread_count_(0),thread_id_ptr_(NULL),parent_ptr_(NULL)$/;"	f	class:CenterServerProcessor	signature:()
+CenterServerProcessor::CenterServerProcessor	cs_processor.h	/^	CenterServerProcessor();$/;"	p	class:CenterServerProcessor	access:public	signature:()
+CenterServerProcessor::DealWithDataThread	cs_processor.cpp	/^void* CenterServerProcessor::DealWithDataThread(void *arg)$/;"	f	class:CenterServerProcessor	signature:(void *arg)
+CenterServerProcessor::DealWithDataThread	cs_processor.h	/^	static void* DealWithDataThread(void *arg);$/;"	p	class:CenterServerProcessor	access:public	signature:(void *arg)
+CenterServerProcessor::GetParent	cs_processor.cpp	/^void *CenterServerProcessor::GetParent()$/;"	f	class:CenterServerProcessor	signature:()
+CenterServerProcessor::GetParent	cs_processor.h	/^	void *GetParent();$/;"	p	class:CenterServerProcessor	access:public	signature:()
+CenterServerProcessor::GetStatus	cs_processor.h	/^	inline bool GetStatus(){return is_started_;}$/;"	f	class:CenterServerProcessor	access:public	signature:()
+CenterServerProcessor::InitProcessor	cs_processor.cpp	/^bool CenterServerProcessor::InitProcessor(int max_list_size,void *caller_ptr,void *server_ptr)$/;"	f	class:CenterServerProcessor	signature:(int max_list_size,void *caller_ptr,void *server_ptr)
+CenterServerProcessor::InitProcessor	cs_processor.h	/^	bool InitProcessor(int max_list_size,void *caller_ptr,void *server_ptr);$/;"	p	class:CenterServerProcessor	access:public	signature:(int max_list_size,void *caller_ptr,void *server_ptr)
+CenterServerProcessor::StartProcessor	cs_processor.cpp	/^bool CenterServerProcessor::StartProcessor(int thread_count)$/;"	f	class:CenterServerProcessor	signature:(int thread_count)
+CenterServerProcessor::StartProcessor	cs_processor.h	/^	bool StartProcessor(int thread_count);$/;"	p	class:CenterServerProcessor	access:public	signature:(int thread_count)
+CenterServerProcessor::StopProcessor	cs_processor.cpp	/^void CenterServerProcessor::StopProcessor()$/;"	f	class:CenterServerProcessor	signature:()
+CenterServerProcessor::StopProcessor	cs_processor.h	/^	void StopProcessor();$/;"	p	class:CenterServerProcessor	access:public	signature:()
+CenterServerProcessor::is_started_	cs_processor.h	/^	bool is_started_;$/;"	m	class:CenterServerProcessor	access:private
+CenterServerProcessor::parent_ptr_	cs_processor.h	/^	void *parent_ptr_;$/;"	m	class:CenterServerProcessor	access:private
+CenterServerProcessor::thread_count_	cs_processor.h	/^	int thread_count_;$/;"	m	class:CenterServerProcessor	access:private
+CenterServerProcessor::thread_id_ptr_	cs_processor.h	/^	pthread_t *thread_id_ptr_;$/;"	m	class:CenterServerProcessor	access:private
+CenterServerProcessor::~CenterServerProcessor	cs_processor.cpp	/^CenterServerProcessor::~CenterServerProcessor()$/;"	f	class:CenterServerProcessor	signature:()
+CenterServerProcessor::~CenterServerProcessor	cs_processor.h	/^	~CenterServerProcessor();$/;"	p	class:CenterServerProcessor	access:public	signature:()
 ChatRoom	chat_room.cpp	/^ChatRoom::ChatRoom():sock_(-1),room_id_(0)$/;"	f	class:ChatRoom	signature:()
 ChatRoom	chat_room.h	/^	ChatRoom();$/;"	p	class:ChatRoom	access:public	signature:()
 ChatRoom	chat_room.h	/^class ChatRoom$/;"	c
@@ -205,6 +232,19 @@ ClientLoginRQ::Execute	cl_command/client_login_rq.cpp	/^void ClientLoginRQ::Exec
 ClientLoginRQ::Execute	cl_command/client_login_rq.h	/^	void Execute(char *buff,int len,void *caller_ptr);$/;"	p	class:ClientLoginRQ	access:public	signature:(char *buff,int len,void *caller_ptr)
 ClientLoginRQ::~ClientLoginRQ	cl_command/client_login_rq.cpp	/^ClientLoginRQ::~ClientLoginRQ()$/;"	f	class:ClientLoginRQ	signature:()
 ClientLoginRQ::~ClientLoginRQ	cl_command/client_login_rq.h	/^	~ClientLoginRQ();$/;"	p	class:ClientLoginRQ	access:public	signature:()
+ClientLoginRS	cs_command/client_login_rs.cpp	/^ClientLoginRS::ClientLoginRS()$/;"	f	class:ClientLoginRS	signature:()
+ClientLoginRS	cs_command/client_login_rs.cpp	/^ClientLoginRS::ClientLoginRS(void *server_ptr)$/;"	f	class:ClientLoginRS	signature:(void *server_ptr)
+ClientLoginRS	cs_command/client_login_rs.h	/^	ClientLoginRS();$/;"	p	class:ClientLoginRS	access:public	signature:()
+ClientLoginRS	cs_command/client_login_rs.h	/^	ClientLoginRS(void *server_ptr);$/;"	p	class:ClientLoginRS	access:public	signature:(void *server_ptr)
+ClientLoginRS	cs_command/client_login_rs.h	/^class ClientLoginRS : public BaseCommand$/;"	c	inherits:BaseCommand
+ClientLoginRS::ClientLoginRS	cs_command/client_login_rs.cpp	/^ClientLoginRS::ClientLoginRS()$/;"	f	class:ClientLoginRS	signature:()
+ClientLoginRS::ClientLoginRS	cs_command/client_login_rs.cpp	/^ClientLoginRS::ClientLoginRS(void *server_ptr)$/;"	f	class:ClientLoginRS	signature:(void *server_ptr)
+ClientLoginRS::ClientLoginRS	cs_command/client_login_rs.h	/^	ClientLoginRS();$/;"	p	class:ClientLoginRS	access:public	signature:()
+ClientLoginRS::ClientLoginRS	cs_command/client_login_rs.h	/^	ClientLoginRS(void *server_ptr);$/;"	p	class:ClientLoginRS	access:public	signature:(void *server_ptr)
+ClientLoginRS::Execute	cs_command/client_login_rs.cpp	/^void ClientLoginRS::Execute(char *buff,int len,void *caller_ptr)$/;"	f	class:ClientLoginRS	signature:(char *buff,int len,void *caller_ptr)
+ClientLoginRS::Execute	cs_command/client_login_rs.h	/^	void Execute(char *buff,int len,void *caller_ptr);$/;"	p	class:ClientLoginRS	access:public	signature:(char *buff,int len,void *caller_ptr)
+ClientLoginRS::~ClientLoginRS	cs_command/client_login_rs.cpp	/^ClientLoginRS::~ClientLoginRS()$/;"	f	class:ClientLoginRS	signature:()
+ClientLoginRS::~ClientLoginRS	cs_command/client_login_rs.h	/^	~ClientLoginRS();$/;"	p	class:ClientLoginRS	access:public	signature:()
 CopyFrom	packet/cyt_packet.pb.cpp	/^void StruCytPacket::CopyFrom(const ::google::protobuf::Message& from) {$/;"	f	class:StruCytPacket	signature:(const ::google::protobuf::Message& from)
 CopyFrom	packet/cyt_packet.pb.cpp	/^void StruCytPacket::CopyFrom(const StruCytPacket& from) {$/;"	f	class:StruCytPacket	signature:(const StruCytPacket& from)
 CopyFrom	packet/cyt_packet.pb.h	/^  void CopyFrom(const ::google::protobuf::Message& from);$/;"	p	class:StruCytPacket	access:public	signature:(const ::google::protobuf::Message& from)
@@ -312,60 +352,62 @@ CopyFrom	packet/package_define.pb.h	/^  void CopyFrom(const StruUserRoleInfoID& 
 DIRS	Makefile	/^DIRS =.\/\\$/;"	m
 DO_	packet/cyt_packet.pb.cpp	201;"	d	file:
 DO_	packet/cyt_packet.pb.cpp	313;"	d	file:
-DO_	packet/package_define.pb.cc	10015;"	d	file:
-DO_	packet/package_define.pb.cc	1003;"	d	file:
-DO_	packet/package_define.pb.cc	10261;"	d	file:
-DO_	packet/package_define.pb.cc	10330;"	d	file:
-DO_	packet/package_define.pb.cc	1099;"	d	file:
-DO_	packet/package_define.pb.cc	1406;"	d	file:
-DO_	packet/package_define.pb.cc	1509;"	d	file:
-DO_	packet/package_define.pb.cc	1797;"	d	file:
-DO_	packet/package_define.pb.cc	1882;"	d	file:
-DO_	packet/package_define.pb.cc	2158;"	d	file:
-DO_	packet/package_define.pb.cc	2278;"	d	file:
-DO_	packet/package_define.pb.cc	2626;"	d	file:
-DO_	packet/package_define.pb.cc	2762;"	d	file:
-DO_	packet/package_define.pb.cc	3115;"	d	file:
-DO_	packet/package_define.pb.cc	3202;"	d	file:
-DO_	packet/package_define.pb.cc	3468;"	d	file:
-DO_	packet/package_define.pb.cc	3552;"	d	file:
-DO_	packet/package_define.pb.cc	3820;"	d	file:
-DO_	packet/package_define.pb.cc	3907;"	d	file:
-DO_	packet/package_define.pb.cc	4173;"	d	file:
-DO_	packet/package_define.pb.cc	4257;"	d	file:
-DO_	packet/package_define.pb.cc	4524;"	d	file:
-DO_	packet/package_define.pb.cc	4642;"	d	file:
-DO_	packet/package_define.pb.cc	4940;"	d	file:
-DO_	packet/package_define.pb.cc	5025;"	d	file:
-DO_	packet/package_define.pb.cc	5287;"	d	file:
-DO_	packet/package_define.pb.cc	5405;"	d	file:
-DO_	packet/package_define.pb.cc	5713;"	d	file:
-DO_	packet/package_define.pb.cc	5815;"	d	file:
-DO_	packet/package_define.pb.cc	6107;"	d	file:
-DO_	packet/package_define.pb.cc	6225;"	d	file:
-DO_	packet/package_define.pb.cc	6522;"	d	file:
-DO_	packet/package_define.pb.cc	6591;"	d	file:
-DO_	packet/package_define.pb.cc	6829;"	d	file:
-DO_	packet/package_define.pb.cc	6931;"	d	file:
-DO_	packet/package_define.pb.cc	7227;"	d	file:
-DO_	packet/package_define.pb.cc	7330;"	d	file:
-DO_	packet/package_define.pb.cc	7615;"	d	file:
-DO_	packet/package_define.pb.cc	7684;"	d	file:
-DO_	packet/package_define.pb.cc	7912;"	d	file:
-DO_	packet/package_define.pb.cc	7997;"	d	file:
-DO_	packet/package_define.pb.cc	8263;"	d	file:
-DO_	packet/package_define.pb.cc	8366;"	d	file:
-DO_	packet/package_define.pb.cc	8657;"	d	file:
-DO_	packet/package_define.pb.cc	8758;"	d	file:
-DO_	packet/package_define.pb.cc	9044;"	d	file:
-DO_	packet/package_define.pb.cc	9178;"	d	file:
-DO_	packet/package_define.pb.cc	9512;"	d	file:
-DO_	packet/package_define.pb.cc	9630;"	d	file:
-DO_	packet/package_define.pb.cc	9930;"	d	file:
+DO_	packet/package_define.pb.cc	10057;"	d	file:
+DO_	packet/package_define.pb.cc	1008;"	d	file:
+DO_	packet/package_define.pb.cc	10303;"	d	file:
+DO_	packet/package_define.pb.cc	10372;"	d	file:
+DO_	packet/package_define.pb.cc	1120;"	d	file:
+DO_	packet/package_define.pb.cc	1448;"	d	file:
+DO_	packet/package_define.pb.cc	1551;"	d	file:
+DO_	packet/package_define.pb.cc	1839;"	d	file:
+DO_	packet/package_define.pb.cc	1924;"	d	file:
+DO_	packet/package_define.pb.cc	2200;"	d	file:
+DO_	packet/package_define.pb.cc	2320;"	d	file:
+DO_	packet/package_define.pb.cc	2668;"	d	file:
+DO_	packet/package_define.pb.cc	2804;"	d	file:
+DO_	packet/package_define.pb.cc	3157;"	d	file:
+DO_	packet/package_define.pb.cc	3244;"	d	file:
+DO_	packet/package_define.pb.cc	3510;"	d	file:
+DO_	packet/package_define.pb.cc	3594;"	d	file:
+DO_	packet/package_define.pb.cc	3862;"	d	file:
+DO_	packet/package_define.pb.cc	3949;"	d	file:
+DO_	packet/package_define.pb.cc	4215;"	d	file:
+DO_	packet/package_define.pb.cc	4299;"	d	file:
+DO_	packet/package_define.pb.cc	4566;"	d	file:
+DO_	packet/package_define.pb.cc	4684;"	d	file:
+DO_	packet/package_define.pb.cc	4982;"	d	file:
+DO_	packet/package_define.pb.cc	5067;"	d	file:
+DO_	packet/package_define.pb.cc	5329;"	d	file:
+DO_	packet/package_define.pb.cc	5447;"	d	file:
+DO_	packet/package_define.pb.cc	5755;"	d	file:
+DO_	packet/package_define.pb.cc	5857;"	d	file:
+DO_	packet/package_define.pb.cc	6149;"	d	file:
+DO_	packet/package_define.pb.cc	6267;"	d	file:
+DO_	packet/package_define.pb.cc	6564;"	d	file:
+DO_	packet/package_define.pb.cc	6633;"	d	file:
+DO_	packet/package_define.pb.cc	6871;"	d	file:
+DO_	packet/package_define.pb.cc	6973;"	d	file:
+DO_	packet/package_define.pb.cc	7269;"	d	file:
+DO_	packet/package_define.pb.cc	7372;"	d	file:
+DO_	packet/package_define.pb.cc	7657;"	d	file:
+DO_	packet/package_define.pb.cc	7726;"	d	file:
+DO_	packet/package_define.pb.cc	7954;"	d	file:
+DO_	packet/package_define.pb.cc	8039;"	d	file:
+DO_	packet/package_define.pb.cc	8305;"	d	file:
+DO_	packet/package_define.pb.cc	8408;"	d	file:
+DO_	packet/package_define.pb.cc	8699;"	d	file:
+DO_	packet/package_define.pb.cc	8800;"	d	file:
+DO_	packet/package_define.pb.cc	9086;"	d	file:
+DO_	packet/package_define.pb.cc	9220;"	d	file:
+DO_	packet/package_define.pb.cc	9554;"	d	file:
+DO_	packet/package_define.pb.cc	9672;"	d	file:
+DO_	packet/package_define.pb.cc	9972;"	d	file:
 DealWithData	client_info_list.cpp	/^void ClientInfoEx::DealWithData(struct bufferevent *buff_ev,void *arg)$/;"	f	class:ClientInfoEx	signature:(struct bufferevent *buff_ev,void *arg)
 DealWithData	client_info_list.h	/^	void DealWithData(struct bufferevent *buff_ev,void *arg);$/;"	p	class:ClientInfoEx	access:public	signature:(struct bufferevent *buff_ev,void *arg)
 DealWithData	cs_connector.cpp	/^void CenterServerConnector::DealWithData(char *buff,int len,int fd)$/;"	f	class:CenterServerConnector	signature:(char *buff,int len,int fd)
 DealWithData	cs_connector.h	/^	void DealWithData(char *buff,int len,int fd);$/;"	p	class:CenterServerConnector	access:public	signature:(char *buff,int len,int fd)
+DealWithDataThread	cs_processor.cpp	/^void* CenterServerProcessor::DealWithDataThread(void *arg)$/;"	f	class:CenterServerProcessor	signature:(void *arg)
+DealWithDataThread	cs_processor.h	/^	static void* DealWithDataThread(void *arg);$/;"	p	class:CenterServerProcessor	access:public	signature:(void *arg)
 DealWithDataThread	gs_processor.cpp	/^void* GateServerProcessor::DealWithDataThread(void *arg)$/;"	f	class:GateServerProcessor	signature:(void *arg)
 DealWithDataThread	gs_processor.h	/^	static void* DealWithDataThread(void *arg);$/;"	p	class:GateServerProcessor	access:public	signature:(void *arg)
 DelRoom	room_manager.cpp	/^bool RoomManager::DelRoom(int room_id)$/;"	f	class:RoomManager	signature:(int room_id)
@@ -408,6 +450,8 @@ EnumMsgID_descriptor	packet/package_define.pb.h	/^const ::google::protobuf::Enum
 EnumMsgID_descriptor_	packet/package_define.pb.cc	/^const ::google::protobuf::EnumDescriptor* EnumMsgID_descriptor_ = NULL;$/;"	m	namespace:__anon1	file:
 Execute	cl_command/client_login_rq.cpp	/^void ClientLoginRQ::Execute(char *buff,int len,void *caller_ptr)$/;"	f	class:ClientLoginRQ	signature:(char *buff,int len,void *caller_ptr)
 Execute	cl_command/client_login_rq.h	/^	void Execute(char *buff,int len,void *caller_ptr);$/;"	p	class:ClientLoginRQ	access:public	signature:(char *buff,int len,void *caller_ptr)
+Execute	cs_command/client_login_rs.cpp	/^void ClientLoginRS::Execute(char *buff,int len,void *caller_ptr)$/;"	f	class:ClientLoginRS	signature:(char *buff,int len,void *caller_ptr)
+Execute	cs_command/client_login_rs.h	/^	void Execute(char *buff,int len,void *caller_ptr);$/;"	p	class:ClientLoginRS	access:public	signature:(char *buff,int len,void *caller_ptr)
 GOOGLE_PROTOBUF_DECLARE_ONCE	packet/cyt_packet.pb.cpp	/^GOOGLE_PROTOBUF_DECLARE_ONCE(protobuf_AssignDescriptors_once_);$/;"	p	namespace:__anon4	file:	signature:(protobuf_AssignDescriptors_once_)
 GOOGLE_PROTOBUF_DECLARE_ONCE	packet/package_define.pb.cc	/^GOOGLE_PROTOBUF_DECLARE_ONCE(protobuf_AssignDescriptors_once_);$/;"	p	namespace:__anon2	file:	signature:(protobuf_AssignDescriptors_once_)
 GS_PROCESSOR_H_	gs_processor.h	2;"	d
@@ -456,16 +500,20 @@ GateRoomServerPack::SharedDtor	packet/package_define.pb.h	/^  void SharedDtor();
 GateRoomServerPack::Swap	packet/package_define.pb.cc	/^void GateRoomServerPack::Swap(GateRoomServerPack* other) {$/;"	f	class:GateRoomServerPack	signature:(GateRoomServerPack* other)
 GateRoomServerPack::Swap	packet/package_define.pb.h	/^  void Swap(GateRoomServerPack* other);$/;"	p	class:GateRoomServerPack	access:public	signature:(GateRoomServerPack* other)
 GateRoomServerPack::_cached_size_	packet/package_define.pb.h	/^  mutable int _cached_size_;$/;"	m	class:GateRoomServerPack	access:private
-GateRoomServerPack::_has_bits_	packet/package_define.pb.h	/^  ::google::protobuf::uint32 _has_bits_[(5 + 31) \/ 32];$/;"	m	class:GateRoomServerPack	access:private
+GateRoomServerPack::_has_bits_	packet/package_define.pb.h	/^  ::google::protobuf::uint32 _has_bits_[(6 + 31) \/ 32];$/;"	m	class:GateRoomServerPack	access:private
 GateRoomServerPack::_unknown_fields_	packet/package_define.pb.h	/^  ::google::protobuf::UnknownFieldSet _unknown_fields_;$/;"	m	class:GateRoomServerPack	access:private
 GateRoomServerPack::clear_data_len	packet/package_define.pb.h	/^  inline void clear_data_len();$/;"	p	class:GateRoomServerPack	access:public	signature:()
 GateRoomServerPack::clear_data_len	packet/package_define.pb.h	/^inline void GateRoomServerPack::clear_data_len() {$/;"	f	class:GateRoomServerPack	signature:()
 GateRoomServerPack::clear_data_msg	packet/package_define.pb.h	/^  inline void clear_data_msg();$/;"	p	class:GateRoomServerPack	access:public	signature:()
 GateRoomServerPack::clear_data_msg	packet/package_define.pb.h	/^inline void GateRoomServerPack::clear_data_msg() {$/;"	f	class:GateRoomServerPack	signature:()
+GateRoomServerPack::clear_gs_hashkey	packet/package_define.pb.h	/^  inline void clear_gs_hashkey();$/;"	p	class:GateRoomServerPack	access:public	signature:()
+GateRoomServerPack::clear_gs_hashkey	packet/package_define.pb.h	/^inline void GateRoomServerPack::clear_gs_hashkey() {$/;"	f	class:GateRoomServerPack	signature:()
 GateRoomServerPack::clear_has_data_len	packet/package_define.pb.h	/^  inline void clear_has_data_len();$/;"	p	class:GateRoomServerPack	access:private	signature:()
 GateRoomServerPack::clear_has_data_len	packet/package_define.pb.h	/^inline void GateRoomServerPack::clear_has_data_len() {$/;"	f	class:GateRoomServerPack	signature:()
 GateRoomServerPack::clear_has_data_msg	packet/package_define.pb.h	/^  inline void clear_has_data_msg();$/;"	p	class:GateRoomServerPack	access:private	signature:()
 GateRoomServerPack::clear_has_data_msg	packet/package_define.pb.h	/^inline void GateRoomServerPack::clear_has_data_msg() {$/;"	f	class:GateRoomServerPack	signature:()
+GateRoomServerPack::clear_has_gs_hashkey	packet/package_define.pb.h	/^  inline void clear_has_gs_hashkey();$/;"	p	class:GateRoomServerPack	access:private	signature:()
+GateRoomServerPack::clear_has_gs_hashkey	packet/package_define.pb.h	/^inline void GateRoomServerPack::clear_has_gs_hashkey() {$/;"	f	class:GateRoomServerPack	signature:()
 GateRoomServerPack::clear_has_str_head	packet/package_define.pb.h	/^  inline void clear_has_str_head();$/;"	p	class:GateRoomServerPack	access:private	signature:()
 GateRoomServerPack::clear_has_str_head	packet/package_define.pb.h	/^inline void GateRoomServerPack::clear_has_str_head() {$/;"	f	class:GateRoomServerPack	signature:()
 GateRoomServerPack::clear_has_str_tail	packet/package_define.pb.h	/^  inline void clear_has_str_tail();$/;"	p	class:GateRoomServerPack	access:private	signature:()
@@ -490,10 +538,15 @@ GateRoomServerPack::default_instance_	packet/package_define.pb.cc	/^GateRoomServ
 GateRoomServerPack::default_instance_	packet/package_define.pb.h	/^  static GateRoomServerPack* default_instance_;$/;"	m	class:GateRoomServerPack	access:private
 GateRoomServerPack::descriptor	packet/package_define.pb.cc	/^const ::google::protobuf::Descriptor* GateRoomServerPack::descriptor() {$/;"	f	class:GateRoomServerPack	signature:()
 GateRoomServerPack::descriptor	packet/package_define.pb.h	/^  static const ::google::protobuf::Descriptor* descriptor();$/;"	p	class:GateRoomServerPack	access:public	signature:()
+GateRoomServerPack::gs_hashkey	packet/package_define.pb.h	/^  inline ::google::protobuf::int32 gs_hashkey() const;$/;"	p	class:GateRoomServerPack	access:public	signature:() const
+GateRoomServerPack::gs_hashkey	packet/package_define.pb.h	/^inline ::google::protobuf::int32 GateRoomServerPack::gs_hashkey() const {$/;"	f	class:GateRoomServerPack	signature:() const
+GateRoomServerPack::gs_hashkey_	packet/package_define.pb.h	/^  ::google::protobuf::int32 gs_hashkey_;$/;"	m	class:GateRoomServerPack	access:private
 GateRoomServerPack::has_data_len	packet/package_define.pb.h	/^  inline bool has_data_len() const;$/;"	p	class:GateRoomServerPack	access:public	signature:() const
 GateRoomServerPack::has_data_len	packet/package_define.pb.h	/^inline bool GateRoomServerPack::has_data_len() const {$/;"	f	class:GateRoomServerPack	signature:() const
 GateRoomServerPack::has_data_msg	packet/package_define.pb.h	/^  inline bool has_data_msg() const;$/;"	p	class:GateRoomServerPack	access:public	signature:() const
 GateRoomServerPack::has_data_msg	packet/package_define.pb.h	/^inline bool GateRoomServerPack::has_data_msg() const {$/;"	f	class:GateRoomServerPack	signature:() const
+GateRoomServerPack::has_gs_hashkey	packet/package_define.pb.h	/^  inline bool has_gs_hashkey() const;$/;"	p	class:GateRoomServerPack	access:public	signature:() const
+GateRoomServerPack::has_gs_hashkey	packet/package_define.pb.h	/^inline bool GateRoomServerPack::has_gs_hashkey() const {$/;"	f	class:GateRoomServerPack	signature:() const
 GateRoomServerPack::has_str_head	packet/package_define.pb.h	/^  inline bool has_str_head() const;$/;"	p	class:GateRoomServerPack	access:public	signature:() const
 GateRoomServerPack::has_str_head	packet/package_define.pb.h	/^inline bool GateRoomServerPack::has_str_head() const {$/;"	f	class:GateRoomServerPack	signature:() const
 GateRoomServerPack::has_str_tail	packet/package_define.pb.h	/^  inline bool has_str_tail() const;$/;"	p	class:GateRoomServerPack	access:public	signature:() const
@@ -501,13 +554,15 @@ GateRoomServerPack::has_str_tail	packet/package_define.pb.h	/^inline bool GateRo
 GateRoomServerPack::has_user_hashkey	packet/package_define.pb.h	/^  inline bool has_user_hashkey() const;$/;"	p	class:GateRoomServerPack	access:public	signature:() const
 GateRoomServerPack::has_user_hashkey	packet/package_define.pb.h	/^inline bool GateRoomServerPack::has_user_hashkey() const {$/;"	f	class:GateRoomServerPack	signature:() const
 GateRoomServerPack::kDataLenFieldNumber	packet/package_define.pb.cc	/^const int GateRoomServerPack::kDataLenFieldNumber;$/;"	m	class:GateRoomServerPack	file:
-GateRoomServerPack::kDataLenFieldNumber	packet/package_define.pb.h	/^  static const int kDataLenFieldNumber = 3;$/;"	m	class:GateRoomServerPack	access:public
+GateRoomServerPack::kDataLenFieldNumber	packet/package_define.pb.h	/^  static const int kDataLenFieldNumber = 4;$/;"	m	class:GateRoomServerPack	access:public
 GateRoomServerPack::kDataMsgFieldNumber	packet/package_define.pb.cc	/^const int GateRoomServerPack::kDataMsgFieldNumber;$/;"	m	class:GateRoomServerPack	file:
-GateRoomServerPack::kDataMsgFieldNumber	packet/package_define.pb.h	/^  static const int kDataMsgFieldNumber = 4;$/;"	m	class:GateRoomServerPack	access:public
+GateRoomServerPack::kDataMsgFieldNumber	packet/package_define.pb.h	/^  static const int kDataMsgFieldNumber = 5;$/;"	m	class:GateRoomServerPack	access:public
+GateRoomServerPack::kGsHashkeyFieldNumber	packet/package_define.pb.cc	/^const int GateRoomServerPack::kGsHashkeyFieldNumber;$/;"	m	class:GateRoomServerPack	file:
+GateRoomServerPack::kGsHashkeyFieldNumber	packet/package_define.pb.h	/^  static const int kGsHashkeyFieldNumber = 3;$/;"	m	class:GateRoomServerPack	access:public
 GateRoomServerPack::kStrHeadFieldNumber	packet/package_define.pb.cc	/^const int GateRoomServerPack::kStrHeadFieldNumber;$/;"	m	class:GateRoomServerPack	file:
 GateRoomServerPack::kStrHeadFieldNumber	packet/package_define.pb.h	/^  static const int kStrHeadFieldNumber = 1;$/;"	m	class:GateRoomServerPack	access:public
 GateRoomServerPack::kStrTailFieldNumber	packet/package_define.pb.cc	/^const int GateRoomServerPack::kStrTailFieldNumber;$/;"	m	class:GateRoomServerPack	file:
-GateRoomServerPack::kStrTailFieldNumber	packet/package_define.pb.h	/^  static const int kStrTailFieldNumber = 5;$/;"	m	class:GateRoomServerPack	access:public
+GateRoomServerPack::kStrTailFieldNumber	packet/package_define.pb.h	/^  static const int kStrTailFieldNumber = 6;$/;"	m	class:GateRoomServerPack	access:public
 GateRoomServerPack::kUserHashkeyFieldNumber	packet/package_define.pb.cc	/^const int GateRoomServerPack::kUserHashkeyFieldNumber;$/;"	m	class:GateRoomServerPack	file:
 GateRoomServerPack::kUserHashkeyFieldNumber	packet/package_define.pb.h	/^  static const int kUserHashkeyFieldNumber = 2;$/;"	m	class:GateRoomServerPack	access:public
 GateRoomServerPack::mutable_data_msg	packet/package_define.pb.h	/^  inline ::std::string* mutable_data_msg();$/;"	p	class:GateRoomServerPack	access:public	signature:()
@@ -535,10 +590,14 @@ GateRoomServerPack::set_data_msg	packet/package_define.pb.h	/^  inline void set_
 GateRoomServerPack::set_data_msg	packet/package_define.pb.h	/^inline void GateRoomServerPack::set_data_msg(const ::std::string& value) {$/;"	f	class:GateRoomServerPack	signature:(const ::std::string& value)
 GateRoomServerPack::set_data_msg	packet/package_define.pb.h	/^inline void GateRoomServerPack::set_data_msg(const char* value) {$/;"	f	class:GateRoomServerPack	signature:(const char* value)
 GateRoomServerPack::set_data_msg	packet/package_define.pb.h	/^inline void GateRoomServerPack::set_data_msg(const void* value, size_t size) {$/;"	f	class:GateRoomServerPack	signature:(const void* value, size_t size)
+GateRoomServerPack::set_gs_hashkey	packet/package_define.pb.h	/^  inline void set_gs_hashkey(::google::protobuf::int32 value);$/;"	p	class:GateRoomServerPack	access:public	signature:(::google::protobuf::int32 value)
+GateRoomServerPack::set_gs_hashkey	packet/package_define.pb.h	/^inline void GateRoomServerPack::set_gs_hashkey(::google::protobuf::int32 value) {$/;"	f	class:GateRoomServerPack	signature:(::google::protobuf::int32 value)
 GateRoomServerPack::set_has_data_len	packet/package_define.pb.h	/^  inline void set_has_data_len();$/;"	p	class:GateRoomServerPack	access:private	signature:()
 GateRoomServerPack::set_has_data_len	packet/package_define.pb.h	/^inline void GateRoomServerPack::set_has_data_len() {$/;"	f	class:GateRoomServerPack	signature:()
 GateRoomServerPack::set_has_data_msg	packet/package_define.pb.h	/^  inline void set_has_data_msg();$/;"	p	class:GateRoomServerPack	access:private	signature:()
 GateRoomServerPack::set_has_data_msg	packet/package_define.pb.h	/^inline void GateRoomServerPack::set_has_data_msg() {$/;"	f	class:GateRoomServerPack	signature:()
+GateRoomServerPack::set_has_gs_hashkey	packet/package_define.pb.h	/^  inline void set_has_gs_hashkey();$/;"	p	class:GateRoomServerPack	access:private	signature:()
+GateRoomServerPack::set_has_gs_hashkey	packet/package_define.pb.h	/^inline void GateRoomServerPack::set_has_gs_hashkey() {$/;"	f	class:GateRoomServerPack	signature:()
 GateRoomServerPack::set_has_str_head	packet/package_define.pb.h	/^  inline void set_has_str_head();$/;"	p	class:GateRoomServerPack	access:private	signature:()
 GateRoomServerPack::set_has_str_head	packet/package_define.pb.h	/^inline void GateRoomServerPack::set_has_str_head() {$/;"	f	class:GateRoomServerPack	signature:()
 GateRoomServerPack::set_has_str_tail	packet/package_define.pb.h	/^  inline void set_has_str_tail();$/;"	p	class:GateRoomServerPack	access:private	signature:()
@@ -679,12 +738,15 @@ GetMetadata	packet/package_define.pb.h	/^  ::google::protobuf::Metadata GetMetad
 GetMetadata	packet/package_define.pb.h	/^  ::google::protobuf::Metadata GetMetadata() const;$/;"	p	class:StruUserRoleInfoID	access:public	signature:() const
 GetNewRoom	room_manager.cpp	/^ChatRoom *RoomManager::GetNewRoom()$/;"	f	class:RoomManager	signature:()
 GetNewRoom	room_manager.h	/^	ChatRoom *GetNewRoom();$/;"	p	class:RoomManager	access:public	signature:()
+GetParent	cs_processor.cpp	/^void *CenterServerProcessor::GetParent()$/;"	f	class:CenterServerProcessor	signature:()
+GetParent	cs_processor.h	/^	void *GetParent();$/;"	p	class:CenterServerProcessor	access:public	signature:()
 GetPreUserInfoList	chat_room.cpp	/^UserInfoList *ChatRoom::GetPreUserInfoList()$/;"	f	class:ChatRoom	signature:()
 GetPreUserInfoList	chat_room.h	/^	UserInfoList *GetPreUserInfoList();$/;"	p	class:ChatRoom	access:public	signature:()
 GetRoom	room_manager.cpp	/^ChatRoom *RoomManager::GetRoom(int room_id)$/;"	f	class:RoomManager	signature:(int room_id)
 GetRoom	room_manager.h	/^	ChatRoom *GetRoom(int room_id);$/;"	p	class:RoomManager	access:public	signature:(int room_id)
 GetRoomManager	room_server.cpp	/^RoomManager *RoomServer::GetRoomManager()$/;"	f	class:RoomServer	signature:()
 GetRoomManager	room_server.h	/^	RoomManager *GetRoomManager();$/;"	p	class:RoomServer	access:public	signature:()
+GetStatus	cs_processor.h	/^	inline bool GetStatus(){return is_started_;}$/;"	f	class:CenterServerProcessor	access:public	signature:()
 GetUnusedUser	user_info_list.cpp	/^int UserInfoList::GetUnusedUser(UserInfo *&user_info)$/;"	f	class:UserInfoList	signature:(UserInfo *&user_info)
 GetUnusedUser	user_info_list.h	/^	int GetUnusedUser(UserInfo *&user_info);$/;"	p	class:UserInfoList	access:public	signature:(UserInfo *&user_info)
 GetUserByHashkey	client_info_list.cpp	/^BaseUserInfo *ClientInfoList::GetUserByHashkey(int user_hashkey)$/;"	f	class:ClientInfoList	signature:(int user_hashkey)
@@ -752,6 +814,8 @@ InitAsDefaultInstance	packet/package_define.pb.h	/^  void InitAsDefaultInstance(
 InitAsDefaultInstance	packet/package_define.pb.h	/^  void InitAsDefaultInstance();$/;"	p	class:StruUserOffMicRS	access:private	signature:()
 InitAsDefaultInstance	packet/package_define.pb.h	/^  void InitAsDefaultInstance();$/;"	p	class:StruUserOnMicID	access:private	signature:()
 InitAsDefaultInstance	packet/package_define.pb.h	/^  void InitAsDefaultInstance();$/;"	p	class:StruUserRoleInfoID	access:private	signature:()
+InitProcessor	cs_processor.cpp	/^bool CenterServerProcessor::InitProcessor(int max_list_size,void *caller_ptr,void *server_ptr)$/;"	f	class:CenterServerProcessor	signature:(int max_list_size,void *caller_ptr,void *server_ptr)
+InitProcessor	cs_processor.h	/^	bool InitProcessor(int max_list_size,void *caller_ptr,void *server_ptr);$/;"	p	class:CenterServerProcessor	access:public	signature:(int max_list_size,void *caller_ptr,void *server_ptr)
 InitProcessor	gs_processor.cpp	/^bool GateServerProcessor::InitProcessor(int max_list_size,void *caller_ptr,void *server_ptr)$/;"	f	class:GateServerProcessor	signature:(int max_list_size,void *caller_ptr,void *server_ptr)
 InitProcessor	gs_processor.h	/^	bool InitProcessor(int max_list_size,void *caller_ptr,void *server_ptr);$/;"	p	class:GateServerProcessor	access:public	signature:(int max_list_size,void *caller_ptr,void *server_ptr)
 InitServer	room_server.cpp	/^bool RoomServer::InitServer()$/;"	f	class:RoomServer	signature:()
@@ -1350,6 +1414,10 @@ SharedDtor	packet/package_define.pb.h	/^  void SharedDtor();$/;"	p	class:StruUse
 SharedDtor	packet/package_define.pb.h	/^  void SharedDtor();$/;"	p	class:StruUserOffMicRS	access:private	signature:()
 SharedDtor	packet/package_define.pb.h	/^  void SharedDtor();$/;"	p	class:StruUserOnMicID	access:private	signature:()
 SharedDtor	packet/package_define.pb.h	/^  void SharedDtor();$/;"	p	class:StruUserRoleInfoID	access:private	signature:()
+StartCSProcessor	cs_connector.cpp	/^bool CenterServerConnector::StartCSProcessor(int circle_list_size,int proc_thread_count,void *server_ptr)$/;"	f	class:CenterServerConnector	signature:(int circle_list_size,int proc_thread_count,void *server_ptr)
+StartCSProcessor	cs_connector.h	/^	bool StartCSProcessor(int circle_list_size,int proc_thread_count,void *server_ptr);$/;"	p	class:CenterServerConnector	access:public	signature:(int circle_list_size,int proc_thread_count,void *server_ptr)
+StartProcessor	cs_processor.cpp	/^bool CenterServerProcessor::StartProcessor(int thread_count)$/;"	f	class:CenterServerProcessor	signature:(int thread_count)
+StartProcessor	cs_processor.h	/^	bool StartProcessor(int thread_count);$/;"	p	class:CenterServerProcessor	access:public	signature:(int thread_count)
 StartProcessor	gs_processor.cpp	/^bool GateServerProcessor::StartProcessor(int thread_count)$/;"	f	class:GateServerProcessor	signature:(int thread_count)
 StartProcessor	gs_processor.h	/^	bool StartProcessor(int thread_count);$/;"	p	class:GateServerProcessor	access:public	signature:(int thread_count)
 StartServer	room_server.cpp	/^bool RoomServer::StartServer()$/;"	f	class:RoomServer	signature:()
@@ -1360,6 +1428,8 @@ StaticDescriptorInitializer_cyt_5fpacket_2eproto::StaticDescriptorInitializer_cy
 StaticDescriptorInitializer_package_5fdefine_2eproto	packet/package_define.pb.cc	/^  StaticDescriptorInitializer_package_5fdefine_2eproto() {$/;"	f	struct:StaticDescriptorInitializer_package_5fdefine_2eproto	access:public	signature:()
 StaticDescriptorInitializer_package_5fdefine_2eproto	packet/package_define.pb.cc	/^struct StaticDescriptorInitializer_package_5fdefine_2eproto {$/;"	s	file:
 StaticDescriptorInitializer_package_5fdefine_2eproto::StaticDescriptorInitializer_package_5fdefine_2eproto	packet/package_define.pb.cc	/^  StaticDescriptorInitializer_package_5fdefine_2eproto() {$/;"	f	struct:StaticDescriptorInitializer_package_5fdefine_2eproto	access:public	signature:()
+StopProcessor	cs_processor.cpp	/^void CenterServerProcessor::StopProcessor()$/;"	f	class:CenterServerProcessor	signature:()
+StopProcessor	cs_processor.h	/^	void StopProcessor();$/;"	p	class:CenterServerProcessor	access:public	signature:()
 StopProcessor	gs_processor.cpp	/^void GateServerProcessor::StopProcessor()$/;"	f	class:GateServerProcessor	signature:()
 StopProcessor	gs_processor.h	/^	void StopProcessor();$/;"	p	class:GateServerProcessor	access:public	signature:()
 StopServer	room_server.cpp	/^void RoomServer::StopServer()$/;"	f	class:RoomServer	signature:()
@@ -5019,10 +5089,11 @@ Swap	packet/package_define.pb.h	/^  void Swap(StruUserOffMicRS* other);$/;"	p	cl
 Swap	packet/package_define.pb.h	/^  void Swap(StruUserOnMicID* other);$/;"	p	class:StruUserOnMicID	access:public	signature:(StruUserOnMicID* other)
 Swap	packet/package_define.pb.h	/^  void Swap(StruUserRoleInfoID* other);$/;"	p	class:StruUserRoleInfoID	access:public	signature:(StruUserRoleInfoID* other)
 USER_INFO_LIST_H_	user_info_list.h	2;"	d
-UserInfo	user_info_list.h	/^	UserInfo():user_id(0),user_hash_key(0)$/;"	f	struct:UserInfo	access:public	signature:()
+UserInfo	user_info_list.h	/^	UserInfo():gs_hashkey_user_on(0),user_id(0),user_hash_key(0)$/;"	f	struct:UserInfo	access:public	signature:()
 UserInfo	user_info_list.h	/^struct UserInfo$/;"	s
 UserInfo::Clear	user_info_list.h	/^	void Clear()$/;"	f	struct:UserInfo	access:public	signature:()
-UserInfo::UserInfo	user_info_list.h	/^	UserInfo():user_id(0),user_hash_key(0)$/;"	f	struct:UserInfo	access:public	signature:()
+UserInfo::UserInfo	user_info_list.h	/^	UserInfo():gs_hashkey_user_on(0),user_id(0),user_hash_key(0)$/;"	f	struct:UserInfo	access:public	signature:()
+UserInfo::gs_hashkey_user_on	user_info_list.h	/^	int gs_hashkey_user_on;$/;"	m	struct:UserInfo	access:public
 UserInfo::user_hash_key	user_info_list.h	/^	int user_hash_key;$/;"	m	struct:UserInfo	access:public
 UserInfo::user_id	user_info_list.h	/^	int user_id;$/;"	m	struct:UserInfo	access:public
 UserInfo::user_nickname	user_info_list.h	/^	char user_nickname[MaxNickNameLen];$/;"	m	struct:UserInfo	access:public
@@ -5146,13 +5217,13 @@ _has_bits_	packet/package_define.pb.h	/^  ::google::protobuf::uint32 _has_bits_[
 _has_bits_	packet/package_define.pb.h	/^  ::google::protobuf::uint32 _has_bits_[(4 + 31) \/ 32];$/;"	m	class:StruUserLoginRS	access:private
 _has_bits_	packet/package_define.pb.h	/^  ::google::protobuf::uint32 _has_bits_[(4 + 31) \/ 32];$/;"	m	class:StruUserMsgRS	access:private
 _has_bits_	packet/package_define.pb.h	/^  ::google::protobuf::uint32 _has_bits_[(4 + 31) \/ 32];$/;"	m	class:StruUserOffMicRS	access:private
-_has_bits_	packet/package_define.pb.h	/^  ::google::protobuf::uint32 _has_bits_[(5 + 31) \/ 32];$/;"	m	class:GateRoomServerPack	access:private
 _has_bits_	packet/package_define.pb.h	/^  ::google::protobuf::uint32 _has_bits_[(5 + 31) \/ 32];$/;"	m	class:StruPutUserOnMicRQ	access:private
 _has_bits_	packet/package_define.pb.h	/^  ::google::protobuf::uint32 _has_bits_[(5 + 31) \/ 32];$/;"	m	class:StruUserApplyMicRS	access:private
 _has_bits_	packet/package_define.pb.h	/^  ::google::protobuf::uint32 _has_bits_[(5 + 31) \/ 32];$/;"	m	class:StruUserGiveGiftRQ	access:private
 _has_bits_	packet/package_define.pb.h	/^  ::google::protobuf::uint32 _has_bits_[(5 + 31) \/ 32];$/;"	m	class:StruUserLoginRQ	access:private
 _has_bits_	packet/package_define.pb.h	/^  ::google::protobuf::uint32 _has_bits_[(5 + 31) \/ 32];$/;"	m	class:StruUserOffMicID	access:private
 _has_bits_	packet/package_define.pb.h	/^  ::google::protobuf::uint32 _has_bits_[(5 + 31) \/ 32];$/;"	m	class:StruUserOnMicID	access:private
+_has_bits_	packet/package_define.pb.h	/^  ::google::protobuf::uint32 _has_bits_[(6 + 31) \/ 32];$/;"	m	class:GateRoomServerPack	access:private
 _has_bits_	packet/package_define.pb.h	/^  ::google::protobuf::uint32 _has_bits_[(6 + 31) \/ 32];$/;"	m	class:StruCancleUserMicRQ	access:private
 _has_bits_	packet/package_define.pb.h	/^  ::google::protobuf::uint32 _has_bits_[(6 + 31) \/ 32];$/;"	m	class:StruUserGiveGiftRS	access:private
 _has_bits_	packet/package_define.pb.h	/^  ::google::protobuf::uint32 _has_bits_[(6 + 31) \/ 32];$/;"	m	class:StruUserMsgRQ	access:private
@@ -5212,6 +5283,8 @@ clear_gift_code	packet/package_define.pb.h	/^  inline void clear_gift_code();$/;
 clear_gift_code	packet/package_define.pb.h	/^  inline void clear_gift_code();$/;"	p	class:StruUserGiveGiftRS	access:public	signature:()
 clear_gift_code	packet/package_define.pb.h	/^inline void StruUserGiveGiftRQ::clear_gift_code() {$/;"	f	class:StruUserGiveGiftRQ	signature:()
 clear_gift_code	packet/package_define.pb.h	/^inline void StruUserGiveGiftRS::clear_gift_code() {$/;"	f	class:StruUserGiveGiftRS	signature:()
+clear_gs_hashkey	packet/package_define.pb.h	/^  inline void clear_gs_hashkey();$/;"	p	class:GateRoomServerPack	access:public	signature:()
+clear_gs_hashkey	packet/package_define.pb.h	/^inline void GateRoomServerPack::clear_gs_hashkey() {$/;"	f	class:GateRoomServerPack	signature:()
 clear_has_data_len	packet/package_define.pb.h	/^  inline void clear_has_data_len();$/;"	p	class:GateRoomServerPack	access:private	signature:()
 clear_has_data_len	packet/package_define.pb.h	/^inline void GateRoomServerPack::clear_has_data_len() {$/;"	f	class:GateRoomServerPack	signature:()
 clear_has_data_msg	packet/package_define.pb.h	/^  inline void clear_has_data_msg();$/;"	p	class:GateRoomServerPack	access:private	signature:()
@@ -5234,6 +5307,8 @@ clear_has_gift_code	packet/package_define.pb.h	/^  inline void clear_has_gift_co
 clear_has_gift_code	packet/package_define.pb.h	/^  inline void clear_has_gift_code();$/;"	p	class:StruUserGiveGiftRS	access:private	signature:()
 clear_has_gift_code	packet/package_define.pb.h	/^inline void StruUserGiveGiftRQ::clear_has_gift_code() {$/;"	f	class:StruUserGiveGiftRQ	signature:()
 clear_has_gift_code	packet/package_define.pb.h	/^inline void StruUserGiveGiftRS::clear_has_gift_code() {$/;"	f	class:StruUserGiveGiftRS	signature:()
+clear_has_gs_hashkey	packet/package_define.pb.h	/^  inline void clear_has_gs_hashkey();$/;"	p	class:GateRoomServerPack	access:private	signature:()
+clear_has_gs_hashkey	packet/package_define.pb.h	/^inline void GateRoomServerPack::clear_has_gs_hashkey() {$/;"	f	class:GateRoomServerPack	signature:()
 clear_has_is_private	packet/package_define.pb.h	/^  inline void clear_has_is_private();$/;"	p	class:StruUserMsgRQ	access:private	signature:()
 clear_has_is_private	packet/package_define.pb.h	/^  inline void clear_has_is_private();$/;"	p	class:StruUserMsgTextID	access:private	signature:()
 clear_has_is_private	packet/package_define.pb.h	/^inline void StruUserMsgRQ::clear_has_is_private() {$/;"	f	class:StruUserMsgRQ	signature:()
@@ -5694,6 +5769,7 @@ client_list_	room_server.h	/^	ClientInfoList client_list_;$/;"	m	class:RoomServe
 count_user_per_worker_	room_server.h	/^	int count_user_per_worker_;$/;"	m	class:RoomServer	access:private
 count_worker_	room_server.h	/^	int count_worker_;$/;"	m	class:RoomServer	access:private
 cs_connector_	room_server.h	/^	CenterServerConnector cs_connector_;$/;"	m	class:RoomServer	access:private
+cs_processor_	cs_connector.h	/^	CenterServerProcessor cs_processor_;$/;"	m	class:CenterServerConnector	access:private
 data_len	packet/package_define.pb.h	/^  inline ::google::protobuf::int32 data_len() const;$/;"	p	class:GateRoomServerPack	access:public	signature:() const
 data_len	packet/package_define.pb.h	/^inline ::google::protobuf::int32 GateRoomServerPack::data_len() const {$/;"	f	class:GateRoomServerPack	signature:() const
 data_len_	packet/package_define.pb.h	/^  ::google::protobuf::int32 data_len_;$/;"	m	class:GateRoomServerPack	access:private
@@ -5888,6 +5964,10 @@ google	packet/package_define.pb.h	/^namespace google {$/;"	n
 google::protobuf	packet/cyt_packet.pb.h	/^namespace protobuf {$/;"	n	namespace:google
 google::protobuf	packet/package_define.pb.h	/^namespace protobuf {$/;"	n	namespace:google
 google::protobuf::GetEnumDescriptor	packet/package_define.pb.h	/^inline const EnumDescriptor* GetEnumDescriptor< EnumMsgID>() {$/;"	f	namespace:google::protobuf	signature:()
+gs_hashkey	packet/package_define.pb.h	/^  inline ::google::protobuf::int32 gs_hashkey() const;$/;"	p	class:GateRoomServerPack	access:public	signature:() const
+gs_hashkey	packet/package_define.pb.h	/^inline ::google::protobuf::int32 GateRoomServerPack::gs_hashkey() const {$/;"	f	class:GateRoomServerPack	signature:() const
+gs_hashkey_	packet/package_define.pb.h	/^  ::google::protobuf::int32 gs_hashkey_;$/;"	m	class:GateRoomServerPack	access:private
+gs_hashkey_user_on	user_info_list.h	/^	int gs_hashkey_user_on;$/;"	m	struct:UserInfo	access:public
 gs_processor_	client_info_list.h	/^	GateServerProcessor gs_processor_;\/\/gs processor$/;"	m	class:ClientInfoEx	access:public
 has_data_len	packet/package_define.pb.h	/^  inline bool has_data_len() const;$/;"	p	class:GateRoomServerPack	access:public	signature:() const
 has_data_len	packet/package_define.pb.h	/^inline bool GateRoomServerPack::has_data_len() const {$/;"	f	class:GateRoomServerPack	signature:() const
@@ -5911,6 +5991,8 @@ has_gift_code	packet/package_define.pb.h	/^  inline bool has_gift_code() const;$
 has_gift_code	packet/package_define.pb.h	/^  inline bool has_gift_code() const;$/;"	p	class:StruUserGiveGiftRS	access:public	signature:() const
 has_gift_code	packet/package_define.pb.h	/^inline bool StruUserGiveGiftRQ::has_gift_code() const {$/;"	f	class:StruUserGiveGiftRQ	signature:() const
 has_gift_code	packet/package_define.pb.h	/^inline bool StruUserGiveGiftRS::has_gift_code() const {$/;"	f	class:StruUserGiveGiftRS	signature:() const
+has_gs_hashkey	packet/package_define.pb.h	/^  inline bool has_gs_hashkey() const;$/;"	p	class:GateRoomServerPack	access:public	signature:() const
+has_gs_hashkey	packet/package_define.pb.h	/^inline bool GateRoomServerPack::has_gs_hashkey() const {$/;"	f	class:GateRoomServerPack	signature:() const
 has_is_private	packet/package_define.pb.h	/^  inline bool has_is_private() const;$/;"	p	class:StruUserMsgRQ	access:public	signature:() const
 has_is_private	packet/package_define.pb.h	/^  inline bool has_is_private() const;$/;"	p	class:StruUserMsgTextID	access:public	signature:() const
 has_is_private	packet/package_define.pb.h	/^inline bool StruUserMsgRQ::has_is_private() const {$/;"	f	class:StruUserMsgRQ	signature:() const
@@ -6143,11 +6225,12 @@ is_private	packet/package_define.pb.h	/^inline bool StruUserMsgRQ::is_private() 
 is_private	packet/package_define.pb.h	/^inline bool StruUserMsgTextID::is_private() const {$/;"	f	class:StruUserMsgTextID	signature:() const
 is_private_	packet/package_define.pb.h	/^  bool is_private_;$/;"	m	class:StruUserMsgRQ	access:private
 is_private_	packet/package_define.pb.h	/^  bool is_private_;$/;"	m	class:StruUserMsgTextID	access:private
+is_started_	cs_processor.h	/^	bool is_started_;$/;"	m	class:CenterServerProcessor	access:private
 is_started_	gs_processor.h	/^	bool is_started_;$/;"	m	class:GateServerProcessor	access:private
 kDataLenFieldNumber	packet/package_define.pb.cc	/^const int GateRoomServerPack::kDataLenFieldNumber;$/;"	m	class:GateRoomServerPack	file:
-kDataLenFieldNumber	packet/package_define.pb.h	/^  static const int kDataLenFieldNumber = 3;$/;"	m	class:GateRoomServerPack	access:public
+kDataLenFieldNumber	packet/package_define.pb.h	/^  static const int kDataLenFieldNumber = 4;$/;"	m	class:GateRoomServerPack	access:public
 kDataMsgFieldNumber	packet/package_define.pb.cc	/^const int GateRoomServerPack::kDataMsgFieldNumber;$/;"	m	class:GateRoomServerPack	file:
-kDataMsgFieldNumber	packet/package_define.pb.h	/^  static const int kDataMsgFieldNumber = 4;$/;"	m	class:GateRoomServerPack	access:public
+kDataMsgFieldNumber	packet/package_define.pb.h	/^  static const int kDataMsgFieldNumber = 5;$/;"	m	class:GateRoomServerPack	access:public
 kDstUserIdFieldNumber	packet/package_define.pb.cc	/^const int StruCancleUserMicRQ::kDstUserIdFieldNumber;$/;"	m	class:StruCancleUserMicRQ	file:
 kDstUserIdFieldNumber	packet/package_define.pb.cc	/^const int StruPutUserOnMicRQ::kDstUserIdFieldNumber;$/;"	m	class:StruPutUserOnMicRQ	file:
 kDstUserIdFieldNumber	packet/package_define.pb.cc	/^const int StruPutUserOnMicRS::kDstUserIdFieldNumber;$/;"	m	class:StruPutUserOnMicRS	file:
@@ -6166,6 +6249,8 @@ kGiftCodeFieldNumber	packet/package_define.pb.cc	/^const int StruUserGiveGiftRQ:
 kGiftCodeFieldNumber	packet/package_define.pb.cc	/^const int StruUserGiveGiftRS::kGiftCodeFieldNumber;$/;"	m	class:StruUserGiveGiftRS	file:
 kGiftCodeFieldNumber	packet/package_define.pb.h	/^  static const int kGiftCodeFieldNumber = 4;$/;"	m	class:StruUserGiveGiftRQ	access:public
 kGiftCodeFieldNumber	packet/package_define.pb.h	/^  static const int kGiftCodeFieldNumber = 5;$/;"	m	class:StruUserGiveGiftRS	access:public
+kGsHashkeyFieldNumber	packet/package_define.pb.cc	/^const int GateRoomServerPack::kGsHashkeyFieldNumber;$/;"	m	class:GateRoomServerPack	file:
+kGsHashkeyFieldNumber	packet/package_define.pb.h	/^  static const int kGsHashkeyFieldNumber = 3;$/;"	m	class:GateRoomServerPack	access:public
 kIsPrivateFieldNumber	packet/package_define.pb.cc	/^const int StruUserMsgRQ::kIsPrivateFieldNumber;$/;"	m	class:StruUserMsgRQ	file:
 kIsPrivateFieldNumber	packet/package_define.pb.cc	/^const int StruUserMsgTextID::kIsPrivateFieldNumber;$/;"	m	class:StruUserMsgTextID	file:
 kIsPrivateFieldNumber	packet/package_define.pb.h	/^  static const int kIsPrivateFieldNumber = 5;$/;"	m	class:StruUserMsgRQ	access:public
@@ -6333,7 +6418,7 @@ kStrHeadFieldNumber	packet/package_define.pb.h	/^  static const int kStrHeadFiel
 kStrTailFieldNumber	packet/cyt_packet.pb.cpp	/^const int StruCytPacket::kStrTailFieldNumber;$/;"	m	class:StruCytPacket	file:
 kStrTailFieldNumber	packet/cyt_packet.pb.h	/^  static const int kStrTailFieldNumber = 6;$/;"	m	class:StruCytPacket	access:public
 kStrTailFieldNumber	packet/package_define.pb.cc	/^const int GateRoomServerPack::kStrTailFieldNumber;$/;"	m	class:GateRoomServerPack	file:
-kStrTailFieldNumber	packet/package_define.pb.h	/^  static const int kStrTailFieldNumber = 5;$/;"	m	class:GateRoomServerPack	access:public
+kStrTailFieldNumber	packet/package_define.pb.h	/^  static const int kStrTailFieldNumber = 6;$/;"	m	class:GateRoomServerPack	access:public
 kUserAccountNameFieldNumber	packet/package_define.pb.cc	/^const int StruMicInfo::kUserAccountNameFieldNumber;$/;"	m	class:StruMicInfo	file:
 kUserAccountNameFieldNumber	packet/package_define.pb.cc	/^const int StruUserInfo::kUserAccountNameFieldNumber;$/;"	m	class:StruUserInfo	file:
 kUserAccountNameFieldNumber	packet/package_define.pb.cc	/^const int StruUserLoginRQ::kUserAccountNameFieldNumber;$/;"	m	class:StruUserLoginRQ	file:
@@ -6661,6 +6746,7 @@ operator =	packet/package_define.pb.h	/^  inline StruUserRoleInfoID& operator=(c
 other_data	packet/package_define.pb.h	/^  inline const ::std::string& other_data() const;$/;"	p	class:StruUserRoleInfoID	access:public	signature:() const
 other_data	packet/package_define.pb.h	/^inline const ::std::string& StruUserRoleInfoID::other_data() const {$/;"	f	class:StruUserRoleInfoID	signature:() const
 other_data_	packet/package_define.pb.h	/^  ::std::string* other_data_;$/;"	m	class:StruUserRoleInfoID	access:private
+parent_ptr_	cs_processor.h	/^	void *parent_ptr_;$/;"	m	class:CenterServerProcessor	access:private
 parent_ptr_	gs_processor.h	/^	void *parent_ptr_;		\/\/client_info$/;"	m	class:GateServerProcessor	access:private
 pre_user_list_	chat_room.h	/^	UserInfoList pre_user_list_;$/;"	m	class:ChatRoom	access:private
 protobuf	packet/cyt_packet.pb.h	/^namespace protobuf {$/;"	n	namespace:google
@@ -6760,7 +6846,6 @@ protobuf_ShutdownFile_package_5fdefine_2eproto	packet/package_define.pb.h	/^  fr
 protobuf_ShutdownFile_package_5fdefine_2eproto	packet/package_define.pb.h	/^  friend void protobuf_ShutdownFile_package_5fdefine_2eproto();$/;"	p	class:StruUserRoleInfoID	access:friend	signature:()
 protobuf_ShutdownFile_package_5fdefine_2eproto	packet/package_define.pb.h	/^void protobuf_ShutdownFile_package_5fdefine_2eproto();$/;"	p	signature:()
 read_timeout_	room_server.h	/^	int read_timeout_;$/;"	m	class:RoomServer	access:private
-recv_list_	cs_connector.h	/^	CircleList recv_list_;$/;"	m	class:CenterServerConnector	access:private
 recved_buff_	client_info_list.h	/^	char *recved_buff_;$/;"	m	class:ClientInfoEx	access:public
 release_data_msg	packet/package_define.pb.h	/^  inline ::std::string* release_data_msg();$/;"	p	class:GateRoomServerPack	access:public	signature:()
 release_data_msg	packet/package_define.pb.h	/^inline ::std::string* GateRoomServerPack::release_data_msg() {$/;"	f	class:GateRoomServerPack	signature:()
@@ -6925,6 +7010,7 @@ room_type_	packet/package_define.pb.h	/^  ::google::protobuf::int32 room_type_;$
 server_ip_	room_server.h	/^	std::string server_ip_;$/;"	m	class:RoomServer	access:private
 server_listenner_	room_server.h	/^	ServerListenner server_listenner_;$/;"	m	class:RoomServer	access:private
 server_port_	room_server.h	/^	int server_port_;$/;"	m	class:RoomServer	access:private
+server_ptr_	cs_connector.h	/^	void *server_ptr_;$/;"	m	class:CenterServerConnector	access:private
 set_data_len	packet/package_define.pb.h	/^  inline void set_data_len(::google::protobuf::int32 value);$/;"	p	class:GateRoomServerPack	access:public	signature:(::google::protobuf::int32 value)
 set_data_len	packet/package_define.pb.h	/^inline void GateRoomServerPack::set_data_len(::google::protobuf::int32 value) {$/;"	f	class:GateRoomServerPack	signature:(::google::protobuf::int32 value)
 set_data_msg	packet/package_define.pb.h	/^  inline void set_data_msg(const ::std::string& value);$/;"	p	class:GateRoomServerPack	access:public	signature:(const ::std::string& value)
@@ -6959,6 +7045,8 @@ set_gift_code	packet/package_define.pb.h	/^inline void StruUserGiveGiftRQ::set_g
 set_gift_code	packet/package_define.pb.h	/^inline void StruUserGiveGiftRS::set_gift_code(const ::std::string& value) {$/;"	f	class:StruUserGiveGiftRS	signature:(const ::std::string& value)
 set_gift_code	packet/package_define.pb.h	/^inline void StruUserGiveGiftRS::set_gift_code(const char* value) {$/;"	f	class:StruUserGiveGiftRS	signature:(const char* value)
 set_gift_code	packet/package_define.pb.h	/^inline void StruUserGiveGiftRS::set_gift_code(const char* value, size_t size) {$/;"	f	class:StruUserGiveGiftRS	signature:(const char* value, size_t size)
+set_gs_hashkey	packet/package_define.pb.h	/^  inline void set_gs_hashkey(::google::protobuf::int32 value);$/;"	p	class:GateRoomServerPack	access:public	signature:(::google::protobuf::int32 value)
+set_gs_hashkey	packet/package_define.pb.h	/^inline void GateRoomServerPack::set_gs_hashkey(::google::protobuf::int32 value) {$/;"	f	class:GateRoomServerPack	signature:(::google::protobuf::int32 value)
 set_has_data_len	packet/package_define.pb.h	/^  inline void set_has_data_len();$/;"	p	class:GateRoomServerPack	access:private	signature:()
 set_has_data_len	packet/package_define.pb.h	/^inline void GateRoomServerPack::set_has_data_len() {$/;"	f	class:GateRoomServerPack	signature:()
 set_has_data_msg	packet/package_define.pb.h	/^  inline void set_has_data_msg();$/;"	p	class:GateRoomServerPack	access:private	signature:()
@@ -6981,6 +7069,8 @@ set_has_gift_code	packet/package_define.pb.h	/^  inline void set_has_gift_code()
 set_has_gift_code	packet/package_define.pb.h	/^  inline void set_has_gift_code();$/;"	p	class:StruUserGiveGiftRS	access:private	signature:()
 set_has_gift_code	packet/package_define.pb.h	/^inline void StruUserGiveGiftRQ::set_has_gift_code() {$/;"	f	class:StruUserGiveGiftRQ	signature:()
 set_has_gift_code	packet/package_define.pb.h	/^inline void StruUserGiveGiftRS::set_has_gift_code() {$/;"	f	class:StruUserGiveGiftRS	signature:()
+set_has_gs_hashkey	packet/package_define.pb.h	/^  inline void set_has_gs_hashkey();$/;"	p	class:GateRoomServerPack	access:private	signature:()
+set_has_gs_hashkey	packet/package_define.pb.h	/^inline void GateRoomServerPack::set_has_gs_hashkey() {$/;"	f	class:GateRoomServerPack	signature:()
 set_has_is_private	packet/package_define.pb.h	/^  inline void set_has_is_private();$/;"	p	class:StruUserMsgRQ	access:private	signature:()
 set_has_is_private	packet/package_define.pb.h	/^  inline void set_has_is_private();$/;"	p	class:StruUserMsgTextID	access:private	signature:()
 set_has_is_private	packet/package_define.pb.h	/^inline void StruUserMsgRQ::set_has_is_private() {$/;"	f	class:StruUserMsgRQ	signature:()
@@ -7552,7 +7642,9 @@ str_tail	packet/package_define.pb.h	/^  inline const ::std::string& str_tail() c
 str_tail	packet/package_define.pb.h	/^inline const ::std::string& GateRoomServerPack::str_tail() const {$/;"	f	class:GateRoomServerPack	signature:() const
 str_tail_	packet/cyt_packet.pb.h	/^  ::std::string* str_tail_;$/;"	m	class:StruCytPacket	access:private
 str_tail_	packet/package_define.pb.h	/^  ::std::string* str_tail_;$/;"	m	class:GateRoomServerPack	access:private
+thread_count_	cs_processor.h	/^	int thread_count_;$/;"	m	class:CenterServerProcessor	access:private
 thread_count_	gs_processor.h	/^	int thread_count_;$/;"	m	class:GateServerProcessor	access:private
+thread_id_ptr_	cs_processor.h	/^	pthread_t *thread_id_ptr_;$/;"	m	class:CenterServerProcessor	access:private
 thread_id_ptr_	gs_processor.h	/^	pthread_t *thread_id_ptr_;$/;"	m	class:GateServerProcessor	access:private
 unknown_fields	packet/cyt_packet.pb.h	/^  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {$/;"	f	class:StruCytPacket	access:public	signature:() const
 unknown_fields	packet/package_define.pb.h	/^  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {$/;"	f	class:GateRoomServerPack	access:public	signature:() const
@@ -7689,6 +7781,8 @@ user_role_uid_	packet/package_define.pb.h	/^  ::std::string* user_role_uid_;$/;"
 write_timeout_	room_server.h	/^	int write_timeout_;$/;"	m	class:RoomServer	access:private
 ~CenterServerConnector	cs_connector.cpp	/^CenterServerConnector::~CenterServerConnector()$/;"	f	class:CenterServerConnector	signature:()
 ~CenterServerConnector	cs_connector.h	/^	~CenterServerConnector();$/;"	p	class:CenterServerConnector	access:public	signature:()
+~CenterServerProcessor	cs_processor.cpp	/^CenterServerProcessor::~CenterServerProcessor()$/;"	f	class:CenterServerProcessor	signature:()
+~CenterServerProcessor	cs_processor.h	/^	~CenterServerProcessor();$/;"	p	class:CenterServerProcessor	access:public	signature:()
 ~ChatRoom	chat_room.cpp	/^ChatRoom::~ChatRoom()$/;"	f	class:ChatRoom	signature:()
 ~ChatRoom	chat_room.h	/^	~ChatRoom();$/;"	p	class:ChatRoom	access:public	signature:()
 ~ClientInfoEx	client_info_list.cpp	/^ClientInfoEx::~ClientInfoEx()$/;"	f	class:ClientInfoEx	signature:()
@@ -7697,6 +7791,8 @@ write_timeout_	room_server.h	/^	int write_timeout_;$/;"	m	class:RoomServer	acces
 ~ClientInfoList	client_info_list.h	/^	~ClientInfoList();$/;"	p	class:ClientInfoList	access:public	signature:()
 ~ClientLoginRQ	cl_command/client_login_rq.cpp	/^ClientLoginRQ::~ClientLoginRQ()$/;"	f	class:ClientLoginRQ	signature:()
 ~ClientLoginRQ	cl_command/client_login_rq.h	/^	~ClientLoginRQ();$/;"	p	class:ClientLoginRQ	access:public	signature:()
+~ClientLoginRS	cs_command/client_login_rs.cpp	/^ClientLoginRS::~ClientLoginRS()$/;"	f	class:ClientLoginRS	signature:()
+~ClientLoginRS	cs_command/client_login_rs.h	/^	~ClientLoginRS();$/;"	p	class:ClientLoginRS	access:public	signature:()
 ~GateRoomServerPack	packet/package_define.pb.cc	/^GateRoomServerPack::~GateRoomServerPack() {$/;"	f	class:GateRoomServerPack	signature:()
 ~GateRoomServerPack	packet/package_define.pb.h	/^  virtual ~GateRoomServerPack();$/;"	p	class:GateRoomServerPack	access:public	signature:()
 ~GateServerProcessor	gs_processor.cpp	/^GateServerProcessor::~GateServerProcessor()$/;"	f	class:GateServerProcessor	signature:()

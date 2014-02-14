@@ -1,16 +1,32 @@
 #include "cs_connector.h"
 
-CenterServerConnector::CenterServerConnector()
+CenterServerConnector::CenterServerConnector():server_ptr_(NULL)
 {
-	recv_list_.InitBuffer(1000);
 }
 
 CenterServerConnector::~CenterServerConnector()
 {
-	recv_list_.ReleaseBuffer();
+	cs_processor_.StopProcessor();
+}
+
+bool CenterServerConnector::StartCSProcessor(int circle_list_size,int proc_thread_count,void *server_ptr)
+{
+	server_ptr_ = server_ptr;
+	bool tmp_return = false;
+	tmp_return = cs_processor_.InitProcessor(circle_list_size,this,server_ptr);
+	if(!tmp_return)
+		return false;
+	tmp_return = cs_processor_.StartProcessor(proc_thread_count);
+	if(!tmp_return)
+		return false;
+	return true;
 }
 
 void CenterServerConnector::DealWithData(char *buff,int len,int fd)
 {
-
+	std::cout<<"len:"<<len<<" buff:"<<buff<<" fd:"<<fd<<std::endl;
+	if(cs_processor_.GetStatus())
+	{
+		cs_processor_.GetCircleList()->AddBuffer(buff,len);
+	}
 }

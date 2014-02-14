@@ -53,8 +53,10 @@ void ClientLoginRQ::Execute(char *buff,int len,void *caller_ptr)
 	int tmp_get_ret = tmp_room->GetPreUserInfoList()->GetUnusedUser(tmp_user);
 	if(tmp_get_ret >= 0)
 	{
+		tmp_user->gs_hashkey_user_on = tmp_package.gs_hashkey();
 		tmp_user->user_hash_key = tmp_package.user_hashkey();
 		tmp_user->user_id = tmp_user_login.user_id();
+		memcpy(tmp_user->user_nickname,tmp_user_login.user_account_name().c_str(),tmp_user_login.user_account_name().length());
 		tmp_room->GetPreUserInfoList()->AddUserInfo(tmp_user_login.user_id(),tmp_user);
 		std::cout<<"Add User to pre-user-list OK.send_len:"<<tmp_package.data_len()<<std::endl;
 		//send login package to cs to comfirm

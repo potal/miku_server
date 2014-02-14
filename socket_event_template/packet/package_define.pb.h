@@ -172,17 +172,24 @@ class GateRoomServerPack : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 user_hashkey() const;
   inline void set_user_hashkey(::google::protobuf::int32 value);
   
-  // required int32 data_len = 3;
+  // required int32 gs_hashkey = 3;
+  inline bool has_gs_hashkey() const;
+  inline void clear_gs_hashkey();
+  static const int kGsHashkeyFieldNumber = 3;
+  inline ::google::protobuf::int32 gs_hashkey() const;
+  inline void set_gs_hashkey(::google::protobuf::int32 value);
+  
+  // required int32 data_len = 4;
   inline bool has_data_len() const;
   inline void clear_data_len();
-  static const int kDataLenFieldNumber = 3;
+  static const int kDataLenFieldNumber = 4;
   inline ::google::protobuf::int32 data_len() const;
   inline void set_data_len(::google::protobuf::int32 value);
   
-  // required bytes data_msg = 4;
+  // required bytes data_msg = 5;
   inline bool has_data_msg() const;
   inline void clear_data_msg();
-  static const int kDataMsgFieldNumber = 4;
+  static const int kDataMsgFieldNumber = 5;
   inline const ::std::string& data_msg() const;
   inline void set_data_msg(const ::std::string& value);
   inline void set_data_msg(const char* value);
@@ -190,10 +197,10 @@ class GateRoomServerPack : public ::google::protobuf::Message {
   inline ::std::string* mutable_data_msg();
   inline ::std::string* release_data_msg();
   
-  // required string str_tail = 5;
+  // required string str_tail = 6;
   inline bool has_str_tail() const;
   inline void clear_str_tail();
-  static const int kStrTailFieldNumber = 5;
+  static const int kStrTailFieldNumber = 6;
   inline const ::std::string& str_tail() const;
   inline void set_str_tail(const ::std::string& value);
   inline void set_str_tail(const char* value);
@@ -207,6 +214,8 @@ class GateRoomServerPack : public ::google::protobuf::Message {
   inline void clear_has_str_head();
   inline void set_has_user_hashkey();
   inline void clear_has_user_hashkey();
+  inline void set_has_gs_hashkey();
+  inline void clear_has_gs_hashkey();
   inline void set_has_data_len();
   inline void clear_has_data_len();
   inline void set_has_data_msg();
@@ -218,12 +227,13 @@ class GateRoomServerPack : public ::google::protobuf::Message {
   
   ::std::string* str_head_;
   ::google::protobuf::int32 user_hashkey_;
-  ::google::protobuf::int32 data_len_;
+  ::google::protobuf::int32 gs_hashkey_;
   ::std::string* data_msg_;
   ::std::string* str_tail_;
+  ::google::protobuf::int32 data_len_;
   
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(5 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(6 + 31) / 32];
   
   friend void  protobuf_AddDesc_package_5fdefine_2eproto();
   friend void protobuf_AssignDesc_package_5fdefine_2eproto();
@@ -3295,15 +3305,37 @@ inline void GateRoomServerPack::set_user_hashkey(::google::protobuf::int32 value
   user_hashkey_ = value;
 }
 
-// required int32 data_len = 3;
-inline bool GateRoomServerPack::has_data_len() const {
+// required int32 gs_hashkey = 3;
+inline bool GateRoomServerPack::has_gs_hashkey() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }
-inline void GateRoomServerPack::set_has_data_len() {
+inline void GateRoomServerPack::set_has_gs_hashkey() {
   _has_bits_[0] |= 0x00000004u;
 }
-inline void GateRoomServerPack::clear_has_data_len() {
+inline void GateRoomServerPack::clear_has_gs_hashkey() {
   _has_bits_[0] &= ~0x00000004u;
+}
+inline void GateRoomServerPack::clear_gs_hashkey() {
+  gs_hashkey_ = 0;
+  clear_has_gs_hashkey();
+}
+inline ::google::protobuf::int32 GateRoomServerPack::gs_hashkey() const {
+  return gs_hashkey_;
+}
+inline void GateRoomServerPack::set_gs_hashkey(::google::protobuf::int32 value) {
+  set_has_gs_hashkey();
+  gs_hashkey_ = value;
+}
+
+// required int32 data_len = 4;
+inline bool GateRoomServerPack::has_data_len() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void GateRoomServerPack::set_has_data_len() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void GateRoomServerPack::clear_has_data_len() {
+  _has_bits_[0] &= ~0x00000008u;
 }
 inline void GateRoomServerPack::clear_data_len() {
   data_len_ = 0;
@@ -3317,15 +3349,15 @@ inline void GateRoomServerPack::set_data_len(::google::protobuf::int32 value) {
   data_len_ = value;
 }
 
-// required bytes data_msg = 4;
+// required bytes data_msg = 5;
 inline bool GateRoomServerPack::has_data_msg() const {
-  return (_has_bits_[0] & 0x00000008u) != 0;
+  return (_has_bits_[0] & 0x00000010u) != 0;
 }
 inline void GateRoomServerPack::set_has_data_msg() {
-  _has_bits_[0] |= 0x00000008u;
+  _has_bits_[0] |= 0x00000010u;
 }
 inline void GateRoomServerPack::clear_has_data_msg() {
-  _has_bits_[0] &= ~0x00000008u;
+  _has_bits_[0] &= ~0x00000010u;
 }
 inline void GateRoomServerPack::clear_data_msg() {
   if (data_msg_ != &::google::protobuf::internal::kEmptyString) {
@@ -3375,15 +3407,15 @@ inline ::std::string* GateRoomServerPack::release_data_msg() {
   }
 }
 
-// required string str_tail = 5;
+// required string str_tail = 6;
 inline bool GateRoomServerPack::has_str_tail() const {
-  return (_has_bits_[0] & 0x00000010u) != 0;
+  return (_has_bits_[0] & 0x00000020u) != 0;
 }
 inline void GateRoomServerPack::set_has_str_tail() {
-  _has_bits_[0] |= 0x00000010u;
+  _has_bits_[0] |= 0x00000020u;
 }
 inline void GateRoomServerPack::clear_has_str_tail() {
-  _has_bits_[0] &= ~0x00000010u;
+  _has_bits_[0] &= ~0x00000020u;
 }
 inline void GateRoomServerPack::clear_str_tail() {
   if (str_tail_ != &::google::protobuf::internal::kEmptyString) {

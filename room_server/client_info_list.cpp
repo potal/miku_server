@@ -61,23 +61,38 @@ void ClientInfoEx::DealWithData(struct bufferevent *buff_ev,void *arg)
 	}
 	bool tmp_result = false;
 	GateRoomServerPack tmp_package;
-	char tmp_pack_data[0x1000] = {0};
-	char tmp_send_buff[0x2000] = {0};
 	do
 	{
+		if(remain_buff_len_ <= 0)
+			break;
 		tmp_result = tmp_package.ParseFromArray(recved_buff_,remain_buff_len_);
 		if(tmp_result)
 		{
 			int tmp_current_pack_len = tmp_package.ByteSize();
-			memcpy(tmp_pack_data,recved_buff_,tmp_current_pack_len);
 			remain_buff_len_ -= tmp_current_pack_len;
 			memmove(recved_buff_,recved_buff_+tmp_current_pack_len,0x1000-tmp_current_pack_len);
 
-			bool tmp_ret = gs_processor_.GetCircleList()->AddBuffer(tmp_read_buff,tmp_len);
+			tmp_package.set_gs_hashkey(hash_key);
+			tmp_current_pack_len = tmp_package.ByteSize();
+			tmp_result = tmp_package.SerializeToArray(tmp_read_buff,tmp_current_pack_len);
+			if(!tmp_result)
+				continue;
+			bool tmp_ret = gs_processor_.GetCircleList()->AddBuffer(tmp_read_buff,tmp_current_pack_len);
 			if(!tmp_ret)
 			{
 				std::cout<<"Add buffer error!"<<std::endl;
 			}
+		}
+		else if(tmp_package.ParsePartialFromArray(recved_buff_,remain_buff_len_))
+		{
+			break;
+		}
+		else
+		{
+			//bad data
+			//memset(recved_buff_,0,0x1000);
+			//remain_buff_len_ = 0;
+			break;
 		}
 	}while (tmp_result);
 }

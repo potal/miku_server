@@ -1,26 +1,23 @@
 #ifndef CHAT_ROOM_H_
 #define CHAT_ROOM_H_
 
-#include "user_list.h"
-#include <event.h>
 #include <iostream>
 #include <map>
 
 class ChatRoom
 {
 private:
-	bool m_is_start;
-	long m_room_id;
-	int m_sock;
-	struct event m_room_event;
+	int room_id_;
+	int server_fd_;
 
 public:
 	ChatRoom();
 	~ChatRoom();
 
-	bool Start();
-	bool SetRoom(ChatRoom *chat_room);
-	void Stop();
+	bool SetRoom(int room_id,int server_fd);
+	int GetSocket(){
+		return server_fd_;
+	}
 };
 
 

@@ -1,12 +1,12 @@
 /*
  * =====================================================================================
  *
- *       Filename:  gateserver.cpp
+ *       Filename:  gate_server.cpp
  *
  *    Description:  
  *
  *        Version:  1.0
- *        Created:  01/13/2014 06:35:50 PM
+ *        Created:  01/23/2014 02:26:53 PM
  *       Revision:  none
  *       Compiler:  gcc
  *
@@ -19,31 +19,29 @@
 #include "gate_server.h"
 #include <sstream>
 #include <fstream>
-#include <fcntl.h>
 
-GateServer::GateServer():server_port_(0),base_hash_key_(0)
+GateServer::GateServer()
 {
 }
 
 GateServer::~GateServer()
 {
-	SafeCloseSocket(server_listen_sock_);
+
 }
 
-bool GateServer::InitServer()
+bool GateServer::GetConfig(std::string file_name)
 {
-	std::ifstream tmp_conf_file("init.conf");
+	std::ifstream tmp_conf_file(file_name.c_str());
 	std::string tmp_str;
-	while(std::getline(tmp_conf_file, tmp_str))
+	while(std::getline(tmp_conf_file,tmp_str))
 	{
-		if (tmp_conf_file.eof())
+		if(tmp_conf_file.eof())
 			break;
-		if(tmp_str.find_first_not_of(" #") == tmp_str.npos)//std::string::npos
+		if(tmp_str.find_first_not_of(" #") == tmp_str.npos)
 			continue;
-
 		std::stringstream tmp_ss;
 		tmp_ss<<tmp_str;
-
+		
 		std::string tmp_name_str;
 		tmp_ss>>tmp_name_str;
 		if(tmp_name_str == "ip")
@@ -56,230 +54,72 @@ bool GateServer::InitServer()
 			tmp_ss>>tmp_value;
 			if(tmp_name_str == "port")
 				server_port_ = tmp_value;
-			else if(tmp_name_str == "worker_num")
-				count_worker_thread_ = tmp_value;
-			else if(tmp_name_str == "time_out")
-				timeout_ = tmp_value;
-			else if(tmp_name_str ==  "conn_num")
-				conn_num_ = tmp_value;
-			else if(tmp_name_str == "count_user")
-				count_user_ = tmp_value;
-			else if(tmp_name_str == "file_num")
-				file_num_ = tmp_value;
+			else if(tmp_name_str == "count_worker")
+				count_worker_ = tmp_value;
+			else if(tmp_name_str == "user_per_worker")
+				count_user_per_worker_ = tmp_value;
+			else if(tmp_name_str == "read_timeout")
+				read_timeout_ = tmp_value;
+			else if(tmp_name_str == "write_timeout")
+				write_timeout_ = tmp_value;
 		}
 	}
-
 	if(server_port_ == 0)
-	{
-		std::cout<<"port:"<<server_port_<<std::endl;
 		return false;
-	}
 	return true;
 }
 
-bool GateServer::InitWorker()
+bool GateServer::InitServer()
 {
-	int tmp_fds[2];
-	if(pipe(tmp_fds))
-	{
-		std::cout<<"Error InitWorker pipe"<<std::endl;
+	if(!GetConfig("server.conf"))
 		return false;
-	}
-
-	pipe_read_fd_ = tmp_fds[0];
-	pipe_write_fd_ = tmp_fds[1];
-
-	worker_base_ = event_init();
-	event_set(&worker_event_,pipe_read_fd_,EV_READ|EV_PERSIST,ReadAction,this);
-	event_base_set(worker_base_,&worker_event_);
-	if(event_add(&worker_event_,0) < 0)
-	{
-		std::cout<<"Init worker error"<<std::endl;
+	int tmp_max_user_count = user_list_.Init(10,this);
+	std::cout<<"Max user:"<<tmp_max_user_count<<std::endl;
+	std::cout<<"IP:"<<server_ip_<<"  port:"<<server_port_<<std::endl;
+	bool tmp_return = server_listenner_.InitServer(server_ip_,server_port_,count_worker_,count_user_per_worker_,read_timeout_,write_timeout_);
+	
+	if(!tmp_return)
 		return false;
-	}
-	if(user_info_list_.Init(count_user_,worker_base_) == count_user_)
-	{
-		std::cout<<"Init user ok"<<std::endl;
-	}
+	rs_connector_.InitConnectionInfo("192.168.220.142",5556);
+	//ds_connector_.InitConnectionInfo("192.168.229.128",5560);
+	//ds_processor_.InitProcessor(100,this);
 	return true;
 }
 
 bool GateServer::StartServer()
 {
-	if(!InitServer())
-	{
-		std::cout<<"Init server error"<<std::endl;
+	bool tmp_return = false;
+	tmp_return = rs_connector_.StartConnect();
+	if(!tmp_return)
 		return false;
-	}
+	std::cout<<"Connect RoomServer OK!"<<std::endl;
+	
+//	tmp_return = ds_connector_.StartConnect();
+//	if(!tmp_return)
+//		return false;
+//	std::cout<<"Connect DirectorServer OK!"<<std::endl;
+//	ds_processor_.StartProcessor(1);
 
-	if(!InitWorker())
-	{
-		std::cout<<"Init worker thread error"<<std::endl;
+	room_manager_.AddRoom(16000,rs_connector_.GetSocket());
+	tmp_return = server_listenner_.StartServer(&user_list_);
+	if(!tmp_return)
 		return false;
-	}
-
-	if(!StartWorker())
-	{
-		std::cout<<"Start worker error"<<std::endl;
-		return false;
-	}
-
-	if(!OpenServerSocket())
-	{
-		std::cout<<"Open socket error"<<std::endl;
-		return false;
-	}
-	base_ = event_init();
-	std::cout<<"*****************GateServer::StartServer********************"<<std::endl;
-
-	event_set(&listen_event_,server_listen_sock_,EV_READ|EV_PERSIST,AcceptAction,this);
-	event_base_set(base_,&listen_event_);
-	if(event_add(&listen_event_,0) < 0)
-	{
-		std::cout<<"event_add error"<<std::endl;
-		return false;
-	}
-	event_base_dispatch(base_);
 	return true;
 }
 
-void GateServer::SetNonblock()
+RoomManager *GateServer::GetRoomManager()
 {
-	int tmp_flags = fcntl(server_listen_sock_,F_GETFL,0);
-	tmp_flags |= O_NONBLOCK;
-	fcntl(server_listen_sock_,F_SETFL,tmp_flags);
+	return &room_manager_;
 }
 
-bool GateServer::OpenServerSocket()
+DirectorServerConnector *GateServer::GetDSConnector()
 {
-	server_listen_sock_ = socket(AF_INET,SOCK_STREAM,NULL);
-	if(server_listen_sock_ == -1)
-		return false;
-	struct sockaddr_in tmp_server_addr;
-	memset(&tmp_server_addr,0,sizeof(tmp_server_addr));
-	tmp_server_addr.sin_family = AF_INET;
-	tmp_server_addr.sin_port = htons(server_port_);
-	server_ip_ = "";
-	tmp_server_addr.sin_addr.s_addr = (server_ip_ == "" ? INADDR_ANY : inet_addr(server_ip_.c_str()));
-	int tmp_resue_addr_on = 1;
-	int tmp_ret_code = 0;
-	setsockopt(server_listen_sock_,SOL_SOCKET,SO_REUSEADDR,&tmp_resue_addr_on,sizeof(int));	
-	tmp_ret_code = bind(server_listen_sock_,(struct sockaddr*)&tmp_server_addr,sizeof(tmp_server_addr));
-	if(tmp_ret_code == -1)
-	{
-		return false;
-	}
-	tmp_ret_code = listen(server_listen_sock_,1024);
-	if(tmp_ret_code == -1)
-	{
-		return false;
-	}
-	return true;
-}
-
-void GateServer::SafeCloseSocket(int sock)
-{
-	if(-1 != sock)
-	{
-		int tmp_return = close(sock);
-		while(tmp_return != 0)
-		{
-			if(errno != EINTR || errno == EBADF)
-				break;
-			tmp_return = close(sock);
-		}
-	}
-}
-
-bool GateServer::StartWorker()
-{
-	pthread_t tmp_thread_id;
-	int tmp_ret = pthread_create(&tmp_thread_id,NULL,WorkerThread,this);
-	if(tmp_ret == 0)
-	{
-		std::cout<<"Create worker thread ok! ThreadID:"<<tmp_thread_id<<std::endl;
-		return true;
-	}
-	return false;
-}
-
-void *GateServer::WorkerThread(void *arg)
-{
-	GateServer *tmp_server = (GateServer *)arg;
-	event_base_dispatch(tmp_server->worker_base_);
-}
-
-void GateServer::ReadAction(int sock,short event_flag,void *action_class)
-{
-	GateServer *tmp_server = (GateServer*)action_class;
-	int tmp_user_hash_key;
-	int tmp_ret = read(sock,&tmp_user_hash_key,4);
-	if(tmp_ret <= 0)
-	{
-		std::cout<<"Read buff error"<<std::endl;
-		return ;
-	}
-	UserInfo * tmp_user = tmp_server->GetUserInfoList()->GetUserInfo(tmp_user_hash_key);
-	if(NULL != tmp_user)
-	{
-		tmp_user->server_ptr = tmp_server;
-		bufferevent_setcb(tmp_user->buffev,	DealWithReadData,NULL,ErrorRead,tmp_user);
-	}
-}
-
-void GateServer::AcceptAction(int sock,short event_flag,void *action_class)
-{
-	GateServer *tmp_server = (GateServer *)action_class;
-	int tmp_client_sock = -1;
-	struct sockaddr_in tmp_client_addr;
-	socklen_t tmp_len = sizeof(struct sockaddr_in);
-
-	tmp_client_sock = accept(sock,(struct sockaddr*)&tmp_client_addr,&tmp_len);
-	if(tmp_client_sock < 0)
-	{
-		std::cout<<"accept error"<<std::endl;
-	}
-	unsigned long tmp_non_blocking = 1;
-	if(ioctl(tmp_client_sock,FIONBIO,&tmp_non_blocking) < 0)
-	{
-		tmp_server->SafeCloseSocket(tmp_client_sock);
-		tmp_client_sock = -1;
-	}
-
-	if(tmp_client_sock > 0)
-	{
-		std::cout<<"client connecting ip:"<<*(int *)&tmp_client_addr.sin_addr
-			<<" port:"<<tmp_client_addr.sin_port<<std::endl;
-		tmp_server->base_hash_key_++;
-		UserInfo tmp_new_user;
-		tmp_new_user.hash_key = tmp_server->base_hash_key_;
-		tmp_new_user.user_sock = tmp_client_sock;
-		tmp_new_user.user_id = tmp_server->base_hash_key_;
-		tmp_server->GetUserInfoList()->AddUserInfo(tmp_server->base_hash_key_,tmp_new_user);
-		// notify worker thread the new user is already
-		write(tmp_server->pipe_write_fd_,&(tmp_server->base_hash_key_),4);
-	}
-	else
-	{
-		std::cout<<"error :"<<std::endl;
-	}
+	return &ds_connector_;
 }
 
 void GateServer::StopServer()
 {
-	user_info_list_.DeleteAllUser();
+
 }
 
-void GateServer::DealWithReadData(struct bufferevent *buffev,void *arg)
-{
-	UserInfo * tmp_user = (UserInfo *)arg;
-	std::cout<<tmp_user->user_id<<":DealWithReadData"<<std::endl;
-	char tmp_read_buff[0x1000] = {0};
-	int tmp_len = bufferevent_read(buffev,tmp_read_buff,0x1000);
-	std::cout<<"Read:"<<tmp_read_buff<<std::endl;
-}
 
-void GateServer::ErrorRead(struct bufferevent * buffev,short event_flag,void *arg)
-{
-	UserInfo *tmp_user = (UserInfo *)arg;
-}

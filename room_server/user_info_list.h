@@ -15,16 +15,18 @@ const int MaxNickNameLen = 0x20;
 #pragma pack(1)
 struct UserInfo
 {
+	int gs_hashkey_user_on;
 	int user_id;
 	int user_hash_key;
 	char user_nickname[MaxNickNameLen];
 
-	UserInfo():user_id(0),user_hash_key(0)
+	UserInfo():gs_hashkey_user_on(0),user_id(0),user_hash_key(0)
 	{
 		memset(user_nickname,0,MaxNickNameLen);
 	}
 	void Clear()
 	{
+		gs_hashkey_user_on = 0;
 		user_id = 0;
 		user_hash_key = 0;
 		memset(user_nickname,0,MaxNickNameLen);

@@ -83,7 +83,8 @@ bool Connector::ConnectServer()
 	bzero(&tmp_svr_addr,sizeof(tmp_svr_addr));
 	tmp_svr_addr.sin_family = AF_INET;
 	tmp_svr_addr.sin_port = htons(server_port_);
-	tmp_svr_addr.sin_addr.s_addr = inet_addr(server_ip_.c_str());
+	server_ip_ = "";//test
+	tmp_svr_addr.sin_addr.s_addr = (server_ip_ == "" ? INADDR_ANY : inet_addr(server_ip_.c_str()));
 	while(true)
 	{
 		if(connect(client_fd_,(struct sockaddr *)&tmp_svr_addr,sizeof(struct sockaddr))==-1)

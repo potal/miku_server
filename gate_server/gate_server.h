@@ -1,74 +1,43 @@
 #ifndef GATE_SERVER_H_
 #define GATE_SERVER_H_
 
-#include <sys/socket.h>
-#include <sys/types.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <sys/ioctl.h>
-#include <unistd.h>
-#include <string.h>
-
-#include <iostream>
-#include <string>
-#include <stdlib.h>
-#include <errno.h>
-
-#include <event.h>
-#include <pthread.h>
-
+#include "../common/server_listenner.h"
+#include "user_info_list.h"
 #include "room_manager.h"
+#include "rs_connector.h"
+#include "ds_connector.h"
+#include "ds_processor.h"
 
 class GateServer
 {
-private:	
+private:
 	std::string server_ip_;
 	int server_port_;
-	int count_worker_thread_;
-	int timeout_;
-	int conn_num_;
-	int count_user_;
-	int file_num_;
+	int count_worker_;
+	int count_user_per_worker_;
+	int read_timeout_;
+	int write_timeout_;
 
-	int server_listen_sock_;
-
-	struct event_base *base_;
-	struct event listen_event_;
-
-	struct event_base *worker_base_;
-	struct event worker_event_;
-	int pipe_read_fd_;
-	int pipe_write_fd_;
-	struct event read_event_;
-	struct event write_event_;
-
+	UserInfoList user_list_;
+	ServerListenner server_listenner_;
 	RoomManager room_manager_;
-	UserInfoList user_info_list_;
-	long base_hash_key_;
+	RoomServerConnector rs_connector_;
+
+	DirectorServerConnector ds_connector_;
+	DirectorProcessor ds_processor_;
 
 public:
 	GateServer();
 	~GateServer();
-public:
-	UserInfoList *GetUserInfoList(){return &user_info_list_;}
-public:
+
+	bool GetConfig(std::string file_name);
 	bool InitServer();
 	bool StartServer();
-	bool InitWorker();
-	void SetNonblock();
-	bool OpenServerSocket();
-	void SafeCloseSocket(int sock);
 	
-	bool StartWorker();
+	RoomManager *GetRoomManager();
+	DirectorServerConnector *GetDSConnector();
 
-	static void ReadAction(int sock,short event_flag,void *action_class);
-	static void AcceptAction(int sock,short event_flag,void *action_class);
-	static void DealWithReadData(struct bufferevent *buffev,void *arg);
-	static void ErrorRead(struct bufferevent *buffev,short event_flag,void *arg);
-	static void *WorkerThread(void *arg);
-	
 	void StopServer();
-
 };
 
 #endif

@@ -102,9 +102,10 @@ void protobuf_AssignDesc_package_5fdefine_2eproto() {
       "package_define.proto");
   GOOGLE_CHECK(file != NULL);
   GateRoomServerPack_descriptor_ = file->message_type(0);
-  static const int GateRoomServerPack_offsets_[5] = {
+  static const int GateRoomServerPack_offsets_[6] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GateRoomServerPack, str_head_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GateRoomServerPack, user_hashkey_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GateRoomServerPack, gs_hashkey_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GateRoomServerPack, data_len_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GateRoomServerPack, data_msg_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GateRoomServerPack, str_tail_),
@@ -698,110 +699,111 @@ void protobuf_AddDesc_package_5fdefine_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\024package_define.proto\"r\n\022GateRoomServer"
-    "Pack\022\020\n\010str_head\030\001 \002(\t\022\024\n\014user_hashkey\030\002"
-    " \002(\005\022\020\n\010data_len\030\003 \002(\005\022\020\n\010data_msg\030\004 \002(\014"
-    "\022\020\n\010str_tail\030\005 \002(\t\"\215\001\n\017StruUserLoginRQ\022+"
-    "\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\017E_USER_LOGIN"
-    "_RQ\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\020\n"
-    "\010user_psw\030\004 \002(\t\022\031\n\021user_account_name\030\005 \002"
-    "(\t\"p\n\017StruUserLoginRS\022+\n\006msg_id\030\001 \002(\0162\n."
-    "EnumMsgID:\017E_USER_LOGIN_RS\022\017\n\007user_id\030\002 "
-    "\002(\005\022\017\n\007room_id\030\003 \002(\005\022\016\n\006result\030\004 \002(\005\"\255\001\n"
-    "\022StruUserRoleInfoID\022/\n\006msg_id\030\001 \002(\0162\n.En"
-    "umMsgID:\023E_USER_ROLE_INFO_ID\022\017\n\007user_id\030"
-    "\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\031\n\021user_account_n"
-    "ame\030\004 \002(\t\022\025\n\ruser_role_uid\030\005 \002(\t\022\022\n\nothe"
-    "r_data\030\006 \001(\t\"\260\001\n\016StruRoomInfoID\022*\n\006msg_i"
-    "d\030\001 \002(\0162\n.EnumMsgID:\016E_ROOM_INFO_ID\022\017\n\007u"
-    "ser_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\021\n\troom_ty"
-    "pe\030\004 \002(\005\022\021\n\troom_name\030\005 \002(\t\022\023\n\013room_adve"
-    "rt\030\006 \002(\t\022\025\n\rroom_announce\030\007 \002(\t\"z\n\013StruM"
-    "icInfo\022&\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\nE_MI"
-    "C_INFO\022\017\n\007user_id\030\002 \002(\005\022\031\n\021user_account_"
-    "name\030\003 \002(\t\022\027\n\017mic_channel_str\030\004 \002(\t\"\205\001\n\021"
-    "StruRoomMicInfoID\022.\n\006msg_id\030\001 \002(\0162\n.Enum"
-    "MsgID:\022E_ROOM_MIC_INFO_ID\022\017\n\007user_id\030\002 \002"
-    "(\005\022\017\n\007room_id\030\003 \002(\005\022\036\n\010mic_list\030\004 \003(\0132\014."
-    "StruMicInfo\"z\n\014StruUserInfo\022\'\n\006msg_id\030\001 "
-    "\002(\0162\n.EnumMsgID:\013E_USER_INFO\022\017\n\007user_id\030"
-    "\002 \002(\005\022\031\n\021user_account_name\030\003 \002(\t\022\025\n\ruser"
-    "_role_uid\030\004 \002(\t\"\216\001\n\022StruUserInfoListID\022/"
-    "\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\023E_USER_INFO_"
-    "LIST_ID\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002("
-    "\005\022%\n\016user_info_list\030\004 \003(\0132\r.StruUserInfo"
-    "\"\227\001\n\rStruUserMsgRQ\022)\n\006msg_id\030\001 \002(\0162\n.Enu"
-    "mMsgID:\rE_USER_MSG_RQ\022\017\n\007user_id\030\002 \002(\005\022\017"
-    "\n\007room_id\030\003 \002(\005\022\020\n\010msg_text\030\004 \002(\t\022\022\n\nis_"
-    "private\030\005 \002(\010\022\023\n\013dst_user_id\030\006 \002(\005\"l\n\rSt"
-    "ruUserMsgRS\022)\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:"
-    "\rE_USER_MSG_RS\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_"
-    "id\030\003 \002(\005\022\016\n\006result\030\004 \002(\005\"\240\001\n\021StruUserMsg"
-    "TextID\022.\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\022E_US"
-    "ER_MSG_TEXT_ID\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_"
-    "id\030\003 \002(\005\022\020\n\010msg_text\030\004 \002(\t\022\022\n\nis_private"
-    "\030\005 \002(\010\022\023\n\013dst_user_id\030\006 \002(\005\"\217\001\n\022StruUser"
-    "GiveGiftRQ\022/\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\023"
-    "E_USER_GIVE_GIFT_RQ\022\017\n\007user_id\030\002 \002(\005\022\017\n\007"
-    "room_id\030\003 \002(\005\022\021\n\tgift_code\030\004 \002(\t\022\023\n\013dst_"
-    "user_id\030\005 \002(\005\"\237\001\n\022StruUserGiveGiftRS\022/\n\006"
-    "msg_id\030\001 \002(\0162\n.EnumMsgID:\023E_USER_GIVE_GI"
-    "FT_RS\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022"
-    "\016\n\006result\030\004 \002(\005\022\021\n\tgift_code\030\005 \002(\t\022\023\n\013ds"
-    "t_user_id\030\006 \002(\005\"g\n\022StruUserApplyMicRQ\022/\n"
-    "\006msg_id\030\001 \002(\0162\n.EnumMsgID:\023E_USER_APPLY_"
-    "MIC_RQ\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005"
-    "\"\220\001\n\022StruUserApplyMicRS\022/\n\006msg_id\030\001 \002(\0162"
-    "\n.EnumMsgID:\023E_USER_APPLY_MIC_RS\022\017\n\007user"
-    "_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\016\n\006result\030\004 \002"
-    "(\005\022\027\n\017mic_channel_str\030\005 \002(\t\"\241\001\n\017StruUser"
-    "OnMicID\022,\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\020E_U"
-    "SER_ON_MIC_ID\022\023\n\013mic_user_id\030\002 \002(\005\022\023\n\013mi"
-    "c_room_id\030\003 \002(\005\022\035\n\025mic_user_account_name"
-    "\030\004 \002(\t\022\027\n\017mic_channel_str\030\005 \002(\t\"c\n\020StruU"
-    "serOffMicRQ\022-\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:"
-    "\021E_USER_OFF_MIC_RQ\022\017\n\007user_id\030\002 \002(\005\022\017\n\007r"
-    "oom_id\030\003 \002(\005\"s\n\020StruUserOffMicRS\022-\n\006msg_"
-    "id\030\001 \002(\0162\n.EnumMsgID:\021E_USER_OFF_MIC_RS\022"
-    "\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\016\n\006res"
-    "ult\030\004 \002(\005\"\243\001\n\020StruUserOffMicID\022-\n\006msg_id"
-    "\030\001 \002(\0162\n.EnumMsgID:\021E_USER_OFF_MIC_ID\022\023\n"
-    "\013mic_user_id\030\002 \002(\005\022\023\n\013mic_room_id\030\003 \002(\005\022"
-    "\035\n\025mic_user_account_name\030\004 \002(\t\022\027\n\017mic_ch"
-    "annel_str\030\005 \002(\t\"\217\001\n\022StruPutUserOnMicRQ\0220"
-    "\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\024E_PUT_USER_O"
-    "N_MIC_RQ\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002"
-    "(\005\022\023\n\013dst_user_id\030\004 \002(\005\022\020\n\010mic_type\030\005 \002("
-    "\005\"\270\001\n\022StruPutUserOnMicRS\0220\n\006msg_id\030\001 \002(\016"
-    "2\n.EnumMsgID:\024E_PUT_USER_ON_MIC_RS\022\017\n\007us"
-    "er_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\023\n\013dst_user"
-    "_id\030\004 \002(\005\022\020\n\010mic_type\030\005 \002(\005\022\016\n\006result\030\006 "
-    "\002(\005\022\027\n\017mic_channel_str\030\007 \002(\t\"\251\001\n\023StruCan"
-    "cleUserMicRQ\0220\n\006msg_id\030\001 \002(\0162\n.EnumMsgID"
-    ":\024E_CANCLE_USER_MIC_RQ\022\017\n\007user_id\030\002 \002(\005\022"
-    "\017\n\007room_id\030\003 \002(\005\022\023\n\013dst_user_id\030\004 \002(\005\022\020\n"
-    "\010mic_type\030\005 \002(\005\022\027\n\017mic_channel_str\030\006 \002(\t"
-    "\"y\n\023StruCancleUserMicRS\0220\n\006msg_id\030\001 \002(\0162"
-    "\n.EnumMsgID:\024E_CANCLE_USER_MIC_RS\022\017\n\007use"
-    "r_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\016\n\006result\030\004 "
-    "\002(\005\"g\n\022StruUserExitRoomID\022/\n\006msg_id\030\001 \002("
-    "\0162\n.EnumMsgID:\023E_USER_EXIT_ROOM_ID\022\017\n\007us"
-    "er_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005*\336\004\n\tEnumMsg"
-    "ID\022\022\n\rE_MSG_ID_BASE\020\360.\022\024\n\017E_USER_LOGIN_R"
-    "Q\020\361.\022\024\n\017E_USER_LOGIN_RS\020\362.\022\030\n\023E_USER_ROL"
-    "E_INFO_ID\020\363.\022\023\n\016E_ROOM_INFO_ID\020\364.\022\017\n\nE_M"
-    "IC_INFO\020\365.\022\027\n\022E_ROOM_MIC_INFO_ID\020\366.\022\020\n\013E"
-    "_USER_INFO\020\367.\022\030\n\023E_USER_INFO_LIST_ID\020\370.\022"
-    "\022\n\rE_USER_MSG_RQ\020\371.\022\022\n\rE_USER_MSG_RS\020\372.\022"
-    "\027\n\022E_USER_MSG_TEXT_ID\020\373.\022\030\n\023E_USER_GIVE_"
-    "GIFT_RQ\020\374.\022\030\n\023E_USER_GIVE_GIFT_RS\020\375.\022\030\n\023"
-    "E_USER_APPLY_MIC_RQ\020\376.\022\030\n\023E_USER_APPLY_M"
-    "IC_RS\020\377.\022\025\n\020E_USER_ON_MIC_ID\020\200/\022\026\n\021E_USE"
-    "R_OFF_MIC_RQ\020\201/\022\026\n\021E_USER_OFF_MIC_RS\020\202/\022"
-    "\026\n\021E_USER_OFF_MIC_ID\020\203/\022\031\n\024E_PUT_USER_ON"
-    "_MIC_RQ\020\204/\022\031\n\024E_PUT_USER_ON_MIC_RS\020\205/\022\031\n"
-    "\024E_CANCLE_USER_MIC_RQ\020\206/\022\031\n\024E_CANCLE_USE"
-    "R_MIC_RS\020\207/\022\030\n\023E_USER_EXIT_ROOM_ID\020\210/", 4157);
+    "\n\024package_define.proto\"\206\001\n\022GateRoomServe"
+    "rPack\022\020\n\010str_head\030\001 \002(\t\022\024\n\014user_hashkey\030"
+    "\002 \002(\005\022\022\n\ngs_hashkey\030\003 \002(\005\022\020\n\010data_len\030\004 "
+    "\002(\005\022\020\n\010data_msg\030\005 \002(\014\022\020\n\010str_tail\030\006 \002(\t\""
+    "\215\001\n\017StruUserLoginRQ\022+\n\006msg_id\030\001 \002(\0162\n.En"
+    "umMsgID:\017E_USER_LOGIN_RQ\022\017\n\007user_id\030\002 \002("
+    "\005\022\017\n\007room_id\030\003 \002(\005\022\020\n\010user_psw\030\004 \002(\t\022\031\n\021"
+    "user_account_name\030\005 \002(\t\"p\n\017StruUserLogin"
+    "RS\022+\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\017E_USER_L"
+    "OGIN_RS\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002("
+    "\005\022\016\n\006result\030\004 \002(\005\"\255\001\n\022StruUserRoleInfoID"
+    "\022/\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\023E_USER_ROL"
+    "E_INFO_ID\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 "
+    "\002(\005\022\031\n\021user_account_name\030\004 \002(\t\022\025\n\ruser_r"
+    "ole_uid\030\005 \002(\t\022\022\n\nother_data\030\006 \001(\t\"\260\001\n\016St"
+    "ruRoomInfoID\022*\n\006msg_id\030\001 \002(\0162\n.EnumMsgID"
+    ":\016E_ROOM_INFO_ID\022\017\n\007user_id\030\002 \002(\005\022\017\n\007roo"
+    "m_id\030\003 \002(\005\022\021\n\troom_type\030\004 \002(\005\022\021\n\troom_na"
+    "me\030\005 \002(\t\022\023\n\013room_advert\030\006 \002(\t\022\025\n\rroom_an"
+    "nounce\030\007 \002(\t\"z\n\013StruMicInfo\022&\n\006msg_id\030\001 "
+    "\002(\0162\n.EnumMsgID:\nE_MIC_INFO\022\017\n\007user_id\030\002"
+    " \002(\005\022\031\n\021user_account_name\030\003 \002(\t\022\027\n\017mic_c"
+    "hannel_str\030\004 \002(\t\"\205\001\n\021StruRoomMicInfoID\022."
+    "\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\022E_ROOM_MIC_I"
+    "NFO_ID\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005"
+    "\022\036\n\010mic_list\030\004 \003(\0132\014.StruMicInfo\"z\n\014Stru"
+    "UserInfo\022\'\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\013E_"
+    "USER_INFO\022\017\n\007user_id\030\002 \002(\005\022\031\n\021user_accou"
+    "nt_name\030\003 \002(\t\022\025\n\ruser_role_uid\030\004 \002(\t\"\216\001\n"
+    "\022StruUserInfoListID\022/\n\006msg_id\030\001 \002(\0162\n.En"
+    "umMsgID:\023E_USER_INFO_LIST_ID\022\017\n\007user_id\030"
+    "\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022%\n\016user_info_list"
+    "\030\004 \003(\0132\r.StruUserInfo\"\227\001\n\rStruUserMsgRQ\022"
+    ")\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\rE_USER_MSG_"
+    "RQ\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\020\n\010"
+    "msg_text\030\004 \002(\t\022\022\n\nis_private\030\005 \002(\010\022\023\n\013ds"
+    "t_user_id\030\006 \002(\005\"l\n\rStruUserMsgRS\022)\n\006msg_"
+    "id\030\001 \002(\0162\n.EnumMsgID:\rE_USER_MSG_RS\022\017\n\007u"
+    "ser_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\016\n\006result\030"
+    "\004 \002(\005\"\240\001\n\021StruUserMsgTextID\022.\n\006msg_id\030\001 "
+    "\002(\0162\n.EnumMsgID:\022E_USER_MSG_TEXT_ID\022\017\n\007u"
+    "ser_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\020\n\010msg_tex"
+    "t\030\004 \002(\t\022\022\n\nis_private\030\005 \002(\010\022\023\n\013dst_user_"
+    "id\030\006 \002(\005\"\217\001\n\022StruUserGiveGiftRQ\022/\n\006msg_i"
+    "d\030\001 \002(\0162\n.EnumMsgID:\023E_USER_GIVE_GIFT_RQ"
+    "\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\021\n\tgi"
+    "ft_code\030\004 \002(\t\022\023\n\013dst_user_id\030\005 \002(\005\"\237\001\n\022S"
+    "truUserGiveGiftRS\022/\n\006msg_id\030\001 \002(\0162\n.Enum"
+    "MsgID:\023E_USER_GIVE_GIFT_RS\022\017\n\007user_id\030\002 "
+    "\002(\005\022\017\n\007room_id\030\003 \002(\005\022\016\n\006result\030\004 \002(\005\022\021\n\t"
+    "gift_code\030\005 \002(\t\022\023\n\013dst_user_id\030\006 \002(\005\"g\n\022"
+    "StruUserApplyMicRQ\022/\n\006msg_id\030\001 \002(\0162\n.Enu"
+    "mMsgID:\023E_USER_APPLY_MIC_RQ\022\017\n\007user_id\030\002"
+    " \002(\005\022\017\n\007room_id\030\003 \002(\005\"\220\001\n\022StruUserApplyM"
+    "icRS\022/\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\023E_USER"
+    "_APPLY_MIC_RS\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_i"
+    "d\030\003 \002(\005\022\016\n\006result\030\004 \002(\005\022\027\n\017mic_channel_s"
+    "tr\030\005 \002(\t\"\241\001\n\017StruUserOnMicID\022,\n\006msg_id\030\001"
+    " \002(\0162\n.EnumMsgID:\020E_USER_ON_MIC_ID\022\023\n\013mi"
+    "c_user_id\030\002 \002(\005\022\023\n\013mic_room_id\030\003 \002(\005\022\035\n\025"
+    "mic_user_account_name\030\004 \002(\t\022\027\n\017mic_chann"
+    "el_str\030\005 \002(\t\"c\n\020StruUserOffMicRQ\022-\n\006msg_"
+    "id\030\001 \002(\0162\n.EnumMsgID:\021E_USER_OFF_MIC_RQ\022"
+    "\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\"s\n\020Str"
+    "uUserOffMicRS\022-\n\006msg_id\030\001 \002(\0162\n.EnumMsgI"
+    "D:\021E_USER_OFF_MIC_RS\022\017\n\007user_id\030\002 \002(\005\022\017\n"
+    "\007room_id\030\003 \002(\005\022\016\n\006result\030\004 \002(\005\"\243\001\n\020StruU"
+    "serOffMicID\022-\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:"
+    "\021E_USER_OFF_MIC_ID\022\023\n\013mic_user_id\030\002 \002(\005\022"
+    "\023\n\013mic_room_id\030\003 \002(\005\022\035\n\025mic_user_account"
+    "_name\030\004 \002(\t\022\027\n\017mic_channel_str\030\005 \002(\t\"\217\001\n"
+    "\022StruPutUserOnMicRQ\0220\n\006msg_id\030\001 \002(\0162\n.En"
+    "umMsgID:\024E_PUT_USER_ON_MIC_RQ\022\017\n\007user_id"
+    "\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\023\n\013dst_user_id\030\004"
+    " \002(\005\022\020\n\010mic_type\030\005 \002(\005\"\270\001\n\022StruPutUserOn"
+    "MicRS\0220\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\024E_PUT"
+    "_USER_ON_MIC_RS\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room"
+    "_id\030\003 \002(\005\022\023\n\013dst_user_id\030\004 \002(\005\022\020\n\010mic_ty"
+    "pe\030\005 \002(\005\022\016\n\006result\030\006 \002(\005\022\027\n\017mic_channel_"
+    "str\030\007 \002(\t\"\251\001\n\023StruCancleUserMicRQ\0220\n\006msg"
+    "_id\030\001 \002(\0162\n.EnumMsgID:\024E_CANCLE_USER_MIC"
+    "_RQ\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\023\n"
+    "\013dst_user_id\030\004 \002(\005\022\020\n\010mic_type\030\005 \002(\005\022\027\n\017"
+    "mic_channel_str\030\006 \002(\t\"y\n\023StruCancleUserM"
+    "icRS\0220\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\024E_CANC"
+    "LE_USER_MIC_RS\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_"
+    "id\030\003 \002(\005\022\016\n\006result\030\004 \002(\005\"g\n\022StruUserExit"
+    "RoomID\022/\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\023E_US"
+    "ER_EXIT_ROOM_ID\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room"
+    "_id\030\003 \002(\005*\336\004\n\tEnumMsgID\022\022\n\rE_MSG_ID_BASE"
+    "\020\360.\022\024\n\017E_USER_LOGIN_RQ\020\361.\022\024\n\017E_USER_LOGI"
+    "N_RS\020\362.\022\030\n\023E_USER_ROLE_INFO_ID\020\363.\022\023\n\016E_R"
+    "OOM_INFO_ID\020\364.\022\017\n\nE_MIC_INFO\020\365.\022\027\n\022E_ROO"
+    "M_MIC_INFO_ID\020\366.\022\020\n\013E_USER_INFO\020\367.\022\030\n\023E_"
+    "USER_INFO_LIST_ID\020\370.\022\022\n\rE_USER_MSG_RQ\020\371."
+    "\022\022\n\rE_USER_MSG_RS\020\372.\022\027\n\022E_USER_MSG_TEXT_"
+    "ID\020\373.\022\030\n\023E_USER_GIVE_GIFT_RQ\020\374.\022\030\n\023E_USE"
+    "R_GIVE_GIFT_RS\020\375.\022\030\n\023E_USER_APPLY_MIC_RQ"
+    "\020\376.\022\030\n\023E_USER_APPLY_MIC_RS\020\377.\022\025\n\020E_USER_"
+    "ON_MIC_ID\020\200/\022\026\n\021E_USER_OFF_MIC_RQ\020\201/\022\026\n\021"
+    "E_USER_OFF_MIC_RS\020\202/\022\026\n\021E_USER_OFF_MIC_I"
+    "D\020\203/\022\031\n\024E_PUT_USER_ON_MIC_RQ\020\204/\022\031\n\024E_PUT"
+    "_USER_ON_MIC_RS\020\205/\022\031\n\024E_CANCLE_USER_MIC_"
+    "RQ\020\206/\022\031\n\024E_CANCLE_USER_MIC_RS\020\207/\022\030\n\023E_US"
+    "ER_EXIT_ROOM_ID\020\210/", 4178);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "package_define.proto", &protobuf_RegisterTypes);
   GateRoomServerPack::default_instance_ = new GateRoomServerPack();
@@ -907,6 +909,7 @@ bool EnumMsgID_IsValid(int value) {
 #ifndef _MSC_VER
 const int GateRoomServerPack::kStrHeadFieldNumber;
 const int GateRoomServerPack::kUserHashkeyFieldNumber;
+const int GateRoomServerPack::kGsHashkeyFieldNumber;
 const int GateRoomServerPack::kDataLenFieldNumber;
 const int GateRoomServerPack::kDataMsgFieldNumber;
 const int GateRoomServerPack::kStrTailFieldNumber;
@@ -930,6 +933,7 @@ void GateRoomServerPack::SharedCtor() {
   _cached_size_ = 0;
   str_head_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   user_hashkey_ = 0;
+  gs_hashkey_ = 0;
   data_len_ = 0;
   data_msg_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   str_tail_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
@@ -982,6 +986,7 @@ void GateRoomServerPack::Clear() {
       }
     }
     user_hashkey_ = 0;
+    gs_hashkey_ = 0;
     data_len_ = 0;
     if (has_data_msg()) {
       if (data_msg_ != &::google::protobuf::internal::kEmptyString) {
@@ -1032,12 +1037,28 @@ bool GateRoomServerPack::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(24)) goto parse_data_len;
+        if (input->ExpectTag(24)) goto parse_gs_hashkey;
         break;
       }
       
-      // required int32 data_len = 3;
+      // required int32 gs_hashkey = 3;
       case 3: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_gs_hashkey:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &gs_hashkey_)));
+          set_has_gs_hashkey();
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(32)) goto parse_data_len;
+        break;
+      }
+      
+      // required int32 data_len = 4;
+      case 4: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
          parse_data_len:
@@ -1048,12 +1069,12 @@ bool GateRoomServerPack::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(34)) goto parse_data_msg;
+        if (input->ExpectTag(42)) goto parse_data_msg;
         break;
       }
       
-      // required bytes data_msg = 4;
-      case 4: {
+      // required bytes data_msg = 5;
+      case 5: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
          parse_data_msg:
@@ -1062,12 +1083,12 @@ bool GateRoomServerPack::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(42)) goto parse_str_tail;
+        if (input->ExpectTag(50)) goto parse_str_tail;
         break;
       }
       
-      // required string str_tail = 5;
-      case 5: {
+      // required string str_tail = 6;
+      case 6: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
          parse_str_tail:
@@ -1115,24 +1136,29 @@ void GateRoomServerPack::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->user_hashkey(), output);
   }
   
-  // required int32 data_len = 3;
-  if (has_data_len()) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->data_len(), output);
+  // required int32 gs_hashkey = 3;
+  if (has_gs_hashkey()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->gs_hashkey(), output);
   }
   
-  // required bytes data_msg = 4;
+  // required int32 data_len = 4;
+  if (has_data_len()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->data_len(), output);
+  }
+  
+  // required bytes data_msg = 5;
   if (has_data_msg()) {
     ::google::protobuf::internal::WireFormatLite::WriteBytes(
-      4, this->data_msg(), output);
+      5, this->data_msg(), output);
   }
   
-  // required string str_tail = 5;
+  // required string str_tail = 6;
   if (has_str_tail()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->str_tail().data(), this->str_tail().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
     ::google::protobuf::internal::WireFormatLite::WriteString(
-      5, this->str_tail(), output);
+      6, this->str_tail(), output);
   }
   
   if (!unknown_fields().empty()) {
@@ -1158,26 +1184,31 @@ void GateRoomServerPack::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->user_hashkey(), target);
   }
   
-  // required int32 data_len = 3;
-  if (has_data_len()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->data_len(), target);
+  // required int32 gs_hashkey = 3;
+  if (has_gs_hashkey()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->gs_hashkey(), target);
   }
   
-  // required bytes data_msg = 4;
+  // required int32 data_len = 4;
+  if (has_data_len()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->data_len(), target);
+  }
+  
+  // required bytes data_msg = 5;
   if (has_data_msg()) {
     target =
       ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
-        4, this->data_msg(), target);
+        5, this->data_msg(), target);
   }
   
-  // required string str_tail = 5;
+  // required string str_tail = 6;
   if (has_str_tail()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->str_tail().data(), this->str_tail().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        5, this->str_tail(), target);
+        6, this->str_tail(), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -1205,21 +1236,28 @@ int GateRoomServerPack::ByteSize() const {
           this->user_hashkey());
     }
     
-    // required int32 data_len = 3;
+    // required int32 gs_hashkey = 3;
+    if (has_gs_hashkey()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->gs_hashkey());
+    }
+    
+    // required int32 data_len = 4;
     if (has_data_len()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->data_len());
     }
     
-    // required bytes data_msg = 4;
+    // required bytes data_msg = 5;
     if (has_data_msg()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::BytesSize(
           this->data_msg());
     }
     
-    // required string str_tail = 5;
+    // required string str_tail = 6;
     if (has_str_tail()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
@@ -1259,6 +1297,9 @@ void GateRoomServerPack::MergeFrom(const GateRoomServerPack& from) {
     if (from.has_user_hashkey()) {
       set_user_hashkey(from.user_hashkey());
     }
+    if (from.has_gs_hashkey()) {
+      set_gs_hashkey(from.gs_hashkey());
+    }
     if (from.has_data_len()) {
       set_data_len(from.data_len());
     }
@@ -1285,7 +1326,7 @@ void GateRoomServerPack::CopyFrom(const GateRoomServerPack& from) {
 }
 
 bool GateRoomServerPack::IsInitialized() const {
-  if ((_has_bits_[0] & 0x0000001f) != 0x0000001f) return false;
+  if ((_has_bits_[0] & 0x0000003f) != 0x0000003f) return false;
   
   return true;
 }
@@ -1294,6 +1335,7 @@ void GateRoomServerPack::Swap(GateRoomServerPack* other) {
   if (other != this) {
     std::swap(str_head_, other->str_head_);
     std::swap(user_hashkey_, other->user_hashkey_);
+    std::swap(gs_hashkey_, other->gs_hashkey_);
     std::swap(data_len_, other->data_len_);
     std::swap(data_msg_, other->data_msg_);
     std::swap(str_tail_, other->str_tail_);

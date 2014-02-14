@@ -80,6 +80,11 @@ void RoomServerProcessor::StopProcessor()
 	GetCmdChain()->ReleaseAllCommand();
 }
 
+void *RoomServerProcessor::GetParent()
+{
+	return parent_ptr_;
+}
+
 void* RoomServerProcessor::DealWithDataThread(void *arg)
 {
 	std::cout<<"RoomServerProcessor::DealWithDataThread starts"<<std::endl;
@@ -119,7 +124,7 @@ void* RoomServerProcessor::DealWithDataThread(void *arg)
 			sleep(5);
 			continue;
 		}
-		tmp_cmd->Execute(const_cast<char *>(tmp_pack_cyt_pack.msg_data().c_str()),tmp_pack_cyt_pack.msg_len(),tmp_processor->parent_ptr_);
+		tmp_cmd->Execute(const_cast<char *>(tmp_pack_cyt_pack.msg_data().c_str()),tmp_pack_cyt_pack.msg_len(),tmp_processor);
 	}
 	std::cout<<"RoomServerProcessor::DealWithDataThread ends"<<std::endl;
 	return NULL;

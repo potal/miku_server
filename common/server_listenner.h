@@ -1,5 +1,5 @@
-#ifndef GATE_SERVER_H_
-#define GATE_SERVER_H_
+#ifndef SERVER_LISTENNER_H_
+#define SERVER_LISTENNER_H_
 
 #include <sys/socket.h>
 #include <sys/types.h>
