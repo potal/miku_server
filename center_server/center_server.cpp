@@ -81,17 +81,20 @@ bool CenterServer::InitServer()
 	
 	if(!tmp_return)
 		return false;
-	//ds_connector_.InitConnectionInfo("192.168.229.128",5556);
+	ds_connector_.InitConnectionInfo("192.168.229.128",5556);
 	return true;
 }
 
 bool CenterServer::StartServer()
 {
 	bool tmp_return = false;
-	//tmp_return = ds_connector_.ConnectServer();
-	//if(!tmp_return)
-	//	return false;
-	//std::cout<<"Connect DirectorServer OK!"<<std::endl;
+	tmp_return = ds_connector_.StartConnect();
+	if(!tmp_return)
+		return false;
+	tmp_return = ds_connector_.StartDSProcessor(100,1,this);
+	if(!tmp_return)
+		return false;
+	std::cout<<"Connect DirectorServer OK!"<<std::endl;
 
 	tmp_return = server_listenner_.StartServer(&client_list_);
 	if(!tmp_return)

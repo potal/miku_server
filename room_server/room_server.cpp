@@ -82,6 +82,7 @@ bool RoomServer::InitServer()
 	if(!tmp_return)
 		return false;
 //	cs_connector_.InitConnectionInfo("192.168.220.142",5560);
+	ds_connector_.InitConnectionInfo("192.168.220.142",5560);
 	return true;
 }
 
@@ -105,6 +106,18 @@ bool RoomServer::StartServer()
 //	ChatRoom *tmp_room = room_manager_.GetNewRoom();
 //	tmp_room->SetRoom(16000,-1);
 //	room_manager_.AddRoom(16000,tmp_room);
+	
+	tmp_return = ds_connector_.StartConnect();
+	if(!tmp_return)
+	{
+		return false;
+	}
+	tmp_return = ds_connector_.StartDSProcessor(100,1,this);
+	if(!tmp_return)
+	{
+		ds_connector_.Disconnect();
+		return false;
+	}
 	
 	tmp_return = server_listenner_.StartServer(&client_list_);
 	if(!tmp_return)
@@ -134,7 +147,7 @@ DirectorServerConnector *RoomServer::GetDSConnector()
 	return &ds_connector_;
 }
 
-std::map<int,CenterServerConnector *> *GetCSConnectionList()
+std::map<int,CenterServerConnector *> *RoomServer::GetCSConnectionList()
 {
 	return &cs_conn_list_;
 }
