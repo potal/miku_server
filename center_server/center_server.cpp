@@ -120,9 +120,10 @@ MikuDatabase *CenterServer::GetMikuDB()
 {
 	return &miku_db_;
 }
-//CenterServerConnector *CenterServer::GetCSConnector()
-//{
-//	return &cs_connector_;
-//}
+
+DirectorServerConnector *CenterServer::GetDSConnector()
+{
+	return &ds_connector_;
+}
 
 

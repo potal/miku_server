@@ -16,13 +16,15 @@
  * =====================================================================================
  */
 
-#include "ds_processor.h"
 #include "gate_server.h"
-#include "packet/ds_server.pb.h"
+#include "ds_processor.h"
 #include "ds_connector.h"
 
-#include "ds_command/open_chat_room.h"
+#include "packet/ds_server.pb.h"
+#include "packet/cyt_packet.pb.h"
+#include "ds_command/query_chat_room_rs.h"
 #include "ds_command/connect_director_server_rs.h"
+#include "ds_command/get_cs_addr_rs.h"
 
 DirectorServerProcessor::DirectorServerProcessor():is_started_(false),thread_count_(0),thread_id_ptr_(NULL),parent_ptr_(NULL)
 {
@@ -38,17 +40,29 @@ DirectorServerProcessor::~DirectorServerProcessor()
 	}
 }
 
-bool DirectorServerProcessor::InitProcessor(int max_list_size,void *caller_ptr,void *server_ptr_)
+bool DirectorServerProcessor::InitProcessor(int max_list_size,void *caller_ptr,void *server_ptr)
 {
-	BaseProcessor::InitProcessor(max_list_size,server_ptr_);
+	BaseProcessor::InitProcessor(max_list_size,server_ptr);
 	parent_ptr_ = caller_ptr;
 
 	CommandChain *tmp_cmd_chain = GetCmdChain();
 	bool tmp_ret = false;
-	tmp_ret = tmp_cmd_chain->RegisterCommand(DEF_DS_SERVER_CONNECT_RS,new ConnectDirectorServerRS(caller_ptr));
+	tmp_ret = tmp_cmd_chain->RegisterCommand(DEF_DS_SERVER_CONNECT_RS,new ConnectDirectorServerRS(server_ptr));
 	if(!tmp_ret)
 	{
 		std::cout<<"Register ConnectDirectorServerRS Error"<<std::endl;
+		return false;
+	}
+	tmp_ret = tmp_cmd_chain->RegisterCommand(DEF_DS_GS_GET_ROOMINFO_RS,new QueryChatRoomRS(server_ptr));
+	if(!tmp_ret)
+	{
+		std::cout<<"Register QueryChatRoom Error!"<<std::endl;
+		return false;
+	}
+	tmp_ret = tmp_cmd_chain->RegisterCommand(DEF_DS_RS_GET_CS_RS,new GetCenterServerAddrRS(server_ptr));
+	if(!tmp_ret)
+	{
+		std::cout<<"Register GetCenterServerAddrRS Error!"<<std::endl;
 		return false;
 	}
 
@@ -137,12 +151,41 @@ void DirectorServerProcessor::SendConnectDsRQ()
 
 void *DirectorServerProcessor::DealWithDataThread(void *arg)
 {
+	std::cout<<"DirectorServerProcessor::DealWithDataThread starts"<<std::endl;
 	DirectorServerProcessor *tmp_processor = reinterpret_cast<DirectorServerProcessor *>(arg);
 	if(!tmp_processor)
 		return NULL;
-	while (tmp_processor->is_started_)
+
+	bool tmp_return = false;
+	while(tmp_processor->is_started_)
 	{
-		usleep(3000);
+		char tmp_out_buff[0x2000] = {0};
+		int tmp_out_len = 0;
+		if(!tmp_processor->GetCircleList()->GetBuffer(tmp_out_buff,0x2000,tmp_out_len))
+		{
+			usleep(5000);
+			continue;
+		}
+
+		StruCytPacket tmp_pack_cyt_pack;
+		tmp_return = tmp_pack_cyt_pack.ParseFromArray(tmp_out_buff,tmp_out_len);
+		if(!tmp_return)
+		{
+			std::cout<<"Unpack package error!"<<std::endl;
+			continue;
+		}
+
+		int tmp_msg_type = tmp_pack_cyt_pack.msg_type();
+
+		BaseCommand *tmp_cmd = tmp_processor->GetCmdChain()->GetCommand(tmp_msg_type);
+		if(!tmp_cmd)
+		{
+			std::cout<<"Get cmd error!"<<std::endl;
+			usleep(5000);
+			continue;
+		}
+		tmp_cmd->Execute(const_cast<char *>(tmp_pack_cyt_pack.msg_data().c_str()),tmp_pack_cyt_pack.msg_len(),tmp_processor);
 	}
+	std::cout<<"DirectorServerProcessor::DealWithDataThread ends"<<std::endl;
 	return NULL;
 }

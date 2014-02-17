@@ -6,8 +6,10 @@
 #include "../common/command_chain.h"
 #include "client_info_list.h"
 #include "room_manager.h"
+#include "ds_connector.h"
 #include "cs_connector.h"
 #include <time.h>
+#include <map>
 
 class RoomServer
 {
@@ -22,9 +24,10 @@ private:
 	ClientInfoList client_list_;
 	ServerListenner server_listenner_;
 	RoomManager room_manager_;
-
 	CenterServerConnector cs_connector_;
-	//ClientProcessor cl_processor_;
+
+	DirectorServerConnector ds_connector_;
+	std::map<int,CenterServerConnector *> cs_conn_list_;
 
 public:
 	RoomServer();
@@ -37,8 +40,10 @@ public:
 
 	ClientInfoList *GetClientList();
 	RoomManager *GetRoomManager();
+	DirectorServerConnector *GetDSConnector();
+	std::map<int,CenterServerConnector *> *GetCSConnectionList();
+
 	CenterServerConnector *GetCSConnector();
-	//ClientProcessor *GetClientProcessor();
 };
 
 #endif

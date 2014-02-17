@@ -21,8 +21,7 @@ private:
 	ClientInfoList client_list_;
 	ServerListenner server_listenner_;
 	MikuDatabase miku_db_;
-
-	//DirectorServerConnector ds_connector_;
+	DirectorServerConnector ds_connector_;
 
 public:
 	CenterServer();
@@ -36,7 +35,7 @@ public:
 	ClientInfoList *GetClientList();
 	ServerListenner *GetListenner();
 	MikuDatabase *GetMikuDB();
-	//DirectorServerConnector *GetCSConnector();
+	DirectorServerConnector *GetDSConnector();
 };
 
 #endif

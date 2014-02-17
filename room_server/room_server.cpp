@@ -74,43 +74,38 @@ bool RoomServer::InitServer()
 {
 	if(!GetConfig("server.conf"))
 		return false;
-	//cl_processor_.InitProcessor(10,this);//max circle list buffer count
-	int tmp_max_user_count = client_list_.Init(10,this);
+	int tmp_max_user_count = client_list_.Init(50,this);
 	std::cout<<"Max user:"<<tmp_max_user_count<<std::endl;
 	std::cout<<"IP:"<<server_ip_<<"  port:"<<server_port_<<std::endl;
 	bool tmp_return = server_listenner_.InitServer(server_ip_,server_port_,count_worker_,count_user_per_worker_,read_timeout_,write_timeout_);
 	
 	if(!tmp_return)
 		return false;
-	cs_connector_.InitConnectionInfo("192.168.220.142",5560);
+//	cs_connector_.InitConnectionInfo("192.168.220.142",5560);
 	return true;
 }
 
 bool RoomServer::StartServer()
 {
 	bool tmp_return = false;
-	tmp_return = cs_connector_.StartConnect();
-	if(!tmp_return)
-	{
-		std::cout<<"connect centersercer error"<<std::endl;
-		return false;
-	}
-	std::cout<<"Connect CenterServer OK!"<<std::endl;
-	tmp_return = cs_connector_.StartCSProcessor(100,1,this);
-	if(!tmp_return)
-	{
-		cs_connector_.Disconnect();
-		return false;
-	}
+//	tmp_return = cs_connector_.StartConnect();
+//	if(!tmp_return)
+//	{
+//		std::cout<<"connect centersercer error"<<std::endl;
+//		return false;
+//	}
+//	std::cout<<"Connect CenterServer OK!"<<std::endl;
+//	tmp_return = cs_connector_.StartCSProcessor(100,1,this);
+//	if(!tmp_return)
+//	{
+//		cs_connector_.Disconnect();
+//		return false;
+//	}
+//	
+//	ChatRoom *tmp_room = room_manager_.GetNewRoom();
+//	tmp_room->SetRoom(16000,-1);
+//	room_manager_.AddRoom(16000,tmp_room);
 	
-	ChatRoom *tmp_room = room_manager_.GetNewRoom();
-	tmp_room->SetRoom(16000,-1);
-	room_manager_.AddRoom(16000,tmp_room);
-	
-	if(!tmp_return)
-	{
-		return false;
-	}
 	tmp_return = server_listenner_.StartServer(&client_list_);
 	if(!tmp_return)
 	{
@@ -132,6 +127,16 @@ ClientInfoList *RoomServer::GetClientList()
 RoomManager *RoomServer::GetRoomManager()
 {
 	return &room_manager_;
+}
+
+DirectorServerConnector *RoomServer::GetDSConnector()
+{
+	return &ds_connector_;
+}
+
+std::map<int,CenterServerConnector *> *GetCSConnectionList()
+{
+	return &cs_conn_list_;
 }
 
 CenterServerConnector *RoomServer::GetCSConnector()

@@ -6,6 +6,7 @@
 #include "room_manager.h"
 #include "rs_connector.h"
 #include "ds_connector.h"
+#include <map>
 
 class GateServer
 {
@@ -23,6 +24,7 @@ private:
 	RoomServerConnector rs_connector_;
 
 	DirectorServerConnector ds_connector_;
+	std::map<int,RoomServerConnector *> rs_conn_list_;
 
 public:
 	GateServer();
@@ -35,6 +37,7 @@ public:
 	UserInfoList *GetClientInfoList();
 	RoomManager *GetRoomManager();
 	DirectorServerConnector *GetDSConnector();
+	std::map<int,RoomServerConnector *> *GetRSConnectionList();
 
 	void StopServer();
 };

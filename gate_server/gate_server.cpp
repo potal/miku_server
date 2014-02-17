@@ -26,7 +26,14 @@ GateServer::GateServer()
 
 GateServer::~GateServer()
 {
-
+	std::map<int,RoomServerConnector *>::iterator tmp_iter = rs_conn_list_.begin();
+	for(;tmp_iter != rs_conn_list_.end();tmp_iter++)
+	{
+		RoomServerConnector *tmp_rs_conn = tmp_iter->second;
+		tmp_rs_conn->Disconnect();
+		delete tmp_rs_conn;
+	}
+	rs_conn_list_.clear();
 }
 
 bool GateServer::GetConfig(std::string file_name)
@@ -128,6 +135,11 @@ RoomManager *GateServer::GetRoomManager()
 DirectorServerConnector *GateServer::GetDSConnector()
 {
 	return &ds_connector_;
+}
+
+std::map<int,RoomServerConnector *> *GateServer::GetRSConnectionList()
+{
+	return &rs_conn_list_;
 }
 
 void GateServer::StopServer()

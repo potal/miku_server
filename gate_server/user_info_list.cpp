@@ -84,6 +84,7 @@ void UserInfoEx::DealWithData(struct bufferevent *buff_ev,void *arg)
 			if(NULL == tmp_chat_room)
 			{
 				std::cout<<"There is no room you find"<<std::endl;
+				//here create a package of Querying a chat room 
 				continue ;
 			}
 			GateRoomServerPack tmp_package;
