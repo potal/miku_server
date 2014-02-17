@@ -100,7 +100,7 @@ void* GateServerProcessor::DealWithDataThread(void *arg)
 		int tmp_out_len = 0;
 		if(!tmp_processor->GetCircleList()->GetBuffer(tmp_out_buff,0x2000,tmp_out_len))
 		{
-			sleep(5);
+			usleep(5000);
 			continue;
 		}
 		std::cout<<"GetBuffer ok! buff_len:"<<tmp_out_len<<std::endl;
@@ -126,7 +126,7 @@ void* GateServerProcessor::DealWithDataThread(void *arg)
 		if(!tmp_cmd)
 		{
 			std::cout<<"Get cmd error!"<<std::endl;
-			sleep(5);
+			usleep(5000);
 			continue;
 		}
 		tmp_cmd->Execute(tmp_out_buff,tmp_out_len,arg);

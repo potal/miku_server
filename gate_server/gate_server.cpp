@@ -80,31 +80,44 @@ bool GateServer::InitServer()
 	
 	if(!tmp_return)
 		return false;
-	rs_connector_.InitConnectionInfo("192.168.220.142",5556);
-	//ds_connector_.InitConnectionInfo("192.168.229.128",5560);
-	//ds_processor_.InitProcessor(100,this);
+//	rs_connector_.InitConnectionInfo("192.168.220.142",5556);
+	ds_connector_.InitConnectionInfo("192.168.229.128",5560);
 	return true;
 }
 
 bool GateServer::StartServer()
 {
 	bool tmp_return = false;
-	tmp_return = rs_connector_.StartConnect();
-	if(!tmp_return)
-		return false;
-	std::cout<<"Connect RoomServer OK!"<<std::endl;
-	
-//	tmp_return = ds_connector_.StartConnect();
+//	tmp_return = rs_connector_.StartConnect();
 //	if(!tmp_return)
 //		return false;
-//	std::cout<<"Connect DirectorServer OK!"<<std::endl;
-//	ds_processor_.StartProcessor(1);
+//	tmp_return = rs_connector_.StartRSProcessor(1000,1,this);
+//	if(tmp_return)
+//		std::cout<<"Connect RoomServer OK!"<<std::endl;
+//	else
+//	{
+//		std::cout<<"Start RS Processor error!"<<std::endl;
+//		return false;
+//	}
+//	room_manager_.AddRoom(16000,rs_connector_.GetSocket());
+	
+	tmp_return = ds_connector_.StartConnect();
+	if(!tmp_return)
+		return false;
+	tmp_return = ds_connector_.StartDSProcessor(1000,1,this);
+	if(!tmp_return)
+		return false;
+	std::cout<<"Connect DS OK!"<<std::endl;
 
-	room_manager_.AddRoom(16000,rs_connector_.GetSocket());
 	tmp_return = server_listenner_.StartServer(&user_list_);
 	if(!tmp_return)
 		return false;
 	return true;
+}
+
+UserInfoList *GateServer::GetClientInfoList()
+{
+	return &user_list_;
 }
 
 RoomManager *GateServer::GetRoomManager()

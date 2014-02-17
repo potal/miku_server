@@ -1,7 +1,7 @@
 #include "client_login_rq.h"
 #include "../packet/package_define.pb.h"
 #include "../packet/cyt_packet.pb.h"
-#include "room_server.h"
+#include "../room_server.h"
 
 ClientLoginRQ::ClientLoginRQ()
 {
@@ -20,6 +20,9 @@ ClientLoginRQ::~ClientLoginRQ()
 
 void ClientLoginRQ::Execute(char *buff,int len,void *caller_ptr)
 {
+	time_t tmp_current_time;
+	time(&tmp_current_time);
+	std::cout<<"ClientLoginRQ:"<<tmp_current_time<<std::endl;
 	if(!server_ptr_)
 		return;
 	GateRoomServerPack tmp_package;

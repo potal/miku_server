@@ -2,6 +2,7 @@
 #define OPEN_CHAT_ROOM_H_
 
 #include "../../common/base_command.h"
+
 class OpenChatRoom : public BaseCommand
 {
 private:

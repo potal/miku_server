@@ -6,7 +6,6 @@
 #include "room_manager.h"
 #include "rs_connector.h"
 #include "ds_connector.h"
-#include "ds_processor.h"
 
 class GateServer
 {
@@ -24,7 +23,6 @@ private:
 	RoomServerConnector rs_connector_;
 
 	DirectorServerConnector ds_connector_;
-	DirectorProcessor ds_processor_;
 
 public:
 	GateServer();
@@ -34,6 +32,7 @@ public:
 	bool InitServer();
 	bool StartServer();
 	
+	UserInfoList *GetClientInfoList();
 	RoomManager *GetRoomManager();
 	DirectorServerConnector *GetDSConnector();
 

@@ -135,7 +135,7 @@ void *Connector::SendDataThread(void *arg)
 		tmp_out_len = 0;
 		if(tmp_connector->client_fd_ == -1)
 		{
-			usleep(5);
+			usleep(5000);
 			continue;
 		}
 		tmp_get_ret = tmp_connector->send_list_.GetBuffer(tmp_out_buff,sizeof(tmp_out_buff),tmp_out_len);
@@ -150,7 +150,7 @@ void *Connector::SendDataThread(void *arg)
 		}
 		else
 		{
-			usleep(5);
+			usleep(5000);
 			continue;
 		}
 	}
@@ -171,7 +171,7 @@ void *Connector::RecvDataThread(void *arg)
 		tmp_read_len = 0;
 		if(tmp_connector->client_fd_ == -1)
 		{
-			usleep(5);
+			usleep(5000);
 			continue;
 		}
 		tmp_read_len = read(tmp_connector->client_fd_,tmp_read_buff,sizeof(tmp_read_buff));
@@ -181,7 +181,7 @@ void *Connector::RecvDataThread(void *arg)
 		}
 		else
 		{
-			usleep(5);
+			usleep(5000);
 		}
 	}
 	return NULL;

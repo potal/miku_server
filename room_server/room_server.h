@@ -7,6 +7,7 @@
 #include "client_info_list.h"
 #include "room_manager.h"
 #include "cs_connector.h"
+#include <time.h>
 
 class RoomServer
 {

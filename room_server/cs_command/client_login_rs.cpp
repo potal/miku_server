@@ -20,6 +20,9 @@ ClientLoginRS::~ClientLoginRS()
 
 void ClientLoginRS::Execute(char *buff,int len,void *caller_ptr)
 {
+	time_t tmp_current_time;
+	time(&tmp_current_time);
+	std::cout<<"ClientLoginRS:"<<tmp_current_time<<std::endl;
 	if(!server_ptr_ || !caller_ptr)
 		return ;
 	CenterServerProcessor *tmp_processor = reinterpret_cast<CenterServerProcessor *>(caller_ptr);

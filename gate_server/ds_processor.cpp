@@ -18,60 +18,131 @@
 
 #include "ds_processor.h"
 #include "gate_server.h"
+#include "packet/ds_server.pb.h"
+#include "ds_connector.h"
 
-DirectorProcessor::DirectorProcessor():is_started_(false)
+#include "ds_command/open_chat_room.h"
+#include "ds_command/connect_director_server_rs.h"
+
+DirectorServerProcessor::DirectorServerProcessor():is_started_(false),thread_count_(0),thread_id_ptr_(NULL),parent_ptr_(NULL)
 {
 	
 }
 
-DirectorProcessor::~DirectorProcessor()
+DirectorServerProcessor::~DirectorServerProcessor()
 {
-
+	if(thread_id_ptr_)
+	{
+		delete []thread_id_ptr_;
+		thread_id_ptr_ = NULL;
+	}
 }
 
-bool DirectorProcessor::InitProcessor(int max_list_size,void *caller_ptr)
+bool DirectorServerProcessor::InitProcessor(int max_list_size,void *caller_ptr,void *server_ptr_)
 {
-	BaseProcessor::InitProcessor(max_list_size,caller_ptr);
+	BaseProcessor::InitProcessor(max_list_size,server_ptr_);
+	parent_ptr_ = caller_ptr;
+
 	CommandChain *tmp_cmd_chain = GetCmdChain();
 	bool tmp_ret = false;
-//	tmp_ret = tmp_cmd_chain->RegisterCommand(E_USER_LOGIN_RQ,new ClientLoginRQ(caller_ptr));
-//	if(!tmp_ret)
-//	{
-//		std::cout<<"Register UserLoginRQ Error"<<std::endl;
-//		return false;
-//	}
-
-	return true;
-}
-
-bool DirectorProcessor::StartProcessor(int thread_count)
-{
-	is_started_ = true;
-	pthread_t tmp_thread_id = 0;
-	bool tmp_create_ret = false;
-	int tmp_thread_num = 0;
-	for(int i = 0;i < thread_count;i++)
+	tmp_ret = tmp_cmd_chain->RegisterCommand(DEF_DS_SERVER_CONNECT_RS,new ConnectDirectorServerRS(caller_ptr));
+	if(!tmp_ret)
 	{
-		tmp_create_ret = pthread_create(&tmp_thread_id,NULL,DealWithDataThread,this);
-		if(!tmp_create_ret)
-		{
-			continue;
-		}
-		tmp_thread_num++;
+		std::cout<<"Register ConnectDirectorServerRS Error"<<std::endl;
+		return false;
 	}
-	std::cout<<"Create "<<tmp_thread_num<<" thread(s) OK!"<<std::endl;
+
 	return true;
 }
 
-void *DirectorProcessor::DealWithDataThread(void *arg)
+bool DirectorServerProcessor::StartProcessor(int thread_count)
 {
-	DirectorProcessor *tmp_processor = reinterpret_cast<DirectorProcessor *>(arg);
+	if(thread_count <= 0)
+		return false;
+	thread_count_ = thread_count;
+	is_started_ = true;
+	bool tmp_ret = false;
+	thread_id_ptr_ = new pthread_t[thread_count];
+	int i = 0;
+	for(i = 0;i < thread_count;i ++)
+	{
+		tmp_ret = pthread_create(&thread_id_ptr_[i],NULL,DealWithDataThread,this);
+		if(!tmp_ret)
+		{
+			break;
+		}
+	}
+	std::cout<<"Create "<<i+1<<" thread(s) ok!"<<std::endl;
+	SendConnectDsRQ();
+	return true;
+}
+
+void DirectorServerProcessor::StopProcessor()
+{
+	is_started_ = false;
+	for(int i = 0;i < thread_count_;i++)
+	{
+		pthread_join(thread_id_ptr_[i],NULL);
+	}
+	GetCmdChain()->ReleaseAllCommand();
+}
+
+void *DirectorServerProcessor::GetParent()
+{
+	return parent_ptr_;
+}
+
+void DirectorServerProcessor::SendConnectDsRQ()
+{
+	StruDsServerConnectRq tmp_conn_rq;
+	tmp_conn_rq.set_server_id(1);//here server id from configuration file
+	tmp_conn_rq.set_server_ip("192.168.220.128");
+	tmp_conn_rq.set_server_port(5555);
+	tmp_conn_rq.set_server_type(SERVER_TYPE_GS);
+	tmp_conn_rq.set_connect_type(StruDsServerConnectRq_ConnectType_CONNECT_TYPE_NEWCONNECT);
+	tmp_conn_rq.set_server_detect_port(0);
+
+	char tmp_pack_buff[0x1000] = {0};
+	int tmp_pack_len = tmp_conn_rq.ByteSize();
+	bool tmp_ret = tmp_conn_rq.SerializeToArray(tmp_pack_buff,tmp_pack_len);
+	if(!tmp_ret)
+	{
+		std::cout<<"Pack connect ds error!"<<std::endl;
+		return;
+	}
+
+	StruCytPacket tmp_cyt_pack;
+	tmp_cyt_pack.set_str_head("123");
+	tmp_cyt_pack.set_room_id(0);
+	tmp_cyt_pack.set_msg_len(tmp_pack_len);
+	tmp_cyt_pack.set_msg_type(DEF_DS_SERVER_CONNECT_RQ);
+	tmp_cyt_pack.set_msg_data(tmp_pack_buff,tmp_pack_len);
+	tmp_cyt_pack.set_str_tail("456");
+
+	tmp_pack_len = tmp_cyt_pack.ByteSize();
+	tmp_ret = tmp_cyt_pack.SerializeToArray(tmp_pack_buff,tmp_pack_len);
+	if(!tmp_ret)
+	{
+		std::cout<<"Pack cyt_pack error!"<<std::endl;
+		return;
+	}
+	DirectorServerConnector *tmp_ds_conn = reinterpret_cast<DirectorServerConnector *>(parent_ptr_);
+	if(!tmp_ds_conn)
+	{
+		std::cout<<"DS connector error!"<<std::endl;
+		return ;
+	}
+	tmp_ds_conn->SendData(tmp_pack_buff,tmp_pack_len);
+}
+
+void *DirectorServerProcessor::DealWithDataThread(void *arg)
+{
+	DirectorServerProcessor *tmp_processor = reinterpret_cast<DirectorServerProcessor *>(arg);
 	if(!tmp_processor)
 		return NULL;
-	CircleList *tmp_recv_list = &(reinterpret_cast<GateServer *>(tmp_processor->GetCaller())->GetDSConnector()->recv_list_);
 	while (tmp_processor->is_started_)
 	{
-		sleep(3);
+		usleep(3000);
 	}
 	return NULL;
 }

@@ -24,7 +24,6 @@ bool CenterServerConnector::StartCSProcessor(int circle_list_size,int proc_threa
 
 void CenterServerConnector::DealWithData(char *buff,int len,int fd)
 {
-	std::cout<<"len:"<<len<<" buff:"<<buff<<" fd:"<<fd<<std::endl;
 	if(cs_processor_.GetStatus())
 	{
 		cs_processor_.GetCircleList()->AddBuffer(buff,len);

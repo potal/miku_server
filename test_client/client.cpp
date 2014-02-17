@@ -29,6 +29,7 @@
 #include <strings.h>
 #include <netinet/in.h>
 #include <string>
+#include <time.h>
 #include "package_define.pb.h"
 #include "cyt_packet.pb.h"
 
@@ -111,7 +112,22 @@ int main(int argc,char **argv)
 	{
 		std::cout<<"write ok!length:"<<tmp_send_buff_len-tmp_first_send_len<<std::endl;
 	}
+	time_t tmp_current_time;
+	time(&tmp_current_time);
+	std::cout<<"Send OK Time:"<<tmp_current_time<<std::endl;
 
+	char tmp_read_buff[0x100];
+	int tmp_read_len = 0;
+	tmp_read_len = read(sockfd,tmp_read_buff,0x100);
+	if(tmp_read_len > 0)
+	{
+		std::cout<<"Read Len:"<<tmp_read_len<<std::endl;
+		std::cout<<"Read Buff:"<<tmp_read_buff<<std::endl;
+		time(&tmp_current_time);
+		std::cout<<"Read Time:"<<tmp_current_time<<std::endl;
+	}
+	else
+		std::cout<<"Read error!"<<std::endl;
 	std::cin.get();
 	/*调用read函数读取服务器write过来的信息*/
 	//  if((nbytes=read(sockfd,buf,MAXDATASIZE))==-1)

@@ -65,13 +65,14 @@ bool CenterServerProcessor::SendDataToGS(T &pack,int msg_id,int fd,int user_hash
 	tmp_gr_pack.set_data_msg(tmp_send_buff,tmp_send_len);
 	tmp_gr_pack.set_str_tail("456");
 
-	tmp_return = tmp_gr_pack.SerializeToArray(tmp_send_buff,tmp_send_len);
+	tmp_pack_len = tmp_gr_pack.ByteSize();
+	tmp_return = tmp_gr_pack.SerializeToArray(tmp_msg_data_buff,tmp_pack_len);
 	if(!tmp_return)
 	{
 		std::cout<<"pack gateroomserverpack error"<<std::endl;
 		return false;
 	}
-	if(write(fd,tmp_send_buff,tmp_send_len) <= 0)
+	if(write(fd,tmp_msg_data_buff,tmp_pack_len) <= 0)
 	{
 		std::cout<<"write error"<<std::endl;
 		return false;

@@ -2,17 +2,19 @@
 #define DS_CONNECTOR_H_
 
 #include "../common/connector.h"
+#include "ds_processor.h"
 
-class DirectorProcessor;
 class DirectorServerConnector : public Connector
 {
 private:
+	void *server_ptr_;
 	CircleList recv_list_;
+	DirectorServerProcessor ds_processor_;
 public:
-	friend class DirectorProcessor;	//ds_processor can read recv_list_;
 	DirectorServerConnector();
 	~DirectorServerConnector();
 
+	bool StartDSProcessor(int circle_list_size,int thread_count,void *server_ptr);
 	void DealWithData(char *buff,int len,int fd);
 };
 

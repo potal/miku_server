@@ -10,7 +10,11 @@ CenterServerProcessor::CenterServerProcessor():is_started_(false),thread_count_(
 
 CenterServerProcessor::~CenterServerProcessor()
 {
-	
+	if(thread_id_ptr_)
+	{
+		delete []thread_id_ptr_;
+		thread_id_ptr_ = NULL;
+	}
 }
 
 bool CenterServerProcessor::InitProcessor(int max_list_size,void *caller_ptr,void *server_ptr)
@@ -81,7 +85,7 @@ void* CenterServerProcessor::DealWithDataThread(void *arg)
 		int tmp_out_len = 0;
 		if(!tmp_processor->GetCircleList()->GetBuffer(tmp_out_buff,0x2000,tmp_out_len))
 		{
-			sleep(5);
+			usleep(5000);
 			continue;
 		}
 		std::cout<<"Buff:"<<tmp_out_buff<<std::endl;
@@ -100,7 +104,7 @@ void* CenterServerProcessor::DealWithDataThread(void *arg)
 		if(!tmp_cmd)
 		{
 			std::cout<<"Get cmd error!"<<std::endl;
-			sleep(5);
+			usleep(5000);
 			continue;
 		}
 		tmp_cmd->Execute(const_cast<char *>(tmp_pack_cyt_pack.msg_data().c_str()),tmp_pack_cyt_pack.msg_len(),tmp_processor);
