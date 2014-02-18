@@ -17,6 +17,7 @@
  */
 
 #include "get_cs_addr_rs.h"
+#include "../room_server.h"
 #include "../packet/ds_server.pb.h"
 
 GetCenterServerAddrRS::GetCenterServerAddrRS()
@@ -44,5 +45,24 @@ void GetCenterServerAddrRS::Execute(char *buff ,int len,void *caller_ptr)
 	{
 		std::cout<<"Unpack SStruDsRSGetCsInfoRs Error!"<<std::endl;
 		return ;
+	}
+	RoomServer *tmp_server = reinterpret_cast<RoomServer *>(server_ptr_);
+	if(!tmp_server)
+		return;
+
+	tmp_server->GetCSConnector()->InitConnectionInfo(tmp_get_cs_rs.server_ip().c_str(),tmp_get_cs_rs.server_port());
+
+	tmp_return = tmp_server->GetCSConnector()->StartConnect();
+	if(!tmp_return)
+	{
+		std::cout<<"Connect cs error!"<<std::endl;
+		return;
+	}
+
+	tmp_return = tmp_server->GetCSConnector()->StartCSProcessor(1000,1,server_ptr_);
+	if(!tmp_return)
+	{
+		std::cout<<"Start cs processor error"<<std::endl;
+		tmp_server->GetCSConnector()->Disconnect();
 	}
 }

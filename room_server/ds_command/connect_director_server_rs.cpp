@@ -17,6 +17,7 @@
  */
 
 #include "connect_director_server_rs.h"
+#include "../room_server.h"
 #include "../packet/ds_server.pb.h"
 
 ConnectDirectorServerRS::ConnectDirectorServerRS()
@@ -45,8 +46,18 @@ void ConnectDirectorServerRS::Execute(char *buff,int len,void *caller_ptr)
 		std::cout<<"Unpack StruDsServerConnectRs Error!"<<std::endl;
 		return;
 	}
-	if(tmp_conn_rs.result())
+	if(tmp_conn_rs.result() == 1)
 	{
+		StruDsRSGetCsInfoRq tmp_get_cs_rq;
+		tmp_get_cs_rq.set_server_id(2);
+
+		RoomServer *tmp_server = reinterpret_cast<RoomServer *>(server_ptr_);
+		if(!tmp_server)
+			return;
+		DirectorServerConnector *tmp_ds_conn = tmp_server->GetDSConnector();
+		if(!tmp_ds_conn)
+			return;
+		tmp_ds_conn->SendPackage(tmp_get_cs_rq,DEF_DS_RS_GET_CS_RQ);
 	}
 }
 
