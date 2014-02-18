@@ -92,12 +92,12 @@ ByteSize	packet/package_define.pb.h	/^  int ByteSize() const;$/;"	p	class:StruUs
 ByteSize	packet/package_define.pb.h	/^  int ByteSize() const;$/;"	p	class:StruUserOffMicRS	access:public	signature:() const
 ByteSize	packet/package_define.pb.h	/^  int ByteSize() const;$/;"	p	class:StruUserOnMicID	access:public	signature:() const
 ByteSize	packet/package_define.pb.h	/^  int ByteSize() const;$/;"	p	class:StruUserRoleInfoID	access:public	signature:() const
+CANCLE_USER_MIC_RQ_H_	cl_command/cancle_user_mic_rq.h	2;"	d
 CC	Makefile	/^CC = g++$/;"	m
 CCFlag	Makefile	/^CCFlag = -O0 -g3 -w -c -fmessage-length=0 -fPIC $(mysql_config --cflags)$/;"	m
 CCSRC	Makefile	/^CCSRC=$(shell find $(ROOT) -path -prune -o -name '*.cc')$/;"	m
 CCSRCOBJ	Makefile	/^CCSRCOBJ=$(CCSRC:%.cc=%.o)$/;"	m
 CHAT_ROOM_H_	chat_room.h	2;"	d
-CLIENT_GIVE_GIFT_RQ_H_	cl_command/client_give_gift_rq.h	2;"	d
 CLIENT_INFO_LIST_H_	client_info_list.h	2;"	d
 CLIENT_LOGIN_RQ_H_	cl_command/client_login_rq.h	2;"	d
 CLIENT_LOGIN_RS_H_	cs_command/client_login_rs.h	2;"	d
@@ -107,6 +107,15 @@ CONNECT_TYPE_NEWCONNECT	packet/ds_server.pb.h	/^  static const ConnectType CONNE
 CONNECT_TYPE_RECONNECT	packet/ds_server.pb.cpp	/^const StruDsServerConnectRq_ConnectType StruDsServerConnectRq::CONNECT_TYPE_RECONNECT;$/;"	m	class:StruDsServerConnectRq	file:
 CONNECT_TYPE_RECONNECT	packet/ds_server.pb.h	/^  static const ConnectType CONNECT_TYPE_RECONNECT = StruDsServerConnectRq_ConnectType_CONNECT_TYPE_RECONNECT;$/;"	m	class:StruDsServerConnectRq	access:public
 CS_PROCESSOR_H_	cs_processor.h	2;"	d
+CancleUserMicRQ	cl_command/cancle_user_mic_rq.cpp	/^CancleUserMicRQ::CancleUserMicRQ(void *server_ptr)$/;"	f	class:CancleUserMicRQ	signature:(void *server_ptr)
+CancleUserMicRQ	cl_command/cancle_user_mic_rq.h	/^	CancleUserMicRQ(void *server_ptr);$/;"	p	class:CancleUserMicRQ	access:public	signature:(void *server_ptr)
+CancleUserMicRQ	cl_command/cancle_user_mic_rq.h	/^class CancleUserMicRQ : public BaseCommand$/;"	c	inherits:BaseCommand
+CancleUserMicRQ::CancleUserMicRQ	cl_command/cancle_user_mic_rq.cpp	/^CancleUserMicRQ::CancleUserMicRQ(void *server_ptr)$/;"	f	class:CancleUserMicRQ	signature:(void *server_ptr)
+CancleUserMicRQ::CancleUserMicRQ	cl_command/cancle_user_mic_rq.h	/^	CancleUserMicRQ(void *server_ptr);$/;"	p	class:CancleUserMicRQ	access:public	signature:(void *server_ptr)
+CancleUserMicRQ::Execute	cl_command/cancle_user_mic_rq.cpp	/^void CancleUserMicRQ::Execute(char *buff,int len,void *caller_ptr)$/;"	f	class:CancleUserMicRQ	signature:(char *buff,int len,void *caller_ptr)
+CancleUserMicRQ::Execute	cl_command/cancle_user_mic_rq.h	/^	void Execute(char *buff,int len,void *caller_ptr);$/;"	p	class:CancleUserMicRQ	access:public	signature:(char *buff,int len,void *caller_ptr)
+CancleUserMicRQ::~CancleUserMicRQ	cl_command/cancle_user_mic_rq.cpp	/^CancleUserMicRQ::~CancleUserMicRQ()$/;"	f	class:CancleUserMicRQ	signature:()
+CancleUserMicRQ::~CancleUserMicRQ	cl_command/cancle_user_mic_rq.h	/^	~CancleUserMicRQ();$/;"	p	class:CancleUserMicRQ	access:public	signature:()
 CenterServerConnector	cs_connector.cpp	/^CenterServerConnector::CenterServerConnector():server_ptr_(NULL)$/;"	f	class:CenterServerConnector	signature:()
 CenterServerConnector	cs_connector.h	/^	CenterServerConnector();$/;"	p	class:CenterServerConnector	access:public	signature:()
 CenterServerConnector	cs_connector.h	/^class CenterServerConnector : public Connector$/;"	c	inherits:Connector
@@ -632,6 +641,8 @@ DirectorServerConnector::DealWithData	ds_connector.cpp	/^void DirectorServerConn
 DirectorServerConnector::DealWithData	ds_connector.h	/^	void DealWithData(char *buff,int len,int fd);$/;"	p	class:DirectorServerConnector	access:public	signature:(char *buff,int len,int fd)
 DirectorServerConnector::DirectorServerConnector	ds_connector.cpp	/^DirectorServerConnector::DirectorServerConnector():server_ptr_(NULL)$/;"	f	class:DirectorServerConnector	signature:()
 DirectorServerConnector::DirectorServerConnector	ds_connector.h	/^	DirectorServerConnector();$/;"	p	class:DirectorServerConnector	access:public	signature:()
+DirectorServerConnector::SendPackage	ds_connector.h	/^	bool SendPackage(T &pack,int msg_id,int optional_fd = 0);$/;"	p	class:DirectorServerConnector	access:public	signature:(T &pack,int msg_id,int optional_fd = 0)
+DirectorServerConnector::SendPackage	ds_connector.h	/^bool DirectorServerConnector::SendPackage(T &pack,int msg_id,int optional_fd)$/;"	f	class:DirectorServerConnector	signature:(T &pack,int msg_id,int optional_fd)
 DirectorServerConnector::StartDSProcessor	ds_connector.cpp	/^bool DirectorServerConnector::StartDSProcessor(int circle_list_size,int thread_count,void *server_ptr)$/;"	f	class:DirectorServerConnector	signature:(int circle_list_size,int thread_count,void *server_ptr)
 DirectorServerConnector::StartDSProcessor	ds_connector.h	/^	bool StartDSProcessor(int circle_list_size,int thread_count,void *server_ptr);$/;"	p	class:DirectorServerConnector	access:public	signature:(int circle_list_size,int thread_count,void *server_ptr)
 DirectorServerConnector::ds_processor_	ds_connector.h	/^	DirectorServerProcessor ds_processor_;$/;"	m	class:DirectorServerConnector	access:private
@@ -699,8 +710,22 @@ EnumMsgID_Parse	packet/package_define.pb.h	/^inline bool EnumMsgID_Parse($/;"	f	
 EnumMsgID_descriptor	packet/package_define.pb.cc	/^const ::google::protobuf::EnumDescriptor* EnumMsgID_descriptor() {$/;"	f	signature:()
 EnumMsgID_descriptor	packet/package_define.pb.h	/^const ::google::protobuf::EnumDescriptor* EnumMsgID_descriptor();$/;"	p	signature:()
 EnumMsgID_descriptor_	packet/package_define.pb.cc	/^const ::google::protobuf::EnumDescriptor* EnumMsgID_descriptor_ = NULL;$/;"	m	namespace:__anon1	file:
+Execute	cl_command/cancle_user_mic_rq.cpp	/^void CancleUserMicRQ::Execute(char *buff,int len,void *caller_ptr)$/;"	f	class:CancleUserMicRQ	signature:(char *buff,int len,void *caller_ptr)
+Execute	cl_command/cancle_user_mic_rq.h	/^	void Execute(char *buff,int len,void *caller_ptr);$/;"	p	class:CancleUserMicRQ	access:public	signature:(char *buff,int len,void *caller_ptr)
 Execute	cl_command/client_login_rq.cpp	/^void ClientLoginRQ::Execute(char *buff,int len,void *caller_ptr)$/;"	f	class:ClientLoginRQ	signature:(char *buff,int len,void *caller_ptr)
 Execute	cl_command/client_login_rq.h	/^	void Execute(char *buff,int len,void *caller_ptr);$/;"	p	class:ClientLoginRQ	access:public	signature:(char *buff,int len,void *caller_ptr)
+Execute	cl_command/put_user_on_mic_rq.cpp	/^void PutUserOnMicRQ::Execute(char *buff,int len,void *caller_ptr)$/;"	f	class:PutUserOnMicRQ	signature:(char *buff,int len,void *caller_ptr)
+Execute	cl_command/put_user_on_mic_rq.h	/^	void Execute(char *buff,int len,void *caller_ptr);$/;"	p	class:PutUserOnMicRQ	access:public	signature:(char *buff,int len,void *caller_ptr)
+Execute	cl_command/user_apply_mic_rq.cpp	/^void UserApplyMicRQ::Execute(char *buff,int len,void *caller_ptr)$/;"	f	class:UserApplyMicRQ	signature:(char *buff,int len,void *caller_ptr)
+Execute	cl_command/user_apply_mic_rq.h	/^	void Execute(char *buff,int len,void *caller_ptr);$/;"	p	class:UserApplyMicRQ	access:public	signature:(char *buff,int len,void *caller_ptr)
+Execute	cl_command/user_exit_room_id.cpp	/^void UserExitRoomID::Execute(char *buff,int len,void *caller_ptr)$/;"	f	class:UserExitRoomID	signature:(char *buff,int len,void *caller_ptr)
+Execute	cl_command/user_exit_room_id.h	/^	void Execute(char *buff,int len,void *caller_ptr);$/;"	p	class:UserExitRoomID	access:public	signature:(char *buff,int len,void *caller_ptr)
+Execute	cl_command/user_give_gift_rq.cpp	/^void UserGiveGiftRQ::Execute(char *buff,int len,void *caller_ptr)$/;"	f	class:UserGiveGiftRQ	signature:(char *buff,int len,void *caller_ptr)
+Execute	cl_command/user_give_gift_rq.h	/^	void Execute(char *buff,int len,void *caller_ptr);$/;"	p	class:UserGiveGiftRQ	access:public	signature:(char *buff,int len,void *caller_ptr)
+Execute	cl_command/user_off_mic_rq.cpp	/^void UserOffMicRQ::Execute(char *buff,int len,void *caller_ptr)$/;"	f	class:UserOffMicRQ	signature:(char *buff,int len,void *caller_ptr)
+Execute	cl_command/user_off_mic_rq.h	/^	void Execute(char *buff,int len,void *caller_ptr);$/;"	p	class:UserOffMicRQ	access:public	signature:(char *buff,int len,void *caller_ptr)
+Execute	cl_command/user_send_msg_rq.cpp	/^void UserSendMsgRQ::Execute(char *buff,int len,void *caller_ptr)$/;"	f	class:UserSendMsgRQ	signature:(char *buff,int len,void *caller_ptr)
+Execute	cl_command/user_send_msg_rq.h	/^	void Execute(char *buff,int len,void *caller_ptr);$/;"	p	class:UserSendMsgRQ	access:public	signature:(char *buff,int len,void *caller_ptr)
 Execute	cs_command/client_login_rs.cpp	/^void ClientLoginRS::Execute(char *buff,int len,void *caller_ptr)$/;"	f	class:ClientLoginRS	signature:(char *buff,int len,void *caller_ptr)
 Execute	cs_command/client_login_rs.h	/^	void Execute(char *buff,int len,void *caller_ptr);$/;"	p	class:ClientLoginRS	access:public	signature:(char *buff,int len,void *caller_ptr)
 Execute	ds_command/connect_director_server_rs.cpp	/^void ConnectDirectorServerRS::Execute(char *buff,int len,void *caller_ptr)$/;"	f	class:ConnectDirectorServerRS	signature:(char *buff,int len,void *caller_ptr)
@@ -1603,8 +1628,18 @@ PROGRAM	Makefile	/^PROGRAM = roomserver$/;"	m
 PROTOBUF_cyt_5fpacket_2eproto__INCLUDED	packet/cyt_packet.pb.h	5;"	d
 PROTOBUF_ds_5fserver_2eproto__INCLUDED	packet/ds_server.pb.h	5;"	d
 PROTOBUF_package_5fdefine_2eproto__INCLUDED	packet/package_define.pb.h	5;"	d
+PUT_USER_ON_MIC_RQ_H_	cl_command/put_user_on_mic_rq.h	2;"	d
 PushUserInUnusedList	user_info_list.cpp	/^bool UserInfoList::PushUserInUnusedList(UserInfo *user_info)$/;"	f	class:UserInfoList	signature:(UserInfo *user_info)
 PushUserInUnusedList	user_info_list.h	/^	bool PushUserInUnusedList(UserInfo *user_info);$/;"	p	class:UserInfoList	access:public	signature:(UserInfo *user_info)
+PutUserOnMicRQ	cl_command/put_user_on_mic_rq.cpp	/^PutUserOnMicRQ::PutUserOnMicRQ(void *server_ptr)$/;"	f	class:PutUserOnMicRQ	signature:(void *server_ptr)
+PutUserOnMicRQ	cl_command/put_user_on_mic_rq.h	/^	PutUserOnMicRQ(void *server_ptr);$/;"	p	class:PutUserOnMicRQ	access:public	signature:(void *server_ptr)
+PutUserOnMicRQ	cl_command/put_user_on_mic_rq.h	/^class PutUserOnMicRQ : public BaseCommand$/;"	c	inherits:BaseCommand
+PutUserOnMicRQ::Execute	cl_command/put_user_on_mic_rq.cpp	/^void PutUserOnMicRQ::Execute(char *buff,int len,void *caller_ptr)$/;"	f	class:PutUserOnMicRQ	signature:(char *buff,int len,void *caller_ptr)
+PutUserOnMicRQ::Execute	cl_command/put_user_on_mic_rq.h	/^	void Execute(char *buff,int len,void *caller_ptr);$/;"	p	class:PutUserOnMicRQ	access:public	signature:(char *buff,int len,void *caller_ptr)
+PutUserOnMicRQ::PutUserOnMicRQ	cl_command/put_user_on_mic_rq.cpp	/^PutUserOnMicRQ::PutUserOnMicRQ(void *server_ptr)$/;"	f	class:PutUserOnMicRQ	signature:(void *server_ptr)
+PutUserOnMicRQ::PutUserOnMicRQ	cl_command/put_user_on_mic_rq.h	/^	PutUserOnMicRQ(void *server_ptr);$/;"	p	class:PutUserOnMicRQ	access:public	signature:(void *server_ptr)
+PutUserOnMicRQ::~PutUserOnMicRQ	cl_command/put_user_on_mic_rq.cpp	/^PutUserOnMicRQ::~PutUserOnMicRQ()$/;"	f	class:PutUserOnMicRQ	signature:()
+PutUserOnMicRQ::~PutUserOnMicRQ	cl_command/put_user_on_mic_rq.h	/^	~PutUserOnMicRQ();$/;"	p	class:PutUserOnMicRQ	access:public	signature:()
 QUERY_CHAT_ROOM_RS_H_	ds_command/query_chat_room_rs.h	2;"	d
 QueryChatRoomRS	ds_command/query_chat_room_rs.cpp	/^QueryChatRoomRS::QueryChatRoomRS(void *server_ptr)$/;"	f	class:QueryChatRoomRS	signature:(void *server_ptr)
 QueryChatRoomRS	ds_command/query_chat_room_rs.h	/^	QueryChatRoomRS(void *server_ptr);$/;"	p	class:QueryChatRoomRS	access:public	signature:(void *server_ptr)
@@ -1830,6 +1865,8 @@ SendConnectDsRQ	ds_processor.cpp	/^void DirectorServerProcessor::SendConnectDsRQ
 SendConnectDsRQ	ds_processor.h	/^	void SendConnectDsRQ();$/;"	p	class:DirectorServerProcessor	access:public	signature:()
 SendDataToGS	cs_processor.h	/^	bool SendDataToGS(T &pack,int msg_id,int fd,int user_hashkey);$/;"	p	class:CenterServerProcessor	access:public	signature:(T &pack,int msg_id,int fd,int user_hashkey)
 SendDataToGS	cs_processor.h	/^bool CenterServerProcessor::SendDataToGS(T &pack,int msg_id,int fd,int user_hashkey)$/;"	f	class:CenterServerProcessor	signature:(T &pack,int msg_id,int fd,int user_hashkey)
+SendPackage	ds_connector.h	/^	bool SendPackage(T &pack,int msg_id,int optional_fd = 0);$/;"	p	class:DirectorServerConnector	access:public	signature:(T &pack,int msg_id,int optional_fd = 0)
+SendPackage	ds_connector.h	/^bool DirectorServerConnector::SendPackage(T &pack,int msg_id,int optional_fd)$/;"	f	class:DirectorServerConnector	signature:(T &pack,int msg_id,int optional_fd)
 SerializeWithCachedSizes	packet/cyt_packet.pb.cpp	/^void StruCytPacket::SerializeWithCachedSizes($/;"	f	class:StruCytPacket	signature:( ::google::protobuf::io::CodedOutputStream* output) const
 SerializeWithCachedSizes	packet/cyt_packet.pb.h	/^  void SerializeWithCachedSizes($/;"	p	class:StruCytPacket	access:public	signature:( ::google::protobuf::io::CodedOutputStream* output) const
 SerializeWithCachedSizes	packet/ds_server.pb.cpp	/^void SStruDsRSGetCsInfoRs::SerializeWithCachedSizes($/;"	f	class:SStruDsRSGetCsInfoRs	signature:( ::google::protobuf::io::CodedOutputStream* output) const
@@ -7754,7 +7791,41 @@ Swap	packet/package_define.pb.h	/^  void Swap(StruUserOffMicRQ* other);$/;"	p	cl
 Swap	packet/package_define.pb.h	/^  void Swap(StruUserOffMicRS* other);$/;"	p	class:StruUserOffMicRS	access:public	signature:(StruUserOffMicRS* other)
 Swap	packet/package_define.pb.h	/^  void Swap(StruUserOnMicID* other);$/;"	p	class:StruUserOnMicID	access:public	signature:(StruUserOnMicID* other)
 Swap	packet/package_define.pb.h	/^  void Swap(StruUserRoleInfoID* other);$/;"	p	class:StruUserRoleInfoID	access:public	signature:(StruUserRoleInfoID* other)
+USER_APPLY_MIC_RQ_H_	cl_command/user_apply_mic_rq.h	2;"	d
+USER_EXIT_ROOM_ID_H_	cl_command/user_exit_room_id.h	2;"	d
+USER_GIVE_GIFT_RQ_	cl_command/user_give_gift_rq.h	2;"	d
 USER_INFO_LIST_H_	user_info_list.h	2;"	d
+USER_OFF_MIC_RQ_H_	cl_command/user_off_mic_rq.h	2;"	d
+USER_SEND_MSG_RQ_H_	cl_command/user_send_msg_rq.h	2;"	d
+UnpackAndAnalysePackFromGSRS	packet/packet_analysis.h	/^bool UnpackAndAnalysePackFromGSRS(char *buff_in,int len_in,GateRoomServerPack &g_pack,StruCytPacket &s_pack,T &pack)$/;"	f	signature:(char *buff_in,int len_in,GateRoomServerPack &g_pack,StruCytPacket &s_pack,T &pack)
+UnpackAndAnalysePackOfOtherServer	packet/packet_analysis.h	/^bool UnpackAndAnalysePackOfOtherServer(char *buff_in,int len_in,StruCytPacket &s_pack,T &pack)$/;"	f	signature:(char *buff_in,int len_in,StruCytPacket &s_pack,T &pack)
+UserApplyMicRQ	cl_command/user_apply_mic_rq.cpp	/^UserApplyMicRQ::UserApplyMicRQ(void *server_ptr)$/;"	f	class:UserApplyMicRQ	signature:(void *server_ptr)
+UserApplyMicRQ	cl_command/user_apply_mic_rq.h	/^	UserApplyMicRQ(void *server_ptr);$/;"	p	class:UserApplyMicRQ	access:public	signature:(void *server_ptr)
+UserApplyMicRQ	cl_command/user_apply_mic_rq.h	/^class UserApplyMicRQ : public BaseCommand$/;"	c	inherits:BaseCommand
+UserApplyMicRQ::Execute	cl_command/user_apply_mic_rq.cpp	/^void UserApplyMicRQ::Execute(char *buff,int len,void *caller_ptr)$/;"	f	class:UserApplyMicRQ	signature:(char *buff,int len,void *caller_ptr)
+UserApplyMicRQ::Execute	cl_command/user_apply_mic_rq.h	/^	void Execute(char *buff,int len,void *caller_ptr);$/;"	p	class:UserApplyMicRQ	access:public	signature:(char *buff,int len,void *caller_ptr)
+UserApplyMicRQ::UserApplyMicRQ	cl_command/user_apply_mic_rq.cpp	/^UserApplyMicRQ::UserApplyMicRQ(void *server_ptr)$/;"	f	class:UserApplyMicRQ	signature:(void *server_ptr)
+UserApplyMicRQ::UserApplyMicRQ	cl_command/user_apply_mic_rq.h	/^	UserApplyMicRQ(void *server_ptr);$/;"	p	class:UserApplyMicRQ	access:public	signature:(void *server_ptr)
+UserApplyMicRQ::~UserApplyMicRQ	cl_command/user_apply_mic_rq.cpp	/^UserApplyMicRQ::~UserApplyMicRQ()$/;"	f	class:UserApplyMicRQ	signature:()
+UserApplyMicRQ::~UserApplyMicRQ	cl_command/user_apply_mic_rq.h	/^	~UserApplyMicRQ();$/;"	p	class:UserApplyMicRQ	access:public	signature:()
+UserExitRoomID	cl_command/user_exit_room_id.cpp	/^UserExitRoomID::UserExitRoomID(void *server_ptr)$/;"	f	class:UserExitRoomID	signature:(void *server_ptr)
+UserExitRoomID	cl_command/user_exit_room_id.h	/^	UserExitRoomID(void *server_ptr);$/;"	p	class:UserExitRoomID	access:public	signature:(void *server_ptr)
+UserExitRoomID	cl_command/user_exit_room_id.h	/^class UserExitRoomID : public BaseCommand$/;"	c	inherits:BaseCommand
+UserExitRoomID::Execute	cl_command/user_exit_room_id.cpp	/^void UserExitRoomID::Execute(char *buff,int len,void *caller_ptr)$/;"	f	class:UserExitRoomID	signature:(char *buff,int len,void *caller_ptr)
+UserExitRoomID::Execute	cl_command/user_exit_room_id.h	/^	void Execute(char *buff,int len,void *caller_ptr);$/;"	p	class:UserExitRoomID	access:public	signature:(char *buff,int len,void *caller_ptr)
+UserExitRoomID::UserExitRoomID	cl_command/user_exit_room_id.cpp	/^UserExitRoomID::UserExitRoomID(void *server_ptr)$/;"	f	class:UserExitRoomID	signature:(void *server_ptr)
+UserExitRoomID::UserExitRoomID	cl_command/user_exit_room_id.h	/^	UserExitRoomID(void *server_ptr);$/;"	p	class:UserExitRoomID	access:public	signature:(void *server_ptr)
+UserExitRoomID::~UserExitRoomID	cl_command/user_exit_room_id.cpp	/^UserExitRoomID::~UserExitRoomID()$/;"	f	class:UserExitRoomID	signature:()
+UserExitRoomID::~UserExitRoomID	cl_command/user_exit_room_id.h	/^	~UserExitRoomID();$/;"	p	class:UserExitRoomID	access:public	signature:()
+UserGiveGiftRQ	cl_command/user_give_gift_rq.cpp	/^UserGiveGiftRQ::UserGiveGiftRQ(void *server_ptr)$/;"	f	class:UserGiveGiftRQ	signature:(void *server_ptr)
+UserGiveGiftRQ	cl_command/user_give_gift_rq.h	/^	UserGiveGiftRQ(void *server_ptr);$/;"	p	class:UserGiveGiftRQ	access:public	signature:(void *server_ptr)
+UserGiveGiftRQ	cl_command/user_give_gift_rq.h	/^class UserGiveGiftRQ : public BaseCommand$/;"	c	inherits:BaseCommand
+UserGiveGiftRQ::Execute	cl_command/user_give_gift_rq.cpp	/^void UserGiveGiftRQ::Execute(char *buff,int len,void *caller_ptr)$/;"	f	class:UserGiveGiftRQ	signature:(char *buff,int len,void *caller_ptr)
+UserGiveGiftRQ::Execute	cl_command/user_give_gift_rq.h	/^	void Execute(char *buff,int len,void *caller_ptr);$/;"	p	class:UserGiveGiftRQ	access:public	signature:(char *buff,int len,void *caller_ptr)
+UserGiveGiftRQ::UserGiveGiftRQ	cl_command/user_give_gift_rq.cpp	/^UserGiveGiftRQ::UserGiveGiftRQ(void *server_ptr)$/;"	f	class:UserGiveGiftRQ	signature:(void *server_ptr)
+UserGiveGiftRQ::UserGiveGiftRQ	cl_command/user_give_gift_rq.h	/^	UserGiveGiftRQ(void *server_ptr);$/;"	p	class:UserGiveGiftRQ	access:public	signature:(void *server_ptr)
+UserGiveGiftRQ::~UserGiveGiftRQ	cl_command/user_give_gift_rq.cpp	/^UserGiveGiftRQ::~UserGiveGiftRQ()$/;"	f	class:UserGiveGiftRQ	signature:()
+UserGiveGiftRQ::~UserGiveGiftRQ	cl_command/user_give_gift_rq.h	/^	~UserGiveGiftRQ();$/;"	p	class:UserGiveGiftRQ	access:public	signature:()
 UserInfo	user_info_list.h	/^	UserInfo():gs_hashkey_user_on(0),user_id(0),user_hash_key(0)$/;"	f	struct:UserInfo	access:public	signature:()
 UserInfo	user_info_list.h	/^struct UserInfo$/;"	s
 UserInfo::Clear	user_info_list.h	/^	void Clear()$/;"	f	struct:UserInfo	access:public	signature:()
@@ -7786,6 +7857,24 @@ UserInfoList::unused_user_info_list_	user_info_list.h	/^	std::list<UserInfo *> u
 UserInfoList::user_info_list_	user_info_list.h	/^	std::map<int,UserInfo *> user_info_list_;$/;"	m	class:UserInfoList	access:private
 UserInfoList::~UserInfoList	user_info_list.cpp	/^UserInfoList::~UserInfoList()$/;"	f	class:UserInfoList	signature:()
 UserInfoList::~UserInfoList	user_info_list.h	/^	~UserInfoList();$/;"	p	class:UserInfoList	access:public	signature:()
+UserOffMicRQ	cl_command/user_off_mic_rq.cpp	/^UserOffMicRQ::UserOffMicRQ(void *server_ptr)$/;"	f	class:UserOffMicRQ	signature:(void *server_ptr)
+UserOffMicRQ	cl_command/user_off_mic_rq.h	/^	UserOffMicRQ(void *server_ptr);$/;"	p	class:UserOffMicRQ	access:public	signature:(void *server_ptr)
+UserOffMicRQ	cl_command/user_off_mic_rq.h	/^class UserOffMicRQ : public BaseCommand$/;"	c	inherits:BaseCommand
+UserOffMicRQ::Execute	cl_command/user_off_mic_rq.cpp	/^void UserOffMicRQ::Execute(char *buff,int len,void *caller_ptr)$/;"	f	class:UserOffMicRQ	signature:(char *buff,int len,void *caller_ptr)
+UserOffMicRQ::Execute	cl_command/user_off_mic_rq.h	/^	void Execute(char *buff,int len,void *caller_ptr);$/;"	p	class:UserOffMicRQ	access:public	signature:(char *buff,int len,void *caller_ptr)
+UserOffMicRQ::UserOffMicRQ	cl_command/user_off_mic_rq.cpp	/^UserOffMicRQ::UserOffMicRQ(void *server_ptr)$/;"	f	class:UserOffMicRQ	signature:(void *server_ptr)
+UserOffMicRQ::UserOffMicRQ	cl_command/user_off_mic_rq.h	/^	UserOffMicRQ(void *server_ptr);$/;"	p	class:UserOffMicRQ	access:public	signature:(void *server_ptr)
+UserOffMicRQ::~UserOffMicRQ	cl_command/user_off_mic_rq.cpp	/^UserOffMicRQ::~UserOffMicRQ()$/;"	f	class:UserOffMicRQ	signature:()
+UserOffMicRQ::~UserOffMicRQ	cl_command/user_off_mic_rq.h	/^	~UserOffMicRQ();$/;"	p	class:UserOffMicRQ	access:public	signature:()
+UserSendMsgRQ	cl_command/user_send_msg_rq.cpp	/^UserSendMsgRQ::UserSendMsgRQ(void *server_ptr)$/;"	f	class:UserSendMsgRQ	signature:(void *server_ptr)
+UserSendMsgRQ	cl_command/user_send_msg_rq.h	/^	UserSendMsgRQ(void *server_ptr);$/;"	p	class:UserSendMsgRQ	access:public	signature:(void *server_ptr)
+UserSendMsgRQ	cl_command/user_send_msg_rq.h	/^class UserSendMsgRQ : public BaseCommand$/;"	c	inherits:BaseCommand
+UserSendMsgRQ::Execute	cl_command/user_send_msg_rq.cpp	/^void UserSendMsgRQ::Execute(char *buff,int len,void *caller_ptr)$/;"	f	class:UserSendMsgRQ	signature:(char *buff,int len,void *caller_ptr)
+UserSendMsgRQ::Execute	cl_command/user_send_msg_rq.h	/^	void Execute(char *buff,int len,void *caller_ptr);$/;"	p	class:UserSendMsgRQ	access:public	signature:(char *buff,int len,void *caller_ptr)
+UserSendMsgRQ::UserSendMsgRQ	cl_command/user_send_msg_rq.cpp	/^UserSendMsgRQ::UserSendMsgRQ(void *server_ptr)$/;"	f	class:UserSendMsgRQ	signature:(void *server_ptr)
+UserSendMsgRQ::UserSendMsgRQ	cl_command/user_send_msg_rq.h	/^	UserSendMsgRQ(void *server_ptr);$/;"	p	class:UserSendMsgRQ	access:public	signature:(void *server_ptr)
+UserSendMsgRQ::~UserSendMsgRQ	cl_command/user_send_msg_rq.cpp	/^UserSendMsgRQ::~UserSendMsgRQ()$/;"	f	class:UserSendMsgRQ	signature:()
+UserSendMsgRQ::~UserSendMsgRQ	cl_command/user_send_msg_rq.h	/^	~UserSendMsgRQ();$/;"	p	class:UserSendMsgRQ	access:public	signature:()
 __anon1::EnumMsgID_descriptor_	packet/package_define.pb.cc	/^const ::google::protobuf::EnumDescriptor* EnumMsgID_descriptor_ = NULL;$/;"	m	namespace:__anon1	file:
 __anon1::GateRoomServerPack_descriptor_	packet/package_define.pb.cc	/^const ::google::protobuf::Descriptor* GateRoomServerPack_descriptor_ = NULL;$/;"	m	namespace:__anon1	file:
 __anon1::GateRoomServerPack_reflection_	packet/package_define.pb.cc	/^  GateRoomServerPack_reflection_ = NULL;$/;"	m	namespace:__anon1	file:
@@ -11602,6 +11691,8 @@ user_role_uid	packet/package_define.pb.h	/^inline const ::std::string& StruUserR
 user_role_uid_	packet/package_define.pb.h	/^  ::std::string* user_role_uid_;$/;"	m	class:StruUserInfo	access:private
 user_role_uid_	packet/package_define.pb.h	/^  ::std::string* user_role_uid_;$/;"	m	class:StruUserRoleInfoID	access:private
 write_timeout_	room_server.h	/^	int write_timeout_;$/;"	m	class:RoomServer	access:private
+~CancleUserMicRQ	cl_command/cancle_user_mic_rq.cpp	/^CancleUserMicRQ::~CancleUserMicRQ()$/;"	f	class:CancleUserMicRQ	signature:()
+~CancleUserMicRQ	cl_command/cancle_user_mic_rq.h	/^	~CancleUserMicRQ();$/;"	p	class:CancleUserMicRQ	access:public	signature:()
 ~CenterServerConnector	cs_connector.cpp	/^CenterServerConnector::~CenterServerConnector()$/;"	f	class:CenterServerConnector	signature:()
 ~CenterServerConnector	cs_connector.h	/^	~CenterServerConnector();$/;"	p	class:CenterServerConnector	access:public	signature:()
 ~CenterServerProcessor	cs_processor.cpp	/^CenterServerProcessor::~CenterServerProcessor()$/;"	f	class:CenterServerProcessor	signature:()
@@ -11628,6 +11719,8 @@ write_timeout_	room_server.h	/^	int write_timeout_;$/;"	m	class:RoomServer	acces
 ~GateServerProcessor	gs_processor.h	/^	~GateServerProcessor();$/;"	p	class:GateServerProcessor	access:public	signature:()
 ~GetCenterServerAddrRS	ds_command/get_cs_addr_rs.cpp	/^GetCenterServerAddrRS::~GetCenterServerAddrRS()$/;"	f	class:GetCenterServerAddrRS	signature:()
 ~GetCenterServerAddrRS	ds_command/get_cs_addr_rs.h	/^	~GetCenterServerAddrRS();$/;"	p	class:GetCenterServerAddrRS	access:public	signature:()
+~PutUserOnMicRQ	cl_command/put_user_on_mic_rq.cpp	/^PutUserOnMicRQ::~PutUserOnMicRQ()$/;"	f	class:PutUserOnMicRQ	signature:()
+~PutUserOnMicRQ	cl_command/put_user_on_mic_rq.h	/^	~PutUserOnMicRQ();$/;"	p	class:PutUserOnMicRQ	access:public	signature:()
 ~QueryChatRoomRS	ds_command/query_chat_room_rs.cpp	/^QueryChatRoomRS::~QueryChatRoomRS()$/;"	f	class:QueryChatRoomRS	signature:()
 ~QueryChatRoomRS	ds_command/query_chat_room_rs.h	/^	~QueryChatRoomRS();$/;"	p	class:QueryChatRoomRS	access:public	signature:()
 ~RoomManager	room_manager.cpp	/^RoomManager::~RoomManager()$/;"	f	class:RoomManager	signature:()
@@ -11714,5 +11807,15 @@ write_timeout_	room_server.h	/^	int write_timeout_;$/;"	m	class:RoomServer	acces
 ~StruUserOnMicID	packet/package_define.pb.h	/^  virtual ~StruUserOnMicID();$/;"	p	class:StruUserOnMicID	access:public	signature:()
 ~StruUserRoleInfoID	packet/package_define.pb.cc	/^StruUserRoleInfoID::~StruUserRoleInfoID() {$/;"	f	class:StruUserRoleInfoID	signature:()
 ~StruUserRoleInfoID	packet/package_define.pb.h	/^  virtual ~StruUserRoleInfoID();$/;"	p	class:StruUserRoleInfoID	access:public	signature:()
+~UserApplyMicRQ	cl_command/user_apply_mic_rq.cpp	/^UserApplyMicRQ::~UserApplyMicRQ()$/;"	f	class:UserApplyMicRQ	signature:()
+~UserApplyMicRQ	cl_command/user_apply_mic_rq.h	/^	~UserApplyMicRQ();$/;"	p	class:UserApplyMicRQ	access:public	signature:()
+~UserExitRoomID	cl_command/user_exit_room_id.cpp	/^UserExitRoomID::~UserExitRoomID()$/;"	f	class:UserExitRoomID	signature:()
+~UserExitRoomID	cl_command/user_exit_room_id.h	/^	~UserExitRoomID();$/;"	p	class:UserExitRoomID	access:public	signature:()
+~UserGiveGiftRQ	cl_command/user_give_gift_rq.cpp	/^UserGiveGiftRQ::~UserGiveGiftRQ()$/;"	f	class:UserGiveGiftRQ	signature:()
+~UserGiveGiftRQ	cl_command/user_give_gift_rq.h	/^	~UserGiveGiftRQ();$/;"	p	class:UserGiveGiftRQ	access:public	signature:()
 ~UserInfoList	user_info_list.cpp	/^UserInfoList::~UserInfoList()$/;"	f	class:UserInfoList	signature:()
 ~UserInfoList	user_info_list.h	/^	~UserInfoList();$/;"	p	class:UserInfoList	access:public	signature:()
+~UserOffMicRQ	cl_command/user_off_mic_rq.cpp	/^UserOffMicRQ::~UserOffMicRQ()$/;"	f	class:UserOffMicRQ	signature:()
+~UserOffMicRQ	cl_command/user_off_mic_rq.h	/^	~UserOffMicRQ();$/;"	p	class:UserOffMicRQ	access:public	signature:()
+~UserSendMsgRQ	cl_command/user_send_msg_rq.cpp	/^UserSendMsgRQ::~UserSendMsgRQ()$/;"	f	class:UserSendMsgRQ	signature:()
+~UserSendMsgRQ	cl_command/user_send_msg_rq.h	/^	~UserSendMsgRQ();$/;"	p	class:UserSendMsgRQ	access:public	signature:()

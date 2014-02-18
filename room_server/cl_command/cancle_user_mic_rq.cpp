@@ -30,5 +30,7 @@ CancleUserMicRQ::~CancleUserMicRQ()
 
 void CancleUserMicRQ::Execute(char *buff,int len,void *caller_ptr)
 {
-	
+	if(!server_ptr_ || !caller_ptr)
+		return;
+
 }
