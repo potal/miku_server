@@ -21,6 +21,7 @@
 #include <iostream>
 
 #include "rs_command/client_login_rq.h"
+#include "rs_command/user_give_gift_rq.h"
 
 RoomServerProcessor::RoomServerProcessor():is_started_(false),thread_count_(0),thread_id_ptr_(NULL),parent_ptr_(NULL)
 {
@@ -44,7 +45,12 @@ bool RoomServerProcessor::InitProcessor(int max_list_size,void *caller_ptr,void 
 		std::cout<<"Register UserLoginRQ Error"<<std::endl;
 		return false;
 	}
-
+	tmp_ret = tmp_cmd_chain->RegisterCommand(E_USER_GIVE_GIFT_RQ,new UserGiveGiftRQ(server_ptr));
+	if(!tmp_ret)
+	{
+		std::cout<<"Register UserGiveGiftRQ Error"<<std::endl;
+		return false;
+	}
 	return true;
 }
 

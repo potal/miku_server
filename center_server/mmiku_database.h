@@ -15,6 +15,7 @@ public:
 
 public:
 	int UserLogin(int user_id,std::string user_psw,int &result);
+	int UserGiveGift(int user_id,std::string gift_code,int &result);
 };
 
 #endif

@@ -29,8 +29,7 @@ void ClientLoginRQ::Execute(char *buff,int len,void *caller_ptr)
 		return ;
 
 	StruUserLoginRQ tmp_user_login;
-	bool tmp_return = false;
-	tmp_return = tmp_user_login.ParseFromArray(buff,len);
+	bool tmp_return = tmp_user_login.ParseFromArray(buff,len);
 	if(!tmp_return)
 		return ;
 	std::cout<<tmp_user_login.msg_id()<<std::endl;

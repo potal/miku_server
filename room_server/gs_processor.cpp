@@ -22,6 +22,13 @@
 #include <iostream>
 
 #include "cl_command/client_login_rq.h"
+#include "cl_command/cancle_user_mic_rq.h"
+#include "cl_command/put_user_on_mic_rq.h"
+#include "cl_command/user_apply_mic_rq.h"
+#include "cl_command/user_exit_room_id.h"
+#include "cl_command/user_give_gift_rq.h"
+#include "cl_command/user_off_mic_rq.h"
+#include "cl_command/user_send_msg_rq.h"
 
 GateServerProcessor::GateServerProcessor():is_started_(false),thread_id_ptr_(NULL),thread_count_(0),parent_ptr_(NULL),send_thread_id_(0)
 {
@@ -54,7 +61,48 @@ bool GateServerProcessor::InitProcessor(int max_list_size,void *caller_ptr,void 
 		std::cout<<"Register UserLoginRQ Error"<<std::endl;
 		return false;
 	}
-
+	tmp_ret = tmp_cmd_chain->RegisterCommand(E_CANCLE_USER_MIC_RQ,new CancleUserMicRQ(server_ptr));
+	if(!tmp_ret)
+	{
+		std::cout<<"Register CancleUserMicRQ Error"<<std::endl;
+		return false;
+	}
+	tmp_ret = tmp_cmd_chain->RegisterCommand(E_PUT_USER_ON_MIC_RQ,new PutUserOnMicRQ(server_ptr));
+	if(!tmp_ret)
+	{
+		std::cout<<"Register PutUserOnMicRQ Error"<<std::endl;
+		return false;
+	}
+	tmp_ret = tmp_cmd_chain->RegisterCommand(E_USER_APPLY_MIC_RQ,new UserApplyMicRQ(server_ptr));
+	if(!tmp_ret)
+	{
+		std::cout<<"Register UserApplyMicRQ Error"<<std::endl;
+		return false;
+	}
+	tmp_ret = tmp_cmd_chain->RegisterCommand(E_USER_EXIT_ROOM_ID,new UserExitRoomID(server_ptr));
+	if(!tmp_ret)
+	{
+		std::cout<<"Register UserExitRoomID Error"<<std::endl;
+		return false;
+	}
+	tmp_ret = tmp_cmd_chain->RegisterCommand(E_USER_GIVE_GIFT_RQ,new UserGiveGiftRQ(server_ptr));
+	if(!tmp_ret)
+	{
+		std::cout<<"Register UserGiveGiftRQ Error"<<std::endl;
+		return false;
+	}
+	tmp_ret = tmp_cmd_chain->RegisterCommand(E_USER_OFF_MIC_RQ,new UserOffMicRQ(server_ptr));
+	if(!tmp_ret)
+	{
+		std::cout<<"Register UserOffMicRQ Error"<<std::endl;
+		return false;
+	}
+	tmp_ret = tmp_cmd_chain->RegisterCommand(E_USER_MSG_RQ,new UserSendMsgRQ(server_ptr));
+	if(!tmp_ret)
+	{
+		std::cout<<"Register UserSendMsgRQ Error"<<std::endl;
+		return false;
+	}
 	return true;
 }
 

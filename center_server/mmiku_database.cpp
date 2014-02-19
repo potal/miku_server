@@ -54,7 +54,6 @@ int MikuDatabase::UserLogin(int user_id,std::string user_psw,int &result)
 		std::string tmp_sql;
 		tmp_sql_state<<"select user_psw from userInfo where user_id="<<user_id;
 		tmp_sql = tmp_sql_state.str();
-		std::cout<<tmp_sql<<std::endl;
 
 		sql::ResultSet *tmp_result = tmp_state->executeQuery(tmp_sql);
 		if(!tmp_result)
@@ -67,15 +66,10 @@ int MikuDatabase::UserLogin(int user_id,std::string user_psw,int &result)
 			if(tmp_result->next())
 			{
 				std::string tmp_user_psw = tmp_result->getString("user_psw");
-				std::cout<<tmp_user_psw<<std::endl;
 				if(tmp_user_psw == user_psw)
-				{
 					result = 1;
-				}
 				else
-				{
 					result = -1;
-				}
 				tmp_return = 1;
 			}
 			else
@@ -91,4 +85,16 @@ int MikuDatabase::UserLogin(int user_id,std::string user_psw,int &result)
 	if(tmp_state)
 		delete tmp_state;
 	return tmp_return;
+}
+
+int MikuDatabase::UserGiveGift(int user_id,std::string gift_code,int &result)
+{
+	int tmp_db_ret = 0;
+	sql::Connection *tmp_conn = NULL;
+	sql::Statement *tmp_state = NULL;
+	sql::ResultSet *tmp_result = NULL;
+	std::stringstream tmp_sql_state;
+	std::string tmp_sql;
+
+	return tmp_db_ret;
 }
