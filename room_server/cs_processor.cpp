@@ -1,5 +1,5 @@
 #include "cs_processor.h"
-#include "packet/package_define.pb.h"
+#include "../packet/package_define.pb.h"
 
 #include "cs_command/client_login_rs.h"
 

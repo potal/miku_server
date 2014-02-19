@@ -268,6 +268,7 @@ ClientInfoEx::ClientInfoEx	client_info_list.cpp	/^ClientInfoEx::ClientInfoEx():r
 ClientInfoEx::ClientInfoEx	client_info_list.h	/^	ClientInfoEx();$/;"	p	class:ClientInfoEx	access:public	signature:()
 ClientInfoEx::DealWithData	client_info_list.cpp	/^void ClientInfoEx::DealWithData(struct bufferevent *buff_ev,void *arg)$/;"	f	class:ClientInfoEx	signature:(struct bufferevent *buff_ev,void *arg)
 ClientInfoEx::DealWithData	client_info_list.h	/^	void DealWithData(struct bufferevent *buff_ev,void *arg);$/;"	p	class:ClientInfoEx	access:public	signature:(struct bufferevent *buff_ev,void *arg)
+ClientInfoEx::GetGSProcessor	client_info_list.h	/^	inline GateServerProcessor *GetGSProcessor(){$/;"	f	class:ClientInfoEx	access:public	signature:()
 ClientInfoEx::gs_processor_	client_info_list.h	/^	GateServerProcessor gs_processor_;\/\/gs processor$/;"	m	class:ClientInfoEx	access:public
 ClientInfoEx::recved_buff_	client_info_list.h	/^	char *recved_buff_;$/;"	m	class:ClientInfoEx	access:public
 ClientInfoEx::remain_buff_len_	client_info_list.h	/^	int remain_buff_len_;$/;"	m	class:ClientInfoEx	access:public
@@ -925,12 +926,16 @@ GateServerProcessor::GateServerProcessor	gs_processor.cpp	/^GateServerProcessor:
 GateServerProcessor::GateServerProcessor	gs_processor.h	/^	GateServerProcessor();$/;"	p	class:GateServerProcessor	access:public	signature:()
 GateServerProcessor::InitProcessor	gs_processor.cpp	/^bool GateServerProcessor::InitProcessor(int max_list_size,void *caller_ptr,void *server_ptr)$/;"	f	class:GateServerProcessor	signature:(int max_list_size,void *caller_ptr,void *server_ptr)
 GateServerProcessor::InitProcessor	gs_processor.h	/^	bool InitProcessor(int max_list_size,void *caller_ptr,void *server_ptr);$/;"	p	class:GateServerProcessor	access:public	signature:(int max_list_size,void *caller_ptr,void *server_ptr)
+GateServerProcessor::SendData	gs_processor.h	/^	bool SendData(T &pack,int msg_id,int user_hashkey,int optional_fd = 0);$/;"	p	class:GateServerProcessor	access:public	signature:(T &pack,int msg_id,int user_hashkey,int optional_fd = 0)
+GateServerProcessor::SendData	gs_processor.h	/^bool GateServerProcessor::SendData(T &pack,int msg_id,int user_hashkey,int optional_fd)$/;"	f	class:GateServerProcessor	signature:(T &pack,int msg_id,int user_hashkey,int optional_fd)
+GateServerProcessor::SendDataThread	gs_processor.h	/^	static void* SendDataThread(void *arg);$/;"	p	class:GateServerProcessor	access:public	signature:(void *arg)
 GateServerProcessor::StartProcessor	gs_processor.cpp	/^bool GateServerProcessor::StartProcessor(int thread_count)$/;"	f	class:GateServerProcessor	signature:(int thread_count)
 GateServerProcessor::StartProcessor	gs_processor.h	/^	bool StartProcessor(int thread_count);$/;"	p	class:GateServerProcessor	access:public	signature:(int thread_count)
 GateServerProcessor::StopProcessor	gs_processor.cpp	/^void GateServerProcessor::StopProcessor()$/;"	f	class:GateServerProcessor	signature:()
 GateServerProcessor::StopProcessor	gs_processor.h	/^	void StopProcessor();$/;"	p	class:GateServerProcessor	access:public	signature:()
 GateServerProcessor::is_started_	gs_processor.h	/^	bool is_started_;$/;"	m	class:GateServerProcessor	access:private
 GateServerProcessor::parent_ptr_	gs_processor.h	/^	void *parent_ptr_;		\/\/client_info$/;"	m	class:GateServerProcessor	access:private
+GateServerProcessor::send_list_	gs_processor.h	/^	CircleList send_list_;$/;"	m	class:GateServerProcessor	access:private
 GateServerProcessor::thread_count_	gs_processor.h	/^	int thread_count_;$/;"	m	class:GateServerProcessor	access:private
 GateServerProcessor::thread_id_ptr_	gs_processor.h	/^	pthread_t *thread_id_ptr_;$/;"	m	class:GateServerProcessor	access:private
 GateServerProcessor::~GateServerProcessor	gs_processor.cpp	/^GateServerProcessor::~GateServerProcessor()$/;"	f	class:GateServerProcessor	signature:()
@@ -1005,6 +1010,7 @@ GetEnumDescriptor	packet/ds_server.pb.h	/^inline const EnumDescriptor* GetEnumDe
 GetEnumDescriptor	packet/ds_server.pb.h	/^inline const EnumDescriptor* GetEnumDescriptor< CytPacketType>() {$/;"	f	namespace:google::protobuf	signature:()
 GetEnumDescriptor	packet/ds_server.pb.h	/^inline const EnumDescriptor* GetEnumDescriptor< ServerType>() {$/;"	f	namespace:google::protobuf	signature:()
 GetEnumDescriptor	packet/package_define.pb.h	/^inline const EnumDescriptor* GetEnumDescriptor< EnumMsgID>() {$/;"	f	namespace:google::protobuf	signature:()
+GetGSProcessor	client_info_list.h	/^	inline GateServerProcessor *GetGSProcessor(){$/;"	f	class:ClientInfoEx	access:public	signature:()
 GetMetadata	packet/cyt_packet.pb.cpp	/^::google::protobuf::Metadata StruCytPacket::GetMetadata() const {$/;"	f	class:StruCytPacket	signature:() const
 GetMetadata	packet/cyt_packet.pb.h	/^  ::google::protobuf::Metadata GetMetadata() const;$/;"	p	class:StruCytPacket	access:public	signature:() const
 GetMetadata	packet/ds_server.pb.cpp	/^::google::protobuf::Metadata SStruDsRSGetCsInfoRs::GetMetadata() const {$/;"	f	class:SStruDsRSGetCsInfoRs	signature:() const
@@ -1863,6 +1869,9 @@ STREAM_TYPE_OPEN	packet/ds_server.pb.cpp	/^const StruDsMSStreamRq_StreamType Str
 STREAM_TYPE_OPEN	packet/ds_server.pb.h	/^  static const StreamType STREAM_TYPE_OPEN = StruDsMSStreamRq_StreamType_STREAM_TYPE_OPEN;$/;"	m	class:StruDsMSStreamRq	access:public
 SendConnectDsRQ	ds_processor.cpp	/^void DirectorServerProcessor::SendConnectDsRQ()$/;"	f	class:DirectorServerProcessor	signature:()
 SendConnectDsRQ	ds_processor.h	/^	void SendConnectDsRQ();$/;"	p	class:DirectorServerProcessor	access:public	signature:()
+SendData	gs_processor.h	/^	bool SendData(T &pack,int msg_id,int user_hashkey,int optional_fd = 0);$/;"	p	class:GateServerProcessor	access:public	signature:(T &pack,int msg_id,int user_hashkey,int optional_fd = 0)
+SendData	gs_processor.h	/^bool GateServerProcessor::SendData(T &pack,int msg_id,int user_hashkey,int optional_fd)$/;"	f	class:GateServerProcessor	signature:(T &pack,int msg_id,int user_hashkey,int optional_fd)
+SendDataThread	gs_processor.h	/^	static void* SendDataThread(void *arg);$/;"	p	class:GateServerProcessor	access:public	signature:(void *arg)
 SendDataToGS	cs_processor.h	/^	bool SendDataToGS(T &pack,int msg_id,int fd,int user_hashkey);$/;"	p	class:CenterServerProcessor	access:public	signature:(T &pack,int msg_id,int fd,int user_hashkey)
 SendDataToGS	cs_processor.h	/^bool CenterServerProcessor::SendDataToGS(T &pack,int msg_id,int fd,int user_hashkey)$/;"	f	class:CenterServerProcessor	signature:(T &pack,int msg_id,int fd,int user_hashkey)
 SendPackage	ds_connector.h	/^	bool SendPackage(T &pack,int msg_id,int optional_fd = 0);$/;"	p	class:DirectorServerConnector	access:public	signature:(T &pack,int msg_id,int optional_fd = 0)
@@ -10549,6 +10558,7 @@ room_type_	packet/package_define.pb.h	/^  ::google::protobuf::int32 room_type_;$
 rs_server_id	packet/ds_server.pb.h	/^  inline ::google::protobuf::int32 rs_server_id() const;$/;"	p	class:StruDsGSGetRoomInfoRs	access:public	signature:() const
 rs_server_id	packet/ds_server.pb.h	/^inline ::google::protobuf::int32 StruDsGSGetRoomInfoRs::rs_server_id() const {$/;"	f	class:StruDsGSGetRoomInfoRs	signature:() const
 rs_server_id_	packet/ds_server.pb.h	/^  ::google::protobuf::int32 rs_server_id_;$/;"	m	class:StruDsGSGetRoomInfoRs	access:private
+send_list_	gs_processor.h	/^	CircleList send_list_;$/;"	m	class:GateServerProcessor	access:private
 server_detect_port	packet/ds_server.pb.h	/^  inline ::google::protobuf::int32 server_detect_port() const;$/;"	p	class:StruDsServerConnectRq	access:public	signature:() const
 server_detect_port	packet/ds_server.pb.h	/^  inline ::google::protobuf::int32 server_detect_port() const;$/;"	p	class:StruDsServerInfo	access:public	signature:() const
 server_detect_port	packet/ds_server.pb.h	/^inline ::google::protobuf::int32 StruDsServerConnectRq::server_detect_port() const {$/;"	f	class:StruDsServerConnectRq	signature:() const

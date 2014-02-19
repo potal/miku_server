@@ -17,7 +17,7 @@
  */
 
 #include "get_cs_addr_rs.h"
-#include "../packet/ds_server.pb.h"
+#include "../../packet/ds_server.pb.h"
 
 GetCenterServerAddrRS::GetCenterServerAddrRS()
 {

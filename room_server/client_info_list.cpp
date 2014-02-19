@@ -17,8 +17,8 @@
  */
 
 #include "client_info_list.h"
-#include "packet/cyt_packet.pb.h"
-#include "packet/package_define.pb.h"
+#include "../packet/cyt_packet.pb.h"
+#include "../packet/package_define.pb.h"
 
 ClientInfoEx::ClientInfoEx():room_server_(NULL),remain_buff_len_(0)
 {

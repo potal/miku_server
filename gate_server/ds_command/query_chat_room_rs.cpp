@@ -1,5 +1,5 @@
 #include "query_chat_room_rs.h"
-#include "../packet/ds_server.pb.h"
+#include "../../packet/ds_server.pb.h"
 #include "../gate_server.h"
 
 QueryChatRoomRS::QueryChatRoomRS(void *server_ptr)

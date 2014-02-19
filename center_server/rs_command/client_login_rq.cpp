@@ -1,5 +1,5 @@
 #include "client_login_rq.h"
-#include "../packet/package_define.pb.h"
+#include "../../packet/package_define.pb.h"
 #include "center_server.h"
 
 ClientLoginRQ::ClientLoginRQ()

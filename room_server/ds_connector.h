@@ -4,8 +4,8 @@
 #include "../common/connector.h"
 #include "ds_processor.h"
 
-#include "packet/cyt_packet.pb.h"
-#include "packet/ds_server.pb.h"
+#include "../packet/cyt_packet.pb.h"
+#include "../packet/ds_server.pb.h"
 
 class DirectorServerConnector : public Connector
 {

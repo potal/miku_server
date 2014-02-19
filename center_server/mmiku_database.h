@@ -2,8 +2,8 @@
 #define MMIKU_DATABASE_H_
 
 #include "../common/mysql_conn_pool.h"
-#include "packet/cyt_packet.pb.h"
-#include "packet/package_define.pb.h"
+#include "../packet/cyt_packet.pb.h"
+#include "../packet/package_define.pb.h"
 
 class MikuDatabase
 {

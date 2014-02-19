@@ -21,6 +21,18 @@ public:
 	void ResetRoom(int room_id,int room_fd);
 	UserInfoList *GetUserInfoList();
 	UserInfoList *GetPreUserInfoList();
+
+	UserInfo *NewUserInfo();
+	UserInfo *NewPreUserInfo();
+
+	bool AddUser(int user_id,UserInfo *user);
+	bool AddPreUser(int user_id,UserInfo *user);
+
+	UserInfo *GetUserInfo(int user_id);
+	UserInfo *GetPreUserInfo(int user_id);
+
+	void RemoveUser(int user_id);
+	void RemovePreUser(int user_id);
 };
 
 

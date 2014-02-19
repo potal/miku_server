@@ -23,6 +23,9 @@ public:
 
 	void Clear();
 	void DealWithData(struct bufferevent *buff_ev,void *arg);
+	inline GateServerProcessor *GetGSProcessor(){
+		return &gs_processor_;
+	}
 };
 
 class ClientInfoList : public BaseUserInfoResource

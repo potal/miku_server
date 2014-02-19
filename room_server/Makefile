@@ -1,10 +1,11 @@
 #                     MAKE MACRO DEFINATION
 ROOT =.
 DIRS =./\
-	 ../common/
+	 ../common/\
+	 ../packet/
 SRC=$(shell find $(DIRS) -path -prune -o -name '*.cpp')
 SRCOBJ=$(SRC:%.cpp=%.o)
-CCSRC=$(shell find $(ROOT) -path -prune -o -name '*.cc')
+CCSRC=$(shell find $(DIRS) -path -prune -o -name '*.cc')
 CCSRCOBJ=$(CCSRC:%.cc=%.o)
 CC = g++
 LINK = g++
@@ -12,7 +13,7 @@ CCFlag = -O0 -g3 -w -c -fmessage-length=0 -fPIC $(mysql_config --cflags)
 LINKFlag = -shared
 PROGRAM = roomserver
 
-INCLUDES = -I../common/ -I$(ROOT)/ -Ipacket
+INCLUDES = -I../common/ -I$(ROOT)/ -I../packet/
 #LIBPATH= -Llib/libevent -Llib/protobuf
 LIBS = -lpthread -levent -lprotobuf -lmysqlcppconn $(mysql_config --libs)
 #-lrt -ldl -levent_core -levent_pthreads -lprotobuf -lprotoc

@@ -15,8 +15,8 @@
  *
  * =====================================================================================
  */
-#include "packet/cyt_packet.pb.h"
-#include "packet/package_define.pb.h"
+#include "../packet/cyt_packet.pb.h"
+#include "../packet/package_define.pb.h"
 #include "rs_processor.h"
 #include <iostream>
 

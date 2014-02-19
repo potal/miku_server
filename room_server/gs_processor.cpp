@@ -15,20 +15,26 @@
  *
  * =====================================================================================
  */
-#include "packet/cyt_packet.pb.h"
-#include "packet/package_define.pb.h"
+#include "../packet/cyt_packet.pb.h"
+#include "../packet/package_define.pb.h"
 #include "gs_processor.h"
+#include "client_info_list.h"
 #include <iostream>
 
 #include "cl_command/client_login_rq.h"
 
-GateServerProcessor::GateServerProcessor():is_started_(false),thread_id_ptr_(NULL),thread_count_(0),parent_ptr_(NULL)
+GateServerProcessor::GateServerProcessor():is_started_(false),thread_id_ptr_(NULL),thread_count_(0),parent_ptr_(NULL),send_thread_id_(0)
 {
 
 }
 
 GateServerProcessor::~GateServerProcessor()
 {
+	for(int i = 0;i < thread_count_;i++)
+	{
+		pthread_join(thread_id_ptr_[i],NULL);
+	}
+	pthread_join(send_thread_id_,NULL);
 	if(thread_id_ptr_)
 	{
 		delete []thread_id_ptr_;
@@ -59,18 +65,23 @@ bool GateServerProcessor::StartProcessor(int thread_count)
 		return false;
 	thread_count_ = thread_count;
 	is_started_ = true;
-	bool tmp_ret = false;
+	int tmp_ret = -1;
 	thread_id_ptr_ = new pthread_t[thread_count];
 	int i = 0;
 	for(i = 0;i < thread_count;i ++)
 	{
 		tmp_ret = pthread_create(&thread_id_ptr_[i],NULL,DealWithDataThread,this);
-		if(!tmp_ret)
+		if(tmp_ret != 0)
 		{
 			break;
 		}
 	}
-	std::cout<<"Create "<<i+1<<" thread(s) ok!"<<std::endl;
+	std::cout<<"Create "<<i+1<<" deal reced data thread(s) ok!"<<std::endl;
+	tmp_ret = pthread_create(&send_thread_id_,NULL,SendDataThread,this);
+	if(tmp_ret != 0)
+	{
+		std::cout<<"create send thread error!"<<std::endl;
+	}
 	return true;
 }
 
@@ -94,10 +105,11 @@ void* GateServerProcessor::DealWithDataThread(void *arg)
 		return NULL;
 	}
 	bool tmp_return = false;
+	char tmp_out_buff[0x2000] = {0};
+	int tmp_out_len = 0;
 	while(tmp_processor->is_started_)
 	{
-		char tmp_out_buff[0x2000] = {0};
-		int tmp_out_len = 0;
+		tmp_out_len = 0;
 		if(!tmp_processor->GetCircleList()->GetBuffer(tmp_out_buff,0x2000,tmp_out_len))
 		{
 			usleep(5000);
@@ -132,5 +144,31 @@ void* GateServerProcessor::DealWithDataThread(void *arg)
 		tmp_cmd->Execute(tmp_out_buff,tmp_out_len,arg);
 	}
 	std::cout<<"GateServerProcessor::DealWithDataThread ends"<<std::endl;
+	return NULL;
+}
+
+void * GateServerProcessor::SendDataThread(void *arg)
+{
+	GateServerProcessor *tmp_processor = reinterpret_cast<GateServerProcessor *>(arg);
+	if(!tmp_processor)
+	{
+		std::cout<<"Create SendDataThread Error"<<std::endl;
+		return NULL;
+	}
+	int tmp_gs_fd = reinterpret_cast<ClientInfoEx *>(tmp_processor->parent_ptr_)->user_sock;
+	bool tmp_return = false;
+	char tmp_out_buff[0x2000] = {0};
+	int tmp_out_len = 0;
+	while(tmp_processor->is_started_)
+	{
+		tmp_out_len = 0;
+		if(!tmp_processor->GetCircleList()->GetBuffer(tmp_out_buff,0x2000,tmp_out_len))
+		{
+			usleep(5000);
+			continue;
+		}
+		write(tmp_gs_fd,tmp_out_buff,tmp_out_len);
+	}
+
 	return NULL;
 }

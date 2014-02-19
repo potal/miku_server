@@ -18,7 +18,7 @@
 
 #include "connect_director_server_rs.h"
 #include "../room_server.h"
-#include "../packet/ds_server.pb.h"
+#include "../../packet/ds_server.pb.h"
 
 ConnectDirectorServerRS::ConnectDirectorServerRS()
 {

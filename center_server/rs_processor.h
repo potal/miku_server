@@ -2,7 +2,7 @@
 #define CL_PROCESSOR_H_
 
 #include "../common/base_processor.h"
-#include "packet/cyt_packet.pb.h"
+#include "../packet/cyt_packet.pb.h"
 #include <pthread.h>
 
 class RoomServerProcessor : public BaseProcessor

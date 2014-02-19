@@ -1,5 +1,5 @@
 #include "rs_processor.h"
-#include "packet/package_define.pb.h"
+#include "../packet/package_define.pb.h"
 #include "rs_connector.h"
 #include "gate_server.h"
 

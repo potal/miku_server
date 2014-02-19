@@ -16,8 +16,8 @@
  * =====================================================================================
  */
 
-#include "packet/cyt_packet.pb.h"
-#include "packet/package_define.pb.h"
+#include "../packet/cyt_packet.pb.h"
+#include "../packet/package_define.pb.h"
 #include "room_manager.h"
 #include "gate_server.h"
 #include "user_info_list.h"

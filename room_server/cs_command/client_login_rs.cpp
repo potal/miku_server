@@ -33,14 +33,14 @@ void ClientLoginRS::Execute(char *buff,int len,void *caller_ptr)
 	tmp_return = tmp_user_login_rs.ParseFromArray(buff,len);
 	if(!tmp_return)
 		return ;
-	std::cout<<tmp_user_login_rs.msg_id()<<std::endl;
-	std::cout<<tmp_user_login_rs.user_id()<<std::endl;
-	std::cout<<tmp_user_login_rs.room_id()<<std::endl;
-	std::cout<<tmp_user_login_rs.result()<<std::endl;
 
 	int tmp_login_result = tmp_user_login_rs.result();
 	int tmp_room_id = tmp_user_login_rs.room_id();
 	int tmp_user_id = tmp_user_login_rs.user_id();
+	
+	std::cout<<"tmp_user_id:"<<tmp_user_id<<std::endl;
+	std::cout<<"tmp_room_id:"<<tmp_room_id<<std::endl;
+	std::cout<<"tmp_login_result:"<<tmp_login_result<<std::endl;
 	
 	ChatRoom *tmp_room = tmp_server->GetRoomManager()->GetRoom(tmp_room_id);
 	if(!tmp_room)
@@ -48,7 +48,7 @@ void ClientLoginRS::Execute(char *buff,int len,void *caller_ptr)
 		std::cout<<"Room "<<tmp_room_id<<" does not exist"<<std::endl;
 		return;
 	}	
-	UserInfo *tmp_user = tmp_room->GetPreUserInfoList()->GetUserInfo(tmp_user_id);
+	UserInfo *tmp_user = tmp_room->GetPreUserInfo(tmp_user_id);
 	if(!tmp_user)
 	{
 		std::cout<<"User "<<tmp_user_id<<" have not logined"<<std::endl;
@@ -57,16 +57,15 @@ void ClientLoginRS::Execute(char *buff,int len,void *caller_ptr)
 
 	if(tmp_login_result == 1)
 	{
-		UserInfo *tmp_current_user = NULL;
-		int tmp_get_user = tmp_room->GetUserInfoList()->GetUnusedUser(tmp_current_user);
-		if(tmp_get_user < 0)
+		UserInfo *tmp_current_user = tmp_room->NewUserInfo();
+		if(!tmp_current_user)
 		{
 			std::cout<<"Get UserInfo failed"<<std::endl;
 		}
 		else
 		{
 			memcpy(tmp_current_user,tmp_user,sizeof(UserInfo));
-			tmp_room->GetUserInfoList()->AddUserInfo(tmp_user_id,tmp_current_user);
+			tmp_room->AddUser(tmp_user_id,tmp_current_user);
 		}
 	}
 	ClientInfoEx *tmp_gs = reinterpret_cast<ClientInfoEx *>(tmp_server->GetClientList()->GetUserByHashkey(tmp_user->gs_hashkey_user_on));
@@ -74,5 +73,5 @@ void ClientLoginRS::Execute(char *buff,int len,void *caller_ptr)
 	{
 		tmp_processor->SendDataToGS(tmp_user_login_rs,tmp_user_login_rs.msg_id(),tmp_gs->user_sock,tmp_user->user_hash_key);
 	}
-	tmp_room->GetPreUserInfoList()->PushUserInUnusedList(tmp_user);
+	tmp_room->RemovePreUser(tmp_user_id);
 }

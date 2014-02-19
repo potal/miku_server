@@ -20,8 +20,8 @@
 #include "ds_processor.h"
 #include "ds_connector.h"
 
-#include "packet/ds_server.pb.h"
-#include "packet/cyt_packet.pb.h"
+#include "../packet/ds_server.pb.h"
+#include "../packet/cyt_packet.pb.h"
 #include "ds_command/query_chat_room_rs.h"
 #include "ds_command/connect_director_server_rs.h"
 #include "ds_command/get_cs_addr_rs.h"
