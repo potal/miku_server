@@ -55,6 +55,10 @@ bool GateServer::GetConfig(std::string file_name)
 		{
 			tmp_ss>>server_ip_;
 		}
+		else if(tmp_name_str == "ds_ip")
+		{
+			tmp_ss>>ds_ip_;
+		}
 		else
 		{
 			int tmp_value;
@@ -69,6 +73,10 @@ bool GateServer::GetConfig(std::string file_name)
 				read_timeout_ = tmp_value;
 			else if(tmp_name_str == "write_timeout")
 				write_timeout_ = tmp_value;
+			else if(tmp_name_str == "ds_port")
+				ds_port_ = tmp_value;
+			else if(tmp_name_str == "server_id")
+				server_id_ = tmp_value;
 		}
 	}
 	if(server_port_ == 0)
@@ -87,14 +95,16 @@ bool GateServer::InitServer()
 	
 	if(!tmp_return)
 		return false;
+	cl_processor_.InitProcessor(1000,this,this);
 //	rs_connector_.InitConnectionInfo("192.168.220.142",5556);
-	ds_connector_.InitConnectionInfo("192.168.229.128",5560);
+	ds_connector_.InitConnectionInfo(ds_ip_.c_str(),ds_port_);
 	return true;
 }
 
 bool GateServer::StartServer()
 {
 	bool tmp_return = false;
+	cl_processor_.StartProcessor();
 //	tmp_return = rs_connector_.StartConnect();
 //	if(!tmp_return)
 //		return false;
@@ -140,6 +150,11 @@ DirectorServerConnector *GateServer::GetDSConnector()
 std::map<int,RoomServerConnector *> *GateServer::GetRSConnectionList()
 {
 	return &rs_conn_list_;
+}
+
+ClientProcessor *GateServer::GetCLProcessor()
+{
+	return &cl_processor_;
 }
 
 void GateServer::StopServer()

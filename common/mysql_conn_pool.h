@@ -43,7 +43,7 @@ private:
 
 	static MysqlConnPool *conn_pool_;
 	
-	MysqlConnPool(string sql_addr,string user_name,string user_psw,string db_name,int max_conn_size);//constructor
+	MysqlConnPool();//constructor
 	sql::Connection * CreateConnection();//create one conncection
 	void InitConnection(int init_size);//initialize connections
 	void DestoryConnection(sql::Connection *sql_conn);//destory connections
@@ -53,6 +53,7 @@ public:
 	~MysqlConnPool();
 	
 	static MysqlConnPool *GetInstance();
+	void Init(string sql_addr,string user_name,string user_psw,string db_name,int max_conn_size);
 	sql::Connection *GetConnection();
 	bool ReleaseConnection(sql::Connection *sql_conn);
 };

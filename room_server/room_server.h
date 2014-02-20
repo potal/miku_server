@@ -13,14 +13,18 @@
 
 class RoomServer
 {
-private:
+public:
+	int server_id_;
 	std::string server_ip_;
 	int server_port_;
 	int count_worker_;
 	int count_user_per_worker_;
 	int read_timeout_;
 	int write_timeout_;
+	std::string ds_ip_;
+	int ds_port_;
 
+private:
 	ClientInfoList client_list_;
 	ServerListenner server_listenner_;
 	RoomManager room_manager_;

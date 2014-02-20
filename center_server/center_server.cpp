@@ -46,9 +46,17 @@ bool CenterServer::GetConfig(std::string file_name)
 		std::string tmp_name_str;
 		tmp_ss>>tmp_name_str;
 		if(tmp_name_str == "ip")
-		{
 			tmp_ss>>server_ip_;
-		}
+		else if(tmp_name_str == "ds_ip")
+			tmp_ss>>ds_ip_;
+		else if(tmp_name_str == "db_addr")
+			tmp_ss>>db_addr_;
+		else if(tmp_name_str == "db_user")
+			tmp_ss>>db_user_;
+		else if(tmp_name_str == "db_psw")
+			tmp_ss>>db_psw_;
+		else if(tmp_name_str == "db_name")
+			tmp_ss>>db_name_;
 		else
 		{
 			int tmp_value;
@@ -63,6 +71,12 @@ bool CenterServer::GetConfig(std::string file_name)
 				read_timeout_ = tmp_value;
 			else if(tmp_name_str == "write_timeout")
 				write_timeout_ = tmp_value;
+			else if(tmp_name_str == "ds_port")
+				ds_port_ = tmp_value;
+			else if(tmp_name_str == "server_id")
+				server_id_ = tmp_value;
+			else if(tmp_name_str == "db_max_conn")
+				max_conn_size_ = tmp_value;
 		}
 	}
 	if(server_port_ == 0)
@@ -81,7 +95,9 @@ bool CenterServer::InitServer()
 	
 	if(!tmp_return)
 		return false;
-	ds_connector_.InitConnectionInfo("192.168.229.128",5556);
+	miku_db_.Init(this);
+
+	ds_connector_.InitConnectionInfo(ds_ip_.c_str(),ds_port_);
 	return true;
 }
 

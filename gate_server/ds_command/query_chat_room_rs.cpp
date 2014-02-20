@@ -63,4 +63,5 @@ void QueryChatRoomRS::Execute(char *buff,int len,void *caller_ptr)
 		tmp_rs_conn = tmp_iter->second;
 	}
 	tmp_server->GetRoomManager()->AddRoom(tmp_get_room_rs.room_id(),tmp_rs_conn->GetSocket());
+	tmp_server->GetCLProcessor()->DeleteRoom(tmp_get_room_rs.room_id());
 }

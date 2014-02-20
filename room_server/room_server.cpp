@@ -49,6 +49,10 @@ bool RoomServer::GetConfig(std::string file_name)
 		{
 			tmp_ss>>server_ip_;
 		}
+		else if(tmp_name_str == "ds_ip")
+		{
+			tmp_ss>>ds_ip_;
+		}
 		else
 		{
 			int tmp_value;
@@ -63,6 +67,10 @@ bool RoomServer::GetConfig(std::string file_name)
 				read_timeout_ = tmp_value;
 			else if(tmp_name_str == "write_timeout")
 				write_timeout_ = tmp_value;
+			else if(tmp_name_str == "ds_port")
+				ds_port_ = tmp_value;
+			else if(tmp_name_str == "server_id")
+				server_id_ = tmp_value;
 		}
 	}
 	if(server_port_ == 0)
@@ -82,7 +90,7 @@ bool RoomServer::InitServer()
 	if(!tmp_return)
 		return false;
 //	cs_connector_.InitConnectionInfo("192.168.220.142",5560);
-	ds_connector_.InitConnectionInfo("192.168.220.142",5560);
+	ds_connector_.InitConnectionInfo(ds_ip_.c_str(),ds_port_);
 	return true;
 }
 

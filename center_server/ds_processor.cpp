@@ -18,6 +18,7 @@
 
 #include "ds_processor.h"
 #include "ds_connector.h"
+#include "center_server.h"
 
 #include "../packet/ds_server.pb.h"
 #include "../packet/cyt_packet.pb.h"
@@ -107,10 +108,13 @@ void *DirectorServerProcessor::GetParent()
 
 void DirectorServerProcessor::SendConnectDsRQ()
 {
+	CenterServer *tmp_server = reinterpret_cast<CenterServer *>(GetCaller());
+	if(!tmp_server)
+		return ;
 	StruDsServerConnectRq tmp_conn_rq;
-	tmp_conn_rq.set_server_id(1);//here server id from configuration file
-	tmp_conn_rq.set_server_ip("192.168.220.128");
-	tmp_conn_rq.set_server_port(5555);
+	tmp_conn_rq.set_server_id(tmp_server->server_id_);
+	tmp_conn_rq.set_server_ip(tmp_server->server_ip_);
+	tmp_conn_rq.set_server_port(tmp_server->server_port_);
 	tmp_conn_rq.set_server_type(SERVER_TYPE_CS);
 	tmp_conn_rq.set_connect_type(StruDsServerConnectRq_ConnectType_CONNECT_TYPE_NEWCONNECT);
 	tmp_conn_rq.set_server_detect_port(0);

@@ -46,14 +46,15 @@ void ConnectDirectorServerRS::Execute(char *buff,int len,void *caller_ptr)
 		std::cout<<"Unpack StruDsServerConnectRs Error!"<<std::endl;
 		return;
 	}
+	std::cout<<"rs connect result:"<<tmp_conn_rs.result()<<std::endl;
 	if(tmp_conn_rs.result() == 1)
 	{
-		StruDsRSGetCsInfoRq tmp_get_cs_rq;
-		tmp_get_cs_rq.set_server_id(2);
-
 		RoomServer *tmp_server = reinterpret_cast<RoomServer *>(server_ptr_);
 		if(!tmp_server)
 			return;
+		StruDsRSGetCsInfoRq tmp_get_cs_rq;
+		tmp_get_cs_rq.set_server_id(tmp_server->server_id_);
+		
 		DirectorServerConnector *tmp_ds_conn = tmp_server->GetDSConnector();
 		if(!tmp_ds_conn)
 			return;

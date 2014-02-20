@@ -17,13 +17,14 @@
  */
 
 #include "mmiku_database.h"
+#include "center_server.h"
 #include <iostream>
 #include <string>
 #include <sstream>
 
 using namespace std;
 
-MikuDatabase::MikuDatabase()
+MikuDatabase::MikuDatabase():server_ptr_(NULL)
 {
 	conn_pool_ptr_ = MysqlConnPool::GetInstance();
 }
@@ -31,6 +32,18 @@ MikuDatabase::MikuDatabase()
 MikuDatabase::~MikuDatabase()
 {
 
+}
+
+void MikuDatabase::Init(void *server_ptr)
+{
+	server_ptr_ = server_ptr;
+	CenterServer *tmp_server = reinterpret_cast<CenterServer *>(server_ptr_);
+	if(!tmp_server)
+		return;
+	if(conn_pool_ptr_)
+	{
+		conn_pool_ptr_->Init(tmp_server->db_addr_,tmp_server->db_user_,tmp_server->db_psw_,tmp_server->db_name_,tmp_server->max_conn_size_);
+	}
 }
 
 int MikuDatabase::UserLogin(int user_id,std::string user_psw,int &result)

@@ -19,6 +19,7 @@
 #include "gate_server.h"
 #include "ds_processor.h"
 #include "ds_connector.h"
+#include "gate_server.h"
 
 #include "../packet/ds_server.pb.h"
 #include "../packet/cyt_packet.pb.h"
@@ -108,10 +109,13 @@ void *DirectorServerProcessor::GetParent()
 
 void DirectorServerProcessor::SendConnectDsRQ()
 {
+	GateServer *tmp_server = reinterpret_cast<GateServer *>(GetCaller());
+	if(!tmp_server)
+		return;
 	StruDsServerConnectRq tmp_conn_rq;
-	tmp_conn_rq.set_server_id(1);//here server id from configuration file
-	tmp_conn_rq.set_server_ip("192.168.220.128");
-	tmp_conn_rq.set_server_port(5555);
+	tmp_conn_rq.set_server_id(tmp_server->server_id_);
+	tmp_conn_rq.set_server_ip(tmp_server->server_ip_);
+	tmp_conn_rq.set_server_port(tmp_server->server_port_);
 	tmp_conn_rq.set_server_type(SERVER_TYPE_GS);
 	tmp_conn_rq.set_connect_type(StruDsServerConnectRq_ConnectType_CONNECT_TYPE_NEWCONNECT);
 	tmp_conn_rq.set_server_detect_port(0);
@@ -149,6 +153,48 @@ void DirectorServerProcessor::SendConnectDsRQ()
 	tmp_ds_conn->SendData(tmp_pack_buff,tmp_pack_len);
 }
 
+void DirectorServerProcessor::SendQueryRoom(int room_id)
+{
+	GateServer *tmp_server = reinterpret_cast<GateServer *>(GetCaller());
+	if(!tmp_server)
+		return;
+	StruDsGSGetRoomInfoRq tmp_query_room_rq;
+	tmp_query_room_rq.set_server_id(tmp_server->server_id_);
+	tmp_query_room_rq.set_room_id(room_id);
+
+	char tmp_pack_buff[0x1000] = {0};
+	int tmp_pack_len = tmp_query_room_rq.ByteSize();
+	bool tmp_ret = tmp_query_room_rq.SerializeToArray(tmp_pack_buff,tmp_pack_len);
+	if(!tmp_ret)
+	{
+		std::cout<<"Pack StruDsGSGetRoomInfoRq error!"<<std::endl;
+		return;
+	}
+
+	StruCytPacket tmp_cyt_pack;
+	tmp_cyt_pack.set_str_head("123");
+	tmp_cyt_pack.set_room_id(0);
+	tmp_cyt_pack.set_msg_len(tmp_pack_len);
+	tmp_cyt_pack.set_msg_type(DEF_DS_GS_GET_ROOMINFO_RQ);
+	tmp_cyt_pack.set_msg_data(tmp_pack_buff,tmp_pack_len);
+	tmp_cyt_pack.set_str_tail("456");
+
+	tmp_pack_len = tmp_cyt_pack.ByteSize();
+	tmp_ret = tmp_cyt_pack.SerializeToArray(tmp_pack_buff,tmp_pack_len);
+	if(!tmp_ret)
+	{
+		std::cout<<"Pack cyt_pack error!"<<std::endl;
+		return;
+	}
+	DirectorServerConnector *tmp_ds_conn = reinterpret_cast<DirectorServerConnector *>(parent_ptr_);
+	if(!tmp_ds_conn)
+	{
+		std::cout<<"DS connector error!"<<std::endl;
+		return ;
+	}
+	tmp_ds_conn->SendData(tmp_pack_buff,tmp_pack_len);
+}
+
 void *DirectorServerProcessor::DealWithDataThread(void *arg)
 {
 	std::cout<<"DirectorServerProcessor::DealWithDataThread starts"<<std::endl;
@@ -167,15 +213,15 @@ void *DirectorServerProcessor::DealWithDataThread(void *arg)
 			continue;
 		}
 
-		StruCytPacket tmp_pack_cyt_pack;
-		tmp_return = tmp_pack_cyt_pack.ParseFromArray(tmp_out_buff,tmp_out_len);
+		StruCytPacket tmp_cyt_pack;
+		tmp_return = tmp_cyt_pack.ParseFromArray(tmp_out_buff,tmp_out_len);
 		if(!tmp_return)
 		{
 			std::cout<<"Unpack package error!"<<std::endl;
 			continue;
 		}
 
-		int tmp_msg_type = tmp_pack_cyt_pack.msg_type();
+		int tmp_msg_type = tmp_cyt_pack.msg_type();
 
 		BaseCommand *tmp_cmd = tmp_processor->GetCmdChain()->GetCommand(tmp_msg_type);
 		if(!tmp_cmd)
@@ -184,7 +230,7 @@ void *DirectorServerProcessor::DealWithDataThread(void *arg)
 			usleep(5000);
 			continue;
 		}
-		tmp_cmd->Execute(const_cast<char *>(tmp_pack_cyt_pack.msg_data().c_str()),tmp_pack_cyt_pack.msg_len(),tmp_processor);
+		tmp_cmd->Execute(const_cast<char *>(tmp_cyt_pack.msg_data().c_str()),tmp_cyt_pack.msg_len(),tmp_processor);
 	}
 	std::cout<<"DirectorServerProcessor::DealWithDataThread ends"<<std::endl;
 	return NULL;

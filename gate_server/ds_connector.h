@@ -16,6 +16,9 @@ public:
 
 	bool StartDSProcessor(int circle_list_size,int thread_count,void *server_ptr);
 	void DealWithData(char *buff,int len,int fd);
+	inline DirectorServerProcessor *GetDSProcessor(){
+		return &ds_processor_;
+	}
 };
 
 #endif

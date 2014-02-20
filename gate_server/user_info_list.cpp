@@ -16,11 +16,14 @@
  * =====================================================================================
  */
 
+#include "../packet/ds_server.pb.h"
 #include "../packet/cyt_packet.pb.h"
 #include "../packet/package_define.pb.h"
 #include "room_manager.h"
 #include "gate_server.h"
 #include "user_info_list.h"
+
+const int MaxRecvBuffLen = 0x2000;
 
 UserInfoEx::UserInfoEx():remain_buff_len_(0)
 {
@@ -64,27 +67,33 @@ void UserInfoEx::DealWithData(struct bufferevent *buff_ev,void *arg)
 	//analyse received buffer ...
 	std::cout<<"remain_len:"<<remain_buff_len_<<" Buff:"<<recved_buff_<<std::endl;
 	bool tmp_result = false;
-	StruCytPacket tmp_pack_cyt_pack;
+	StruCytPacket tmp_cyt_pack;
 	char tmp_pack_data[0x1000] = {0};
 	char tmp_send_buff[0x2000] = {0};
 	do
 	{
 		if(remain_buff_len_ <= 0)
 			break;
-		tmp_result = tmp_pack_cyt_pack.ParseFromArray(recved_buff_,remain_buff_len_);
+		tmp_result = tmp_cyt_pack.ParseFromArray(recved_buff_,remain_buff_len_);
 		if(tmp_result)
 		{
-			int tmp_current_pack_len = tmp_pack_cyt_pack.ByteSize();
+			int tmp_current_pack_len = tmp_cyt_pack.ByteSize();
 			memcpy(tmp_pack_data,recved_buff_,tmp_current_pack_len);
 			remain_buff_len_ -= tmp_current_pack_len;
 			memmove(recved_buff_,recved_buff_+tmp_current_pack_len,0x1000-tmp_current_pack_len);
-			long tmp_room_id = tmp_pack_cyt_pack.room_id();
-			std::cout<<tmp_room_id<<std::endl;
+			
+			int tmp_room_id = tmp_cyt_pack.room_id();
 			ChatRoom *tmp_chat_room = reinterpret_cast<GateServer *>(gate_server_)->GetRoomManager()->GetChatRoom(tmp_room_id);
 			if(NULL == tmp_chat_room)
 			{
 				std::cout<<"There is no room you find"<<std::endl;
-				//here create a package of Querying a chat room 
+				//here create a package of querying a chat room if msg_type == E_USER_LOGIN_RQ
+				if(E_USER_LOGIN_RQ == tmp_cyt_pack.msg_type())
+				{
+					GateServer *tmp_server = reinterpret_cast<GateServer *>(gate_server_);
+					tmp_server->GetDSConnector()->GetDSProcessor()->SendQueryRoom(tmp_cyt_pack.room_id());
+					tmp_server->GetCLProcessor()->AddOneUndealPack(tmp_pack_data,tmp_current_pack_len,tmp_room_id,hash_key);
+				}
 				continue ;
 			}
 			GateRoomServerPack tmp_package;
@@ -104,7 +113,7 @@ void UserInfoEx::DealWithData(struct bufferevent *buff_ev,void *arg)
 				continue;
 			}
 		}
-		else if(tmp_pack_cyt_pack.ParsePartialFromArray(recved_buff_,remain_buff_len_))
+		else if(tmp_cyt_pack.ParsePartialFromArray(recved_buff_,remain_buff_len_))
 		{
 			std::cout<<"uncompleted data"<<std::endl;//uncompleted data
 			break;

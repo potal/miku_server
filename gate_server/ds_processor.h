@@ -20,6 +20,7 @@ public:
 	void *GetParent();
 	inline bool GetStatus(){return is_started_;}
 	void SendConnectDsRQ();
+	void SendQueryRoom(int room_id);
 
 	static void* DealWithDataThread(void *arg);
 };

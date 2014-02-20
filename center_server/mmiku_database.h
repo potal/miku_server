@@ -8,11 +8,13 @@
 class MikuDatabase
 {
 private:
+	void *server_ptr_;
 	MysqlConnPool *conn_pool_ptr_;
 public:
 	MikuDatabase();
 	~MikuDatabase();
 
+	void Init(void *server_ptr);
 public:
 	int UserLogin(int user_id,std::string user_psw,int &result);
 	int UserGiveGift(int user_id,std::string gift_code,int &result);

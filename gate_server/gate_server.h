@@ -6,18 +6,23 @@
 #include "room_manager.h"
 #include "rs_connector.h"
 #include "ds_connector.h"
+#include "cl_processor.h"
 #include <map>
 
 class GateServer
 {
-private:
+public:
+	int server_id_;
 	std::string server_ip_;
 	int server_port_;
 	int count_worker_;
 	int count_user_per_worker_;
 	int read_timeout_;
 	int write_timeout_;
+	std::string ds_ip_;
+	int ds_port_;
 
+private:
 	UserInfoList user_list_;
 	ServerListenner server_listenner_;
 	RoomManager room_manager_;
@@ -25,6 +30,8 @@ private:
 
 	DirectorServerConnector ds_connector_;
 	std::map<int,RoomServerConnector *> rs_conn_list_;
+	
+	ClientProcessor cl_processor_;
 
 public:
 	GateServer();
@@ -38,6 +45,7 @@ public:
 	RoomManager *GetRoomManager();
 	DirectorServerConnector *GetDSConnector();
 	std::map<int,RoomServerConnector *> *GetRSConnectionList();
+	ClientProcessor *GetCLProcessor();
 
 	void StopServer();
 };

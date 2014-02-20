@@ -41,7 +41,11 @@ void ClientLoginRQ::Execute(char *buff,int len,void *caller_ptr)
 		return ;
 	ChatRoom *tmp_room = tmp_server->GetRoomManager()->GetRoom(tmp_login_rq.room_id());
 	if(!tmp_room)
-		return ;
+	{
+		tmp_room = tmp_server->GetRoomManager()->GetNewRoom();
+		tmp_room->SetRoom(tmp_login_rq.room_id(),-1);
+		tmp_server->GetRoomManager()->AddRoom(tmp_login_rq.room_id(),tmp_room);
+	}
 	UserInfo *tmp_user = tmp_room->NewUserInfo();
 	if(tmp_user)
 	{
