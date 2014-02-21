@@ -47,6 +47,7 @@ void ClientLoginRQ::Execute(char *buff,int len,void *caller_ptr)
 		tmp_server->GetRoomManager()->AddRoom(tmp_login_rq.room_id(),tmp_room);
 	}
 	UserInfo *tmp_user = tmp_room->NewUserInfo();
+	std::cout<<"Login_user_hashkey:"<<tmp_package.user_hashkey()<<std::endl;
 	if(tmp_user)
 	{
 		tmp_user->gs_hashkey_user_on = tmp_package.gs_hashkey();

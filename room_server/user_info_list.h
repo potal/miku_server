@@ -52,6 +52,7 @@ public:
 	bool PushUserInUnusedList(UserInfo *user_info);
 
 	bool AddUserInfo(int user_id,UserInfo *user_info);
+	void RemoveUser(int user_id);
 	UserInfo *GetUserInfo(int user_id);
 
 	void ClearAllUserInfo();

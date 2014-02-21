@@ -45,9 +45,9 @@ void ClientInfoEx::Clear()
 
 void ClientInfoEx::DealWithData(struct bufferevent *buff_ev,void *arg)
 {
-	std::cout<<hash_key<<" ClientInfoEx::DealWithData()"<<std::endl;
 	char tmp_read_buff[0x1000] = {0};
 	int tmp_len = bufferevent_read(buffev,tmp_read_buff,0x1000);
+	std::cout<<hash_key<<" ClientInfoEx::DealWithData() Len:"<<tmp_len<<std::endl;
 	if(remain_buff_len_+tmp_len < 0x1000)
 	{
 		memcpy(recved_buff_+remain_buff_len_,tmp_read_buff,tmp_len);
@@ -60,11 +60,16 @@ void ClientInfoEx::DealWithData(struct bufferevent *buff_ev,void *arg)
 		remain_buff_len_ = tmp_len;
 	}
 	bool tmp_result = false;
-	GateRoomServerPack tmp_package;
+	std::cout<<"ClientInfoEx: remain_len="<<remain_buff_len_<<std::endl;
 	do
 	{
 		if(remain_buff_len_ <= 0)
+		{
+			std::cout<<"remain_buff_len == 0"<<std::endl;
 			break;
+		}
+
+		GateRoomServerPack tmp_package;
 		tmp_result = tmp_package.ParseFromArray(recved_buff_,remain_buff_len_);
 		if(tmp_result)
 		{
@@ -76,15 +81,23 @@ void ClientInfoEx::DealWithData(struct bufferevent *buff_ev,void *arg)
 			tmp_current_pack_len = tmp_package.ByteSize();
 			tmp_result = tmp_package.SerializeToArray(tmp_read_buff,tmp_current_pack_len);
 			if(!tmp_result)
+			{
+				std::cout<<"ClientInfoEx::DealWithData SerializeToArray Error!"<<std::endl;
 				continue;
+			}
 			bool tmp_ret = gs_processor_.GetCircleList()->AddBuffer(tmp_read_buff,tmp_current_pack_len);
 			if(!tmp_ret)
 			{
-				std::cout<<"Add buffer error!"<<std::endl;
+				std::cout<<"ClientInfoEx::DealWithData Add buffer error!"<<std::endl;
+			}
+			else
+			{
+				std::cout<<"ClientInfoEx::DealwithData addbuffer ok!"<<std::endl;
 			}
 		}
 		else if(tmp_package.ParsePartialFromArray(recved_buff_,remain_buff_len_))
 		{
+			std::cout<<"ClientInfoEx::DealWithData not the whole package"<<std::endl;
 			break;
 		}
 		else
@@ -92,6 +105,7 @@ void ClientInfoEx::DealWithData(struct bufferevent *buff_ev,void *arg)
 			//bad data
 			//memset(recved_buff_,0,0x1000);
 			//remain_buff_len_ = 0;
+			std::cout<<"ClientInfoEx::DealWithData bad data!"<<std::endl;
 			break;
 		}
 	}while (tmp_result);

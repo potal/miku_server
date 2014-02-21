@@ -231,7 +231,10 @@ void ServerListenner::ReadAction(int sock,short event_flag,void *action_class)
 	}
 	std::cout<<"ReadAction:"<<tmp_user_hash_key<<std::endl;
 	if(!tmp_server->user_info_resource_)
+	{
+		std::cout<<"ServerListenner::ReadAction user_info_resource_=NULL"<<std::endl;
 		return;
+	}
 	BaseUserInfo *tmp_user = tmp_server->user_info_resource_->GetUserByHashkey(tmp_user_hash_key);
 	if(NULL != tmp_user)
 	{
@@ -265,7 +268,7 @@ void ServerListenner::AcceptAction(int sock,short event_flag,void *action_class)
 	if(tmp_client_sock > 0)
 	{
 		std::cout<<"client connecting ip:"<<*(int *)&tmp_client_addr.sin_addr
-			<<" port:"<<tmp_client_addr.sin_port<<std::endl;
+			<<" port:"<<tmp_client_addr.sin_port<<" fd:"<<tmp_client_sock<<std::endl;
 		tmp_server->base_hash_key_++;
 		BaseUserInfo * tmp_user = tmp_server->user_info_resource_->GetUserInfo();
 		if(tmp_user)

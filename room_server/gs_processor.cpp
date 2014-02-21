@@ -210,7 +210,7 @@ void * GateServerProcessor::SendDataThread(void *arg)
 	while(tmp_processor->is_started_)
 	{
 		tmp_out_len = 0;
-		if(!tmp_processor->GetCircleList()->GetBuffer(tmp_out_buff,0x2000,tmp_out_len))
+		if(!tmp_processor->send_list_.GetBuffer(tmp_out_buff,0x2000,tmp_out_len))
 		{
 			usleep(5000);
 			continue;

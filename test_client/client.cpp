@@ -36,7 +36,7 @@
 std::string g_pack_header = "123";
 std::string g_pack_tail = "456";
 
-#define PORT 5555
+#define PORT 1501
 #define MAXDATASIZE 5000
 int main(int argc,char **argv)
 {
@@ -44,13 +44,9 @@ int main(int argc,char **argv)
 	char buf[1024];
 	struct hostent *he;
 	struct sockaddr_in srvaddr;
-	if(argc!=2)
-	{
-		perror("Usage:client hostname\n");
-		exit(1);
-	}
+
 	/*函数gethostbyname获得指定域名地址所对应的ip地址*/
-	if((he=gethostbyname(argv[1]))==NULL)
+	if((he=gethostbyname("localhost"))==NULL)
 	{
 		perror("gethostbyname");
 		exit(1);
@@ -108,6 +104,7 @@ int main(int argc,char **argv)
 	{
 		std::cout<<"write ok!length:"<<tmp_first_send_len<<std::endl;
 	}
+	sleep(1);
 	if(write(sockfd,tmp_buff+tmp_first_send_len,tmp_send_buff_len-tmp_first_send_len) > 0)
 	{
 		std::cout<<"write ok!length:"<<tmp_send_buff_len-tmp_first_send_len<<std::endl;

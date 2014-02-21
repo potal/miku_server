@@ -78,7 +78,7 @@ void* RoomServerProcessor::DealWithDataThread(void *arg)
 			usleep(5000);
 			continue;
 		}
-		std::cout<<"Buff:"<<tmp_out_buff<<std::endl;
+		std::cout<<"RSP:DealWithDataThread: Buff:"<<tmp_out_buff<<std::endl;
 
 		GateRoomServerPack tmp_rg_pack;
 		tmp_return = tmp_rg_pack.ParseFromArray(tmp_out_buff,tmp_out_len);
@@ -95,6 +95,14 @@ void* RoomServerProcessor::DealWithDataThread(void *arg)
 			{
 				write(tmp_user->user_sock,tmp_rg_pack.data_msg().c_str(),tmp_rg_pack.data_len());
 			}
+			else
+			{
+				std::cout<<"RSP:DealWithDataThread:not find user:"<<tmp_rg_pack.user_hashkey()<<std::endl;
+			}
+		}
+		else
+		{
+			std::cout<<"RSP:DealWithDataThread:not find gs"<<std::endl;
 		}
 	}
 	std::cout<<"RoomServerProcessor::DealWithDataThread ends"<<std::endl;

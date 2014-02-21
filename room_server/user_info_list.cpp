@@ -128,6 +128,12 @@ bool UserInfoList::AddUserInfo(int user_id,UserInfo *user_info)
 	return true;
 }
 
+void UserInfoList::RemoveUser(int user_id)
+{
+	AutoLock tmp_lock(&list_lock_);
+	user_info_list_.erase(user_id);
+}
+
 UserInfo *UserInfoList::GetUserInfo(int user_id)
 {
 	AutoLock tmp_lock(&list_lock_);

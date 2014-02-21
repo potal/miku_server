@@ -100,6 +100,7 @@ void ChatRoom::RemoveUser(int user_id)
 	{
 		return;
 	}
+	user_list_.RemoveUser(user_id);
 	user_list_.PushUserInUnusedList(tmp_user);
 }
 
@@ -108,5 +109,6 @@ void ChatRoom::RemovePreUser(int user_id)
 	UserInfo *tmp_user = pre_user_list_.GetUserInfo(user_id);
 	if(!tmp_user)
 		return;
+	pre_user_list_.RemoveUser(user_id);
 	pre_user_list_.PushUserInUnusedList(tmp_user);
 }

@@ -26,8 +26,14 @@ bool RoomServerConnector::StartRSProcessor(int max_list_size,int thread_count,vo
 
 void RoomServerConnector::DealWithData(char *buff,int len,int fd)
 {
+	std::cout<<"RoomServerConnector::DealWithData buff_len:"<<len<<std::endl;
 	if(rs_processor_.GetStatus())
 	{
 		rs_processor_.GetCircleList()->AddBuffer(buff,len);
+		std::cout<<"RoomServerConnector::DealWithData addbuffer ok"<<std::endl;
+	}
+	else
+	{
+		std::cout<<"rs_processor_ is not started"<<std::endl;
 	}
 }
