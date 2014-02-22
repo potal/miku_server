@@ -51,23 +51,40 @@ int MikuDatabase::UserLogin(int user_id,std::string user_psw,int &result)
 {
 	int tmp_return = 0;
 	sql::Connection *tmp_conn = NULL;
-	sql::Statement *tmp_stmt = NULL;
-	sql::PreparedStatement *tmp_pre_stmt = NULL;
 	try
 	{
 		tmp_conn = conn_pool_ptr_->GetConnection();
 		if(!tmp_conn)
 			return 0;
-		tmp_stmt = tmp_conn->createStatement();
-		if(!tmp_stmt)
+		std::auto_ptr<sql::Statement> tmp_stmt(tmp_conn->createStatement());
+		if(!tmp_stmt.get())
 		{
 			std::cout<<"tmp_stmt NULL"<<std::endl;
 			conn_pool_ptr_->ReleaseConnection(tmp_conn);
 			return 0;
 		}
 
-		tmp_pre_stmt = tmp_conn->preparedStatement("call user_login(?,@user_psw,@user_red_d,@user_blue_d)");
-		tmp_pre_stmt->setInt(user_id);
+		std::auto_ptr<sql::PreparedStatement> tmp_pre_stmt(tmp_conn->prepareStatement("call user_login(?,@user_psw,@user_red_d,@user_blue_d)"));
+		tmp_pre_stmt->setInt(1,user_id);
+		tmp_pre_stmt->execute();
+
+		std::auto_ptr<sql::PreparedStatement> tmp_pre_select_stmt(tmp_conn->prepareStatement("select @user_psw as user_psw,@user_red_d as user_red_d,@user_blue_d as user_blue_d"));
+		std::auto_ptr<sql::ResultSet> tmp_result(tmp_pre_select_stmt->executeQuery());
+		if(!tmp_result.get())
+		{
+			std::cout<<"execute error!"<<std::endl;
+			tmp_return = 0;
+		}
+		else
+		{
+			if(tmp_result->next())
+			{
+				std::string tmp_user_psw = tmp_result->getString(1);
+				int tmp_red_d = tmp_result->getInt(2);
+				int tmp_blue_d = tmp_result->getInt(3);
+				std::cout<<"psw:"<<tmp_user_psw<<" red:"<<tmp_red_d<<" blue:"<<tmp_blue_d<<std::endl;
+			}
+		}
 		//std::stringstream tmp_sql_state;
 		//std::string tmp_sql;
 		//tmp_sql_state<<"select user_psw from userInfo where user_id="<<user_id;
@@ -103,8 +120,6 @@ int MikuDatabase::UserLogin(int user_id,std::string user_psw,int &result)
 		tmp_return = 0;
 	}
 	conn_pool_ptr_->ReleaseConnection(tmp_conn);
-	if(tmp_stmt)
-		delete tmp_stmt;
 	return tmp_return;
 }
 
