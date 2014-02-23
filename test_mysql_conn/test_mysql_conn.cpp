@@ -28,31 +28,36 @@ int main()
 //	driver = NULL; 
 //	conn = NULL; 
 //	return 0; 
-	
-	MysqlConnPool *g_pool = MysqlConnPool::GetInstance(); 
-	
-	sql::Connection *tmp_conn = NULL;
-	sql::Statement *tmp_state;
-	sql::ResultSet *tmp_result;
-	tmp_conn = g_pool->GetConnection();
-	tmp_state = tmp_conn->createStatement();
-	std::stringstream tmp_sql_state;
-	std::string tmp_sql;
 	int tmp_user_id = 92002;
-	tmp_sql_state<<"select user_id,user_psw,user_nickname from userInfo where user_id="<<tmp_user_id;
-	tmp_sql = tmp_sql_state.str();
-	std::cout<<tmp_sql<<std::endl;
+	MysqlConnPool *g_pool = MysqlConnPool::GetInstance(); 
+	g_pool->Init(DBHOST,USER,PASSWORD,"mmikuapp",10);
+	sql::Connection *tmp_conn = g_pool->GetConnection();
+	try{
+		std::auto_ptr<sql::PreparedStatement> tmp_pre_stmt(tmp_conn->prepareStatement("call user_login(?,@user_psw,@user_red_d,@user_blue_d)"));
+		tmp_pre_stmt->setInt(1,tmp_user_id);
+		tmp_pre_stmt->execute();
 
-	tmp_result = tmp_state->executeQuery(tmp_sql);
-
-	while (tmp_result->next()) 
-	{
-		int tmp_id = tmp_result->getInt("user_id");
-		string tmp_psw = tmp_result->getString("user_psw");
-		string tmp_name = tmp_result->getString("user_nickname");
-		cout << tmp_id << " : " << tmp_name << " : " << tmp_psw << endl;
+		std::auto_ptr<sql::PreparedStatement> tmp_pre_select_stmt(tmp_conn->prepareStatement("select @user_psw as user_psw,@user_red_d as user_red_d,@user_blue_d as user_blue_d"));
+		std::auto_ptr<sql::ResultSet> tmp_result(tmp_pre_select_stmt->executeQuery());
+		if(!tmp_result.get())
+		{
+			std::cout<<"execute error!"<<std::endl;
+		}
+		else
+		{
+			if(tmp_result->next())
+			{
+				std::string tmp_user_psw = tmp_result->getString(1);
+				int tmp_red_d = tmp_result->getInt(2);
+				int tmp_blue_d = tmp_result->getInt(3);
+				std::cout<<"psw:"<<tmp_user_psw<<" red:"<<tmp_red_d<<" blue:"<<tmp_blue_d<<std::endl;
+			}
+		}
 	}
-	delete tmp_state;
+	catch(sql::SQLException &e)
+	{
+		std::cout<<"Exception:"<<e.what()<<std::endl;
+	}
 	g_pool->ReleaseConnection(tmp_conn);
 	return 0;
 } 

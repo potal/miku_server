@@ -3,16 +3,11 @@ using namespace std;
 
 MysqlConnPool *MysqlConnPool::conn_pool_ = NULL;
 
-MysqlConnPool::MysqlConnPool(string sql_addr,string user_name,string user_psw,string db_name,int max_conn_size):cur_size_(0),max_size_(max_conn_size),sql_driver_(NULL)
+MysqlConnPool::MysqlConnPool():cur_size_(0),max_size_(0),sql_driver_(NULL)
 {
-	sql_addr_ = sql_addr;
-	user_name_ = user_name;
-	user_psw_ = user_psw;
-	db_name_ = db_name;
 	sql_conn_list_.clear();
 	pthread_mutex_init(&list_lock_,NULL);
 	sql_driver_ = sql::mysql::get_mysql_driver_instance();
-	this->InitConnection(max_conn_size/2);
 }
 
 sql::Connection * MysqlConnPool::CreateConnection()
@@ -46,6 +41,7 @@ void MysqlConnPool::InitConnection(int init_size)
 			++(this->cur_size_);
 		}
 	}
+	std::cout<<"connect db ok,count:"<<cur_size_<<std::endl;
 	pthread_mutex_unlock(&list_lock_);
 }
 
@@ -82,19 +78,24 @@ MysqlConnPool::~MysqlConnPool()
 	this->DestoryConnPool();
 }
 
+void MysqlConnPool::Init(string sql_addr,string user_name,string user_psw,string db_name,int max_conn_size)
+{
+	sql_addr_ = sql_addr;
+	user_name_ = user_name;
+	user_psw_ = user_psw;
+	db_name_ = db_name;
+	max_size_ = max_conn_size;
+
+	InitConnection(max_size_/2);
+}
+
 MysqlConnPool *MysqlConnPool::GetInstance()
 {
 	if(NULL == conn_pool_)
 	{
 		try
 		{
-			//get information from configuration file
-			string tmp_sql_addr = "tcp://127.0.0.1:3306";
-			string tmp_user_name = "root";
-			string tmp_user_psw = "13637848712";
-			string tmp_db_name = "mmiku";
-			int tmp_max_conn = 32;
-			conn_pool_ = new MysqlConnPool(tmp_sql_addr,tmp_user_name,tmp_user_psw,tmp_db_name,tmp_max_conn);
+			conn_pool_ = new MysqlConnPool();
 		}
 		catch(...)
 		{

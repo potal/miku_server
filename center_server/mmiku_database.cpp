@@ -56,13 +56,13 @@ int MikuDatabase::UserLogin(int user_id,std::string user_psw,int &result)
 		tmp_conn = conn_pool_ptr_->GetConnection();
 		if(!tmp_conn)
 			return 0;
-		std::auto_ptr<sql::Statement> tmp_stmt(tmp_conn->createStatement());
-		if(!tmp_stmt.get())
-		{
-			std::cout<<"tmp_stmt NULL"<<std::endl;
-			conn_pool_ptr_->ReleaseConnection(tmp_conn);
-			return 0;
-		}
+//		std::auto_ptr<sql::Statement> tmp_stmt(tmp_conn->createStatement());
+//		if(!tmp_stmt.get())
+//		{
+//			std::cout<<"tmp_stmt NULL"<<std::endl;
+//			conn_pool_ptr_->ReleaseConnection(tmp_conn);
+//			return 0;
+//		}
 
 		std::auto_ptr<sql::PreparedStatement> tmp_pre_stmt(tmp_conn->prepareStatement("call user_login(?,@user_psw,@user_red_d,@user_blue_d)"));
 		tmp_pre_stmt->setInt(1,user_id);
@@ -114,9 +114,9 @@ int MikuDatabase::UserLogin(int user_id,std::string user_psw,int &result)
 //				tmp_return = 0;
 //		}
 	}
-	catch(...)
+	catch(sql::SQLException &e)
 	{
-		std::cout<<"exception"<<std::endl;
+		std::cout<<"exception:"<<e.what()<<std::endl;
 		tmp_return = 0;
 	}
 	conn_pool_ptr_->ReleaseConnection(tmp_conn);
