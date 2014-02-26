@@ -141,11 +141,22 @@ void protobuf_AssignDesc_package_5fdefine_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(StruUserLoginRQ));
   StruUserLoginRS_descriptor_ = file->message_type(2);
-  static const int StruUserLoginRS_offsets_[4] = {
+  static const int StruUserLoginRS_offsets_[15] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserLoginRS, msg_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserLoginRS, user_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserLoginRS, room_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserLoginRS, result_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserLoginRS, user_red_d_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserLoginRS, user_blue_d_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserLoginRS, user_level_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserLoginRS, buyer_riches_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserLoginRS, buyer_grow_up_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserLoginRS, buyer_honour_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserLoginRS, buyer_estimate_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserLoginRS, seller_income_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserLoginRS, seller_exp_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserLoginRS, seller_pop_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserLoginRS, seller_estimate_),
   };
   StruUserLoginRS_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -236,11 +247,20 @@ void protobuf_AssignDesc_package_5fdefine_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(StruRoomMicInfoID));
   StruUserInfo_descriptor_ = file->message_type(7);
-  static const int StruUserInfo_offsets_[4] = {
+  static const int StruUserInfo_offsets_[13] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserInfo, msg_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserInfo, user_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserInfo, user_account_name_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserInfo, user_role_uid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserInfo, user_level_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserInfo, buyer_riches_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserInfo, buyer_grow_up_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserInfo, buyer_honour_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserInfo, buyer_estimate_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserInfo, seller_income_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserInfo, seller_exp_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserInfo, seller_pop_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StruUserInfo, seller_estimate_),
   };
   StruUserInfo_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -706,104 +726,115 @@ void protobuf_AddDesc_package_5fdefine_2eproto() {
     "\215\001\n\017StruUserLoginRQ\022+\n\006msg_id\030\001 \002(\0162\n.En"
     "umMsgID:\017E_USER_LOGIN_RQ\022\017\n\007user_id\030\002 \002("
     "\005\022\017\n\007room_id\030\003 \002(\005\022\020\n\010user_psw\030\004 \002(\t\022\031\n\021"
-    "user_account_name\030\005 \002(\t\"p\n\017StruUserLogin"
-    "RS\022+\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\017E_USER_L"
-    "OGIN_RS\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002("
-    "\005\022\016\n\006result\030\004 \002(\005\"\255\001\n\022StruUserRoleInfoID"
-    "\022/\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\023E_USER_ROL"
-    "E_INFO_ID\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 "
-    "\002(\005\022\031\n\021user_account_name\030\004 \002(\t\022\025\n\ruser_r"
-    "ole_uid\030\005 \002(\t\022\022\n\nother_data\030\006 \001(\t\"\260\001\n\016St"
-    "ruRoomInfoID\022*\n\006msg_id\030\001 \002(\0162\n.EnumMsgID"
-    ":\016E_ROOM_INFO_ID\022\017\n\007user_id\030\002 \002(\005\022\017\n\007roo"
-    "m_id\030\003 \002(\005\022\021\n\troom_type\030\004 \002(\005\022\021\n\troom_na"
-    "me\030\005 \002(\t\022\023\n\013room_advert\030\006 \002(\t\022\025\n\rroom_an"
-    "nounce\030\007 \002(\t\"z\n\013StruMicInfo\022&\n\006msg_id\030\001 "
-    "\002(\0162\n.EnumMsgID:\nE_MIC_INFO\022\017\n\007user_id\030\002"
-    " \002(\005\022\031\n\021user_account_name\030\003 \002(\t\022\027\n\017mic_c"
-    "hannel_str\030\004 \002(\t\"\205\001\n\021StruRoomMicInfoID\022."
-    "\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\022E_ROOM_MIC_I"
-    "NFO_ID\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005"
-    "\022\036\n\010mic_list\030\004 \003(\0132\014.StruMicInfo\"z\n\014Stru"
-    "UserInfo\022\'\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\013E_"
-    "USER_INFO\022\017\n\007user_id\030\002 \002(\005\022\031\n\021user_accou"
-    "nt_name\030\003 \002(\t\022\025\n\ruser_role_uid\030\004 \002(\t\"\216\001\n"
-    "\022StruUserInfoListID\022/\n\006msg_id\030\001 \002(\0162\n.En"
-    "umMsgID:\023E_USER_INFO_LIST_ID\022\017\n\007user_id\030"
-    "\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022%\n\016user_info_list"
-    "\030\004 \003(\0132\r.StruUserInfo\"\227\001\n\rStruUserMsgRQ\022"
-    ")\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\rE_USER_MSG_"
-    "RQ\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\020\n\010"
-    "msg_text\030\004 \002(\t\022\022\n\nis_private\030\005 \002(\010\022\023\n\013ds"
-    "t_user_id\030\006 \002(\005\"l\n\rStruUserMsgRS\022)\n\006msg_"
-    "id\030\001 \002(\0162\n.EnumMsgID:\rE_USER_MSG_RS\022\017\n\007u"
-    "ser_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\016\n\006result\030"
-    "\004 \002(\005\"\240\001\n\021StruUserMsgTextID\022.\n\006msg_id\030\001 "
-    "\002(\0162\n.EnumMsgID:\022E_USER_MSG_TEXT_ID\022\017\n\007u"
-    "ser_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\020\n\010msg_tex"
-    "t\030\004 \002(\t\022\022\n\nis_private\030\005 \002(\010\022\023\n\013dst_user_"
-    "id\030\006 \002(\005\"\217\001\n\022StruUserGiveGiftRQ\022/\n\006msg_i"
-    "d\030\001 \002(\0162\n.EnumMsgID:\023E_USER_GIVE_GIFT_RQ"
-    "\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\021\n\tgi"
-    "ft_code\030\004 \002(\t\022\023\n\013dst_user_id\030\005 \002(\005\"\237\001\n\022S"
-    "truUserGiveGiftRS\022/\n\006msg_id\030\001 \002(\0162\n.Enum"
-    "MsgID:\023E_USER_GIVE_GIFT_RS\022\017\n\007user_id\030\002 "
-    "\002(\005\022\017\n\007room_id\030\003 \002(\005\022\016\n\006result\030\004 \002(\005\022\021\n\t"
-    "gift_code\030\005 \002(\t\022\023\n\013dst_user_id\030\006 \002(\005\"g\n\022"
-    "StruUserApplyMicRQ\022/\n\006msg_id\030\001 \002(\0162\n.Enu"
-    "mMsgID:\023E_USER_APPLY_MIC_RQ\022\017\n\007user_id\030\002"
-    " \002(\005\022\017\n\007room_id\030\003 \002(\005\"\220\001\n\022StruUserApplyM"
-    "icRS\022/\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\023E_USER"
-    "_APPLY_MIC_RS\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_i"
-    "d\030\003 \002(\005\022\016\n\006result\030\004 \002(\005\022\027\n\017mic_channel_s"
-    "tr\030\005 \002(\t\"\241\001\n\017StruUserOnMicID\022,\n\006msg_id\030\001"
-    " \002(\0162\n.EnumMsgID:\020E_USER_ON_MIC_ID\022\023\n\013mi"
-    "c_user_id\030\002 \002(\005\022\023\n\013mic_room_id\030\003 \002(\005\022\035\n\025"
-    "mic_user_account_name\030\004 \002(\t\022\027\n\017mic_chann"
-    "el_str\030\005 \002(\t\"c\n\020StruUserOffMicRQ\022-\n\006msg_"
-    "id\030\001 \002(\0162\n.EnumMsgID:\021E_USER_OFF_MIC_RQ\022"
-    "\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\"s\n\020Str"
-    "uUserOffMicRS\022-\n\006msg_id\030\001 \002(\0162\n.EnumMsgI"
-    "D:\021E_USER_OFF_MIC_RS\022\017\n\007user_id\030\002 \002(\005\022\017\n"
-    "\007room_id\030\003 \002(\005\022\016\n\006result\030\004 \002(\005\"\243\001\n\020StruU"
-    "serOffMicID\022-\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:"
-    "\021E_USER_OFF_MIC_ID\022\023\n\013mic_user_id\030\002 \002(\005\022"
-    "\023\n\013mic_room_id\030\003 \002(\005\022\035\n\025mic_user_account"
-    "_name\030\004 \002(\t\022\027\n\017mic_channel_str\030\005 \002(\t\"\217\001\n"
-    "\022StruPutUserOnMicRQ\0220\n\006msg_id\030\001 \002(\0162\n.En"
-    "umMsgID:\024E_PUT_USER_ON_MIC_RQ\022\017\n\007user_id"
-    "\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\023\n\013dst_user_id\030\004"
-    " \002(\005\022\020\n\010mic_type\030\005 \002(\005\"\270\001\n\022StruPutUserOn"
-    "MicRS\0220\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\024E_PUT"
-    "_USER_ON_MIC_RS\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room"
-    "_id\030\003 \002(\005\022\023\n\013dst_user_id\030\004 \002(\005\022\020\n\010mic_ty"
-    "pe\030\005 \002(\005\022\016\n\006result\030\006 \002(\005\022\027\n\017mic_channel_"
-    "str\030\007 \002(\t\"\251\001\n\023StruCancleUserMicRQ\0220\n\006msg"
-    "_id\030\001 \002(\0162\n.EnumMsgID:\024E_CANCLE_USER_MIC"
-    "_RQ\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\023\n"
-    "\013dst_user_id\030\004 \002(\005\022\020\n\010mic_type\030\005 \002(\005\022\027\n\017"
-    "mic_channel_str\030\006 \002(\t\"y\n\023StruCancleUserM"
-    "icRS\0220\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\024E_CANC"
-    "LE_USER_MIC_RS\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_"
-    "id\030\003 \002(\005\022\016\n\006result\030\004 \002(\005\"g\n\022StruUserExit"
-    "RoomID\022/\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\023E_US"
-    "ER_EXIT_ROOM_ID\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room"
-    "_id\030\003 \002(\005*\336\004\n\tEnumMsgID\022\022\n\rE_MSG_ID_BASE"
-    "\020\360.\022\024\n\017E_USER_LOGIN_RQ\020\361.\022\024\n\017E_USER_LOGI"
-    "N_RS\020\362.\022\030\n\023E_USER_ROLE_INFO_ID\020\363.\022\023\n\016E_R"
-    "OOM_INFO_ID\020\364.\022\017\n\nE_MIC_INFO\020\365.\022\027\n\022E_ROO"
-    "M_MIC_INFO_ID\020\366.\022\020\n\013E_USER_INFO\020\367.\022\030\n\023E_"
-    "USER_INFO_LIST_ID\020\370.\022\022\n\rE_USER_MSG_RQ\020\371."
-    "\022\022\n\rE_USER_MSG_RS\020\372.\022\027\n\022E_USER_MSG_TEXT_"
-    "ID\020\373.\022\030\n\023E_USER_GIVE_GIFT_RQ\020\374.\022\030\n\023E_USE"
-    "R_GIVE_GIFT_RS\020\375.\022\030\n\023E_USER_APPLY_MIC_RQ"
-    "\020\376.\022\030\n\023E_USER_APPLY_MIC_RS\020\377.\022\025\n\020E_USER_"
-    "ON_MIC_ID\020\200/\022\026\n\021E_USER_OFF_MIC_RQ\020\201/\022\026\n\021"
-    "E_USER_OFF_MIC_RS\020\202/\022\026\n\021E_USER_OFF_MIC_I"
-    "D\020\203/\022\031\n\024E_PUT_USER_ON_MIC_RQ\020\204/\022\031\n\024E_PUT"
-    "_USER_ON_MIC_RS\020\205/\022\031\n\024E_CANCLE_USER_MIC_"
-    "RQ\020\206/\022\031\n\024E_CANCLE_USER_MIC_RS\020\207/\022\030\n\023E_US"
-    "ER_EXIT_ROOM_ID\020\210/", 4178);
+    "user_account_name\030\005 \002(\t\"\340\002\n\017StruUserLogi"
+    "nRS\022+\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\017E_USER_"
+    "LOGIN_RS\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002"
+    "(\005\022\016\n\006result\030\004 \002(\005\022\022\n\nuser_red_d\030\005 \002(\005\022\023"
+    "\n\013user_blue_d\030\006 \002(\005\022\022\n\nuser_level\030\007 \002(\005\022"
+    "\024\n\014buyer_riches\030\010 \002(\005\022\025\n\rbuyer_grow_up\030\t"
+    " \002(\005\022\024\n\014buyer_honour\030\n \002(\005\022\026\n\016buyer_esti"
+    "mate\030\013 \002(\005\022\025\n\rseller_income\030\014 \002(\005\022\022\n\nsel"
+    "ler_exp\030\r \002(\005\022\022\n\nseller_pop\030\016 \002(\005\022\027\n\017sel"
+    "ler_estimate\030\017 \002(\005\"\255\001\n\022StruUserRoleInfoI"
+    "D\022/\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\023E_USER_RO"
+    "LE_INFO_ID\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003"
+    " \002(\005\022\031\n\021user_account_name\030\004 \002(\t\022\025\n\ruser_"
+    "role_uid\030\005 \002(\t\022\022\n\nother_data\030\006 \001(\t\"\260\001\n\016S"
+    "truRoomInfoID\022*\n\006msg_id\030\001 \002(\0162\n.EnumMsgI"
+    "D:\016E_ROOM_INFO_ID\022\017\n\007user_id\030\002 \002(\005\022\017\n\007ro"
+    "om_id\030\003 \002(\005\022\021\n\troom_type\030\004 \002(\005\022\021\n\troom_n"
+    "ame\030\005 \002(\t\022\023\n\013room_advert\030\006 \002(\t\022\025\n\rroom_a"
+    "nnounce\030\007 \002(\t\"z\n\013StruMicInfo\022&\n\006msg_id\030\001"
+    " \002(\0162\n.EnumMsgID:\nE_MIC_INFO\022\017\n\007user_id\030"
+    "\002 \002(\005\022\031\n\021user_account_name\030\003 \002(\t\022\027\n\017mic_"
+    "channel_str\030\004 \002(\t\"\205\001\n\021StruRoomMicInfoID\022"
+    ".\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\022E_ROOM_MIC_"
+    "INFO_ID\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002("
+    "\005\022\036\n\010mic_list\030\004 \003(\0132\014.StruMicInfo\"\301\002\n\014St"
+    "ruUserInfo\022\'\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\013"
+    "E_USER_INFO\022\017\n\007user_id\030\002 \002(\005\022\031\n\021user_acc"
+    "ount_name\030\003 \002(\t\022\025\n\ruser_role_uid\030\004 \002(\t\022\022"
+    "\n\nuser_level\030\005 \002(\005\022\024\n\014buyer_riches\030\006 \002(\005"
+    "\022\025\n\rbuyer_grow_up\030\007 \002(\005\022\024\n\014buyer_honour\030"
+    "\010 \002(\005\022\026\n\016buyer_estimate\030\t \002(\005\022\025\n\rseller_"
+    "income\030\n \002(\005\022\022\n\nseller_exp\030\013 \002(\005\022\022\n\nsell"
+    "er_pop\030\014 \002(\005\022\027\n\017seller_estimate\030\r \002(\005\"\216\001"
+    "\n\022StruUserInfoListID\022/\n\006msg_id\030\001 \002(\0162\n.E"
+    "numMsgID:\023E_USER_INFO_LIST_ID\022\017\n\007user_id"
+    "\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022%\n\016user_info_lis"
+    "t\030\004 \003(\0132\r.StruUserInfo\"\227\001\n\rStruUserMsgRQ"
+    "\022)\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\rE_USER_MSG"
+    "_RQ\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\020\n"
+    "\010msg_text\030\004 \002(\t\022\022\n\nis_private\030\005 \002(\010\022\023\n\013d"
+    "st_user_id\030\006 \002(\005\"l\n\rStruUserMsgRS\022)\n\006msg"
+    "_id\030\001 \002(\0162\n.EnumMsgID:\rE_USER_MSG_RS\022\017\n\007"
+    "user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\016\n\006result"
+    "\030\004 \002(\005\"\240\001\n\021StruUserMsgTextID\022.\n\006msg_id\030\001"
+    " \002(\0162\n.EnumMsgID:\022E_USER_MSG_TEXT_ID\022\017\n\007"
+    "user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\020\n\010msg_te"
+    "xt\030\004 \002(\t\022\022\n\nis_private\030\005 \002(\010\022\023\n\013dst_user"
+    "_id\030\006 \002(\005\"\217\001\n\022StruUserGiveGiftRQ\022/\n\006msg_"
+    "id\030\001 \002(\0162\n.EnumMsgID:\023E_USER_GIVE_GIFT_R"
+    "Q\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\021\n\tg"
+    "ift_code\030\004 \002(\t\022\023\n\013dst_user_id\030\005 \002(\005\"\237\001\n\022"
+    "StruUserGiveGiftRS\022/\n\006msg_id\030\001 \002(\0162\n.Enu"
+    "mMsgID:\023E_USER_GIVE_GIFT_RS\022\017\n\007user_id\030\002"
+    " \002(\005\022\017\n\007room_id\030\003 \002(\005\022\016\n\006result\030\004 \002(\005\022\021\n"
+    "\tgift_code\030\005 \002(\t\022\023\n\013dst_user_id\030\006 \002(\005\"g\n"
+    "\022StruUserApplyMicRQ\022/\n\006msg_id\030\001 \002(\0162\n.En"
+    "umMsgID:\023E_USER_APPLY_MIC_RQ\022\017\n\007user_id\030"
+    "\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\"\220\001\n\022StruUserApply"
+    "MicRS\022/\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\023E_USE"
+    "R_APPLY_MIC_RS\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_"
+    "id\030\003 \002(\005\022\016\n\006result\030\004 \002(\005\022\027\n\017mic_channel_"
+    "str\030\005 \002(\t\"\241\001\n\017StruUserOnMicID\022,\n\006msg_id\030"
+    "\001 \002(\0162\n.EnumMsgID:\020E_USER_ON_MIC_ID\022\023\n\013m"
+    "ic_user_id\030\002 \002(\005\022\023\n\013mic_room_id\030\003 \002(\005\022\035\n"
+    "\025mic_user_account_name\030\004 \002(\t\022\027\n\017mic_chan"
+    "nel_str\030\005 \002(\t\"c\n\020StruUserOffMicRQ\022-\n\006msg"
+    "_id\030\001 \002(\0162\n.EnumMsgID:\021E_USER_OFF_MIC_RQ"
+    "\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\"s\n\020St"
+    "ruUserOffMicRS\022-\n\006msg_id\030\001 \002(\0162\n.EnumMsg"
+    "ID:\021E_USER_OFF_MIC_RS\022\017\n\007user_id\030\002 \002(\005\022\017"
+    "\n\007room_id\030\003 \002(\005\022\016\n\006result\030\004 \002(\005\"\243\001\n\020Stru"
+    "UserOffMicID\022-\n\006msg_id\030\001 \002(\0162\n.EnumMsgID"
+    ":\021E_USER_OFF_MIC_ID\022\023\n\013mic_user_id\030\002 \002(\005"
+    "\022\023\n\013mic_room_id\030\003 \002(\005\022\035\n\025mic_user_accoun"
+    "t_name\030\004 \002(\t\022\027\n\017mic_channel_str\030\005 \002(\t\"\217\001"
+    "\n\022StruPutUserOnMicRQ\0220\n\006msg_id\030\001 \002(\0162\n.E"
+    "numMsgID:\024E_PUT_USER_ON_MIC_RQ\022\017\n\007user_i"
+    "d\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\023\n\013dst_user_id\030"
+    "\004 \002(\005\022\020\n\010mic_type\030\005 \002(\005\"\270\001\n\022StruPutUserO"
+    "nMicRS\0220\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\024E_PU"
+    "T_USER_ON_MIC_RS\022\017\n\007user_id\030\002 \002(\005\022\017\n\007roo"
+    "m_id\030\003 \002(\005\022\023\n\013dst_user_id\030\004 \002(\005\022\020\n\010mic_t"
+    "ype\030\005 \002(\005\022\016\n\006result\030\006 \002(\005\022\027\n\017mic_channel"
+    "_str\030\007 \002(\t\"\251\001\n\023StruCancleUserMicRQ\0220\n\006ms"
+    "g_id\030\001 \002(\0162\n.EnumMsgID:\024E_CANCLE_USER_MI"
+    "C_RQ\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room_id\030\003 \002(\005\022\023"
+    "\n\013dst_user_id\030\004 \002(\005\022\020\n\010mic_type\030\005 \002(\005\022\027\n"
+    "\017mic_channel_str\030\006 \002(\t\"y\n\023StruCancleUser"
+    "MicRS\0220\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\024E_CAN"
+    "CLE_USER_MIC_RS\022\017\n\007user_id\030\002 \002(\005\022\017\n\007room"
+    "_id\030\003 \002(\005\022\016\n\006result\030\004 \002(\005\"g\n\022StruUserExi"
+    "tRoomID\022/\n\006msg_id\030\001 \002(\0162\n.EnumMsgID:\023E_U"
+    "SER_EXIT_ROOM_ID\022\017\n\007user_id\030\002 \002(\005\022\017\n\007roo"
+    "m_id\030\003 \002(\005*\336\004\n\tEnumMsgID\022\022\n\rE_MSG_ID_BAS"
+    "E\020\360.\022\024\n\017E_USER_LOGIN_RQ\020\361.\022\024\n\017E_USER_LOG"
+    "IN_RS\020\362.\022\030\n\023E_USER_ROLE_INFO_ID\020\363.\022\023\n\016E_"
+    "ROOM_INFO_ID\020\364.\022\017\n\nE_MIC_INFO\020\365.\022\027\n\022E_RO"
+    "OM_MIC_INFO_ID\020\366.\022\020\n\013E_USER_INFO\020\367.\022\030\n\023E"
+    "_USER_INFO_LIST_ID\020\370.\022\022\n\rE_USER_MSG_RQ\020\371"
+    ".\022\022\n\rE_USER_MSG_RS\020\372.\022\027\n\022E_USER_MSG_TEXT"
+    "_ID\020\373.\022\030\n\023E_USER_GIVE_GIFT_RQ\020\374.\022\030\n\023E_US"
+    "ER_GIVE_GIFT_RS\020\375.\022\030\n\023E_USER_APPLY_MIC_R"
+    "Q\020\376.\022\030\n\023E_USER_APPLY_MIC_RS\020\377.\022\025\n\020E_USER"
+    "_ON_MIC_ID\020\200/\022\026\n\021E_USER_OFF_MIC_RQ\020\201/\022\026\n"
+    "\021E_USER_OFF_MIC_RS\020\202/\022\026\n\021E_USER_OFF_MIC_"
+    "ID\020\203/\022\031\n\024E_PUT_USER_ON_MIC_RQ\020\204/\022\031\n\024E_PU"
+    "T_USER_ON_MIC_RS\020\205/\022\031\n\024E_CANCLE_USER_MIC"
+    "_RQ\020\206/\022\031\n\024E_CANCLE_USER_MIC_RS\020\207/\022\030\n\023E_U"
+    "SER_EXIT_ROOM_ID\020\210/", 4619);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "package_define.proto", &protobuf_RegisterTypes);
   GateRoomServerPack::default_instance_ = new GateRoomServerPack();
@@ -1769,6 +1800,17 @@ const int StruUserLoginRS::kMsgIdFieldNumber;
 const int StruUserLoginRS::kUserIdFieldNumber;
 const int StruUserLoginRS::kRoomIdFieldNumber;
 const int StruUserLoginRS::kResultFieldNumber;
+const int StruUserLoginRS::kUserRedDFieldNumber;
+const int StruUserLoginRS::kUserBlueDFieldNumber;
+const int StruUserLoginRS::kUserLevelFieldNumber;
+const int StruUserLoginRS::kBuyerRichesFieldNumber;
+const int StruUserLoginRS::kBuyerGrowUpFieldNumber;
+const int StruUserLoginRS::kBuyerHonourFieldNumber;
+const int StruUserLoginRS::kBuyerEstimateFieldNumber;
+const int StruUserLoginRS::kSellerIncomeFieldNumber;
+const int StruUserLoginRS::kSellerExpFieldNumber;
+const int StruUserLoginRS::kSellerPopFieldNumber;
+const int StruUserLoginRS::kSellerEstimateFieldNumber;
 #endif  // !_MSC_VER
 
 StruUserLoginRS::StruUserLoginRS()
@@ -1791,6 +1833,17 @@ void StruUserLoginRS::SharedCtor() {
   user_id_ = 0;
   room_id_ = 0;
   result_ = 0;
+  user_red_d_ = 0;
+  user_blue_d_ = 0;
+  user_level_ = 0;
+  buyer_riches_ = 0;
+  buyer_grow_up_ = 0;
+  buyer_honour_ = 0;
+  buyer_estimate_ = 0;
+  seller_income_ = 0;
+  seller_exp_ = 0;
+  seller_pop_ = 0;
+  seller_estimate_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -1829,6 +1882,19 @@ void StruUserLoginRS::Clear() {
     user_id_ = 0;
     room_id_ = 0;
     result_ = 0;
+    user_red_d_ = 0;
+    user_blue_d_ = 0;
+    user_level_ = 0;
+    buyer_riches_ = 0;
+  }
+  if (_has_bits_[8 / 32] & (0xffu << (8 % 32))) {
+    buyer_grow_up_ = 0;
+    buyer_honour_ = 0;
+    buyer_estimate_ = 0;
+    seller_income_ = 0;
+    seller_exp_ = 0;
+    seller_pop_ = 0;
+    seller_estimate_ = 0;
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
@@ -1904,6 +1970,182 @@ bool StruUserLoginRS::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
+        if (input->ExpectTag(40)) goto parse_user_red_d;
+        break;
+      }
+      
+      // required int32 user_red_d = 5;
+      case 5: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_user_red_d:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &user_red_d_)));
+          set_has_user_red_d();
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(48)) goto parse_user_blue_d;
+        break;
+      }
+      
+      // required int32 user_blue_d = 6;
+      case 6: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_user_blue_d:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &user_blue_d_)));
+          set_has_user_blue_d();
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(56)) goto parse_user_level;
+        break;
+      }
+      
+      // required int32 user_level = 7;
+      case 7: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_user_level:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &user_level_)));
+          set_has_user_level();
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(64)) goto parse_buyer_riches;
+        break;
+      }
+      
+      // required int32 buyer_riches = 8;
+      case 8: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_buyer_riches:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &buyer_riches_)));
+          set_has_buyer_riches();
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(72)) goto parse_buyer_grow_up;
+        break;
+      }
+      
+      // required int32 buyer_grow_up = 9;
+      case 9: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_buyer_grow_up:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &buyer_grow_up_)));
+          set_has_buyer_grow_up();
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(80)) goto parse_buyer_honour;
+        break;
+      }
+      
+      // required int32 buyer_honour = 10;
+      case 10: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_buyer_honour:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &buyer_honour_)));
+          set_has_buyer_honour();
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(88)) goto parse_buyer_estimate;
+        break;
+      }
+      
+      // required int32 buyer_estimate = 11;
+      case 11: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_buyer_estimate:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &buyer_estimate_)));
+          set_has_buyer_estimate();
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(96)) goto parse_seller_income;
+        break;
+      }
+      
+      // required int32 seller_income = 12;
+      case 12: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_seller_income:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &seller_income_)));
+          set_has_seller_income();
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(104)) goto parse_seller_exp;
+        break;
+      }
+      
+      // required int32 seller_exp = 13;
+      case 13: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_seller_exp:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &seller_exp_)));
+          set_has_seller_exp();
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(112)) goto parse_seller_pop;
+        break;
+      }
+      
+      // required int32 seller_pop = 14;
+      case 14: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_seller_pop:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &seller_pop_)));
+          set_has_seller_pop();
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(120)) goto parse_seller_estimate;
+        break;
+      }
+      
+      // required int32 seller_estimate = 15;
+      case 15: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_seller_estimate:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &seller_estimate_)));
+          set_has_seller_estimate();
+        } else {
+          goto handle_uninterpreted;
+        }
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -1947,6 +2189,61 @@ void StruUserLoginRS::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->result(), output);
   }
   
+  // required int32 user_red_d = 5;
+  if (has_user_red_d()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(5, this->user_red_d(), output);
+  }
+  
+  // required int32 user_blue_d = 6;
+  if (has_user_blue_d()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(6, this->user_blue_d(), output);
+  }
+  
+  // required int32 user_level = 7;
+  if (has_user_level()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(7, this->user_level(), output);
+  }
+  
+  // required int32 buyer_riches = 8;
+  if (has_buyer_riches()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(8, this->buyer_riches(), output);
+  }
+  
+  // required int32 buyer_grow_up = 9;
+  if (has_buyer_grow_up()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(9, this->buyer_grow_up(), output);
+  }
+  
+  // required int32 buyer_honour = 10;
+  if (has_buyer_honour()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(10, this->buyer_honour(), output);
+  }
+  
+  // required int32 buyer_estimate = 11;
+  if (has_buyer_estimate()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(11, this->buyer_estimate(), output);
+  }
+  
+  // required int32 seller_income = 12;
+  if (has_seller_income()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(12, this->seller_income(), output);
+  }
+  
+  // required int32 seller_exp = 13;
+  if (has_seller_exp()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(13, this->seller_exp(), output);
+  }
+  
+  // required int32 seller_pop = 14;
+  if (has_seller_pop()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(14, this->seller_pop(), output);
+  }
+  
+  // required int32 seller_estimate = 15;
+  if (has_seller_estimate()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(15, this->seller_estimate(), output);
+  }
+  
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -1974,6 +2271,61 @@ void StruUserLoginRS::SerializeWithCachedSizes(
   // required int32 result = 4;
   if (has_result()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->result(), target);
+  }
+  
+  // required int32 user_red_d = 5;
+  if (has_user_red_d()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(5, this->user_red_d(), target);
+  }
+  
+  // required int32 user_blue_d = 6;
+  if (has_user_blue_d()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(6, this->user_blue_d(), target);
+  }
+  
+  // required int32 user_level = 7;
+  if (has_user_level()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(7, this->user_level(), target);
+  }
+  
+  // required int32 buyer_riches = 8;
+  if (has_buyer_riches()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(8, this->buyer_riches(), target);
+  }
+  
+  // required int32 buyer_grow_up = 9;
+  if (has_buyer_grow_up()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(9, this->buyer_grow_up(), target);
+  }
+  
+  // required int32 buyer_honour = 10;
+  if (has_buyer_honour()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(10, this->buyer_honour(), target);
+  }
+  
+  // required int32 buyer_estimate = 11;
+  if (has_buyer_estimate()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(11, this->buyer_estimate(), target);
+  }
+  
+  // required int32 seller_income = 12;
+  if (has_seller_income()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(12, this->seller_income(), target);
+  }
+  
+  // required int32 seller_exp = 13;
+  if (has_seller_exp()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(13, this->seller_exp(), target);
+  }
+  
+  // required int32 seller_pop = 14;
+  if (has_seller_pop()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(14, this->seller_pop(), target);
+  }
+  
+  // required int32 seller_estimate = 15;
+  if (has_seller_estimate()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(15, this->seller_estimate(), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -2012,6 +2364,85 @@ int StruUserLoginRS::ByteSize() const {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->result());
+    }
+    
+    // required int32 user_red_d = 5;
+    if (has_user_red_d()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->user_red_d());
+    }
+    
+    // required int32 user_blue_d = 6;
+    if (has_user_blue_d()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->user_blue_d());
+    }
+    
+    // required int32 user_level = 7;
+    if (has_user_level()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->user_level());
+    }
+    
+    // required int32 buyer_riches = 8;
+    if (has_buyer_riches()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->buyer_riches());
+    }
+    
+  }
+  if (_has_bits_[8 / 32] & (0xffu << (8 % 32))) {
+    // required int32 buyer_grow_up = 9;
+    if (has_buyer_grow_up()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->buyer_grow_up());
+    }
+    
+    // required int32 buyer_honour = 10;
+    if (has_buyer_honour()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->buyer_honour());
+    }
+    
+    // required int32 buyer_estimate = 11;
+    if (has_buyer_estimate()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->buyer_estimate());
+    }
+    
+    // required int32 seller_income = 12;
+    if (has_seller_income()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->seller_income());
+    }
+    
+    // required int32 seller_exp = 13;
+    if (has_seller_exp()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->seller_exp());
+    }
+    
+    // required int32 seller_pop = 14;
+    if (has_seller_pop()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->seller_pop());
+    }
+    
+    // required int32 seller_estimate = 15;
+    if (has_seller_estimate()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->seller_estimate());
     }
     
   }
@@ -2053,6 +2484,41 @@ void StruUserLoginRS::MergeFrom(const StruUserLoginRS& from) {
     if (from.has_result()) {
       set_result(from.result());
     }
+    if (from.has_user_red_d()) {
+      set_user_red_d(from.user_red_d());
+    }
+    if (from.has_user_blue_d()) {
+      set_user_blue_d(from.user_blue_d());
+    }
+    if (from.has_user_level()) {
+      set_user_level(from.user_level());
+    }
+    if (from.has_buyer_riches()) {
+      set_buyer_riches(from.buyer_riches());
+    }
+  }
+  if (from._has_bits_[8 / 32] & (0xffu << (8 % 32))) {
+    if (from.has_buyer_grow_up()) {
+      set_buyer_grow_up(from.buyer_grow_up());
+    }
+    if (from.has_buyer_honour()) {
+      set_buyer_honour(from.buyer_honour());
+    }
+    if (from.has_buyer_estimate()) {
+      set_buyer_estimate(from.buyer_estimate());
+    }
+    if (from.has_seller_income()) {
+      set_seller_income(from.seller_income());
+    }
+    if (from.has_seller_exp()) {
+      set_seller_exp(from.seller_exp());
+    }
+    if (from.has_seller_pop()) {
+      set_seller_pop(from.seller_pop());
+    }
+    if (from.has_seller_estimate()) {
+      set_seller_estimate(from.seller_estimate());
+    }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
@@ -2070,7 +2536,7 @@ void StruUserLoginRS::CopyFrom(const StruUserLoginRS& from) {
 }
 
 bool StruUserLoginRS::IsInitialized() const {
-  if ((_has_bits_[0] & 0x0000000f) != 0x0000000f) return false;
+  if ((_has_bits_[0] & 0x00007fff) != 0x00007fff) return false;
   
   return true;
 }
@@ -2081,6 +2547,17 @@ void StruUserLoginRS::Swap(StruUserLoginRS* other) {
     std::swap(user_id_, other->user_id_);
     std::swap(room_id_, other->room_id_);
     std::swap(result_, other->result_);
+    std::swap(user_red_d_, other->user_red_d_);
+    std::swap(user_blue_d_, other->user_blue_d_);
+    std::swap(user_level_, other->user_level_);
+    std::swap(buyer_riches_, other->buyer_riches_);
+    std::swap(buyer_grow_up_, other->buyer_grow_up_);
+    std::swap(buyer_honour_, other->buyer_honour_);
+    std::swap(buyer_estimate_, other->buyer_estimate_);
+    std::swap(seller_income_, other->seller_income_);
+    std::swap(seller_exp_, other->seller_exp_);
+    std::swap(seller_pop_, other->seller_pop_);
+    std::swap(seller_estimate_, other->seller_estimate_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
@@ -3778,6 +4255,15 @@ const int StruUserInfo::kMsgIdFieldNumber;
 const int StruUserInfo::kUserIdFieldNumber;
 const int StruUserInfo::kUserAccountNameFieldNumber;
 const int StruUserInfo::kUserRoleUidFieldNumber;
+const int StruUserInfo::kUserLevelFieldNumber;
+const int StruUserInfo::kBuyerRichesFieldNumber;
+const int StruUserInfo::kBuyerGrowUpFieldNumber;
+const int StruUserInfo::kBuyerHonourFieldNumber;
+const int StruUserInfo::kBuyerEstimateFieldNumber;
+const int StruUserInfo::kSellerIncomeFieldNumber;
+const int StruUserInfo::kSellerExpFieldNumber;
+const int StruUserInfo::kSellerPopFieldNumber;
+const int StruUserInfo::kSellerEstimateFieldNumber;
 #endif  // !_MSC_VER
 
 StruUserInfo::StruUserInfo()
@@ -3800,6 +4286,15 @@ void StruUserInfo::SharedCtor() {
   user_id_ = 0;
   user_account_name_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   user_role_uid_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  user_level_ = 0;
+  buyer_riches_ = 0;
+  buyer_grow_up_ = 0;
+  buyer_honour_ = 0;
+  buyer_estimate_ = 0;
+  seller_income_ = 0;
+  seller_exp_ = 0;
+  seller_pop_ = 0;
+  seller_estimate_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -3852,6 +4347,17 @@ void StruUserInfo::Clear() {
         user_role_uid_->clear();
       }
     }
+    user_level_ = 0;
+    buyer_riches_ = 0;
+    buyer_grow_up_ = 0;
+    buyer_honour_ = 0;
+  }
+  if (_has_bits_[8 / 32] & (0xffu << (8 % 32))) {
+    buyer_estimate_ = 0;
+    seller_income_ = 0;
+    seller_exp_ = 0;
+    seller_pop_ = 0;
+    seller_estimate_ = 0;
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
@@ -3929,6 +4435,150 @@ bool StruUserInfo::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
+        if (input->ExpectTag(40)) goto parse_user_level;
+        break;
+      }
+      
+      // required int32 user_level = 5;
+      case 5: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_user_level:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &user_level_)));
+          set_has_user_level();
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(48)) goto parse_buyer_riches;
+        break;
+      }
+      
+      // required int32 buyer_riches = 6;
+      case 6: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_buyer_riches:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &buyer_riches_)));
+          set_has_buyer_riches();
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(56)) goto parse_buyer_grow_up;
+        break;
+      }
+      
+      // required int32 buyer_grow_up = 7;
+      case 7: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_buyer_grow_up:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &buyer_grow_up_)));
+          set_has_buyer_grow_up();
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(64)) goto parse_buyer_honour;
+        break;
+      }
+      
+      // required int32 buyer_honour = 8;
+      case 8: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_buyer_honour:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &buyer_honour_)));
+          set_has_buyer_honour();
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(72)) goto parse_buyer_estimate;
+        break;
+      }
+      
+      // required int32 buyer_estimate = 9;
+      case 9: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_buyer_estimate:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &buyer_estimate_)));
+          set_has_buyer_estimate();
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(80)) goto parse_seller_income;
+        break;
+      }
+      
+      // required int32 seller_income = 10;
+      case 10: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_seller_income:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &seller_income_)));
+          set_has_seller_income();
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(88)) goto parse_seller_exp;
+        break;
+      }
+      
+      // required int32 seller_exp = 11;
+      case 11: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_seller_exp:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &seller_exp_)));
+          set_has_seller_exp();
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(96)) goto parse_seller_pop;
+        break;
+      }
+      
+      // required int32 seller_pop = 12;
+      case 12: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_seller_pop:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &seller_pop_)));
+          set_has_seller_pop();
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(104)) goto parse_seller_estimate;
+        break;
+      }
+      
+      // required int32 seller_estimate = 13;
+      case 13: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_seller_estimate:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &seller_estimate_)));
+          set_has_seller_estimate();
+        } else {
+          goto handle_uninterpreted;
+        }
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -3980,6 +4630,51 @@ void StruUserInfo::SerializeWithCachedSizes(
       4, this->user_role_uid(), output);
   }
   
+  // required int32 user_level = 5;
+  if (has_user_level()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(5, this->user_level(), output);
+  }
+  
+  // required int32 buyer_riches = 6;
+  if (has_buyer_riches()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(6, this->buyer_riches(), output);
+  }
+  
+  // required int32 buyer_grow_up = 7;
+  if (has_buyer_grow_up()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(7, this->buyer_grow_up(), output);
+  }
+  
+  // required int32 buyer_honour = 8;
+  if (has_buyer_honour()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(8, this->buyer_honour(), output);
+  }
+  
+  // required int32 buyer_estimate = 9;
+  if (has_buyer_estimate()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(9, this->buyer_estimate(), output);
+  }
+  
+  // required int32 seller_income = 10;
+  if (has_seller_income()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(10, this->seller_income(), output);
+  }
+  
+  // required int32 seller_exp = 11;
+  if (has_seller_exp()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(11, this->seller_exp(), output);
+  }
+  
+  // required int32 seller_pop = 12;
+  if (has_seller_pop()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(12, this->seller_pop(), output);
+  }
+  
+  // required int32 seller_estimate = 13;
+  if (has_seller_estimate()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(13, this->seller_estimate(), output);
+  }
+  
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -4019,6 +4714,51 @@ void StruUserInfo::SerializeWithCachedSizes(
         4, this->user_role_uid(), target);
   }
   
+  // required int32 user_level = 5;
+  if (has_user_level()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(5, this->user_level(), target);
+  }
+  
+  // required int32 buyer_riches = 6;
+  if (has_buyer_riches()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(6, this->buyer_riches(), target);
+  }
+  
+  // required int32 buyer_grow_up = 7;
+  if (has_buyer_grow_up()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(7, this->buyer_grow_up(), target);
+  }
+  
+  // required int32 buyer_honour = 8;
+  if (has_buyer_honour()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(8, this->buyer_honour(), target);
+  }
+  
+  // required int32 buyer_estimate = 9;
+  if (has_buyer_estimate()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(9, this->buyer_estimate(), target);
+  }
+  
+  // required int32 seller_income = 10;
+  if (has_seller_income()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(10, this->seller_income(), target);
+  }
+  
+  // required int32 seller_exp = 11;
+  if (has_seller_exp()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(11, this->seller_exp(), target);
+  }
+  
+  // required int32 seller_pop = 12;
+  if (has_seller_pop()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(12, this->seller_pop(), target);
+  }
+  
+  // required int32 seller_estimate = 13;
+  if (has_seller_estimate()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(13, this->seller_estimate(), target);
+  }
+  
   if (!unknown_fields().empty()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
@@ -4055,6 +4795,71 @@ int StruUserInfo::ByteSize() const {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
           this->user_role_uid());
+    }
+    
+    // required int32 user_level = 5;
+    if (has_user_level()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->user_level());
+    }
+    
+    // required int32 buyer_riches = 6;
+    if (has_buyer_riches()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->buyer_riches());
+    }
+    
+    // required int32 buyer_grow_up = 7;
+    if (has_buyer_grow_up()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->buyer_grow_up());
+    }
+    
+    // required int32 buyer_honour = 8;
+    if (has_buyer_honour()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->buyer_honour());
+    }
+    
+  }
+  if (_has_bits_[8 / 32] & (0xffu << (8 % 32))) {
+    // required int32 buyer_estimate = 9;
+    if (has_buyer_estimate()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->buyer_estimate());
+    }
+    
+    // required int32 seller_income = 10;
+    if (has_seller_income()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->seller_income());
+    }
+    
+    // required int32 seller_exp = 11;
+    if (has_seller_exp()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->seller_exp());
+    }
+    
+    // required int32 seller_pop = 12;
+    if (has_seller_pop()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->seller_pop());
+    }
+    
+    // required int32 seller_estimate = 13;
+    if (has_seller_estimate()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->seller_estimate());
     }
     
   }
@@ -4096,6 +4901,35 @@ void StruUserInfo::MergeFrom(const StruUserInfo& from) {
     if (from.has_user_role_uid()) {
       set_user_role_uid(from.user_role_uid());
     }
+    if (from.has_user_level()) {
+      set_user_level(from.user_level());
+    }
+    if (from.has_buyer_riches()) {
+      set_buyer_riches(from.buyer_riches());
+    }
+    if (from.has_buyer_grow_up()) {
+      set_buyer_grow_up(from.buyer_grow_up());
+    }
+    if (from.has_buyer_honour()) {
+      set_buyer_honour(from.buyer_honour());
+    }
+  }
+  if (from._has_bits_[8 / 32] & (0xffu << (8 % 32))) {
+    if (from.has_buyer_estimate()) {
+      set_buyer_estimate(from.buyer_estimate());
+    }
+    if (from.has_seller_income()) {
+      set_seller_income(from.seller_income());
+    }
+    if (from.has_seller_exp()) {
+      set_seller_exp(from.seller_exp());
+    }
+    if (from.has_seller_pop()) {
+      set_seller_pop(from.seller_pop());
+    }
+    if (from.has_seller_estimate()) {
+      set_seller_estimate(from.seller_estimate());
+    }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
@@ -4113,7 +4947,7 @@ void StruUserInfo::CopyFrom(const StruUserInfo& from) {
 }
 
 bool StruUserInfo::IsInitialized() const {
-  if ((_has_bits_[0] & 0x0000000f) != 0x0000000f) return false;
+  if ((_has_bits_[0] & 0x00001fff) != 0x00001fff) return false;
   
   return true;
 }
@@ -4124,6 +4958,15 @@ void StruUserInfo::Swap(StruUserInfo* other) {
     std::swap(user_id_, other->user_id_);
     std::swap(user_account_name_, other->user_account_name_);
     std::swap(user_role_uid_, other->user_role_uid_);
+    std::swap(user_level_, other->user_level_);
+    std::swap(buyer_riches_, other->buyer_riches_);
+    std::swap(buyer_grow_up_, other->buyer_grow_up_);
+    std::swap(buyer_honour_, other->buyer_honour_);
+    std::swap(buyer_estimate_, other->buyer_estimate_);
+    std::swap(seller_income_, other->seller_income_);
+    std::swap(seller_exp_, other->seller_exp_);
+    std::swap(seller_pop_, other->seller_pop_);
+    std::swap(seller_estimate_, other->seller_estimate_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

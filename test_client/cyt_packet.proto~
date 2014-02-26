@@ -1,0 +1,15 @@
+
+
+message StruCytPacket
+{
+	required string str_head = 1;
+	required int32 room_id = 2;
+	required int32 msg_len = 3;
+	required int32 msg_type= 4;
+	required bytes msg_data = 5;
+	required string str_tail = 6;
+}
+message StruPackages
+{
+repeated StruCyPacket packages = 1;
+}

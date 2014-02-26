@@ -48,6 +48,25 @@ public:
 	std::map<int,CenterServerConnector *> *GetCSConnectionList();
 
 	CenterServerConnector *GetCSConnector();
+
+	template<class T>
+	bool SendDataToRoomAllUser(T &pack,int msg_id,int room_id = 0);
 };
+
+template<class T>
+bool RoomServer::SendDataToRoomAllUser(T &pack,int msg_id,int room_id)
+{
+	if(room_id == 0)//send to all room
+	{
+		;
+	}
+	else
+	{
+		ChatRoom *tmp_room = room_manager_.GetRoom(room_id);
+		if(!tmp_room)
+			return false;
+	}
+	return false;
+}
 
 #endif

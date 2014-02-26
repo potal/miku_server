@@ -280,6 +280,7 @@ void ServerListenner::AcceptAction(int sock,short event_flag,void *action_class)
 			tmp_user->user_uip = *(int *)&tmp_client_addr.sin_addr;
 			tmp_user->user_uport = tmp_client_addr.sin_port;
 			tmp_user->server_ptr = tmp_server;
+			bufferevent_setcb(tmp_user->buffev,DealWithReadData,NULL,ErrorRead,tmp_user);
 			bufferevent_base_set(tmp_server->workers_ptr_[tmp_index].worker_base,tmp_user->buffev);
 			bufferevent_settimeout(tmp_user->buffev,0,0);
 			bufferevent_setfd(tmp_user->buffev,tmp_user->user_sock);
@@ -302,6 +303,7 @@ void ServerListenner::ErrorRead(struct bufferevent * buffev,short event_flag,voi
 {
 	BaseUserInfo *tmp_user = (BaseUserInfo *)arg;
 	std::cout<<"ErrorRead: User("<<tmp_user->hash_key<<")leave!"<<std::endl;
+	bufferevent_disable(tmp_user->buffev,EV_READ|EV_WRITE);
 	ServerListenner *tmp_server = (ServerListenner *)tmp_user->server_ptr;
 	if(tmp_server)
 	{
@@ -312,6 +314,7 @@ void ServerListenner::ErrorRead(struct bufferevent * buffev,short event_flag,voi
 void ServerListenner::ReleaseUserInfo(int user_hashkey,BaseUserInfo *user)
 {
 	using_user_map_.erase(user_hashkey);
+	close(user->user_sock);
 	user_info_resource_->ReleaseUserInfo(user);
 }
 

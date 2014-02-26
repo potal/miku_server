@@ -456,6 +456,83 @@ class StruUserLoginRS : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 result() const;
   inline void set_result(::google::protobuf::int32 value);
   
+  // required int32 user_red_d = 5;
+  inline bool has_user_red_d() const;
+  inline void clear_user_red_d();
+  static const int kUserRedDFieldNumber = 5;
+  inline ::google::protobuf::int32 user_red_d() const;
+  inline void set_user_red_d(::google::protobuf::int32 value);
+  
+  // required int32 user_blue_d = 6;
+  inline bool has_user_blue_d() const;
+  inline void clear_user_blue_d();
+  static const int kUserBlueDFieldNumber = 6;
+  inline ::google::protobuf::int32 user_blue_d() const;
+  inline void set_user_blue_d(::google::protobuf::int32 value);
+  
+  // required int32 user_level = 7;
+  inline bool has_user_level() const;
+  inline void clear_user_level();
+  static const int kUserLevelFieldNumber = 7;
+  inline ::google::protobuf::int32 user_level() const;
+  inline void set_user_level(::google::protobuf::int32 value);
+  
+  // required int32 buyer_riches = 8;
+  inline bool has_buyer_riches() const;
+  inline void clear_buyer_riches();
+  static const int kBuyerRichesFieldNumber = 8;
+  inline ::google::protobuf::int32 buyer_riches() const;
+  inline void set_buyer_riches(::google::protobuf::int32 value);
+  
+  // required int32 buyer_grow_up = 9;
+  inline bool has_buyer_grow_up() const;
+  inline void clear_buyer_grow_up();
+  static const int kBuyerGrowUpFieldNumber = 9;
+  inline ::google::protobuf::int32 buyer_grow_up() const;
+  inline void set_buyer_grow_up(::google::protobuf::int32 value);
+  
+  // required int32 buyer_honour = 10;
+  inline bool has_buyer_honour() const;
+  inline void clear_buyer_honour();
+  static const int kBuyerHonourFieldNumber = 10;
+  inline ::google::protobuf::int32 buyer_honour() const;
+  inline void set_buyer_honour(::google::protobuf::int32 value);
+  
+  // required int32 buyer_estimate = 11;
+  inline bool has_buyer_estimate() const;
+  inline void clear_buyer_estimate();
+  static const int kBuyerEstimateFieldNumber = 11;
+  inline ::google::protobuf::int32 buyer_estimate() const;
+  inline void set_buyer_estimate(::google::protobuf::int32 value);
+  
+  // required int32 seller_income = 12;
+  inline bool has_seller_income() const;
+  inline void clear_seller_income();
+  static const int kSellerIncomeFieldNumber = 12;
+  inline ::google::protobuf::int32 seller_income() const;
+  inline void set_seller_income(::google::protobuf::int32 value);
+  
+  // required int32 seller_exp = 13;
+  inline bool has_seller_exp() const;
+  inline void clear_seller_exp();
+  static const int kSellerExpFieldNumber = 13;
+  inline ::google::protobuf::int32 seller_exp() const;
+  inline void set_seller_exp(::google::protobuf::int32 value);
+  
+  // required int32 seller_pop = 14;
+  inline bool has_seller_pop() const;
+  inline void clear_seller_pop();
+  static const int kSellerPopFieldNumber = 14;
+  inline ::google::protobuf::int32 seller_pop() const;
+  inline void set_seller_pop(::google::protobuf::int32 value);
+  
+  // required int32 seller_estimate = 15;
+  inline bool has_seller_estimate() const;
+  inline void clear_seller_estimate();
+  static const int kSellerEstimateFieldNumber = 15;
+  inline ::google::protobuf::int32 seller_estimate() const;
+  inline void set_seller_estimate(::google::protobuf::int32 value);
+  
   // @@protoc_insertion_point(class_scope:StruUserLoginRS)
  private:
   inline void set_has_msg_id();
@@ -466,6 +543,28 @@ class StruUserLoginRS : public ::google::protobuf::Message {
   inline void clear_has_room_id();
   inline void set_has_result();
   inline void clear_has_result();
+  inline void set_has_user_red_d();
+  inline void clear_has_user_red_d();
+  inline void set_has_user_blue_d();
+  inline void clear_has_user_blue_d();
+  inline void set_has_user_level();
+  inline void clear_has_user_level();
+  inline void set_has_buyer_riches();
+  inline void clear_has_buyer_riches();
+  inline void set_has_buyer_grow_up();
+  inline void clear_has_buyer_grow_up();
+  inline void set_has_buyer_honour();
+  inline void clear_has_buyer_honour();
+  inline void set_has_buyer_estimate();
+  inline void clear_has_buyer_estimate();
+  inline void set_has_seller_income();
+  inline void clear_has_seller_income();
+  inline void set_has_seller_exp();
+  inline void clear_has_seller_exp();
+  inline void set_has_seller_pop();
+  inline void clear_has_seller_pop();
+  inline void set_has_seller_estimate();
+  inline void clear_has_seller_estimate();
   
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
@@ -473,9 +572,20 @@ class StruUserLoginRS : public ::google::protobuf::Message {
   ::google::protobuf::int32 user_id_;
   ::google::protobuf::int32 room_id_;
   ::google::protobuf::int32 result_;
+  ::google::protobuf::int32 user_red_d_;
+  ::google::protobuf::int32 user_blue_d_;
+  ::google::protobuf::int32 user_level_;
+  ::google::protobuf::int32 buyer_riches_;
+  ::google::protobuf::int32 buyer_grow_up_;
+  ::google::protobuf::int32 buyer_honour_;
+  ::google::protobuf::int32 buyer_estimate_;
+  ::google::protobuf::int32 seller_income_;
+  ::google::protobuf::int32 seller_exp_;
+  ::google::protobuf::int32 seller_pop_;
+  ::google::protobuf::int32 seller_estimate_;
   
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(4 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(15 + 31) / 32];
   
   friend void  protobuf_AddDesc_package_5fdefine_2eproto();
   friend void protobuf_AssignDesc_package_5fdefine_2eproto();
@@ -1109,6 +1219,69 @@ class StruUserInfo : public ::google::protobuf::Message {
   inline ::std::string* mutable_user_role_uid();
   inline ::std::string* release_user_role_uid();
   
+  // required int32 user_level = 5;
+  inline bool has_user_level() const;
+  inline void clear_user_level();
+  static const int kUserLevelFieldNumber = 5;
+  inline ::google::protobuf::int32 user_level() const;
+  inline void set_user_level(::google::protobuf::int32 value);
+  
+  // required int32 buyer_riches = 6;
+  inline bool has_buyer_riches() const;
+  inline void clear_buyer_riches();
+  static const int kBuyerRichesFieldNumber = 6;
+  inline ::google::protobuf::int32 buyer_riches() const;
+  inline void set_buyer_riches(::google::protobuf::int32 value);
+  
+  // required int32 buyer_grow_up = 7;
+  inline bool has_buyer_grow_up() const;
+  inline void clear_buyer_grow_up();
+  static const int kBuyerGrowUpFieldNumber = 7;
+  inline ::google::protobuf::int32 buyer_grow_up() const;
+  inline void set_buyer_grow_up(::google::protobuf::int32 value);
+  
+  // required int32 buyer_honour = 8;
+  inline bool has_buyer_honour() const;
+  inline void clear_buyer_honour();
+  static const int kBuyerHonourFieldNumber = 8;
+  inline ::google::protobuf::int32 buyer_honour() const;
+  inline void set_buyer_honour(::google::protobuf::int32 value);
+  
+  // required int32 buyer_estimate = 9;
+  inline bool has_buyer_estimate() const;
+  inline void clear_buyer_estimate();
+  static const int kBuyerEstimateFieldNumber = 9;
+  inline ::google::protobuf::int32 buyer_estimate() const;
+  inline void set_buyer_estimate(::google::protobuf::int32 value);
+  
+  // required int32 seller_income = 10;
+  inline bool has_seller_income() const;
+  inline void clear_seller_income();
+  static const int kSellerIncomeFieldNumber = 10;
+  inline ::google::protobuf::int32 seller_income() const;
+  inline void set_seller_income(::google::protobuf::int32 value);
+  
+  // required int32 seller_exp = 11;
+  inline bool has_seller_exp() const;
+  inline void clear_seller_exp();
+  static const int kSellerExpFieldNumber = 11;
+  inline ::google::protobuf::int32 seller_exp() const;
+  inline void set_seller_exp(::google::protobuf::int32 value);
+  
+  // required int32 seller_pop = 12;
+  inline bool has_seller_pop() const;
+  inline void clear_seller_pop();
+  static const int kSellerPopFieldNumber = 12;
+  inline ::google::protobuf::int32 seller_pop() const;
+  inline void set_seller_pop(::google::protobuf::int32 value);
+  
+  // required int32 seller_estimate = 13;
+  inline bool has_seller_estimate() const;
+  inline void clear_seller_estimate();
+  static const int kSellerEstimateFieldNumber = 13;
+  inline ::google::protobuf::int32 seller_estimate() const;
+  inline void set_seller_estimate(::google::protobuf::int32 value);
+  
   // @@protoc_insertion_point(class_scope:StruUserInfo)
  private:
   inline void set_has_msg_id();
@@ -1119,6 +1292,24 @@ class StruUserInfo : public ::google::protobuf::Message {
   inline void clear_has_user_account_name();
   inline void set_has_user_role_uid();
   inline void clear_has_user_role_uid();
+  inline void set_has_user_level();
+  inline void clear_has_user_level();
+  inline void set_has_buyer_riches();
+  inline void clear_has_buyer_riches();
+  inline void set_has_buyer_grow_up();
+  inline void clear_has_buyer_grow_up();
+  inline void set_has_buyer_honour();
+  inline void clear_has_buyer_honour();
+  inline void set_has_buyer_estimate();
+  inline void clear_has_buyer_estimate();
+  inline void set_has_seller_income();
+  inline void clear_has_seller_income();
+  inline void set_has_seller_exp();
+  inline void clear_has_seller_exp();
+  inline void set_has_seller_pop();
+  inline void clear_has_seller_pop();
+  inline void set_has_seller_estimate();
+  inline void clear_has_seller_estimate();
   
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
@@ -1126,9 +1317,18 @@ class StruUserInfo : public ::google::protobuf::Message {
   ::google::protobuf::int32 user_id_;
   ::std::string* user_account_name_;
   ::std::string* user_role_uid_;
+  ::google::protobuf::int32 user_level_;
+  ::google::protobuf::int32 buyer_riches_;
+  ::google::protobuf::int32 buyer_grow_up_;
+  ::google::protobuf::int32 buyer_honour_;
+  ::google::protobuf::int32 buyer_estimate_;
+  ::google::protobuf::int32 seller_income_;
+  ::google::protobuf::int32 seller_exp_;
+  ::google::protobuf::int32 seller_pop_;
+  ::google::protobuf::int32 seller_estimate_;
   
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(4 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(13 + 31) / 32];
   
   friend void  protobuf_AddDesc_package_5fdefine_2eproto();
   friend void protobuf_AssignDesc_package_5fdefine_2eproto();
@@ -3745,6 +3945,248 @@ inline void StruUserLoginRS::set_result(::google::protobuf::int32 value) {
   result_ = value;
 }
 
+// required int32 user_red_d = 5;
+inline bool StruUserLoginRS::has_user_red_d() const {
+  return (_has_bits_[0] & 0x00000010u) != 0;
+}
+inline void StruUserLoginRS::set_has_user_red_d() {
+  _has_bits_[0] |= 0x00000010u;
+}
+inline void StruUserLoginRS::clear_has_user_red_d() {
+  _has_bits_[0] &= ~0x00000010u;
+}
+inline void StruUserLoginRS::clear_user_red_d() {
+  user_red_d_ = 0;
+  clear_has_user_red_d();
+}
+inline ::google::protobuf::int32 StruUserLoginRS::user_red_d() const {
+  return user_red_d_;
+}
+inline void StruUserLoginRS::set_user_red_d(::google::protobuf::int32 value) {
+  set_has_user_red_d();
+  user_red_d_ = value;
+}
+
+// required int32 user_blue_d = 6;
+inline bool StruUserLoginRS::has_user_blue_d() const {
+  return (_has_bits_[0] & 0x00000020u) != 0;
+}
+inline void StruUserLoginRS::set_has_user_blue_d() {
+  _has_bits_[0] |= 0x00000020u;
+}
+inline void StruUserLoginRS::clear_has_user_blue_d() {
+  _has_bits_[0] &= ~0x00000020u;
+}
+inline void StruUserLoginRS::clear_user_blue_d() {
+  user_blue_d_ = 0;
+  clear_has_user_blue_d();
+}
+inline ::google::protobuf::int32 StruUserLoginRS::user_blue_d() const {
+  return user_blue_d_;
+}
+inline void StruUserLoginRS::set_user_blue_d(::google::protobuf::int32 value) {
+  set_has_user_blue_d();
+  user_blue_d_ = value;
+}
+
+// required int32 user_level = 7;
+inline bool StruUserLoginRS::has_user_level() const {
+  return (_has_bits_[0] & 0x00000040u) != 0;
+}
+inline void StruUserLoginRS::set_has_user_level() {
+  _has_bits_[0] |= 0x00000040u;
+}
+inline void StruUserLoginRS::clear_has_user_level() {
+  _has_bits_[0] &= ~0x00000040u;
+}
+inline void StruUserLoginRS::clear_user_level() {
+  user_level_ = 0;
+  clear_has_user_level();
+}
+inline ::google::protobuf::int32 StruUserLoginRS::user_level() const {
+  return user_level_;
+}
+inline void StruUserLoginRS::set_user_level(::google::protobuf::int32 value) {
+  set_has_user_level();
+  user_level_ = value;
+}
+
+// required int32 buyer_riches = 8;
+inline bool StruUserLoginRS::has_buyer_riches() const {
+  return (_has_bits_[0] & 0x00000080u) != 0;
+}
+inline void StruUserLoginRS::set_has_buyer_riches() {
+  _has_bits_[0] |= 0x00000080u;
+}
+inline void StruUserLoginRS::clear_has_buyer_riches() {
+  _has_bits_[0] &= ~0x00000080u;
+}
+inline void StruUserLoginRS::clear_buyer_riches() {
+  buyer_riches_ = 0;
+  clear_has_buyer_riches();
+}
+inline ::google::protobuf::int32 StruUserLoginRS::buyer_riches() const {
+  return buyer_riches_;
+}
+inline void StruUserLoginRS::set_buyer_riches(::google::protobuf::int32 value) {
+  set_has_buyer_riches();
+  buyer_riches_ = value;
+}
+
+// required int32 buyer_grow_up = 9;
+inline bool StruUserLoginRS::has_buyer_grow_up() const {
+  return (_has_bits_[0] & 0x00000100u) != 0;
+}
+inline void StruUserLoginRS::set_has_buyer_grow_up() {
+  _has_bits_[0] |= 0x00000100u;
+}
+inline void StruUserLoginRS::clear_has_buyer_grow_up() {
+  _has_bits_[0] &= ~0x00000100u;
+}
+inline void StruUserLoginRS::clear_buyer_grow_up() {
+  buyer_grow_up_ = 0;
+  clear_has_buyer_grow_up();
+}
+inline ::google::protobuf::int32 StruUserLoginRS::buyer_grow_up() const {
+  return buyer_grow_up_;
+}
+inline void StruUserLoginRS::set_buyer_grow_up(::google::protobuf::int32 value) {
+  set_has_buyer_grow_up();
+  buyer_grow_up_ = value;
+}
+
+// required int32 buyer_honour = 10;
+inline bool StruUserLoginRS::has_buyer_honour() const {
+  return (_has_bits_[0] & 0x00000200u) != 0;
+}
+inline void StruUserLoginRS::set_has_buyer_honour() {
+  _has_bits_[0] |= 0x00000200u;
+}
+inline void StruUserLoginRS::clear_has_buyer_honour() {
+  _has_bits_[0] &= ~0x00000200u;
+}
+inline void StruUserLoginRS::clear_buyer_honour() {
+  buyer_honour_ = 0;
+  clear_has_buyer_honour();
+}
+inline ::google::protobuf::int32 StruUserLoginRS::buyer_honour() const {
+  return buyer_honour_;
+}
+inline void StruUserLoginRS::set_buyer_honour(::google::protobuf::int32 value) {
+  set_has_buyer_honour();
+  buyer_honour_ = value;
+}
+
+// required int32 buyer_estimate = 11;
+inline bool StruUserLoginRS::has_buyer_estimate() const {
+  return (_has_bits_[0] & 0x00000400u) != 0;
+}
+inline void StruUserLoginRS::set_has_buyer_estimate() {
+  _has_bits_[0] |= 0x00000400u;
+}
+inline void StruUserLoginRS::clear_has_buyer_estimate() {
+  _has_bits_[0] &= ~0x00000400u;
+}
+inline void StruUserLoginRS::clear_buyer_estimate() {
+  buyer_estimate_ = 0;
+  clear_has_buyer_estimate();
+}
+inline ::google::protobuf::int32 StruUserLoginRS::buyer_estimate() const {
+  return buyer_estimate_;
+}
+inline void StruUserLoginRS::set_buyer_estimate(::google::protobuf::int32 value) {
+  set_has_buyer_estimate();
+  buyer_estimate_ = value;
+}
+
+// required int32 seller_income = 12;
+inline bool StruUserLoginRS::has_seller_income() const {
+  return (_has_bits_[0] & 0x00000800u) != 0;
+}
+inline void StruUserLoginRS::set_has_seller_income() {
+  _has_bits_[0] |= 0x00000800u;
+}
+inline void StruUserLoginRS::clear_has_seller_income() {
+  _has_bits_[0] &= ~0x00000800u;
+}
+inline void StruUserLoginRS::clear_seller_income() {
+  seller_income_ = 0;
+  clear_has_seller_income();
+}
+inline ::google::protobuf::int32 StruUserLoginRS::seller_income() const {
+  return seller_income_;
+}
+inline void StruUserLoginRS::set_seller_income(::google::protobuf::int32 value) {
+  set_has_seller_income();
+  seller_income_ = value;
+}
+
+// required int32 seller_exp = 13;
+inline bool StruUserLoginRS::has_seller_exp() const {
+  return (_has_bits_[0] & 0x00001000u) != 0;
+}
+inline void StruUserLoginRS::set_has_seller_exp() {
+  _has_bits_[0] |= 0x00001000u;
+}
+inline void StruUserLoginRS::clear_has_seller_exp() {
+  _has_bits_[0] &= ~0x00001000u;
+}
+inline void StruUserLoginRS::clear_seller_exp() {
+  seller_exp_ = 0;
+  clear_has_seller_exp();
+}
+inline ::google::protobuf::int32 StruUserLoginRS::seller_exp() const {
+  return seller_exp_;
+}
+inline void StruUserLoginRS::set_seller_exp(::google::protobuf::int32 value) {
+  set_has_seller_exp();
+  seller_exp_ = value;
+}
+
+// required int32 seller_pop = 14;
+inline bool StruUserLoginRS::has_seller_pop() const {
+  return (_has_bits_[0] & 0x00002000u) != 0;
+}
+inline void StruUserLoginRS::set_has_seller_pop() {
+  _has_bits_[0] |= 0x00002000u;
+}
+inline void StruUserLoginRS::clear_has_seller_pop() {
+  _has_bits_[0] &= ~0x00002000u;
+}
+inline void StruUserLoginRS::clear_seller_pop() {
+  seller_pop_ = 0;
+  clear_has_seller_pop();
+}
+inline ::google::protobuf::int32 StruUserLoginRS::seller_pop() const {
+  return seller_pop_;
+}
+inline void StruUserLoginRS::set_seller_pop(::google::protobuf::int32 value) {
+  set_has_seller_pop();
+  seller_pop_ = value;
+}
+
+// required int32 seller_estimate = 15;
+inline bool StruUserLoginRS::has_seller_estimate() const {
+  return (_has_bits_[0] & 0x00004000u) != 0;
+}
+inline void StruUserLoginRS::set_has_seller_estimate() {
+  _has_bits_[0] |= 0x00004000u;
+}
+inline void StruUserLoginRS::clear_has_seller_estimate() {
+  _has_bits_[0] &= ~0x00004000u;
+}
+inline void StruUserLoginRS::clear_seller_estimate() {
+  seller_estimate_ = 0;
+  clear_has_seller_estimate();
+}
+inline ::google::protobuf::int32 StruUserLoginRS::seller_estimate() const {
+  return seller_estimate_;
+}
+inline void StruUserLoginRS::set_seller_estimate(::google::protobuf::int32 value) {
+  set_has_seller_estimate();
+  seller_estimate_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // StruUserRoleInfoID
@@ -4681,6 +5123,204 @@ inline ::std::string* StruUserInfo::release_user_role_uid() {
     user_role_uid_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
     return temp;
   }
+}
+
+// required int32 user_level = 5;
+inline bool StruUserInfo::has_user_level() const {
+  return (_has_bits_[0] & 0x00000010u) != 0;
+}
+inline void StruUserInfo::set_has_user_level() {
+  _has_bits_[0] |= 0x00000010u;
+}
+inline void StruUserInfo::clear_has_user_level() {
+  _has_bits_[0] &= ~0x00000010u;
+}
+inline void StruUserInfo::clear_user_level() {
+  user_level_ = 0;
+  clear_has_user_level();
+}
+inline ::google::protobuf::int32 StruUserInfo::user_level() const {
+  return user_level_;
+}
+inline void StruUserInfo::set_user_level(::google::protobuf::int32 value) {
+  set_has_user_level();
+  user_level_ = value;
+}
+
+// required int32 buyer_riches = 6;
+inline bool StruUserInfo::has_buyer_riches() const {
+  return (_has_bits_[0] & 0x00000020u) != 0;
+}
+inline void StruUserInfo::set_has_buyer_riches() {
+  _has_bits_[0] |= 0x00000020u;
+}
+inline void StruUserInfo::clear_has_buyer_riches() {
+  _has_bits_[0] &= ~0x00000020u;
+}
+inline void StruUserInfo::clear_buyer_riches() {
+  buyer_riches_ = 0;
+  clear_has_buyer_riches();
+}
+inline ::google::protobuf::int32 StruUserInfo::buyer_riches() const {
+  return buyer_riches_;
+}
+inline void StruUserInfo::set_buyer_riches(::google::protobuf::int32 value) {
+  set_has_buyer_riches();
+  buyer_riches_ = value;
+}
+
+// required int32 buyer_grow_up = 7;
+inline bool StruUserInfo::has_buyer_grow_up() const {
+  return (_has_bits_[0] & 0x00000040u) != 0;
+}
+inline void StruUserInfo::set_has_buyer_grow_up() {
+  _has_bits_[0] |= 0x00000040u;
+}
+inline void StruUserInfo::clear_has_buyer_grow_up() {
+  _has_bits_[0] &= ~0x00000040u;
+}
+inline void StruUserInfo::clear_buyer_grow_up() {
+  buyer_grow_up_ = 0;
+  clear_has_buyer_grow_up();
+}
+inline ::google::protobuf::int32 StruUserInfo::buyer_grow_up() const {
+  return buyer_grow_up_;
+}
+inline void StruUserInfo::set_buyer_grow_up(::google::protobuf::int32 value) {
+  set_has_buyer_grow_up();
+  buyer_grow_up_ = value;
+}
+
+// required int32 buyer_honour = 8;
+inline bool StruUserInfo::has_buyer_honour() const {
+  return (_has_bits_[0] & 0x00000080u) != 0;
+}
+inline void StruUserInfo::set_has_buyer_honour() {
+  _has_bits_[0] |= 0x00000080u;
+}
+inline void StruUserInfo::clear_has_buyer_honour() {
+  _has_bits_[0] &= ~0x00000080u;
+}
+inline void StruUserInfo::clear_buyer_honour() {
+  buyer_honour_ = 0;
+  clear_has_buyer_honour();
+}
+inline ::google::protobuf::int32 StruUserInfo::buyer_honour() const {
+  return buyer_honour_;
+}
+inline void StruUserInfo::set_buyer_honour(::google::protobuf::int32 value) {
+  set_has_buyer_honour();
+  buyer_honour_ = value;
+}
+
+// required int32 buyer_estimate = 9;
+inline bool StruUserInfo::has_buyer_estimate() const {
+  return (_has_bits_[0] & 0x00000100u) != 0;
+}
+inline void StruUserInfo::set_has_buyer_estimate() {
+  _has_bits_[0] |= 0x00000100u;
+}
+inline void StruUserInfo::clear_has_buyer_estimate() {
+  _has_bits_[0] &= ~0x00000100u;
+}
+inline void StruUserInfo::clear_buyer_estimate() {
+  buyer_estimate_ = 0;
+  clear_has_buyer_estimate();
+}
+inline ::google::protobuf::int32 StruUserInfo::buyer_estimate() const {
+  return buyer_estimate_;
+}
+inline void StruUserInfo::set_buyer_estimate(::google::protobuf::int32 value) {
+  set_has_buyer_estimate();
+  buyer_estimate_ = value;
+}
+
+// required int32 seller_income = 10;
+inline bool StruUserInfo::has_seller_income() const {
+  return (_has_bits_[0] & 0x00000200u) != 0;
+}
+inline void StruUserInfo::set_has_seller_income() {
+  _has_bits_[0] |= 0x00000200u;
+}
+inline void StruUserInfo::clear_has_seller_income() {
+  _has_bits_[0] &= ~0x00000200u;
+}
+inline void StruUserInfo::clear_seller_income() {
+  seller_income_ = 0;
+  clear_has_seller_income();
+}
+inline ::google::protobuf::int32 StruUserInfo::seller_income() const {
+  return seller_income_;
+}
+inline void StruUserInfo::set_seller_income(::google::protobuf::int32 value) {
+  set_has_seller_income();
+  seller_income_ = value;
+}
+
+// required int32 seller_exp = 11;
+inline bool StruUserInfo::has_seller_exp() const {
+  return (_has_bits_[0] & 0x00000400u) != 0;
+}
+inline void StruUserInfo::set_has_seller_exp() {
+  _has_bits_[0] |= 0x00000400u;
+}
+inline void StruUserInfo::clear_has_seller_exp() {
+  _has_bits_[0] &= ~0x00000400u;
+}
+inline void StruUserInfo::clear_seller_exp() {
+  seller_exp_ = 0;
+  clear_has_seller_exp();
+}
+inline ::google::protobuf::int32 StruUserInfo::seller_exp() const {
+  return seller_exp_;
+}
+inline void StruUserInfo::set_seller_exp(::google::protobuf::int32 value) {
+  set_has_seller_exp();
+  seller_exp_ = value;
+}
+
+// required int32 seller_pop = 12;
+inline bool StruUserInfo::has_seller_pop() const {
+  return (_has_bits_[0] & 0x00000800u) != 0;
+}
+inline void StruUserInfo::set_has_seller_pop() {
+  _has_bits_[0] |= 0x00000800u;
+}
+inline void StruUserInfo::clear_has_seller_pop() {
+  _has_bits_[0] &= ~0x00000800u;
+}
+inline void StruUserInfo::clear_seller_pop() {
+  seller_pop_ = 0;
+  clear_has_seller_pop();
+}
+inline ::google::protobuf::int32 StruUserInfo::seller_pop() const {
+  return seller_pop_;
+}
+inline void StruUserInfo::set_seller_pop(::google::protobuf::int32 value) {
+  set_has_seller_pop();
+  seller_pop_ = value;
+}
+
+// required int32 seller_estimate = 13;
+inline bool StruUserInfo::has_seller_estimate() const {
+  return (_has_bits_[0] & 0x00001000u) != 0;
+}
+inline void StruUserInfo::set_has_seller_estimate() {
+  _has_bits_[0] |= 0x00001000u;
+}
+inline void StruUserInfo::clear_has_seller_estimate() {
+  _has_bits_[0] &= ~0x00001000u;
+}
+inline void StruUserInfo::clear_seller_estimate() {
+  seller_estimate_ = 0;
+  clear_has_seller_estimate();
+}
+inline ::google::protobuf::int32 StruUserInfo::seller_estimate() const {
+  return seller_estimate_;
+}
+inline void StruUserInfo::set_seller_estimate(::google::protobuf::int32 value) {
+  set_has_seller_estimate();
+  seller_estimate_ = value;
 }
 
 // -------------------------------------------------------------------

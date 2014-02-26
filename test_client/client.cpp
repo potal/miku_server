@@ -30,8 +30,8 @@
 #include <netinet/in.h>
 #include <string>
 #include <time.h>
-#include "package_define.pb.h"
-#include "cyt_packet.pb.h"
+#include "../packet/package_define.pb.h"
+#include "../packet/cyt_packet.pb.h"
 
 std::string g_pack_header = "123";
 std::string g_pack_tail = "456";
@@ -68,46 +68,80 @@ int main(int argc,char **argv)
 		perror("connect error");
 		exit(1);
 	}
-	const char * send_buff = "s";
 	StruUserLoginRQ tmp_user_login;
 	tmp_user_login.set_msg_id(E_USER_LOGIN_RQ);
 	tmp_user_login.set_user_id(92002);
 	tmp_user_login.set_room_id(16000);
-	tmp_user_login.set_user_psw("123132");
+	tmp_user_login.set_user_psw("e10adc3949ba59abbe56e057f20f883e");
 	tmp_user_login.set_user_account_name("Test");
 
 	int tmp_byte_size = tmp_user_login.ByteSize();
-	char *tmp_send_buff = new char[tmp_byte_size+1];
+	char tmp_send_buff[0x1000];
 	tmp_user_login.SerializeToArray(tmp_send_buff,tmp_byte_size);
 
 	StruCytPacket tmp_packet;
-	tmp_packet.set_str_head(g_pack_header.c_str(),g_pack_header.length());
+	tmp_packet.set_str_head(const_cast<char *>(g_pack_header.c_str()));
 	tmp_packet.set_room_id(16000);
 	tmp_packet.set_msg_len(tmp_byte_size);
 	tmp_packet.set_msg_type(E_USER_LOGIN_RQ);
 	tmp_packet.set_msg_data(tmp_send_buff,tmp_byte_size);
-	tmp_packet.set_str_tail(g_pack_tail.c_str(),g_pack_tail.length());
+	tmp_packet.set_str_tail(const_cast<char *>(g_pack_tail.c_str()));
 
 	char tmp_buff[0x1000] = {0};
 	int tmp_send_buff_len = tmp_packet.ByteSize();
 	tmp_packet.SerializeToArray(tmp_buff,tmp_send_buff_len);
 
-	std::cout<<"Total length:"<<tmp_send_buff_len<<std::endl;
+//	StruCytPacket tmp_packet1;
+//	tmp_packet1.set_str_head(const_cast<char *>(g_pack_header.c_str()));
+//	tmp_packet1.set_room_id(16001);
+//	tmp_packet1.set_msg_len(tmp_byte_size);
+//	tmp_packet1.set_msg_type(E_USER_LOGIN_RQ);
+//	tmp_packet1.set_msg_data(tmp_send_buff,tmp_byte_size);
+//	tmp_packet1.set_str_tail(const_cast<char *>(g_pack_tail.c_str()));
+//
+//	tmp_packet1.SerializeToArray(tmp_buff+tmp_send_buff_len,tmp_packet1.ByteSize());
+//	int tmp_all_len = tmp_send_buff_len+tmp_packet1.ByteSize();
+//	std::cout<<"tmp_all_len:"<<tmp_all_len<<std::endl;
+//
+//	char *tmp_buff_start = tmp_buff;
+//	int tmp_remain_len = tmp_all_len;
+//	do
+//	{
+//		StruCytPacket tmp_unpack;
+//		if(tmp_unpack.ParseFromArray(tmp_buff_start,20))
+//		{
+//			std::cout<<tmp_unpack.room_id()<<std::endl;
+//			tmp_remain_len = tmp_remain_len-tmp_unpack.ByteSize();
+//			tmp_buff_start = tmp_buff_start+tmp_unpack.ByteSize();
+//		}
+//		else
+//		{
+//			std::cout<<"parse error!"<<std::endl;
+//		}
+//	}while(tmp_remain_len>0);
+
+///	std::cin.get();
+///	close(sockfd);
+///	return 0;
+///	
+
+//	std::cout<<"Total length:"<<tmp_send_buff_len<<std::endl;
 
 //	if(write(sockfd,send_buff,strlen(send_buff)) > 0)
 //	{
 //		std::cout<<"write ok1"<<std::endl;
 //	}
-	int tmp_first_send_len = 10;
+//	int tmp_first_send_len = 10;
 
-	if(write(sockfd,tmp_buff,tmp_first_send_len) > 0)
+//	if(write(sockfd,tmp_buff,tmp_send_buff_len) > 0)
+//	{
+//		std::cout<<"1write ok!length:"<<tmp_send_buff_len<<std::endl;
+//	}
+
+	int tmp_real_send_len = write(sockfd,tmp_buff,tmp_send_buff_len);
+	if(tmp_real_send_len > 0)
 	{
-		std::cout<<"write ok!length:"<<tmp_first_send_len<<std::endl;
-	}
-	sleep(1);
-	if(write(sockfd,tmp_buff+tmp_first_send_len,tmp_send_buff_len-tmp_first_send_len) > 0)
-	{
-		std::cout<<"write ok!length:"<<tmp_send_buff_len-tmp_first_send_len<<std::endl;
+		std::cout<<"write ok!length:"<<tmp_real_send_len<<std::endl;
 	}
 	time_t tmp_current_time;
 	time(&tmp_current_time);

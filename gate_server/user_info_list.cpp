@@ -86,7 +86,7 @@ void UserInfoEx::DealWithData(struct bufferevent *buff_ev,void *arg)
 			ChatRoom *tmp_chat_room = reinterpret_cast<GateServer *>(gate_server_)->GetRoomManager()->GetChatRoom(tmp_room_id);
 			if(NULL == tmp_chat_room)
 			{
-				std::cout<<"There is no room you find"<<std::endl;
+				std::cout<<"There is no room you find!room_id:"<<tmp_room_id<<std::endl;
 				//here create a package of querying a chat room if msg_type == E_USER_LOGIN_RQ
 				if(E_USER_LOGIN_RQ == tmp_cyt_pack.msg_type())
 				{
@@ -112,18 +112,6 @@ void UserInfoEx::DealWithData(struct bufferevent *buff_ev,void *arg)
 				std::cout<<"Write error!"<<std::endl;
 				continue;
 			}
-		}
-		else if(tmp_cyt_pack.ParsePartialFromArray(recved_buff_,remain_buff_len_))
-		{
-			std::cout<<"uncompleted data"<<std::endl;//uncompleted data
-			break;
-		}
-		else
-		{
-			std::cout<<"bad data"<<std::endl;
-			memset(recved_buff_,0,0x1000);
-			remain_buff_len_ = 0;
-			break;
 		}
 	}while (tmp_result);
 }

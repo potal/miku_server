@@ -153,17 +153,18 @@ void* GateServerProcessor::DealWithDataThread(void *arg)
 		return NULL;
 	}
 	bool tmp_return = false;
-	char tmp_out_buff[0x2000] = {0};
+	
 	int tmp_out_len = 0;
 	while(tmp_processor->is_started_)
 	{
 		tmp_out_len = 0;
+		char tmp_out_buff[0x2000] = {0};
 		if(!tmp_processor->GetCircleList()->GetBuffer(tmp_out_buff,0x2000,tmp_out_len))
 		{
 			usleep(5000);
 			continue;
 		}
-		std::cout<<"GetBuffer ok! buff_len:"<<tmp_out_len<<std::endl;
+		std::cout<<"GetBuffer ok! buff_len:"<<tmp_out_len<<" Buff:"<<tmp_out_buff<<std::endl;
 		GateRoomServerPack tmp_gr_pack;
 		tmp_return = tmp_gr_pack.ParseFromArray(tmp_out_buff,tmp_out_len);
 		if(!tmp_return)

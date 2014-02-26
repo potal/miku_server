@@ -46,6 +46,7 @@ void ConnectDirectorServerRS::Execute(char *buff,int len,void *caller_ptr)
 		std::cout<<"Unpack StruDsServerConnectRs Error!"<<std::endl;
 		return;
 	}
+	std::cout<<"ds connect result:"<<tmp_conn_rs.result()<<std::endl;
 	if(tmp_conn_rs.result() == 0)
 	{
 		GateServer *tmp_server = reinterpret_cast<GateServer *>(server_ptr_);

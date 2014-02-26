@@ -1,5 +1,6 @@
 #                     MAKE MACRO DEFINATION
-ROOT =.
+ROOT =./\
+	  ../packet/
 SRC=$(shell find $(ROOT) -path -prune -o -name '*.cpp')
 SRCOBJ=$(SRC:%.cpp=%.o)
 CCSRC=$(shell find $(ROOT) -path -prune -o -name '*.cc')
@@ -10,7 +11,7 @@ CCFlag = -O0 -g3 -w -c -fmessage-length=0 -fPIC
 LINKFlag = -shared
 PROGRAM = tclient
 
-INCLUDES = -I$(ROOT)/
+INCLUDES = -I$(ROOT)
 #LIBPATH= -Llib/libevent -Llib/protobuf
 LIBS = -lprotobuf
 #-lrt -ldl -levent_core -levent_pthreads -lprotobuf -lprotoc
