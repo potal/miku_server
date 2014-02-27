@@ -65,8 +65,20 @@ bool RoomServer::SendDataToRoomAllUser(T &pack,int msg_id,int room_id)
 		ChatRoom *tmp_room = room_manager_.GetRoom(room_id);
 		if(!tmp_room)
 			return false;
+		UserInfo *tmp_current_user = tmp_room->GetUserInfoList()->GetFirstUser();
+		if(!tmp_current_user)
+			return false;
+		do
+		{
+			ClientInfoEx *tmp_gs = reinterpret_cast<ClientInfoEx *>(client_list_.GetUserByHashkey(tmp_current_user->gs_hashkey_user_on));
+			if(tmp_gs)
+			{
+				tmp_gs->GetGSProcessor()->SendData(pack,msg_id,tmp_current_user->user_hash_key);
+			}
+			tmp_current_user = tmp_room->GetUserInfoList()->GetNextUser();
+		}while(tmp_current_user);
 	}
-	return false;
+	return true;
 }
 
 #endif

@@ -64,6 +64,7 @@ private:
 	int max_user_count_;
 	std::list<UserInfo *> unused_user_info_list_;
 	std::map<int,UserInfo *> user_info_list_;
+	std::map<int,UserInfo *>::iterator list_iter_;
 
 public:
 	UserInfoList();
@@ -77,6 +78,9 @@ public:
 	bool AddUserInfo(int user_id,UserInfo *user_info);
 	void RemoveUser(int user_id);
 	UserInfo *GetUserInfo(int user_id);
+
+	UserInfo *GetFirstUser();
+	UserInfo *GetNextUser();
 
 	void ClearAllUserInfo();
 };

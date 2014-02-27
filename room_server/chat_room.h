@@ -3,6 +3,10 @@
 
 #include <iostream>
 #include <map>
+#include <vector>
+#include <string>
+#include <sstream>
+#include "../common/auto_lock.h"
 #include "user_info_list.h"
 
 class ChatRoom
@@ -10,6 +14,9 @@ class ChatRoom
 private:
 	int room_id_;
 	int sock_;
+	int start_channel_id_;
+	pthread_mutex_t channel_list_lock_;
+	std::map<int,std::string> video_channel_list_;
 	UserInfoList user_list_;
 	UserInfoList pre_user_list_;
 
@@ -33,6 +40,12 @@ public:
 
 	void RemoveUser(int user_id);
 	void RemovePreUser(int user_id);
+
+	inline int GetRoomID(){return room_id_;}
+
+	std::string UserApplyOneNewVideo(int user_id);
+	void UserGetOffVideo(int user_id);
+	void GetMicUserList(std::map<int,std::string> &mic_list);
 };
 
 

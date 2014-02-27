@@ -1931,6 +1931,13 @@ class StruUserGiveGiftRQ : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 dst_user_id() const;
   inline void set_dst_user_id(::google::protobuf::int32 value);
   
+  // required int32 count_gift = 6;
+  inline bool has_count_gift() const;
+  inline void clear_count_gift();
+  static const int kCountGiftFieldNumber = 6;
+  inline ::google::protobuf::int32 count_gift() const;
+  inline void set_count_gift(::google::protobuf::int32 value);
+  
   // @@protoc_insertion_point(class_scope:StruUserGiveGiftRQ)
  private:
   inline void set_has_msg_id();
@@ -1943,6 +1950,8 @@ class StruUserGiveGiftRQ : public ::google::protobuf::Message {
   inline void clear_has_gift_code();
   inline void set_has_dst_user_id();
   inline void clear_has_dst_user_id();
+  inline void set_has_count_gift();
+  inline void clear_has_count_gift();
   
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
@@ -1951,9 +1960,10 @@ class StruUserGiveGiftRQ : public ::google::protobuf::Message {
   ::std::string* gift_code_;
   ::google::protobuf::int32 room_id_;
   ::google::protobuf::int32 dst_user_id_;
+  ::google::protobuf::int32 count_gift_;
   
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(5 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(6 + 31) / 32];
   
   friend void  protobuf_AddDesc_package_5fdefine_2eproto();
   friend void protobuf_AssignDesc_package_5fdefine_2eproto();
@@ -2064,6 +2074,13 @@ class StruUserGiveGiftRS : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 dst_user_id() const;
   inline void set_dst_user_id(::google::protobuf::int32 value);
   
+  // required int32 sender_red_d = 7;
+  inline bool has_sender_red_d() const;
+  inline void clear_sender_red_d();
+  static const int kSenderRedDFieldNumber = 7;
+  inline ::google::protobuf::int32 sender_red_d() const;
+  inline void set_sender_red_d(::google::protobuf::int32 value);
+  
   // @@protoc_insertion_point(class_scope:StruUserGiveGiftRS)
  private:
   inline void set_has_msg_id();
@@ -2078,6 +2095,8 @@ class StruUserGiveGiftRS : public ::google::protobuf::Message {
   inline void clear_has_gift_code();
   inline void set_has_dst_user_id();
   inline void clear_has_dst_user_id();
+  inline void set_has_sender_red_d();
+  inline void clear_has_sender_red_d();
   
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
@@ -2087,9 +2106,10 @@ class StruUserGiveGiftRS : public ::google::protobuf::Message {
   ::google::protobuf::int32 result_;
   ::std::string* gift_code_;
   ::google::protobuf::int32 dst_user_id_;
+  ::google::protobuf::int32 sender_red_d_;
   
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(6 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(7 + 31) / 32];
   
   friend void  protobuf_AddDesc_package_5fdefine_2eproto();
   friend void protobuf_AssignDesc_package_5fdefine_2eproto();
@@ -6009,6 +6029,28 @@ inline void StruUserGiveGiftRQ::set_dst_user_id(::google::protobuf::int32 value)
   dst_user_id_ = value;
 }
 
+// required int32 count_gift = 6;
+inline bool StruUserGiveGiftRQ::has_count_gift() const {
+  return (_has_bits_[0] & 0x00000020u) != 0;
+}
+inline void StruUserGiveGiftRQ::set_has_count_gift() {
+  _has_bits_[0] |= 0x00000020u;
+}
+inline void StruUserGiveGiftRQ::clear_has_count_gift() {
+  _has_bits_[0] &= ~0x00000020u;
+}
+inline void StruUserGiveGiftRQ::clear_count_gift() {
+  count_gift_ = 0;
+  clear_has_count_gift();
+}
+inline ::google::protobuf::int32 StruUserGiveGiftRQ::count_gift() const {
+  return count_gift_;
+}
+inline void StruUserGiveGiftRQ::set_count_gift(::google::protobuf::int32 value) {
+  set_has_count_gift();
+  count_gift_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // StruUserGiveGiftRS
@@ -6180,6 +6222,28 @@ inline ::google::protobuf::int32 StruUserGiveGiftRS::dst_user_id() const {
 inline void StruUserGiveGiftRS::set_dst_user_id(::google::protobuf::int32 value) {
   set_has_dst_user_id();
   dst_user_id_ = value;
+}
+
+// required int32 sender_red_d = 7;
+inline bool StruUserGiveGiftRS::has_sender_red_d() const {
+  return (_has_bits_[0] & 0x00000040u) != 0;
+}
+inline void StruUserGiveGiftRS::set_has_sender_red_d() {
+  _has_bits_[0] |= 0x00000040u;
+}
+inline void StruUserGiveGiftRS::clear_has_sender_red_d() {
+  _has_bits_[0] &= ~0x00000040u;
+}
+inline void StruUserGiveGiftRS::clear_sender_red_d() {
+  sender_red_d_ = 0;
+  clear_has_sender_red_d();
+}
+inline ::google::protobuf::int32 StruUserGiveGiftRS::sender_red_d() const {
+  return sender_red_d_;
+}
+inline void StruUserGiveGiftRS::set_sender_red_d(::google::protobuf::int32 value) {
+  set_has_sender_red_d();
+  sender_red_d_ = value;
 }
 
 // -------------------------------------------------------------------

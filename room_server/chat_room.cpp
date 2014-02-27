@@ -18,14 +18,17 @@
 
 #include "chat_room.h"
 
-ChatRoom::ChatRoom():sock_(-1),room_id_(0)
+ChatRoom::ChatRoom():sock_(-1),room_id_(0),start_channel_id_(1000)
 {
 	user_list_.InitUserList(100000);
 	pre_user_list_.InitUserList(1000);
+	pthread_mutex_init(&channel_list_lock_,NULL);
 }
 
 ChatRoom::~ChatRoom()
 {
+	video_channel_list_.clear();
+	pthread_mutex_destroy(&channel_list_lock_);
 }
 
 bool ChatRoom::SetRoom(int room_id,int room_fd)
@@ -111,4 +114,35 @@ void ChatRoom::RemovePreUser(int user_id)
 		return;
 	pre_user_list_.RemoveUser(user_id);
 	pre_user_list_.PushUserInUnusedList(tmp_user);
+}
+
+std::string ChatRoom::UserApplyOneNewVideo(int user_id)
+{
+	AutoLock tmp_lock(&channel_list_lock_);
+	std::string tmp_new_channel = video_channel_list_[user_id];
+	if(tmp_new_channel != "")
+		return "";
+	std::stringstream tmp_ss;
+	tmp_ss>>room_id_;
+	start_channel_id_++;
+	tmp_ss>>start_channel_id_;
+	tmp_new_channel = tmp_ss.str();
+	video_channel_list_[user_id] = tmp_new_channel;
+	return tmp_new_channel;
+}
+
+void ChatRoom::UserGetOffVideo(int user_id)
+{
+	AutoLock tmp_lock(&channel_list_lock_);
+	video_channel_list_.erase(user_id);
+}
+
+void ChatRoom::GetMicUserList(std::map<int,std::string> &mic_list)
+{
+	AutoLock tmp_lock(&channel_list_lock_);
+	std::map<int ,std::string>::iterator tmp_iter;
+	for(tmp_iter = video_channel_list_.begin();tmp_iter != video_channel_list_.end();tmp_iter++)
+	{
+		mic_list[tmp_iter->first] = tmp_iter->second;
+	}
 }

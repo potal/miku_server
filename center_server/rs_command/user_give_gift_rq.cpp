@@ -58,8 +58,10 @@ void UserGiveGiftRQ::Execute(char *buff,int len,void *caller_ptr)
 	tmp_give_gift_rs.set_gift_code(tmp_give_gift_rq.gift_code());
 
 	int tmp_result = 0;
-	int tmp_db_ret = tmp_server->GetMikuDB()->UserGiveGift(tmp_give_gift_rq.user_id(),tmp_give_gift_rq.gift_code(),tmp_result);
+	int tmp_sender_red_d = 0;
+	int tmp_db_ret = tmp_server->GetMikuDB()->UserGiveGift(tmp_give_gift_rq.user_id(),tmp_give_gift_rq.dst_user_id(),tmp_give_gift_rq.count_gift(),tmp_give_gift_rq.gift_code(),tmp_sender_red_d,tmp_result);
 	tmp_give_gift_rs.set_result(tmp_result);
+	tmp_give_gift_rs.set_sender_red_d(tmp_sender_red_d);
 
 	tmp_processor->SendDataToRS(tmp_give_gift_rs,E_USER_GIVE_GIFT_RS,tmp_user->user_sock);
 }

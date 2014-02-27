@@ -140,14 +140,45 @@ int MikuDatabase::UserLogin(int user_id,std::string user_psw,int &result,int &us
 	return tmp_return;
 }
 
-int MikuDatabase::UserGiveGift(int user_id,std::string gift_code,int &result)
+int MikuDatabase::UserGiveGift(int sender_id,int recver_id,int count_gift,std::string gift_code,int &result,int &sender_red_d)
 {
 	int tmp_db_ret = 0;
 	sql::Connection *tmp_conn = NULL;
-	sql::Statement *tmp_stmt = NULL;
-	sql::ResultSet *tmp_result = NULL;
-	std::stringstream tmp_sql_state;
-	std::string tmp_sql;
+	try
+	{
+		tmp_conn = conn_pool_ptr_->GetConnection();
+		if(!tmp_conn)
+			return 0;
 
+		std::auto_ptr<sql::PreparedStatement> tmp_pre_stmt(tmp_conn->prepareStatement("call give_gift(?,?,?,?,@sender_red_d,@result)"));
+		tmp_pre_stmt->setInt(1,sender_id);
+		tmp_pre_stmt->setInt(2,recver_id);
+		tmp_pre_stmt->setInt(3,count_gift);
+		tmp_pre_stmt->setString(4,gift_code);
+		tmp_pre_stmt->execute();
+
+		std::auto_ptr<sql::PreparedStatement> tmp_pre_select_stmt(tmp_conn->prepareStatement("select @sender_red_d as sender_red_d,@result as result"));
+		std::auto_ptr<sql::ResultSet> tmp_result(tmp_pre_select_stmt->executeQuery());
+		if(!tmp_result.get())
+		{
+			std::cout<<"execute error!"<<std::endl;
+			tmp_db_ret = 0;
+		}
+		else
+		{
+			if(tmp_result->next())
+			{
+				sender_red_d = tmp_result->getInt(1);
+				result = tmp_result->getInt(2);
+				tmp_db_ret = 1;
+			}
+		}
+	}
+	catch(sql::SQLException &e)
+	{
+		std::cout<<"Error:"<<e.what()<<std::endl;
+		tmp_db_ret = 0;
+	}
+	conn_pool_ptr_->ReleaseConnection(tmp_conn);
 	return tmp_db_ret;
 }

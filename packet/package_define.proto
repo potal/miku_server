@@ -197,6 +197,7 @@ required int32 user_id = 2;
 required int32 room_id = 3;
 required string gift_code = 4;
 required int32 dst_user_id = 5;
+required int32 count_gift = 6;
 };
 
 //送礼响应包
@@ -208,6 +209,7 @@ required int32 room_id = 3;
 required int32 result = 4;
 required string gift_code = 5;
 required int32 dst_user_id = 6;
+required int32 sender_red_d = 7;
 };
 
 //上麦请求包

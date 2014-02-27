@@ -141,6 +141,28 @@ UserInfo *UserInfoList::GetUserInfo(int user_id)
 	return tmp_user;
 }
 
+UserInfo *UserInfoList::GetFirstUser()
+{
+	pthread_mutex_lock(&list_lock_);
+	if(user_info_list_.size() <= 0)
+	{
+		pthread_mutex_unlock(&list_lock_);
+		return NULL;
+	}
+	list_iter_ = user_info_list_.begin();
+	return list_iter_->second;
+}
+UserInfo *UserInfoList::GetNextUser()
+{
+	list_iter_++;
+	if(list_iter_ == user_info_list_.end())
+	{
+		pthread_mutex_unlock(&list_lock_);
+		return NULL;
+	}
+	return list_iter_->second;
+}
+
 void UserInfoList::ClearAllUserInfo()
 {
 	AutoLock tmp_lock(&list_lock_);

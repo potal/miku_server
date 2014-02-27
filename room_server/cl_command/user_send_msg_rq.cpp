@@ -70,6 +70,13 @@ void UserSendMsgRQ::Execute(char *buff,int len,void *caller_ptr)
 	tmp_send_msg_rs.set_room_id(tmp_send_msg_rq.room_id());
 	tmp_send_msg_rs.set_user_id(tmp_send_msg_rq.user_id());
 
+	StruUserMsgTextID tmp_msg_text;
+	tmp_msg_text.set_msg_id(E_USER_MSG_TEXT_ID);
+	tmp_msg_text.set_room_id(tmp_send_msg_rq.room_id());
+	tmp_msg_text.set_user_id(tmp_send_msg_rq.user_id());
+	tmp_msg_text.set_dst_user_id(tmp_send_msg_rq.dst_user_id());
+	tmp_msg_text.set_msg_text(tmp_send_msg_rq.msg_text());
+
 	if(tmp_send_msg_rq.is_private())//private msg
 	{
 		UserInfo *tmp_dst_user = tmp_room->GetUserInfoList()->GetUserInfo(tmp_send_msg_rq.dst_user_id());
@@ -81,13 +88,7 @@ void UserSendMsgRQ::Execute(char *buff,int len,void *caller_ptr)
 		else
 		{
 			tmp_send_msg_rs.set_result(1);
-			StruUserMsgTextID tmp_msg_text;
-			tmp_msg_text.set_msg_id(E_USER_MSG_TEXT_ID);
 			tmp_msg_text.set_is_private(true);
-			tmp_msg_text.set_room_id(tmp_send_msg_rq.room_id());
-			tmp_msg_text.set_user_id(tmp_send_msg_rq.user_id());
-			tmp_msg_text.set_dst_user_id(tmp_send_msg_rq.dst_user_id());
-			tmp_msg_text.set_msg_text(tmp_send_msg_rq.msg_text());
 
 			ClientInfoEx *tmp_dst_gs = reinterpret_cast<ClientInfoEx *>(tmp_server->GetClientList()->GetUserByHashkey(tmp_dst_user->gs_hashkey_user_on));
 			if(tmp_dst_gs)
@@ -100,6 +101,13 @@ void UserSendMsgRQ::Execute(char *buff,int len,void *caller_ptr)
 	}
 	else//send to all user
 	{
-		;
+		tmp_send_msg_rs.set_result(1);
+		tmp_msg_text.set_is_private(false);
+		tmp_gs->GetGSProcessor()->SendData(tmp_send_msg_rs,E_USER_MSG_RS,tmp_user->user_hash_key);
+		RoomServer *tmp_server = reinterpret_cast<RoomServer *>(server_ptr_);
+		if(tmp_server)
+		{
+			tmp_server->SendDataToRoomAllUser(tmp_msg_text,E_USER_MSG_TEXT_ID,tmp_send_msg_rq.room_id());
+		}
 	}
 }

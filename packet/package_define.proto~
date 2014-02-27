@@ -138,6 +138,15 @@ required EnumMsgID msg_id = 1[default = E_USER_INFO];
 required int32 user_id = 2;
 required string user_account_name = 3;
 required string user_role_uid = 4;
+required int32 user_level = 5;
+required int32 buyer_riches = 6;
+required int32 buyer_grow_up = 7;
+required int32 buyer_honour = 8;
+required int32 buyer_estimate = 9;
+required int32 seller_income = 10;
+required int32 seller_exp = 11;
+required int32 seller_pop = 12;
+required int32 seller_estimate = 13;
 };
 
 //多个用户的信息列表
@@ -188,6 +197,7 @@ required int32 user_id = 2;
 required int32 room_id = 3;
 required string gift_code = 4;
 required int32 dst_user_id = 5;
+required int32 count_gift = 6;
 };
 
 //送礼响应包
@@ -199,6 +209,7 @@ required int32 room_id = 3;
 required int32 result = 4;
 required string gift_code = 5;
 required int32 dst_user_id = 6;
+required int32 sender_red_d = 7;
 };
 
 //上麦请求包

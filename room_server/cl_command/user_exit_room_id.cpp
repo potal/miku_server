@@ -62,5 +62,5 @@ void UserExitRoomID::Execute(char *buff,int len,void *caller_ptr)
 	}
 	tmp_room->RemoveUser(tmp_exit_room_id.user_id());
 	//send user_exit_room to all user
-	
+	tmp_server->SendDataToRoomAllUser(tmp_exit_room_id,E_USER_EXIT_ROOM_ID,tmp_room->GetRoomID());
 }

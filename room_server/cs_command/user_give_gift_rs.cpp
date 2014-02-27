@@ -69,6 +69,7 @@ void UserGiveGiftRS::Execute(char *buff,int len,void *caller_ptr)
 	}
 	else//send to all
 	{
-		;
+		tmp_user->user_red_d = tmp_give_gift_rs.sender_red_d();
+		tmp_server->SendDataToRoomAllUser(tmp_give_gift_rs,tmp_give_gift_rs.msg_id(),tmp_give_gift_rs.room_id());
 	}
 }
