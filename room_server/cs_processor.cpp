@@ -1,5 +1,6 @@
 #include "cs_processor.h"
 #include "../packet/package_define.pb.h"
+#include "../common/base_log.h"
 
 #include "cs_command/client_login_rs.h"
 #include "cs_command/user_give_gift_rs.h"
@@ -83,6 +84,7 @@ void* CenterServerProcessor::DealWithDataThread(void *arg)
 	if(!tmp_processor)
 	{
 		std::cout<<"tmp_processor NULL"<<std::endl;
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"DealWithDataThread","tmp_processor NULL");
 		return NULL;
 	}
 	bool tmp_return = false;
@@ -95,13 +97,13 @@ void* CenterServerProcessor::DealWithDataThread(void *arg)
 			usleep(5000);
 			continue;
 		}
-		std::cout<<"Buff:"<<tmp_out_buff<<std::endl;
 
 		StruCytPacket tmp_pack_cyt_pack;
 		tmp_return = tmp_pack_cyt_pack.ParseFromArray(tmp_out_buff,tmp_out_len);
 		if(!tmp_return)
 		{
 			std::cout<<"Unpack package error!"<<std::endl;
+			WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"DealWithDataThread","Unpack Error");
 			continue;
 		}
 
@@ -111,6 +113,7 @@ void* CenterServerProcessor::DealWithDataThread(void *arg)
 		if(!tmp_cmd)
 		{
 			std::cout<<"Get cmd error!"<<std::endl;
+			WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"DealWithDataThread","Get cmd Error");
 			usleep(5000);
 			continue;
 		}

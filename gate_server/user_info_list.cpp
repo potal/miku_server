@@ -19,15 +19,16 @@
 #include "../packet/ds_server.pb.h"
 #include "../packet/cyt_packet.pb.h"
 #include "../packet/package_define.pb.h"
+#include "../packet/gs_rs_packet.pb.h"
 #include "room_manager.h"
 #include "gate_server.h"
 #include "user_info_list.h"
 
-const int MaxRecvBuffLen = 0x2000;
+const int MaxRecvBuffLen = 0x4000;
 
-UserInfoEx::UserInfoEx():remain_buff_len_(0)
+UserInfoEx::UserInfoEx():valid_buff_len_(0)
 {
-	recved_buff_ = new char[0x1000];
+	recved_buff_ = new char[MaxRecvBuffLen];
 }
 
 UserInfoEx::~UserInfoEx()
@@ -46,6 +47,7 @@ void UserInfoEx::Clear()
 	user_uip = 0;
 	user_uport = 0;
 	server_ptr = NULL;
+	valid_buff_len_ = 0;
 }
 
 void UserInfoEx::DealWithData(struct bufferevent *buff_ev,void *arg)
@@ -53,33 +55,32 @@ void UserInfoEx::DealWithData(struct bufferevent *buff_ev,void *arg)
 	char tmp_read_buff[0x1000] = {0};
 	int tmp_len = bufferevent_read(buffev,tmp_read_buff,0x1000);
 	std::cout<<"UserInfoEx::DealWithData() user("<<hash_key<<") recv "<<tmp_len<<" bytes"<<std::endl;
-	if(remain_buff_len_+tmp_len < 0x1000)
+	if(valid_buff_len_+tmp_len < MaxRecvBuffLen)
 	{
-		memcpy(recved_buff_+remain_buff_len_,tmp_read_buff,tmp_len);
-		remain_buff_len_ += tmp_len;
+		memcpy(recved_buff_+valid_buff_len_,tmp_read_buff,tmp_len);
+		valid_buff_len_ += tmp_len;
 	}
 	else
 	{
-		memset(recved_buff_,0,0x1000);
 		memcpy(recved_buff_,tmp_read_buff,tmp_len);
-		remain_buff_len_ = tmp_len;
+		valid_buff_len_ = tmp_len;
 	}
 	//analyse received buffer ...
-	std::cout<<"remain_len:"<<remain_buff_len_<<" Buff:"<<recved_buff_<<std::endl;
+	std::cout<<"remain_len:"<<valid_buff_len_<<" Buff:"<<recved_buff_<<std::endl;
 	bool tmp_result = false;
 	StruCytPacket tmp_cyt_pack;
 	char tmp_pack_data[0x1000] = {0};
 	char tmp_send_buff[0x2000] = {0};
 	do
 	{
-		if(remain_buff_len_ <= 0)
+		if(valid_buff_len_ <= 18)
 			break;
-		tmp_result = tmp_cyt_pack.ParseFromArray(recved_buff_,remain_buff_len_);
+		tmp_result = tmp_cyt_pack.ParseFromArray(recved_buff_,valid_buff_len_);
 		if(tmp_result)
 		{
 			int tmp_current_pack_len = tmp_cyt_pack.ByteSize();
 			memcpy(tmp_pack_data,recved_buff_,tmp_current_pack_len);
-			remain_buff_len_ -= tmp_current_pack_len;
+			valid_buff_len_ -= tmp_current_pack_len;
 			memmove(recved_buff_,recved_buff_+tmp_current_pack_len,0x1000-tmp_current_pack_len);
 			
 			int tmp_room_id = tmp_cyt_pack.room_id();

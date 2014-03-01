@@ -18,6 +18,8 @@
 
 #include "connect_director_server_rs.h"
 #include "../../packet/ds_server.pb.h"
+#include "../../common/base_log.h"
+#include "../center_server.h"
 
 ConnectDirectorServerRS::ConnectDirectorServerRS()
 {
@@ -45,9 +47,14 @@ void ConnectDirectorServerRS::Execute(char *buff,int len,void *caller_ptr)
 		std::cout<<"Unpack StruDsServerConnectRs Error!"<<std::endl;
 		return;
 	}
-	std::cout<<"Recved ds connected rs.result:"<<tmp_conn_rs.result()<<std::endl;
-	if(tmp_conn_rs.result())
+	std::cout<<"ds connect result:"<<tmp_conn_rs.result()<<std::endl;
+	if(tmp_conn_rs.result() == 0)
 	{
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"Execute","DS Verify GS error!");
+		CenterServer *tmp_server = reinterpret_cast<CenterServer *>(server_ptr_);
+		tmp_server->StopServer();
+		return;
 	}
+	WRITEFORMATINFOLOG(__THREADID__,__FILE__,__LINE__,"Execute","DS Verify GS successfully!");
 }
 

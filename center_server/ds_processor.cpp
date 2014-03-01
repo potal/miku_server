@@ -20,6 +20,7 @@
 #include "ds_connector.h"
 #include "center_server.h"
 
+#include "../common/base_log.h"
 #include "../packet/ds_server.pb.h"
 #include "../packet/cyt_packet.pb.h"
 #include "ds_command/query_chat_room_rs.h"
@@ -51,18 +52,21 @@ bool DirectorServerProcessor::InitProcessor(int max_list_size,void *caller_ptr,v
 	if(!tmp_ret)
 	{
 		std::cout<<"Register ConnectDirectorServerRS Error"<<std::endl;
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"InitProcessor","Register ConnectDirectorServerRS error!");
 		return false;
 	}
 	tmp_ret = tmp_cmd_chain->RegisterCommand(DEF_DS_GS_GET_ROOMINFO_RS,new QueryChatRoomRS(server_ptr));
 	if(!tmp_ret)
 	{
 		std::cout<<"Register QueryChatRoom Error!"<<std::endl;
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"InitProcessor","Register QueryChatRoom error!");
 		return false;
 	}
 	tmp_ret = tmp_cmd_chain->RegisterCommand(DEF_DS_RS_GET_CS_RS,new GetCenterServerAddrRS(server_ptr));
 	if(!tmp_ret)
 	{
 		std::cout<<"Register GetCenterServerAddrRS Error!"<<std::endl;
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"InitProcessor","Register GetCenterServerAddrRS error!");
 		return false;
 	}
 
@@ -124,6 +128,7 @@ void DirectorServerProcessor::SendConnectDsRQ()
 	bool tmp_ret = tmp_conn_rq.SerializeToArray(tmp_pack_buff,tmp_pack_len);
 	if(!tmp_ret)
 	{
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"SendConnectDsRQ","Pack StruDsServerConnectRq error!");
 		std::cout<<"Pack connect ds error!"<<std::endl;
 		return;
 	}
@@ -140,12 +145,14 @@ void DirectorServerProcessor::SendConnectDsRQ()
 	tmp_ret = tmp_cyt_pack.SerializeToArray(tmp_pack_buff,tmp_pack_len);
 	if(!tmp_ret)
 	{
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"SendConnectDsRQ","Pack cyt_pack error!");
 		std::cout<<"Pack cyt_pack error!"<<std::endl;
 		return;
 	}
 	DirectorServerConnector *tmp_ds_conn = reinterpret_cast<DirectorServerConnector *>(parent_ptr_);
 	if(!tmp_ds_conn)
 	{
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"SendConnectDsRQ","DirectorServerConnector NULL error!");
 		std::cout<<"DS connector error!"<<std::endl;
 		return ;
 	}
@@ -175,6 +182,7 @@ void *DirectorServerProcessor::DealWithDataThread(void *arg)
 		if(!tmp_return)
 		{
 			std::cout<<"Unpack package error!"<<std::endl;
+			WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"DealWithDataThread","Unpack cyt_pack error!");
 			continue;
 		}
 
@@ -184,6 +192,7 @@ void *DirectorServerProcessor::DealWithDataThread(void *arg)
 		if(!tmp_cmd)
 		{
 			std::cout<<"Get cmd error!"<<std::endl;
+			WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"DealWithDataThread","Get cmd error!msg_id:%d\n",tmp_msg_type);
 			usleep(5000);
 			continue;
 		}

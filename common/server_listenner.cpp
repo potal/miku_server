@@ -28,11 +28,17 @@ ServerListenner::ServerListenner():server_listen_sock_(-1),base_hash_key_(0),wor
 ServerListenner::~ServerListenner()
 {
 	SafeCloseSocket(server_listen_sock_);
+	for(int i = 0;i < count_worker_;i++)
+	{
+		SafeCloseSocket(workers_ptr_[i].pipe_read_fd);
+		SafeCloseSocket(workers_ptr_[i].pipe_write_fd);
+	}
 	if(NULL != workers_ptr_)
 	{
 		delete []workers_ptr_;
 		workers_ptr_ = NULL;
 	}
+	//event_base_free(base_);
 }
 
 bool ServerListenner::InitServer(std::string server_ip,int server_port,int worker_count,int count_user_per_worker,int read_timeout,int write_timeout)
@@ -320,5 +326,10 @@ void ServerListenner::ReleaseUserInfo(int user_hashkey,BaseUserInfo *user)
 
 void ServerListenner::StopServer()
 {
+	for(int i = 0;i < count_worker_;i++)
+	{
+		event_base_loopexit(workers_ptr_[i].worker_base,NULL);
+	}
+	event_base_loopexit(base_,NULL);
 }
 

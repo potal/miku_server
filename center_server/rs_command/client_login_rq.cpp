@@ -26,12 +26,19 @@ void ClientLoginRQ::Execute(char *buff,int len,void *caller_ptr)
 
 	ClientInfoEx *tmp_user = reinterpret_cast<ClientInfoEx *>(tmp_processor->GetParent());
 	if(!tmp_user)
+	{
+		WRITEFORMATINFOLOG(__THREADID__,__FILE__,__LINE__,"Execute","tmp_user NULL error!");
 		return ;
+	}
 
 	StruUserLoginRQ tmp_user_login;
 	bool tmp_return = tmp_user_login.ParseFromArray(buff,len);
 	if(!tmp_return)
+	{
+		WRITEFORMATINFOLOG(__THREADID__,__FILE__,__LINE__,"Execute","Unpack package error!");
 		return ;
+	}
+
 	std::cout<<tmp_user_login.msg_id()<<std::endl;
 	std::cout<<tmp_user_login.user_id()<<std::endl;
 	std::cout<<tmp_user_login.room_id()<<std::endl;
@@ -44,6 +51,7 @@ void ClientLoginRQ::Execute(char *buff,int len,void *caller_ptr)
 	if(tmp_db_ret <= 0)
 	{
 		std::cout<<"user_login sql execute error"<<std::endl;
+		WRITEFORMATINFOLOG(__THREADID__,__FILE__,__LINE__,"Execute","Execute user_login sql error!");
 		return ;
 	}
 

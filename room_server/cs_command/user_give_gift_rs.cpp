@@ -40,7 +40,8 @@ void UserGiveGiftRS::Execute(char *buff,int len,void *caller_ptr)
 	bool tmp_return = tmp_give_gift_rs.ParseFromArray(buff,len);
 	if(!tmp_return)
 	{
-		std::cout<<"UserGiveGiftRS::Execute Unpack StruUserGiveGiftRS Error"<<std::endl;
+		std::cout<<"Unpack StruUserGiveGiftRS Error"<<std::endl;
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"Execute","Unpack Error");
 		return ;
 	}
 	
@@ -48,12 +49,14 @@ void UserGiveGiftRS::Execute(char *buff,int len,void *caller_ptr)
 	if(!tmp_room)
 	{
 		std::cout<<"there is no room you find"<<std::endl;
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"Execute","There is on room:%d\n",tmp_give_gift_rs.room_id());
 		return ;
 	}
 
 	UserInfo *tmp_user = tmp_room->GetUserInfo(tmp_give_gift_rs.user_id());
 	if(!tmp_user)
 	{
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"Execute","There is on user:%d\n",tmp_give_gift_rs.user_id());
 		return ;
 	}
 	UserInfo *tmp_dst_user = tmp_room->GetUserInfo(tmp_give_gift_rs.dst_user_id());

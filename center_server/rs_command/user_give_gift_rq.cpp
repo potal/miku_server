@@ -40,13 +40,17 @@ void UserGiveGiftRQ::Execute(char *buff,int len,void *caller_ptr)
 	
 	ClientInfoEx *tmp_user = reinterpret_cast<ClientInfoEx *>(tmp_processor->GetParent());
 	if(!tmp_user)
+	{
+		WRITEFORMATINFOLOG(__THREADID__,__FILE__,__LINE__,"Execute","tmp_user NULL error!");
 		return ;
+	}
 	
 	StruUserGiveGiftRQ tmp_give_gift_rq;
 	bool tmp_return = tmp_give_gift_rq.ParseFromArray(buff,len);
 	if(!tmp_return)
 	{
-		std::cout<<"UserGiveGiftRQ::Execute Unpack StruUserGiveGiftRQ Error"<<std::endl;
+		std::cout<<"Unpack StruUserGiveGiftRQ Error"<<std::endl;
+		WRITEFORMATINFOLOG(__THREADID__,__FILE__,__LINE__,"Execute","Unpack package error!");
 		return ;
 	}
 	
@@ -60,8 +64,15 @@ void UserGiveGiftRQ::Execute(char *buff,int len,void *caller_ptr)
 	int tmp_result = 0;
 	int tmp_sender_red_d = 0;
 	int tmp_db_ret = tmp_server->GetMikuDB()->UserGiveGift(tmp_give_gift_rq.user_id(),tmp_give_gift_rq.dst_user_id(),tmp_give_gift_rq.count_gift(),tmp_give_gift_rq.gift_code(),tmp_sender_red_d,tmp_result);
-	tmp_give_gift_rs.set_result(tmp_result);
-	tmp_give_gift_rs.set_sender_red_d(tmp_sender_red_d);
+	if(tmp_db_ret > 0)
+	{
+		tmp_give_gift_rs.set_result(tmp_result);
+		tmp_give_gift_rs.set_sender_red_d(tmp_sender_red_d);
 
-	tmp_processor->SendDataToRS(tmp_give_gift_rs,E_USER_GIVE_GIFT_RS,tmp_user->user_sock);
+		tmp_processor->SendDataToRS(tmp_give_gift_rs,E_USER_GIVE_GIFT_RS,tmp_user->user_sock);
+	}
+	else
+	{
+		WRITEFORMATINFOLOG(__THREADID__,__FILE__,__LINE__,"Execute","Execute give_gift sql error!");
+	}
 }

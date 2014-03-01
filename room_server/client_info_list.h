@@ -8,11 +8,12 @@
 #include <iostream>
 #include <map>
 
+const int MaxRecvBuffLen = 0x4000;
 
 class ClientInfoEx : public BaseUserInfo
 {
 public:
-	int remain_buff_len_;
+	int valid_buff_len_;
 	char *recved_buff_;
 	void *room_server_;
 

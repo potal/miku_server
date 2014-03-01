@@ -34,7 +34,10 @@ void ClientLoginRS::Execute(char *buff,int len,void *caller_ptr)
 	bool tmp_return = false;
 	tmp_return = tmp_user_login_rs.ParseFromArray(buff,len);
 	if(!tmp_return)
+	{
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"Execute","Unpack Error");
 		return ;
+	}
 
 	int tmp_login_result = tmp_user_login_rs.result();
 	int tmp_room_id = tmp_user_login_rs.room_id();
@@ -48,12 +51,14 @@ void ClientLoginRS::Execute(char *buff,int len,void *caller_ptr)
 	if(!tmp_room)
 	{
 		std::cout<<"Room "<<tmp_room_id<<" does not exist"<<std::endl;
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"Execute","There is on room:%d\n",tmp_room_id);
 		return;
 	}	
 	UserInfo *tmp_user = tmp_room->GetPreUserInfo(tmp_user_id);
 	if(!tmp_user)
 	{
 		std::cout<<"User "<<tmp_user_id<<" have not logined"<<std::endl;
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"Execute","There is on user:%d\n",tmp_user_id);
 		return ;
 	}
 
@@ -64,6 +69,7 @@ void ClientLoginRS::Execute(char *buff,int len,void *caller_ptr)
 		if(!tmp_current_user)
 		{
 			std::cout<<"Get UserInfo failed"<<std::endl;
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"Execute","Get new UserInfo failed");
 		}
 		else
 		{
@@ -135,14 +141,15 @@ void ClientLoginRS::Execute(char *buff,int len,void *caller_ptr)
 				tmp_count_user++;
 				if(15 <= tmp_count_user)
 				{
-					tmp_processor->SendDataToGS(tmp_room_user_list,E_USER_INFO_LIST_ID,tmp_current_user->gs_hashkey_user_on,tmp_current_user->user_hash_key);
+					tmp_processor->SendDataToGS(tmp_room_user_list,E_USER_INFO_LIST_ID,tmp_gs->user_sock,tmp_current_user->user_hash_key);
 					tmp_room_user_list.clear_user_info_list();
 					tmp_count_user = 0;
 				}
+				tmp_list_user = tmp_room->GetUserInfoList()->GetNextUser();
 			}while(tmp_list_user);
 			if(tmp_count_user > 0)
 			{
-				tmp_processor->SendDataToGS(tmp_room_user_list,E_USER_INFO_LIST_ID,tmp_current_user->gs_hashkey_user_on,tmp_current_user->user_hash_key);
+				tmp_processor->SendDataToGS(tmp_room_user_list,E_USER_INFO_LIST_ID,tmp_gs->user_sock,tmp_current_user->user_hash_key);
 			}
 		}
 	}
@@ -171,6 +178,6 @@ void ClientLoginRS::Execute(char *buff,int len,void *caller_ptr)
 				tmp_mic_info->set_mic_channel_str(tmp_iter->second);
 			}
 		}
-		tmp_processor->SendDataToGS(tmp_room_mic_user_info_list,E_ROOM_MIC_INFO_ID,tmp_current_user->gs_hashkey_user_on,tmp_current_user->user_hash_key);
+		tmp_processor->SendDataToGS(tmp_room_mic_user_info_list,E_ROOM_MIC_INFO_ID,tmp_gs->user_sock,tmp_current_user->user_hash_key);
 	}
 }

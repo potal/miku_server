@@ -3,7 +3,7 @@
  *
  *       Filename:  cl_processor.cpp
  *
- *    Description:  
+ *    Description:  deal user's undealed package
  *
  *        Version:  1.0
  *        Created:  02/20/2014 02:59:12 PM
@@ -16,6 +16,10 @@
  * =====================================================================================
  */
 
+#include "../packet/cyt_packet.pb.h"
+#include "../packet/package_define.pb.h"
+#include "../packet/gs_rs_packet.pb.h"
+#include "../common/base_log.h"
 #include "cl_processor.h"
 #include "gate_server.h"
 
@@ -131,10 +135,14 @@ void *ClientProcessor::DealWithDataThread(void *arg)
 			int tmp_pack_len = tmp_package.ByteSize();
 			tmp_return = tmp_package.SerializeToArray(tmp_send_buff,tmp_pack_len);
 			if(!tmp_return)
+			{
+				WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"DealWithDataThread","Pack GateRoomServerPack error!");
 				continue;
+			}
 			if(write(tmp_room->GetSocket(),tmp_send_buff,tmp_pack_len) != tmp_pack_len)
 			{
 				std::cout<<"Write error!"<<std::endl;
+				WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"DealWithDataThread","Write package to RS error!");
 				continue;
 			}
 		}

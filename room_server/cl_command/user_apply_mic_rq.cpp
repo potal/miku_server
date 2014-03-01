@@ -36,6 +36,7 @@ void UserApplyMicRQ::Execute(char *buff,int len,void *caller_ptr)
 	if(!server_ptr_ || !caller_ptr)
 		return ;
 	ClientInfoEx *tmp_gs = reinterpret_cast<ClientInfoEx *>(caller_ptr);
+	RoomServer *tmp_server = reinterpret_cast<RoomServer *>(server_ptr_);
 
 	GateRoomServerPack tmp_package;
 	StruCytPacket tmp_cyt_pack;
@@ -44,19 +45,23 @@ void UserApplyMicRQ::Execute(char *buff,int len,void *caller_ptr)
 	if(!tmp_return)
 	{
 		std::cout<<"Unpack StruUserApplyMicRQ Error"<<std::endl;
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"Execute","Unpack Error");
 		return ;
 	}
 
-	RoomServer *tmp_server = reinterpret_cast<RoomServer *>(server_ptr_);
-	if(!tmp_server)
-		return ;
 	ChatRoom *tmp_room = tmp_server->GetRoomManager()->GetRoom(tmp_apply_mic_rq.room_id());
 	if(!tmp_room)
+	{
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"Execute","There is on room:%d\n",tmp_apply_mic_rq.room_id());
 		return ;
+	}
 
 	UserInfo *tmp_user = tmp_room->GetUserInfo(tmp_apply_mic_rq.user_id());
 	if(!tmp_user)
+	{
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"Execute","There is on user:%d\n",tmp_apply_mic_rq.user_id());
 		return ;
+	}
 
 	StruUserApplyMicRS tmp_apply_mic_rs;
 	tmp_apply_mic_rs.set_msg_id(E_USER_APPLY_MIC_RS);

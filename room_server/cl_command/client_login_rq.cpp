@@ -24,8 +24,11 @@ void ClientLoginRQ::Execute(char *buff,int len,void *caller_ptr)
 	time_t tmp_current_time;
 	time(&tmp_current_time);
 	std::cout<<"ClientLoginRQ:"<<tmp_current_time<<std::endl;
-	if(!server_ptr_)
+	if(!server_ptr_ || !caller_ptr)
 		return;
+
+	RoomServer *tmp_server = reinterpret_cast<RoomServer *>(server_ptr_);
+
 	GateRoomServerPack tmp_package;
 	StruCytPacket tmp_cyt_pack;
 	StruUserLoginRQ tmp_login_rq;
@@ -33,12 +36,10 @@ void ClientLoginRQ::Execute(char *buff,int len,void *caller_ptr)
 	if(!tmp_return)
 	{
 		std::cout<<"Unpack StruUserLoginRQ Error"<<std::endl;
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"Execute","Unpack StruUserLoginRQ Error");
 		return ;
 	}
 
-	RoomServer *tmp_server = reinterpret_cast<RoomServer *>(server_ptr_);
-	if(!tmp_server)
-		return ;
 	ChatRoom *tmp_room = tmp_server->GetRoomManager()->GetRoom(tmp_login_rq.room_id());
 	if(!tmp_room)
 	{

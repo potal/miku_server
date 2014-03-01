@@ -4,15 +4,15 @@
 //3，用户密码
 
 //gs_rs封装包
-message GateRoomServerPack
-{
-required string str_head = 1;
-required int32 user_hashkey = 2;
-required int32 gs_hashkey = 3;
-required int32 data_len = 4;
-required bytes data_msg = 5;
-required string str_tail = 6;
-};
+//message GateRoomServerPack
+//{
+//required string str_head = 1;
+//required int32 user_hashkey = 2;
+//required int32 gs_hashkey = 3;
+//required int32 data_len = 4;
+//required bytes data_msg = 5;
+//required string str_tail = 6;
+//};
 
 //房间信息相关包
 

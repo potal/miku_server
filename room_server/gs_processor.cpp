@@ -15,11 +15,14 @@
  *
  * =====================================================================================
  */
-#include "../packet/cyt_packet.pb.h"
-#include "../packet/package_define.pb.h"
+#include <iostream>
+
 #include "gs_processor.h"
 #include "client_info_list.h"
-#include <iostream>
+
+#include "../packet/cyt_packet.pb.h"
+#include "../packet/package_define.pb.h"
+#include "../common/base_log.h"
 
 #include "cl_command/client_login_rq.h"
 #include "cl_command/cancle_user_mic_rq.h"
@@ -59,48 +62,56 @@ bool GateServerProcessor::InitProcessor(int max_list_size,void *caller_ptr,void 
 	if(!tmp_ret)
 	{
 		std::cout<<"Register UserLoginRQ Error"<<std::endl;
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"InitProcessor","Register UserLoginRQ Error");
 		return false;
 	}
 	tmp_ret = tmp_cmd_chain->RegisterCommand(E_CANCLE_USER_MIC_RQ,new CancleUserMicRQ(server_ptr));
 	if(!tmp_ret)
 	{
 		std::cout<<"Register CancleUserMicRQ Error"<<std::endl;
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"InitProcessor","Register CancleUserMicRQ Error");
 		return false;
 	}
 	tmp_ret = tmp_cmd_chain->RegisterCommand(E_PUT_USER_ON_MIC_RQ,new PutUserOnMicRQ(server_ptr));
 	if(!tmp_ret)
 	{
 		std::cout<<"Register PutUserOnMicRQ Error"<<std::endl;
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"InitProcessor","Register PutUserOnMicRQ Error");
 		return false;
 	}
 	tmp_ret = tmp_cmd_chain->RegisterCommand(E_USER_APPLY_MIC_RQ,new UserApplyMicRQ(server_ptr));
 	if(!tmp_ret)
 	{
 		std::cout<<"Register UserApplyMicRQ Error"<<std::endl;
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"InitProcessor","Register UserApplyMicRQ Error");
 		return false;
 	}
 	tmp_ret = tmp_cmd_chain->RegisterCommand(E_USER_EXIT_ROOM_ID,new UserExitRoomID(server_ptr));
 	if(!tmp_ret)
 	{
 		std::cout<<"Register UserExitRoomID Error"<<std::endl;
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"InitProcessor","Register UserExitRoomID Error");
 		return false;
 	}
 	tmp_ret = tmp_cmd_chain->RegisterCommand(E_USER_GIVE_GIFT_RQ,new UserGiveGiftRQ(server_ptr));
 	if(!tmp_ret)
 	{
 		std::cout<<"Register UserGiveGiftRQ Error"<<std::endl;
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"InitProcessor","Register UserGiveGiftRQ Error");
 		return false;
 	}
 	tmp_ret = tmp_cmd_chain->RegisterCommand(E_USER_OFF_MIC_RQ,new UserOffMicRQ(server_ptr));
 	if(!tmp_ret)
 	{
 		std::cout<<"Register UserOffMicRQ Error"<<std::endl;
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"InitProcessor","Register UserOffMicRQ Error");
 		return false;
 	}
 	tmp_ret = tmp_cmd_chain->RegisterCommand(E_USER_MSG_RQ,new UserSendMsgRQ(server_ptr));
 	if(!tmp_ret)
 	{
 		std::cout<<"Register UserSendMsgRQ Error"<<std::endl;
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"InitProcessor","Register UserSendMsgRQ Error");
 		return false;
 	}
 	return true;
@@ -150,6 +161,7 @@ void* GateServerProcessor::DealWithDataThread(void *arg)
 	if(!tmp_processor)
 	{
 		std::cout<<"tmp_processor NULL"<<std::endl;
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"DealWithDataThread","tmp_processor NULL");
 		return NULL;
 	}
 	bool tmp_return = false;
@@ -164,12 +176,12 @@ void* GateServerProcessor::DealWithDataThread(void *arg)
 			usleep(5000);
 			continue;
 		}
-		std::cout<<"GetBuffer ok! buff_len:"<<tmp_out_len<<" Buff:"<<tmp_out_buff<<std::endl;
 		GateRoomServerPack tmp_gr_pack;
 		tmp_return = tmp_gr_pack.ParseFromArray(tmp_out_buff,tmp_out_len);
 		if(!tmp_return)
 		{
 			std::cout<<"Unpack package error!"<<std::endl;
+			WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"DealWithDataThread","Unpack GateRoomServerPack error");
 			continue;
 		}
 
@@ -178,6 +190,7 @@ void* GateServerProcessor::DealWithDataThread(void *arg)
 		if(!tmp_return)
 		{
 			std::cout<<"Unpack package error!"<<std::endl;
+			WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"DealWithDataThread","Unpack StruCytPacket error");
 			continue;
 		}
 
@@ -187,6 +200,7 @@ void* GateServerProcessor::DealWithDataThread(void *arg)
 		if(!tmp_cmd)
 		{
 			std::cout<<"Get cmd error!"<<std::endl;
+			WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"DealWithDataThread","Get cmd error");
 			usleep(5000);
 			continue;
 		}

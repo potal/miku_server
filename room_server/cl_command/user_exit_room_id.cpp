@@ -44,20 +44,22 @@ void UserExitRoomID::Execute(char *buff,int len,void *caller_ptr)
 	bool tmp_return = UnpackAndAnalysePackFromGSRS(buff,len,tmp_package,tmp_cyt_pack,tmp_exit_room_id);
 	if(!tmp_return)
 	{
-		std::cout<<"UserExitRoomID::Execute Unpack StruUserExitRoomID Error"<<std::endl;
+		std::cout<<"Unpack StruUserExitRoomID Error"<<std::endl;
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"Execute","Unpack Error");
 		return ;
 	}
 	
 	ChatRoom *tmp_room = tmp_server->GetRoomManager()->GetRoom(tmp_exit_room_id.room_id());
 	if(!tmp_room)
 	{
-		std::cout<<"there is no room you find"<<std::endl;
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"Execute","There is on room:%d\n",tmp_exit_room_id.room_id());
 		return ;
 	}
 
 	UserInfo *tmp_user = tmp_room->GetUserInfo(tmp_exit_room_id.user_id());
 	if(!tmp_user)
 	{
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"Execute","There is on user:%d\n",tmp_exit_room_id.user_id());
 		return ;
 	}
 	tmp_room->RemoveUser(tmp_exit_room_id.user_id());

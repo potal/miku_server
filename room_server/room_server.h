@@ -4,6 +4,7 @@
 #include "../common/base_user_info.h"
 #include "../common/server_listenner.h"
 #include "../common/command_chain.h"
+#include "../common/base_log.h"
 #include "client_info_list.h"
 #include "room_manager.h"
 #include "ds_connector.h"
@@ -37,8 +38,7 @@ public:
 	RoomServer();
 	~RoomServer();
 
-	bool GetConfig(std::string file_name);
-	bool InitServer();
+	bool InitServer(std::string conf_file_name);
 	bool StartServer();
 	void StopServer();
 
@@ -49,6 +49,10 @@ public:
 
 	CenterServerConnector *GetCSConnector();
 
+protected:
+	bool GetConfig(std::string file_name);
+
+public:
 	template<class T>
 	bool SendDataToRoomAllUser(T &pack,int msg_id,int room_id = 0);
 };

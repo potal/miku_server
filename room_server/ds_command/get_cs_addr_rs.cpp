@@ -38,17 +38,24 @@ void GetCenterServerAddrRS::Execute(char *buff ,int len,void *caller_ptr)
 {
 	if(!server_ptr_ || !caller_ptr)
 		return ;
+	
+	RoomServer *tmp_server = reinterpret_cast<RoomServer *>(server_ptr_);
+
 	SStruDsRSGetCsInfoRs tmp_get_cs_rs;
 	bool tmp_return = false;
 	tmp_return = tmp_get_cs_rs.ParseFromArray(buff,len);
 	if(!tmp_return)
 	{
 		std::cout<<"Unpack SStruDsRSGetCsInfoRs Error!"<<std::endl;
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"Execute","Unpack Error");
 		return ;
 	}
-	RoomServer *tmp_server = reinterpret_cast<RoomServer *>(server_ptr_);
-	if(!tmp_server)
-		return;
+
+	if(tmp_get_cs_rs.server_ip() == "" || tmp_get_cs_rs.server_port() == 0)
+	{
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"Execute","Get cs addr error!");
+		return ;
+	}
 
 	tmp_server->GetCSConnector()->InitConnectionInfo(tmp_get_cs_rs.server_ip().c_str(),tmp_get_cs_rs.server_port());
 
@@ -56,6 +63,7 @@ void GetCenterServerAddrRS::Execute(char *buff ,int len,void *caller_ptr)
 	if(!tmp_return)
 	{
 		std::cout<<"Connect cs error!"<<std::endl;
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"Execute","Connect cs error!");
 		return;
 	}
 
@@ -63,6 +71,7 @@ void GetCenterServerAddrRS::Execute(char *buff ,int len,void *caller_ptr)
 	if(!tmp_return)
 	{
 		std::cout<<"Start cs processor error"<<std::endl;
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"Execute","Start cs processor error!");
 		tmp_server->GetCSConnector()->Disconnect();
 	}
 }

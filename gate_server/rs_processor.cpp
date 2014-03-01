@@ -1,11 +1,13 @@
 #include "rs_processor.h"
 #include "../packet/package_define.pb.h"
+#include "../packet/gs_rs_packet.pb.h"
+#include "../common/base_log.h"
 #include "rs_connector.h"
 #include "gate_server.h"
 
-RoomServerProcessor::RoomServerProcessor():is_started_(false),thread_count_(0),thread_id_ptr_(NULL),parent_ptr_(NULL)
+RoomServerProcessor::RoomServerProcessor():is_started_(false),thread_count_(0),thread_id_ptr_(NULL),parent_ptr_(NULL),valid_buff_len_(0)
 {
-
+	deal_buff_ = new char[MaxDealBuffLen];
 }
 
 RoomServerProcessor::~RoomServerProcessor()
@@ -14,6 +16,11 @@ RoomServerProcessor::~RoomServerProcessor()
 	{
 		delete []thread_id_ptr_;
 		thread_id_ptr_ = NULL;
+	}
+	if(deal_buff_)
+	{
+		delete []deal_buff_;
+		deal_buff_ = NULL;
 	}
 }
 
@@ -59,6 +66,7 @@ void *RoomServerProcessor::GetParent()
 {
 	return parent_ptr_;
 }
+
 void* RoomServerProcessor::DealWithDataThread(void *arg)
 {
 	std::cout<<"RoomServerProcessor::DealWithDataThread starts"<<std::endl;
@@ -68,28 +76,34 @@ void* RoomServerProcessor::DealWithDataThread(void *arg)
 		std::cout<<"tmp_processor NULL"<<std::endl;
 		return NULL;
 	}
+	GateServer *tmp_gs = reinterpret_cast<GateServer *>(tmp_processor->GetCaller());
 	bool tmp_return = false;
 	while(tmp_processor->is_started_)
 	{
-		char tmp_out_buff[0x2000] = {0};
 		int tmp_out_len = 0;
-		if(!tmp_processor->GetCircleList()->GetBuffer(tmp_out_buff,0x2000,tmp_out_len))
+		if(!tmp_processor->GetCircleList()->GetBuffer(tmp_processor->deal_buff_+tmp_processor->valid_buff_len_,MaxDealBuffLen-tmp_processor->valid_buff_len_,tmp_out_len))
 		{
 			usleep(5000);
 			continue;
 		}
-		std::cout<<"RSP:DealWithDataThread: Buff:"<<tmp_out_buff<<std::endl;
+		std::cout<<"RSP:DealWithDataThread: Buff_len:"<<tmp_out_len<<std::endl;
+		tmp_processor->valid_buff_len_ += tmp_out_len;
 
 		GateRoomServerPack tmp_rg_pack;
-		tmp_return = tmp_rg_pack.ParseFromArray(tmp_out_buff,tmp_out_len);
-		if(!tmp_return)
+		while(true)
 		{
-			std::cout<<"Unpack package error!"<<std::endl;
-			continue;
-		}
-		GateServer *tmp_gs = reinterpret_cast<GateServer *>(tmp_processor->GetCaller());
-		if(tmp_gs)
-		{
+			if(tmp_processor->valid_buff_len_ <= 18)
+				break;
+
+			tmp_return = tmp_rg_pack.ParseFromArray(tmp_processor->deal_buff_,tmp_processor->valid_buff_len_);
+			if(!tmp_return)
+			{
+				break;
+			}
+			int tmp_this_pack_len = tmp_rg_pack.ByteSize();
+			tmp_processor->valid_buff_len_ -= tmp_this_pack_len;
+			memmove(tmp_processor->deal_buff_,tmp_processor->deal_buff_+tmp_this_pack_len,tmp_processor->valid_buff_len_);
+
 			UserInfoEx *tmp_user = reinterpret_cast<UserInfoEx *>(tmp_gs->GetClientInfoList()->GetUserByHashkey(tmp_rg_pack.user_hashkey()));
 			if(tmp_user)
 			{
@@ -99,10 +113,6 @@ void* RoomServerProcessor::DealWithDataThread(void *arg)
 			{
 				std::cout<<"RSP:DealWithDataThread:not find user:"<<tmp_rg_pack.user_hashkey()<<std::endl;
 			}
-		}
-		else
-		{
-			std::cout<<"RSP:DealWithDataThread:not find gs"<<std::endl;
 		}
 	}
 	std::cout<<"RoomServerProcessor::DealWithDataThread ends"<<std::endl;

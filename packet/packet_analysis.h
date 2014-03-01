@@ -4,6 +4,7 @@
 #include "cyt_packet.pb.h"
 #include "ds_server.pb.h"
 #include "package_define.pb.h"
+#include "gs_rs_packet.pb.h"
 #include <iostream>
 
 //分析gs_rs之间通信包

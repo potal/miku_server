@@ -6,6 +6,8 @@
 #include "../packet/package_define.pb.h"
 #include <pthread.h>
 
+const int MaxDealBuffLen = 0x4000;
+
 class RoomServerProcessor : public BaseProcessor
 {
 private:
@@ -13,6 +15,9 @@ private:
 	pthread_t *thread_id_ptr_;
 	bool is_started_;
 	void *parent_ptr_;
+
+	char *deal_buff_;
+	int valid_buff_len_;
 public:
 	RoomServerProcessor();
 	~RoomServerProcessor();

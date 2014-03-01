@@ -5,6 +5,7 @@
 #include "../common/circle_list.h"
 #include "../packet/cyt_packet.pb.h"
 #include "../packet/package_define.pb.h"
+#include "../packet/gs_rs_packet.pb.h"
 #include <pthread.h>
 
 class GateServerProcessor : public BaseProcessor

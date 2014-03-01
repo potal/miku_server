@@ -37,17 +37,18 @@ public:
 	GateServer();
 	~GateServer();
 
-	bool GetConfig(std::string file_name);
-	bool InitServer();
+	bool InitServer(std::string conf_file_name);
 	bool StartServer();
-	
+	void StopServer();
+
 	UserInfoList *GetClientInfoList();
 	RoomManager *GetRoomManager();
 	DirectorServerConnector *GetDSConnector();
 	std::map<int,RoomServerConnector *> *GetRSConnectionList();
 	ClientProcessor *GetCLProcessor();
 
-	void StopServer();
+protected:
+	bool GetConfig(std::string file_name);
 };
 
 #endif

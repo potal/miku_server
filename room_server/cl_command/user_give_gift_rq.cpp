@@ -44,25 +44,28 @@ void UserGiveGiftRQ::Execute(char *buff,int len,void *caller_ptr)
 	bool tmp_return = UnpackAndAnalysePackFromGSRS(buff,len,tmp_package,tmp_cyt_pack,tmp_give_gift_rq);
 	if(!tmp_return)
 	{
-		std::cout<<"UserGiveGiftRQ::Execute Unpack StruUserGiveGiftRQ Error"<<std::endl;
+		std::cout<<"Unpack StruUserGiveGiftRQ Error"<<std::endl;
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"Execute","Unpack Error");
 		return ;
 	}
 	
 	ChatRoom *tmp_room = tmp_server->GetRoomManager()->GetRoom(tmp_give_gift_rq.room_id());
 	if(!tmp_room)
 	{
-		std::cout<<"there is no room you find"<<std::endl;
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"Execute","There is on room:%d\n",tmp_give_gift_rq.room_id());
 		return ;
 	}
 
 	UserInfo *tmp_user = tmp_room->GetUserInfo(tmp_give_gift_rq.user_id());
 	if(!tmp_user)
 	{
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"Execute","There is on user:%d\n",tmp_give_gift_rq.user_id());
 		return ;
 	}
 	UserInfo *tmp_dst_user = tmp_room->GetUserInfo(tmp_give_gift_rq.dst_user_id());
 	if(!tmp_dst_user)
 	{
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"Execute","There is on dst_user:%d\n",tmp_give_gift_rq.dst_user_id());
 		return;
 	}
 	tmp_server->GetCSConnector()->SendData(const_cast<char *>(tmp_package.data_msg().c_str()),tmp_package.data_len());

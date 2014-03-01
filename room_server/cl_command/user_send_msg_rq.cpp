@@ -44,7 +44,8 @@ void UserSendMsgRQ::Execute(char *buff,int len,void *caller_ptr)
 	bool tmp_return = UnpackAndAnalysePackFromGSRS(buff,len,tmp_package,tmp_cyt_pack,tmp_send_msg_rq);
 	if(!tmp_return)
 	{
-		std::cout<<"UserSendMsgRQ::Execute Unpack StruUserMsgRQ Error"<<std::endl;
+		std::cout<<"Unpack StruUserMsgRQ Error"<<std::endl;
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"Execute","Unpack Error");
 		return ;
 	}
 	
@@ -54,7 +55,7 @@ void UserSendMsgRQ::Execute(char *buff,int len,void *caller_ptr)
 	ChatRoom *tmp_room = tmp_server->GetRoomManager()->GetRoom(tmp_send_msg_rq.room_id());
 	if(!tmp_room)
 	{
-		std::cout<<"there is no room you find"<<std::endl;
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"Execute","There is on room:%d\n",tmp_send_msg_rq.room_id());
 		return ;
 	}
 
@@ -62,6 +63,7 @@ void UserSendMsgRQ::Execute(char *buff,int len,void *caller_ptr)
 	if(!tmp_user)
 	{
 		std::cout<<"there is no user you find,user_id:"<<tmp_send_msg_rq.user_id()<<std::endl;
+		WRITEFORMATERRORLOG(__THREADID__,__FILE__,__LINE__,"Execute","There is on user:%d\n",tmp_send_msg_rq.user_id());
 		return ;
 	}
 
