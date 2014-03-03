@@ -1,0 +1,29 @@
+系统版本:centos linux 6.4 32/64bit
+
+准备:
+libevent 2.0.21
+protoc buff 2.4.1
+mysql 5.1.73
+connector/c++ 1.1.1
+
+默认安装libevent 和protocol buffer
+升级mysql
+(命令:yum install mysql-devel)
+安装boost
+(命令:yum install boost)
+
+解压connector/c++ 1.1.1
+32bit机用对应的32bit的库，解压完成将include和lib中的文件拷贝到/usr/include和/usr/lib中
+64bit机用对应的64bit的库，解压完成将include和lib中的文件拷贝到/usr/include和/usr/lib64中
+
+如果在运行服务器时，提示无法找到共享库
+则将共享库所在文件夹放入/etc/ld.so.conf文件中
+命令如下：
+cat /etc/ld.so.conf
+echo "/usr/local/lib" >> /etc/ld.so.conf
+ldconfig
+
+或者export一个全局变量LD_LIBRARY_PATH
+命令如下：
+export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+
